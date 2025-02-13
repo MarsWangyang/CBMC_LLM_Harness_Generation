@@ -27,6 +27,11 @@ def pretty_print_messages(update):
             m.pretty_print()
         print("\n")
 
+def clear_log():
+    with open("out.txt", "w") as f:
+        f.write("")
+        f.close()
+
 def write_to_log(content: str):
     with open("out.txt", "a") as f:
         f.write(content)
