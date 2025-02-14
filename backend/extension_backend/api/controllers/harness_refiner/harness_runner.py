@@ -123,21 +123,21 @@ def check_harness(entry_point, generated_harness, cbmc_flags, script_dir):
         result = subprocess.run(commands, capture_output=True, text=True, check=True)
         print("Success:\n", result.stdout)
         parsedResults = parseReport(result.stdout)
-        parsedResults["name"] = fileName
+        parsedResults["name"] = harnessName
         return parsedResults
     except FileNotFoundError as error:
         print("File was not found within system:\n", error)
         log_file_path = os.path.join(script_dir, "harness_runner_log.txt")
         with open(log_file_path, 'a') as file: # log CBMC not found error
             file.write(f"CBMC was not found on system:{error}")
-        errorResult = {"success": False, "report": f"File not found on system: {error}", "name": fileName}
+        errorResult = {"success": False, "report": f"File not found on system: {error}", "name": harnessName}
         return errorResult
     except subprocess.CalledProcessError as e:
         print("System error occurred:\n", e.stderr)
         log_file_path = os.path.join(script_dir, "harness_runner_log.txt")
         with open(log_file_path, 'a') as file: # log error within harness_runner_log.txt
             file.write(f"System error occurred:\n{e.stderr}")
-        errorResult = {"success": False, "report": f"System error occurred: {e.stderr}", "name": fileName}
+        errorResult = {"success": False, "report": f"System error occurred: {e.stderr}", "name": harnessName}
         return errorResult
 
 
