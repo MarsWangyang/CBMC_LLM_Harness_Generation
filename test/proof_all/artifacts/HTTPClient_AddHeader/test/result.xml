@@ -1,0 +1,931 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cprover>
+<program>CBMC 6.4.1 (cbmc-6.4.1)</program>
+<message type="STATUS-MESSAGE">
+  <text>CBMC version 6.4.1 (cbmc-6.4.1) 64-bit x86_64 linux</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Reading GOTO program from file /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_AddHeader/gotos/HTTPClient_AddHeader_harness.goto</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Generating GOTO Program</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Adding CPROVER library (x86_64)</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Removal of function pointers and virtual functions</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Generic Property Instrumentation</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Starting Bounded Model Checking</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Passing problem to propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>converting SSA</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Running propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Writing temporary CNF</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Invoking SAT solver</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Solver returned code: 20</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>result:UNSATISFIABLE</text>
+</message>
+
+<result property="httpHeaderStrncpy.assertion.1" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/stubs/httpHeaderStrncpy.c" function="httpHeaderStrncpy" line="42" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="httpHeaderStrncpy.assertion.2" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/stubs/httpHeaderStrncpy.c" function="httpHeaderStrncpy" line="43" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="mallocCanFail.assertion.1" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="mallocCanFail" line="36" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.assertion.1" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1358" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.assertion.2" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1359" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.assertion.3" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1360" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.assertion.4" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1361" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.assertion.5" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1362" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.assertion.6" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1363" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="httpHeaderStrncpy.pointer_primitives.1" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/stubs/httpHeaderStrncpy.c" function="httpHeaderStrncpy" line="42" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="httpHeaderStrncpy.pointer_primitives.2" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/stubs/httpHeaderStrncpy.c" function="httpHeaderStrncpy" line="42" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="httpHeaderStrncpy.pointer_primitives.3" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/stubs/httpHeaderStrncpy.c" function="httpHeaderStrncpy" line="42" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="httpHeaderStrncpy.pointer_primitives.4" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/stubs/httpHeaderStrncpy.c" function="httpHeaderStrncpy" line="42" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="httpHeaderStrncpy.pointer_primitives.5" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/stubs/httpHeaderStrncpy.c" function="httpHeaderStrncpy" line="43" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="httpHeaderStrncpy.pointer_primitives.6" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/stubs/httpHeaderStrncpy.c" function="httpHeaderStrncpy" line="43" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="httpHeaderStrncpy.pointer_primitives.7" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/stubs/httpHeaderStrncpy.c" function="httpHeaderStrncpy" line="43" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="httpHeaderStrncpy.pointer_primitives.8" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/stubs/httpHeaderStrncpy.c" function="httpHeaderStrncpy" line="43" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_dereference.1" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1359" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_dereference.2" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1359" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_dereference.3" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1359" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_dereference.4" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1359" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_dereference.5" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1359" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_dereference.6" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1359" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_dereference.7" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1365" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_dereference.8" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1365" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_dereference.9" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1365" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_dereference.10" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1365" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_dereference.11" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1365" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_dereference.12" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1365" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.overflow.1" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1365" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.1" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1365" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.2" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1365" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.3" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1365" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.4" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1365" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.5" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1365" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.6" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1365" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.7" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1372" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.8" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1372" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.9" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1372" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.10" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1372" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.11" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1372" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.12" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1372" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.overflow.2" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1375" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.13" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1376" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.14" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1376" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.15" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1376" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.16" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1376" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.17" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1376" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.18" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1376" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.overflow.3" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1380" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.overflow.4" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1380" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.overflow.5" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1380" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.overflow.6" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1381" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.overflow.7" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1386" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_dereference.13" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1386" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_dereference.14" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1386" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_dereference.15" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1386" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_dereference.16" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1386" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_dereference.17" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1386" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_dereference.18" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1386" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.overflow.8" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1398" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.19" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1398" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.20" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1398" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.21" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1398" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.22" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1398" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.23" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1398" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.24" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1398" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.1" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="33" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.2" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="33" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.3" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="33" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.4" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="33" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.5" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="33" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.6" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="33" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer.1" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="33" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.7" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="33" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.8" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="33" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.9" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="33" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.10" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="33" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.11" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="33" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.12" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="33" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.13" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="34" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.14" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="34" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.15" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="34" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.16" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="34" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.17" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="34" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.18" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="34" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer.2" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="34" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.19" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="34" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.20" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="34" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.21" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="34" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.22" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="34" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.23" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="34" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.24" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="34" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.precondition_instance.1" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1401" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.precondition_instance.2" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1401" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.precondition_instance.3" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1401" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.25" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1405" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.26" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1405" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.27" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1405" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.28" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1405" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.29" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1405" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.30" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1405" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.overflow.9" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1416" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.31" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1416" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.32" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1416" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.33" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1416" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.34" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1416" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.35" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1416" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_arithmetic.36" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1416" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.25" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="33" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.26" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="33" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.27" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="33" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.28" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="33" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.29" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="33" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.30" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="33" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer.3" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="33" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.31" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="33" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.32" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="33" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.33" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="33" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.34" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="33" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.35" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="33" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.36" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="33" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.37" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="34" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.38" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="34" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.39" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="34" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.40" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="34" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.41" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="34" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.42" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="34" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer.4" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="34" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.43" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="34" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.44" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="34" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.45" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="34" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.46" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="34" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.47" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="34" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.pointer_arithmetic.48" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="34" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.precondition_instance.4" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1419" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.precondition_instance.5" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1419" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.precondition_instance.6" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1419" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_dereference.19" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1424" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_dereference.20" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1424" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_dereference.21" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1424" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_dereference.22" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1424" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_dereference.23" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1424" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.pointer_dereference.24" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1424" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="addHeader.overflow.10" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="addHeader" line="1424" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="isValidHttpRequestHeaders.pointer_dereference.1" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpRequestHeaders" line="62" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="isValidHttpRequestHeaders.pointer_dereference.2" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpRequestHeaders" line="62" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="isValidHttpRequestHeaders.pointer_dereference.3" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpRequestHeaders" line="62" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="isValidHttpRequestHeaders.pointer_dereference.4" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpRequestHeaders" line="62" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="isValidHttpRequestHeaders.pointer_dereference.5" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpRequestHeaders" line="62" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="isValidHttpRequestHeaders.pointer_dereference.6" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpRequestHeaders" line="62" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="isValidHttpRequestHeaders.pointer_dereference.7" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpRequestHeaders" line="63" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="isValidHttpRequestHeaders.pointer_dereference.8" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpRequestHeaders" line="63" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="isValidHttpRequestHeaders.pointer_dereference.9" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpRequestHeaders" line="63" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="isValidHttpRequestHeaders.pointer_dereference.10" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpRequestHeaders" line="63" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="isValidHttpRequestHeaders.pointer_dereference.11" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpRequestHeaders" line="63" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="isValidHttpRequestHeaders.pointer_dereference.12" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpRequestHeaders" line="63" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="malloc.assertion.1" status="SUCCESS">
+  <location file="&lt;builtin-library-malloc&gt;" function="malloc" line="31" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="malloc.assertion.2" status="SUCCESS">
+  <location file="&lt;builtin-library-malloc&gt;" function="malloc" line="36" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="allocateHttpRequestHeaders.pointer_dereference.1" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpRequestHeaders" line="49" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="allocateHttpRequestHeaders.pointer_dereference.2" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpRequestHeaders" line="49" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="allocateHttpRequestHeaders.pointer_dereference.3" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpRequestHeaders" line="49" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="allocateHttpRequestHeaders.pointer_dereference.4" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpRequestHeaders" line="49" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="allocateHttpRequestHeaders.pointer_dereference.5" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpRequestHeaders" line="49" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="allocateHttpRequestHeaders.pointer_dereference.6" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpRequestHeaders" line="49" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="allocateHttpRequestHeaders.pointer_dereference.7" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpRequestHeaders" line="50" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="allocateHttpRequestHeaders.pointer_dereference.8" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpRequestHeaders" line="50" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="allocateHttpRequestHeaders.pointer_dereference.9" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpRequestHeaders" line="50" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="allocateHttpRequestHeaders.pointer_dereference.10" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpRequestHeaders" line="50" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="allocateHttpRequestHeaders.pointer_dereference.11" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpRequestHeaders" line="50" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="allocateHttpRequestHeaders.pointer_dereference.12" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpRequestHeaders" line="50" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="HTTPClient_AddHeader.pointer_dereference.1" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1703" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="HTTPClient_AddHeader.pointer_dereference.2" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1703" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="HTTPClient_AddHeader.pointer_dereference.3" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1703" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="HTTPClient_AddHeader.pointer_dereference.4" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1703" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="HTTPClient_AddHeader.pointer_dereference.5" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1703" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="HTTPClient_AddHeader.pointer_dereference.6" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1703" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="HTTPClient_AddHeader.pointer_dereference.7" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1728" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="HTTPClient_AddHeader.pointer_dereference.8" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1728" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="HTTPClient_AddHeader.pointer_dereference.9" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1728" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="HTTPClient_AddHeader.pointer_dereference.10" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1728" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="HTTPClient_AddHeader.pointer_dereference.11" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1728" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="HTTPClient_AddHeader.pointer_dereference.12" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1728" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="HTTPClient_AddHeader.pointer_dereference.13" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1728" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="HTTPClient_AddHeader.pointer_dereference.14" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1728" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="HTTPClient_AddHeader.pointer_dereference.15" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1728" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="HTTPClient_AddHeader.pointer_dereference.16" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1728" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="HTTPClient_AddHeader.pointer_dereference.17" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1728" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="HTTPClient_AddHeader.pointer_dereference.18" status="SUCCESS">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1728" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="strncmp.pointer_arithmetic.1" status="SUCCESS">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="28" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="strncmp.pointer_arithmetic.2" status="SUCCESS">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="28" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="strncmp.pointer_arithmetic.3" status="SUCCESS">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="28" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="strncmp.pointer_arithmetic.4" status="SUCCESS">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="28" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="strncmp.pointer_arithmetic.5" status="SUCCESS">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="28" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="strncmp.pointer_arithmetic.6" status="SUCCESS">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="28" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="strncmp.pointer_dereference.1" status="SUCCESS">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="28" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="strncmp.pointer_dereference.2" status="SUCCESS">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="28" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="strncmp.pointer_dereference.3" status="SUCCESS">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="28" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="strncmp.pointer_dereference.4" status="SUCCESS">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="28" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="strncmp.pointer_dereference.5" status="SUCCESS">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="28" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="strncmp.pointer_dereference.6" status="SUCCESS">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="28" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="strncmp.pointer_arithmetic.7" status="SUCCESS">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="29" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="strncmp.pointer_arithmetic.8" status="SUCCESS">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="29" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="strncmp.pointer_arithmetic.9" status="SUCCESS">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="29" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="strncmp.pointer_arithmetic.10" status="SUCCESS">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="29" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="strncmp.pointer_arithmetic.11" status="SUCCESS">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="29" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="strncmp.pointer_arithmetic.12" status="SUCCESS">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="29" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="strncmp.pointer_dereference.7" status="SUCCESS">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="29" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="strncmp.pointer_dereference.8" status="SUCCESS">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="29" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="strncmp.pointer_dereference.9" status="SUCCESS">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="29" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="strncmp.pointer_dereference.10" status="SUCCESS">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="29" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="strncmp.pointer_dereference.11" status="SUCCESS">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="29" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="strncmp.pointer_dereference.12" status="SUCCESS">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="29" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="strncmp.overflow.1" status="SUCCESS">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="40" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.overflow.1" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="44" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="memcpy.overflow.2" status="SUCCESS">
+  <location file="&lt;builtin-library-memcpy&gt;" function="memcpy" line="44" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<message type="STATUS-MESSAGE">
+  <text>VERIFICATION SUCCESSFUL</text>
+</message>
+
+<cprover-status>SUCCESS</cprover-status>
+
+</cprover>
+

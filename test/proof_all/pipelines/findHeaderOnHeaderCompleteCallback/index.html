@@ -1,0 +1,3175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    Pipeline findHeaderOnHeaderCompleteCallback
+  </title>
+<style>
+#title{
+  background-color: #ec407a;
+  color: white;
+  padding: 2em;
+}
+h1 {
+  margin-bottom: 0em;
+}
+#subtitle {
+  font-variant: small-caps;
+  text-transform: lowercase;
+  letter-spacing: 0.2em;
+}
+.run-info ul {
+  list-style: none;
+}
+.run-info ul li {
+  display: inline;
+  margin-right: 6em;
+  margin-left: -3em;
+  text-transform: uppercase;
+  font-size: small;
+  color: #ec407a;
+}
+#content {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 2em;
+  color: #263238;
+  font-family: Helvetica, sans-serif;
+}
+p {
+  margin: 0;
+}
+.command-table {
+  background-color: #eceff1;
+  padding: 0.3em;
+  border-radius: 0.3em;
+  margin-bottom: 4em;
+}
+.command-table .fail-ignored {
+  background-color: #e65100cc;
+  padding: 0.3em;
+  border-radius: 0.3em;
+}
+.command-table .success {
+  background-color: #1a237ecc;
+  padding: 0.3em;
+  border-radius: 0.3em;
+}
+.command-table .in-progress {
+  background-color: black;
+  padding: 0.3em;
+  border-radius: 0.3em;
+}
+.command-table .non-started {
+  background-color: #26323844;
+  padding: 0.3em;
+  border-radius: 0.3em;
+}
+.command-table .fail {
+  background-color: #f44336cc;
+  padding: 0.3em;
+  border-radius: 0.3em;
+}
+.command-content {
+  background-color: #eceff1;
+  padding: 1em;
+}
+.command-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+.command-id-link{
+  flex-grow: 0;
+}
+.command-id-link a {
+  font-size: xx-large;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 1px  1px 0px #000000bb,
+              -1px -1px 0px #ffffffbb;
+  text-decoration: none;
+  margin-left: 0.2em;
+}
+.command-id-link a:link {
+  text-shadow: 1px  1px 0px #000000bb,
+              -1px -1px 0px #ffffffbb;
+}
+.command-id-link a:visited {
+  text-shadow: 1px  1px 0px #000000bb,
+              -1px -1px 0px #ffffffbb;
+}
+.command-id-link a:visited:hover {
+  color: #ec407a;
+  background-color: #00000000;
+  text-shadow: 1px  1px 0px #000000bb,
+              -1px -1px 0px #ffffffbb,
+               0px 0px 10px #fff,
+               0px 0px 5px #ec407a,
+               0px 0px 5px #ec407a;
+}
+.command-id-link a:hover {
+  color: #ec407a;
+  background-color: #00000000;
+  text-shadow: 1px  1px 0px #000000bb,
+              -1px -1px 0px #ffffffbb
+               0px 0px 10px #fff,
+               0px 0px 5px #ec407a,
+               0px 0px 5px #ec407a;
+}
+.command-id-link a:active {
+  color: #ffeb3b;
+  background-color: #00000000;
+  text-shadow: 1px  1px 0px #000000bb,
+              -1px -1px 0px #ffffffbb,
+                 0px 0px 10px #fff,
+                 0px 0px 5px #ffeb3b,
+                 0px 0px 5px #ffeb3b;
+}
+.command-id-link a:visited:active {
+  color: #ffeb3b;
+  background-color: #00000000;
+  text-shadow: 1px  1px 0px #000000bb,
+              -1px -1px 0px #ffffffbb,
+                 0px 0px 10px #fff,
+                 0px 0px 5px #ffeb3b,
+                 0px 0px 5px #ffeb3b;
+}
+.command-description {
+  color: #26323899;
+  font-size: smaller;
+  text-align: center;
+  font-weight: bold;
+  flex-grow: 1;
+}
+
+.command-invocation {
+  padding: 1em;
+  color: #fff;
+  background-color: #005662;
+  font-size: small;
+  font-family: monospace;
+  border-radius: 0.5em;
+  text-shadow: 0 0 2px #ffccbccc;
+}
+.command-stats-table {
+  margin-top: 0.2em;
+  border-radius: 0.5em;
+  padding: 0.2em;
+  padding-top: 0.4em;
+  display: flex;
+  flex-direction: column;
+  background-color: #eae3998a;
+  color: #263238cc;
+  margin-bottom: 0.2em;
+}
+.command-stats-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+  font-size: small;
+  text-transform: uppercase;
+}
+.command-stats-row p .value {
+  color: #00251aaa;
+  text-shadow: 0 0 2px #82ada944;
+  font-weight: bold;
+}
+.literal-stdout {
+  margin-top: 0.4em;
+  margin-bottom: 0.2em;
+  padding: 1em;
+  border-radius: 0.5em;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+.output-box {
+  margin-top: 0.4em;
+  margin-bottom: 0.2em;
+  padding: 1em;
+  color: #000a12;
+  background-color: #cfd8dc;
+  font-size: small;
+  font-family: monospace;
+  border-radius: 0.5em;
+  max-height: 20em;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+.output-box xmp{
+  white-space: pre;
+}
+.stage-name p {
+  margin-left: 0.5em;
+  color: #546e7a;
+  text-shadow:  -1px  0px 0px #fff
+               ,-2px  0px 0px #ffffff99
+               ,-1px  1px 0px #ffffff99
+               ;
+  font-size: 48pt;
+  font-variant: small-caps;
+  text-transform: lowercase;
+  font-weight: bold;
+  font-style: italic;
+}
+.stage-name .underline {
+  width: 100%;
+  height: 1.1em;
+  background-color: #546e7a;
+  margin-top: -1.6em;
+}
+.stage-name {
+  margin-top: 6em;
+  margin-bottom: 3em;
+}
+
+.outcome-table-info-box {
+  margin-top: 0.4em;
+  margin-bottom: 0.2em;
+  padding: 1em;
+  color: #000a12;
+  background-color: #ffee58;
+  border-radius: 0.5em;
+}
+.outcome-table-info-box .outcome{
+  font-weight: bold;
+}
+#toc {
+  margin-bottom: 6em;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 1;
+  margin-right: 3em;
+}
+.toc-title {
+  text-align: center;
+  font-variant: small-caps;
+  text-transform: lowercase;
+  margin-bottom: -1em;
+}
+.toc-section{
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  text-transform: capitalize;
+}
+.toc-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.toc-row-icon {
+  padding-right: 8px;
+}
+.status-icon-cross {
+  fill: #f44336;
+    width: 16px;
+    height: 16px;
+}
+.status-icon-tick {
+  fill: #3f51b5;
+  stroke: #ffffff77;
+  stroke-width: 1px;
+  width: 16px;
+  height: 16px;
+}
+
+.status-icon-in-progress {
+  fill: #333;
+  width: 16px;
+  height: 16px;
+}
+
+.status-icon-in-progress circle {
+  stroke: #333;
+  stroke-width: 2px;
+  fill: none
+}
+a:link {
+  color: #1e88e5;
+}
+a:visited {
+  color: #1e88e5;
+}
+a:visited:hover {
+  background-color: #1e88e5;
+  color: #fff;
+  text-decoration: none;
+}
+a:hover {
+  background-color: #1e88e5;
+  color: #fff;
+  text-decoration: none;
+}
+a:active {
+  background-color: #ec407a;
+  color: #fff;
+  text-decoration: none;
+}
+a:visited:active {
+  background-color: #ec407a;
+  color: #fff;
+  text-decoration: none;
+}
+
+#contents-container {
+  margin-top: 6em;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+#depgraph {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: flex-start;
+  flex-shrink: 7;
+}
+
+#depgraph-title p {
+  text-align: center;
+  font-variant: small-caps;
+  text-transform: lowercase;
+}
+
+#depgraph-preview img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#depgraph-preview {
+  padding: 1em;
+}
+
+.memory-box {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5em;
+  align-items: center;
+}
+.memory-preview {
+  width: 75%;
+}
+.memory-preview svg {
+  margin-left: -1em;
+  margin-right: -2em;
+}
+.memory-table {
+}
+.memory-title {
+  text-align: center;
+  font-style: bold;
+}
+.memory-subtitle {
+  text-transform: lowercase;
+  font-variant: small-caps;
+  text-align: center;
+  opacity: 0.8;
+}
+.memory-pad {
+  width: 1.5em;
+}
+.memory-value {
+  text-align: center;
+  margin-right: 2em;
+}
+.rss {
+  color: #ab47bc;
+}
+.vsz {
+  color: #4caf50;
+}
+
+.tags {
+  font-size: small;
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
+.tags-label {
+  display: flex;
+  flex-grow: 0;
+  transform: uppercase;
+}
+.tags-box {
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+}
+
+.tags-list li {
+  display: inline;
+  margin-right: 2em;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  background-color: #ffcc80;
+  color: #263238;
+  border-radius: 20px;
+}
+
+
+@media (prefers-color-scheme: dark){
+  a:link {
+    color: #29b6f6;
+  }
+  a:visited {
+    color: #29b6f6;
+  }
+  a:visited:hover {
+    color: #263238;
+    background-color: #29b6f6;
+  }
+  a:hover {
+    color: #263238;
+    background-color: #29b6f6;
+  }
+  a:active {
+    color: #263238;
+    background-color: #ec407a;
+  }
+  a:visited:active {
+    color: #263238;
+    background-color: #ec407a;
+  }
+  .command-id-link a:link {
+    text-shadow: 1px  1px 0px #000000bb,
+                -1px -1px 0px #ffffffbb;
+  }
+  .command-id-link a:visited {
+    text-shadow: 1px  1px 0px #000000bb,
+                -1px -1px 0px #ffffffbb;
+  }
+  .command-id-link a:visited:hover {
+    color: #ec407a;
+    background-color: #00000000;
+    text-shadow: 1px  1px 0px #000000bb,
+                -1px -1px 0px #ffffffbb.
+                 0px 0px 10px #fff,
+                 0px 0px 5px #ec407a,
+                 0px 0px 5px #ec407a;
+  }
+  .command-id-link a:hover {
+    color: #ec407a;
+    background-color: #00000000;
+    text-shadow: 1px  1px 0px #000000bb,
+                -1px -1px 0px #ffffffbb,
+                 0px 0px 10px #fff,
+                 0px 0px 5px #ec407a,
+                 0px 0px 5px #ec407a;
+  }
+  .command-id-link a:active {
+    color: #ffeb3b;
+    background-color: #00000000;
+    text-shadow: 1px  1px 0px #000000bb,
+                -1px -1px 0px #ffffffbb,
+                 0px 0px 10px #fff,
+                 0px 0px 5px #ffeb3b,
+                 0px 0px 5px #ffeb3b;
+  }
+  .command-id-link a:visited:active {
+    color: #ffeb3b;
+    background-color: #00000000;
+    text-shadow: 1px  1px 0px #000000bb,
+                -1px -1px 0px #ffffffbb,
+                 0px 0px 10px #fff,
+                 0px 0px 5px #ffeb3b,
+                 0px 0px 5px #ffeb3b;
+  }
+  body {
+    color: #babdbe;
+    background-color: #263238;
+  }
+  .outcome-table-info-box p{
+    color: #000a12;
+  }
+  p {
+    color: #babdbe;
+  }
+  #subtitle {
+    color: #fff;
+  }
+  .command-table {
+    background-color: #37474f;
+  }
+  .command-content {
+    background-color: #37474f;
+  }
+  .command-invocation p {
+    color: #fff;
+  }
+  .command-stats-table {
+    background-color: #eae399d0;
+    color: #263238;
+  }
+  .command-stats-table p {
+    color: #263238;
+  }
+  .output-box {
+    color: #cfd8dccc;
+    background-color: #102027;
+  }
+  .stage-name p {
+    text-shadow: -1px  0px 0px #263238,
+                 -2px  0px 0px #26323899,
+                 -1px  1px 0px #26323899;
+  }
+  .status-icon-in-progress { fill: #ddd; }
+  .status-icon-in-progress circle { stroke: #ddd; }
+
+  /* SVG graphs */
+  g text {
+    fill: #eceff1;
+    stroke: #fff0;
+  }
+}
+</style>
+</head>
+<body>
+<div id="content">
+
+  <div id="title">
+    <h1>
+      FreeRTOS coreHTTP pipeline &lsquo;findHeaderOnHeaderCompleteCallback&rsquo;
+    </h1>
+    <p id="subtitle">
+      Litani CI Dashboard
+    </p>
+  </div><!-- id="title" -->
+
+  <div class=run-info>
+    <ul>
+      <li>Pipeline status: success</li>
+      <li>2025-02-17T06:47:30Z</li>
+      <li>777dc7dd-f057-4f16-899d-8324b19e7250</li>
+    </ul>
+  </div><!-- class=run-info -->
+
+  <div id="contents-container">
+
+    <div id="toc">
+      <div class="toc-title">
+        <p>Summary of jobs for this pipeline</p>
+      </div><!-- class="toc-title" -->
+
+      
+        <div class="toc-section">
+          <p>build</p>
+        </div><!-- class="toc-section" -->
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-6c585037-9042-410c-a667-ad5ef300fc26">
+              
+              findHeaderOnHeaderCompleteCallback: building proof binary
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-fe737a6f-248d-4f65-846a-d01b991b9c04">
+              
+              findHeaderOnHeaderCompleteCallback: building project binary
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-6d99efdb-1d17-4526-a7e4-2e2272159388">
+              
+              findHeaderOnHeaderCompleteCallback: removing function bodies from project sources
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-9cba3c02-5df3-4a99-8ad7-dca63be8ab05">
+              
+              findHeaderOnHeaderCompleteCallback: linking project to proof
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-b20872ae-d662-4f49-bcc1-d3fc126087d4">
+              
+              findHeaderOnHeaderCompleteCallback: setting static variables to nondet
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-791ca99e-8c19-48fb-8189-6480188de725">
+              
+              findHeaderOnHeaderCompleteCallback: restricting function pointers in project sources
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-fa80c552-7d09-4a4f-b208-22bcab24f1d3">
+              
+              findHeaderOnHeaderCompleteCallback: not unwinding loops
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-8a6695ce-c528-499e-b6b3-80d3fa5b1033">
+              
+              findHeaderOnHeaderCompleteCallback: slicing global initializations
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-41eb1843-8e2a-401a-a0d6-e51ae9fe90c6">
+              
+              findHeaderOnHeaderCompleteCallback: not linking CPROVER library
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-8a3723c0-fa3c-4808-aa91-114cd91f6f8c">
+              
+              findHeaderOnHeaderCompleteCallback: checking function contracts
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-90e1a21f-92f8-4aee-98d5-126a3354820a">
+              
+              findHeaderOnHeaderCompleteCallback: copying final goto-binary
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-b0d37610-4b0e-4746-ae0e-e572cf667ada">
+              
+              findHeaderOnHeaderCompleteCallback: dropping unused functions
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+      
+        <div class="toc-section">
+          <p>test</p>
+        </div><!-- class="toc-section" -->
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-a10e5ae2-4ddf-4314-971a-cd31b00452da">
+              
+              findHeaderOnHeaderCompleteCallback: printing safety properties
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-880d1d8e-5ada-4755-b10b-441f5a806dcd">
+              
+              findHeaderOnHeaderCompleteCallback: calculating coverage
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-9c626e93-7a2f-4bef-a147-bcaab14cbb85">
+              
+              findHeaderOnHeaderCompleteCallback: checking safety properties
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+      
+        <div class="toc-section">
+          <p>report</p>
+        </div><!-- class="toc-section" -->
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-1592b152-2362-4f3b-b338-4349091032d4">
+              
+              findHeaderOnHeaderCompleteCallback: generating report
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+      
+    </div><!-- id="toc" -->
+
+
+    
+    <div id="depgraph">
+      <div id="depgraph-title">
+        <p>Dependency graph for pipeline</p>
+        <p>(click for larger version)</p>
+      </div><!-- id="depgraph-title" -->
+      <a href="dependencies.svg">
+        <div id="depgraph-preview">
+          <img
+             src="dependencies.svg"
+             alt="pipeline dependency graph" />
+        </div><!-- id="depgraph-preview" -->
+      </a><!-- href="" -->
+    </div><!-- id="depgraph" -->
+    
+
+  </div><!-- id="contents-container" -->
+
+
+  
+  <div class="stage">
+    <div class="stage-name">
+      <p>build</p>
+      <div class="underline"></div>
+    </div><!-- class="stage-name" -->
+
+    
+    <div class="command-table" id="job-6c585037-9042-410c-a667-ad5ef300fc26">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-6c585037-9042-410c-a667-ad5ef300fc26">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                findHeaderOnHeaderCompleteCallback: building proof binary
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            goto-cc  -fPIC -std=gnu90 --export-file-local-symbols -I/home/justin/coreHTTP/test/cbmc/include -I/home/justin/coreHTTP/source/include -I/home/justin/coreHTTP/source/interface -I/home/justin/coreHTTP/source -I/home/justin/coreHTTP/source/dependency/3rdparty/llhttp/include -Dhttp_EXPORTS -DCBMC=1 -DCBMC_OBJECT_BITS=8 -DCBMC_MAX_OBJECT_SIZE="(SIZE_MAX>>(CBMC_OBJECT_BITS+1))" /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/findHeaderOnHeaderCompleteCallback_harness.c /home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c -o /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/proof0100.goto
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                None
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                None
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:42Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                00s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:42Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+
+
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+    <div class="command-table" id="job-fe737a6f-248d-4f65-846a-d01b991b9c04">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-fe737a6f-248d-4f65-846a-d01b991b9c04">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                findHeaderOnHeaderCompleteCallback: building project binary
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            goto-cc  -fPIC -std=gnu90 --export-file-local-symbols -I/home/justin/coreHTTP/test/cbmc/include -I/home/justin/coreHTTP/source/include -I/home/justin/coreHTTP/source/interface -I/home/justin/coreHTTP/source -I/home/justin/coreHTTP/source/dependency/3rdparty/llhttp/include -Dhttp_EXPORTS -DCBMC=1 -DCBMC_OBJECT_BITS=8 -DCBMC_MAX_OBJECT_SIZE="(SIZE_MAX>>(CBMC_OBJECT_BITS+1))" /home/justin/coreHTTP/source/core_http_client.c -o /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/project0100.goto
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                None
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                None
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:44Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                01s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:45Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+
+
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+    <div class="command-table" id="job-6d99efdb-1d17-4526-a7e4-2e2272159388">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-6d99efdb-1d17-4526-a7e4-2e2272159388">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                findHeaderOnHeaderCompleteCallback: removing function bodies from project sources
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            goto-instrument   /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/project0100.goto /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/project0200.goto
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                None
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                None
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:45Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                00s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:45Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+
+
+          
+            
+            <div class="output-box"><xmp>stdout:
+              
+Reading GOTO program from '/home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/project0100.goto'
+Writing GOTO program to '/home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/project0200.goto'
+              </xmp>
+            </div><!-- class="output-box" -->
+            
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+    <div class="command-table" id="job-9cba3c02-5df3-4a99-8ad7-dca63be8ab05">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-9cba3c02-5df3-4a99-8ad7-dca63be8ab05">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                findHeaderOnHeaderCompleteCallback: linking project to proof
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            goto-cc  --function findHeaderOnHeaderCompleteCallback_harness /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/proof0100.goto /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/project0200.goto -Wall -Werror -o /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness0100.goto
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                None
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                None
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:45Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                00s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:45Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+
+
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+    <div class="command-table" id="job-b20872ae-d662-4f49-bcc1-d3fc126087d4">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-b20872ae-d662-4f49-bcc1-d3fc126087d4">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                findHeaderOnHeaderCompleteCallback: setting static variables to nondet
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            goto-instrument   /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness0200.goto /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness0300.goto
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                None
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                None
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:45Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                00s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:45Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+
+
+          
+            
+            <div class="output-box"><xmp>stdout:
+              
+Reading GOTO program from '/home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness0200.goto'
+Writing GOTO program to '/home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness0300.goto'
+              </xmp>
+            </div><!-- class="output-box" -->
+            
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+    <div class="command-table" id="job-791ca99e-8c19-48fb-8189-6480188de725">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-791ca99e-8c19-48fb-8189-6480188de725">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                findHeaderOnHeaderCompleteCallback: restricting function pointers in project sources
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            goto-instrument   --remove-function-pointers /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness0100.goto /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness0200.goto
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                None
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                None
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:45Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                00s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:45Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+
+
+          
+            
+            <div class="output-box"><xmp>stdout:
+              
+Reading GOTO program from '/home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness0100.goto'
+Function Pointer Removal
+Virtual function removal
+Cleaning inline assembler statements
+Writing GOTO program to '/home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness0200.goto'
+              </xmp>
+            </div><!-- class="output-box" -->
+            
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+    <div class="command-table" id="job-fa80c552-7d09-4a4f-b208-22bcab24f1d3">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-fa80c552-7d09-4a4f-b208-22bcab24f1d3">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                findHeaderOnHeaderCompleteCallback: not unwinding loops
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            cp /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness0400.goto /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness0500.goto
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                None
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                None
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:46Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                00s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:46Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+
+
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+    <div class="command-table" id="job-8a6695ce-c528-499e-b6b3-80d3fa5b1033">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-8a6695ce-c528-499e-b6b3-80d3fa5b1033">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                findHeaderOnHeaderCompleteCallback: slicing global initializations
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            goto-instrument  --slice-global-inits /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness0600.goto /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness0700.goto
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                None
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                None
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:46Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                00s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:46Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+
+
+          
+            
+            <div class="output-box"><xmp>stdout:
+              
+Reading GOTO program from '/home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness0600.goto'
+Function Pointer Removal
+Virtual function removal
+Cleaning inline assembler statements
+Slicing away initializations of unused global variables
+Writing GOTO program to '/home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness0700.goto'
+              </xmp>
+            </div><!-- class="output-box" -->
+            
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+    <div class="command-table" id="job-41eb1843-8e2a-401a-a0d6-e51ae9fe90c6">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-41eb1843-8e2a-401a-a0d6-e51ae9fe90c6">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                findHeaderOnHeaderCompleteCallback: not linking CPROVER library
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            cp /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness0300.goto /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness0400.goto
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                None
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                None
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:46Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                00s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:46Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+
+
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+    <div class="command-table" id="job-8a3723c0-fa3c-4808-aa91-114cd91f6f8c">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-8a3723c0-fa3c-4808-aa91-114cd91f6f8c">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                findHeaderOnHeaderCompleteCallback: checking function contracts
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            goto-instrument       /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness0500.goto /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness0600.goto
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                None
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                None
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:46Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                00s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:46Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+
+
+          
+            
+            <div class="output-box"><xmp>stdout:
+              
+Reading GOTO program from '/home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness0500.goto'
+Writing GOTO program to '/home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness0600.goto'
+              </xmp>
+            </div><!-- class="output-box" -->
+            
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+    <div class="command-table" id="job-90e1a21f-92f8-4aee-98d5-126a3354820a">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-90e1a21f-92f8-4aee-98d5-126a3354820a">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                findHeaderOnHeaderCompleteCallback: copying final goto-binary
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            cp /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness0800.goto /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness.goto
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                None
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                None
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:48Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                00s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:48Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+
+
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+    <div class="command-table" id="job-b0d37610-4b0e-4746-ae0e-e572cf667ada">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-b0d37610-4b0e-4746-ae0e-e572cf667ada">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                findHeaderOnHeaderCompleteCallback: dropping unused functions
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            goto-instrument  --drop-unused-functions /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness0700.goto /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness0800.goto
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                None
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                None
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:48Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                00s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:48Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+
+
+          
+            
+            <div class="output-box"><xmp>stdout:
+              
+Reading GOTO program from '/home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness0700.goto'
+Function Pointer Removal
+Virtual function removal
+Cleaning inline assembler statements
+Removing unused functions
+Writing GOTO program to '/home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness0800.goto'
+              </xmp>
+            </div><!-- class="output-box" -->
+            
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+
+  </div><!-- class="stage" -->
+  
+  <div class="stage">
+    <div class="stage-name">
+      <p>test</p>
+      <div class="underline"></div>
+    </div><!-- class="stage-name" -->
+
+    
+    <div class="command-table" id="job-a10e5ae2-4ddf-4314-971a-cd31b00452da">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-a10e5ae2-4ddf-4314-971a-cd31b00452da">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                findHeaderOnHeaderCompleteCallback: printing safety properties
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            cbmc  --flush --object-bits 8   --unwind 1    --pointer-primitive-check --external-sat-solver kissat  --conversion-check  --float-overflow-check --nan-check  --pointer-overflow-check    --unsigned-overflow-check --show-properties --xml-ui /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness.goto
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                ['10']
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                None
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:48Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                00s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:48Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+
+
+          
+            
+            <div class="output-box"><xmp>stdout:
+              
+<?xml version="1.0" encoding="UTF-8"?>
+<cprover>
+<program>CBMC 6.4.1 (cbmc-6.4.1)</program>
+<message type="STATUS-MESSAGE">
+<text>CBMC version 6.4.1 (cbmc-6.4.1) 64-bit x86_64 linux</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Reading GOTO program from file /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness.goto</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Generating GOTO Program</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Adding CPROVER library (x86_64)</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Removal of function pointers and virtual functions</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Generic Property Instrumentation</text>
+</message>
+
+<property class="pointer dereference" name="allocateHttpReadHeaderParser.pointer_dereference.1">
+<location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser" line="267" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<description>dereference failure: pointer NULL in pHttpParser-&gt;data</description>
+<expression>!(__CPROVER_POINTER_OBJECT(((void **)NULL)) == __CPROVER_POINTER_OBJECT(pHttpParser))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpReadHeaderParser.pointer_dereference.2">
+<location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser" line="267" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<description>dereference failure: pointer invalid in pHttpParser-&gt;data</description>
+<expression>!IS_INVALID_POINTER(pHttpParser)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpReadHeaderParser.pointer_dereference.3">
+<location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser" line="267" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<description>dereference failure: deallocated dynamic object in pHttpParser-&gt;data</description>
+<expression>!(__CPROVER_POINTER_OBJECT(pHttpParser) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpReadHeaderParser.pointer_dereference.4">
+<location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser" line="267" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<description>dereference failure: dead object in pHttpParser-&gt;data</description>
+<expression>!(__CPROVER_POINTER_OBJECT(pHttpParser) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpReadHeaderParser.pointer_dereference.5">
+<location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser" line="267" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<description>dereference failure: pointer outside object bounds in pHttpParser-&gt;data</description>
+<expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pHttpParser) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pHttpParser) + 48ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpReadHeaderParser.pointer_dereference.6">
+<location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser" line="267" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<description>dereference failure: invalid integer address in pHttpParser-&gt;data</description>
+<expression>!(__CPROVER_POINTER_OBJECT(((void **)NULL)) == __CPROVER_POINTER_OBJECT(pHttpParser)) || (char *)pHttpParser + 48l == ((char *)NULL)</expression>
+</property>
+
+<property class="assertion" name="malloc.assertion.1">
+<location file="&lt;builtin-library-malloc&gt;" function="malloc" line="31" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<description>max allocation size exceeded</description>
+<expression>malloc_size &lt;= __CPROVER_max_malloc_size</expression>
+</property>
+
+<property class="assertion" name="malloc.assertion.2">
+<location file="&lt;builtin-library-malloc&gt;" function="malloc" line="36" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<description>max allocation may fail</description>
+<expression>!(1 != 0) || !should_malloc_fail</expression>
+</property>
+
+<property class="assertion" name="findHeaderOnHeaderCompleteCallback.assertion.1">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderOnHeaderCompleteCallback" line="2422" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<description>assertion pHttpParser != NULL</description>
+<expression>pHttpParser != ((llhttp_t *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderOnHeaderCompleteCallback.pointer_dereference.1">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderOnHeaderCompleteCallback" line="2424" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<description>dereference failure: pointer NULL in pHttpParser-&gt;data</description>
+<expression>!(__CPROVER_POINTER_OBJECT(((void **)NULL)) == __CPROVER_POINTER_OBJECT(pHttpParser))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderOnHeaderCompleteCallback.pointer_dereference.2">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderOnHeaderCompleteCallback" line="2424" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<description>dereference failure: pointer invalid in pHttpParser-&gt;data</description>
+<expression>!IS_INVALID_POINTER(pHttpParser)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderOnHeaderCompleteCallback.pointer_dereference.3">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderOnHeaderCompleteCallback" line="2424" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<description>dereference failure: deallocated dynamic object in pHttpParser-&gt;data</description>
+<expression>!(__CPROVER_POINTER_OBJECT(pHttpParser) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderOnHeaderCompleteCallback.pointer_dereference.4">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderOnHeaderCompleteCallback" line="2424" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<description>dereference failure: dead object in pHttpParser-&gt;data</description>
+<expression>!(__CPROVER_POINTER_OBJECT(pHttpParser) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderOnHeaderCompleteCallback.pointer_dereference.5">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderOnHeaderCompleteCallback" line="2424" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<description>dereference failure: pointer outside object bounds in pHttpParser-&gt;data</description>
+<expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pHttpParser) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pHttpParser) + 48ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderOnHeaderCompleteCallback.pointer_dereference.6">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderOnHeaderCompleteCallback" line="2424" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<description>dereference failure: invalid integer address in pHttpParser-&gt;data</description>
+<expression>!(__CPROVER_POINTER_OBJECT(((void **)NULL)) == __CPROVER_POINTER_OBJECT(pHttpParser)) || (char *)pHttpParser + 48l == ((char *)NULL)</expression>
+</property>
+
+</cprover>
+              </xmp>
+            </div><!-- class="output-box" -->
+            
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+    <div class="command-table" id="job-880d1d8e-5ada-4755-b10b-441f5a806dcd">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-880d1d8e-5ada-4755-b10b-441f5a806dcd">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                findHeaderOnHeaderCompleteCallback: calculating coverage
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            cbmc  --flush --object-bits 8   --unwind 1   --no-standard-checks --malloc-may-fail --malloc-fail-null --cover location --xml-ui /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness.goto
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                ['10']
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                21600
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:48Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                01s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:49Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+          <div class="tags">
+            <div class="tags-label">
+              <p>Tags:</p>
+            </div>
+            <div class="tags-box">
+              <ul class="tags-list">
+              
+                <li>stats-group:coverage computation</li>
+              
+              </ul><!-- class="tags-list" -->
+            </div><!-- class="tags-box" -->
+          </div><!-- class="tags" -->
+          
+
+
+          
+            
+            <div class="output-box"><xmp>stdout:
+              
+<?xml version="1.0" encoding="UTF-8"?>
+<cprover>
+<program>CBMC 6.4.1 (cbmc-6.4.1)</program>
+<message type="WARNING">
+<text>**** WARNING: Use --unwinding-assertions to obtain sound verification results</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>CBMC version 6.4.1 (cbmc-6.4.1) 64-bit x86_64 linux</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Reading GOTO program from file /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness.goto</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Generating GOTO Program</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Adding CPROVER library (x86_64)</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Removal of function pointers and virtual functions</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Generic Property Instrumentation</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Rewriting existing assertions as assumptions</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Starting Bounded Model Checking</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Passing problem to propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>converting SSA</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Running propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>SAT checker: instance is SATISFIABLE</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Running propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>SAT checker: instance is SATISFIABLE</text>
+</message>
+
+<goal description="block 1 (lines /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/findHeaderOnHeaderCompleteCallback_harness.c:findHeaderOnHeaderCompleteCallback_harness:38,40)" id="findHeaderOnHeaderCompleteCallback_harness.coverage.1" status="SATISFIED">
+<location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/findHeaderOnHeaderCompleteCallback_harness.c" function="findHeaderOnHeaderCompleteCallback_harness" line="38" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/findHeaderOnHeaderCompleteCallback_harness.c" function="findHeaderOnHeaderCompleteCallback_harness">38,40</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 2 (lines /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/findHeaderOnHeaderCompleteCallback_harness.c:findHeaderOnHeaderCompleteCallback_harness:42)" id="findHeaderOnHeaderCompleteCallback_harness.coverage.2" status="SATISFIED">
+<location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/findHeaderOnHeaderCompleteCallback_harness.c" function="findHeaderOnHeaderCompleteCallback_harness" line="42" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/findHeaderOnHeaderCompleteCallback_harness.c" function="findHeaderOnHeaderCompleteCallback_harness">42</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 3 (lines /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/findHeaderOnHeaderCompleteCallback_harness.c:findHeaderOnHeaderCompleteCallback_harness:43)" id="findHeaderOnHeaderCompleteCallback_harness.coverage.3" status="SATISFIED">
+<location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/findHeaderOnHeaderCompleteCallback_harness.c" function="findHeaderOnHeaderCompleteCallback_harness" line="43" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/findHeaderOnHeaderCompleteCallback_harness.c" function="findHeaderOnHeaderCompleteCallback_harness">43</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 1 (lines /home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c:allocateHttpReadHeaderParser:258,260)" id="allocateHttpReadHeaderParser.coverage.1" status="SATISFIED">
+<location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser" line="258" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser">258,260</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 2 (lines /home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c:allocateHttpReadHeaderParser:262)" id="allocateHttpReadHeaderParser.coverage.2" status="SATISFIED">
+<location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser" line="262" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser">262</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 3 (lines /home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c:allocateHttpReadHeaderParser:262,263)" id="allocateHttpReadHeaderParser.coverage.3" status="SATISFIED">
+<location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser" line="262" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser">262,263</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 4 (lines /home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c:allocateHttpReadHeaderParser:266)" id="allocateHttpReadHeaderParser.coverage.4" status="SATISFIED">
+<location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser" line="266" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser">266</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 5 (lines /home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c:allocateHttpReadHeaderParser:266,267,269,270)" id="allocateHttpReadHeaderParser.coverage.5" status="SATISFIED">
+<location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser" line="266" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser">266,267,269,270</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 1 (lines /home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c:allocateFindHeaderContext:274)" id="allocateFindHeaderContext.coverage.1" status="SATISFIED">
+<location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateFindHeaderContext" line="274" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateFindHeaderContext">274</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 2 (lines /home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c:allocateFindHeaderContext:276)" id="allocateFindHeaderContext.coverage.2" status="SATISFIED">
+<location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateFindHeaderContext" line="276" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateFindHeaderContext">276</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 3 (lines /home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c:allocateFindHeaderContext:276,277)" id="allocateFindHeaderContext.coverage.3" status="SATISFIED">
+<location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateFindHeaderContext" line="276" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateFindHeaderContext">276,277</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 4 (lines /home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c:allocateFindHeaderContext:280,281)" id="allocateFindHeaderContext.coverage.4" status="SATISFIED">
+<location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateFindHeaderContext" line="280" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateFindHeaderContext">280,281</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 1 (lines /home/justin/coreHTTP/source/core_http_client.c:findHeaderOnHeaderCompleteCallback:2415,2418,2420,2422)" id="__CPROVER_file_local_core_http_client_c_findHeaderOnHeaderCompleteCallback.coverage.1" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="__CPROVER_file_local_core_http_client_c_findHeaderOnHeaderCompleteCallback" line="2415" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderOnHeaderCompleteCallback">2415,2418,2420,2422</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 2 (lines /home/justin/coreHTTP/source/core_http_client.c:findHeaderOnHeaderCompleteCallback:2424,2440,2441)" id="__CPROVER_file_local_core_http_client_c_findHeaderOnHeaderCompleteCallback.coverage.2" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="__CPROVER_file_local_core_http_client_c_findHeaderOnHeaderCompleteCallback" line="2424" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderOnHeaderCompleteCallback">2424,2440,2441</line>
+</basic_block_lines>
+</goal>
+
+<message type="STATUS-MESSAGE">
+<text>** 14 of 14 covered (100.0%)</text>
+</message>
+
+</cprover>
+              </xmp>
+            </div><!-- class="output-box" -->
+            
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+    <div class="command-table" id="job-9c626e93-7a2f-4bef-a147-bcaab14cbb85">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-9c626e93-7a2f-4bef-a147-bcaab14cbb85">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                findHeaderOnHeaderCompleteCallback: checking safety properties
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            cbmc  --flush --object-bits 8   --unwind 1    --pointer-primitive-check --external-sat-solver kissat  --conversion-check  --float-overflow-check --nan-check  --pointer-overflow-check    --unsigned-overflow-check --trace --xml-ui /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness.goto
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                ['10']
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                21600
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:48Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                01s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:49Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+          <div class="tags">
+            <div class="tags-label">
+              <p>Tags:</p>
+            </div>
+            <div class="tags-box">
+              <ul class="tags-list">
+              
+                <li>stats-group:safety checks</li>
+              
+              </ul><!-- class="tags-list" -->
+            </div><!-- class="tags-box" -->
+          </div><!-- class="tags" -->
+          
+
+
+          
+            
+            <div class="output-box"><xmp>stdout:
+              
+<?xml version="1.0" encoding="UTF-8"?>
+<cprover>
+<program>CBMC 6.4.1 (cbmc-6.4.1)</program>
+<message type="STATUS-MESSAGE">
+<text>CBMC version 6.4.1 (cbmc-6.4.1) 64-bit x86_64 linux</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Reading GOTO program from file /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness.goto</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Generating GOTO Program</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Adding CPROVER library (x86_64)</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Removal of function pointers and virtual functions</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Generic Property Instrumentation</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Starting Bounded Model Checking</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Passing problem to propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>converting SSA</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Running propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Writing temporary CNF</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Invoking SAT solver</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Solver returned code: 20</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>result:UNSATISFIABLE</text>
+</message>
+
+<result property="findHeaderOnHeaderCompleteCallback.assertion.1" status="SUCCESS">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderOnHeaderCompleteCallback" line="2422" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="allocateHttpReadHeaderParser.pointer_dereference.1" status="SUCCESS">
+<location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser" line="267" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="allocateHttpReadHeaderParser.pointer_dereference.2" status="SUCCESS">
+<location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser" line="267" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="allocateHttpReadHeaderParser.pointer_dereference.3" status="SUCCESS">
+<location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser" line="267" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="allocateHttpReadHeaderParser.pointer_dereference.4" status="SUCCESS">
+<location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser" line="267" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="allocateHttpReadHeaderParser.pointer_dereference.5" status="SUCCESS">
+<location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser" line="267" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="allocateHttpReadHeaderParser.pointer_dereference.6" status="SUCCESS">
+<location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser" line="267" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="malloc.assertion.1" status="SUCCESS">
+<location file="&lt;builtin-library-malloc&gt;" function="malloc" line="31" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="malloc.assertion.2" status="SUCCESS">
+<location file="&lt;builtin-library-malloc&gt;" function="malloc" line="36" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="findHeaderOnHeaderCompleteCallback.pointer_dereference.1" status="SUCCESS">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderOnHeaderCompleteCallback" line="2424" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="findHeaderOnHeaderCompleteCallback.pointer_dereference.2" status="SUCCESS">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderOnHeaderCompleteCallback" line="2424" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="findHeaderOnHeaderCompleteCallback.pointer_dereference.3" status="SUCCESS">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderOnHeaderCompleteCallback" line="2424" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="findHeaderOnHeaderCompleteCallback.pointer_dereference.4" status="SUCCESS">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderOnHeaderCompleteCallback" line="2424" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="findHeaderOnHeaderCompleteCallback.pointer_dereference.5" status="SUCCESS">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderOnHeaderCompleteCallback" line="2424" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="findHeaderOnHeaderCompleteCallback.pointer_dereference.6" status="SUCCESS">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderOnHeaderCompleteCallback" line="2424" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<message type="STATUS-MESSAGE">
+<text>VERIFICATION SUCCESSFUL</text>
+</message>
+
+<cprover-status>SUCCESS</cprover-status>
+
+</cprover>
+              </xmp>
+            </div><!-- class="output-box" -->
+            
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+
+  </div><!-- class="stage" -->
+  
+  <div class="stage">
+    <div class="stage-name">
+      <p>report</p>
+      <div class="underline"></div>
+    </div><!-- class="stage-name" -->
+
+    
+    <div class="command-table" id="job-1592b152-2362-4f3b-b338-4349091032d4">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-1592b152-2362-4f3b-b338-4349091032d4">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                findHeaderOnHeaderCompleteCallback: generating report
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            cbmc-viewer  --result /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/logs/result.xml --coverage /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/logs/coverage.xml --property /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/logs/property.xml --srcdir /home/justin/coreHTTP     --goto /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness.goto --reportdir /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/report --config /home/justin/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/cbmc-viewer.json
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                None
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                None
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:50Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                00s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:50Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+
+
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+
+  </div><!-- class="stage" -->
+  
+
+
+</div><!-- id="content" -->
+</body>
+</html>

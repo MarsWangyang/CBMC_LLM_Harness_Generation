@@ -1,0 +1,3271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    Pipeline HTTPClient_strerror
+  </title>
+<style>
+#title{
+  background-color: #ec407a;
+  color: white;
+  padding: 2em;
+}
+h1 {
+  margin-bottom: 0em;
+}
+#subtitle {
+  font-variant: small-caps;
+  text-transform: lowercase;
+  letter-spacing: 0.2em;
+}
+.run-info ul {
+  list-style: none;
+}
+.run-info ul li {
+  display: inline;
+  margin-right: 6em;
+  margin-left: -3em;
+  text-transform: uppercase;
+  font-size: small;
+  color: #ec407a;
+}
+#content {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 2em;
+  color: #263238;
+  font-family: Helvetica, sans-serif;
+}
+p {
+  margin: 0;
+}
+.command-table {
+  background-color: #eceff1;
+  padding: 0.3em;
+  border-radius: 0.3em;
+  margin-bottom: 4em;
+}
+.command-table .fail-ignored {
+  background-color: #e65100cc;
+  padding: 0.3em;
+  border-radius: 0.3em;
+}
+.command-table .success {
+  background-color: #1a237ecc;
+  padding: 0.3em;
+  border-radius: 0.3em;
+}
+.command-table .in-progress {
+  background-color: black;
+  padding: 0.3em;
+  border-radius: 0.3em;
+}
+.command-table .non-started {
+  background-color: #26323844;
+  padding: 0.3em;
+  border-radius: 0.3em;
+}
+.command-table .fail {
+  background-color: #f44336cc;
+  padding: 0.3em;
+  border-radius: 0.3em;
+}
+.command-content {
+  background-color: #eceff1;
+  padding: 1em;
+}
+.command-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+.command-id-link{
+  flex-grow: 0;
+}
+.command-id-link a {
+  font-size: xx-large;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 1px  1px 0px #000000bb,
+              -1px -1px 0px #ffffffbb;
+  text-decoration: none;
+  margin-left: 0.2em;
+}
+.command-id-link a:link {
+  text-shadow: 1px  1px 0px #000000bb,
+              -1px -1px 0px #ffffffbb;
+}
+.command-id-link a:visited {
+  text-shadow: 1px  1px 0px #000000bb,
+              -1px -1px 0px #ffffffbb;
+}
+.command-id-link a:visited:hover {
+  color: #ec407a;
+  background-color: #00000000;
+  text-shadow: 1px  1px 0px #000000bb,
+              -1px -1px 0px #ffffffbb,
+               0px 0px 10px #fff,
+               0px 0px 5px #ec407a,
+               0px 0px 5px #ec407a;
+}
+.command-id-link a:hover {
+  color: #ec407a;
+  background-color: #00000000;
+  text-shadow: 1px  1px 0px #000000bb,
+              -1px -1px 0px #ffffffbb
+               0px 0px 10px #fff,
+               0px 0px 5px #ec407a,
+               0px 0px 5px #ec407a;
+}
+.command-id-link a:active {
+  color: #ffeb3b;
+  background-color: #00000000;
+  text-shadow: 1px  1px 0px #000000bb,
+              -1px -1px 0px #ffffffbb,
+                 0px 0px 10px #fff,
+                 0px 0px 5px #ffeb3b,
+                 0px 0px 5px #ffeb3b;
+}
+.command-id-link a:visited:active {
+  color: #ffeb3b;
+  background-color: #00000000;
+  text-shadow: 1px  1px 0px #000000bb,
+              -1px -1px 0px #ffffffbb,
+                 0px 0px 10px #fff,
+                 0px 0px 5px #ffeb3b,
+                 0px 0px 5px #ffeb3b;
+}
+.command-description {
+  color: #26323899;
+  font-size: smaller;
+  text-align: center;
+  font-weight: bold;
+  flex-grow: 1;
+}
+
+.command-invocation {
+  padding: 1em;
+  color: #fff;
+  background-color: #005662;
+  font-size: small;
+  font-family: monospace;
+  border-radius: 0.5em;
+  text-shadow: 0 0 2px #ffccbccc;
+}
+.command-stats-table {
+  margin-top: 0.2em;
+  border-radius: 0.5em;
+  padding: 0.2em;
+  padding-top: 0.4em;
+  display: flex;
+  flex-direction: column;
+  background-color: #eae3998a;
+  color: #263238cc;
+  margin-bottom: 0.2em;
+}
+.command-stats-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+  font-size: small;
+  text-transform: uppercase;
+}
+.command-stats-row p .value {
+  color: #00251aaa;
+  text-shadow: 0 0 2px #82ada944;
+  font-weight: bold;
+}
+.literal-stdout {
+  margin-top: 0.4em;
+  margin-bottom: 0.2em;
+  padding: 1em;
+  border-radius: 0.5em;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+.output-box {
+  margin-top: 0.4em;
+  margin-bottom: 0.2em;
+  padding: 1em;
+  color: #000a12;
+  background-color: #cfd8dc;
+  font-size: small;
+  font-family: monospace;
+  border-radius: 0.5em;
+  max-height: 20em;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+.output-box xmp{
+  white-space: pre;
+}
+.stage-name p {
+  margin-left: 0.5em;
+  color: #546e7a;
+  text-shadow:  -1px  0px 0px #fff
+               ,-2px  0px 0px #ffffff99
+               ,-1px  1px 0px #ffffff99
+               ;
+  font-size: 48pt;
+  font-variant: small-caps;
+  text-transform: lowercase;
+  font-weight: bold;
+  font-style: italic;
+}
+.stage-name .underline {
+  width: 100%;
+  height: 1.1em;
+  background-color: #546e7a;
+  margin-top: -1.6em;
+}
+.stage-name {
+  margin-top: 6em;
+  margin-bottom: 3em;
+}
+
+.outcome-table-info-box {
+  margin-top: 0.4em;
+  margin-bottom: 0.2em;
+  padding: 1em;
+  color: #000a12;
+  background-color: #ffee58;
+  border-radius: 0.5em;
+}
+.outcome-table-info-box .outcome{
+  font-weight: bold;
+}
+#toc {
+  margin-bottom: 6em;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 1;
+  margin-right: 3em;
+}
+.toc-title {
+  text-align: center;
+  font-variant: small-caps;
+  text-transform: lowercase;
+  margin-bottom: -1em;
+}
+.toc-section{
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  text-transform: capitalize;
+}
+.toc-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.toc-row-icon {
+  padding-right: 8px;
+}
+.status-icon-cross {
+  fill: #f44336;
+    width: 16px;
+    height: 16px;
+}
+.status-icon-tick {
+  fill: #3f51b5;
+  stroke: #ffffff77;
+  stroke-width: 1px;
+  width: 16px;
+  height: 16px;
+}
+
+.status-icon-in-progress {
+  fill: #333;
+  width: 16px;
+  height: 16px;
+}
+
+.status-icon-in-progress circle {
+  stroke: #333;
+  stroke-width: 2px;
+  fill: none
+}
+a:link {
+  color: #1e88e5;
+}
+a:visited {
+  color: #1e88e5;
+}
+a:visited:hover {
+  background-color: #1e88e5;
+  color: #fff;
+  text-decoration: none;
+}
+a:hover {
+  background-color: #1e88e5;
+  color: #fff;
+  text-decoration: none;
+}
+a:active {
+  background-color: #ec407a;
+  color: #fff;
+  text-decoration: none;
+}
+a:visited:active {
+  background-color: #ec407a;
+  color: #fff;
+  text-decoration: none;
+}
+
+#contents-container {
+  margin-top: 6em;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+#depgraph {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: flex-start;
+  flex-shrink: 7;
+}
+
+#depgraph-title p {
+  text-align: center;
+  font-variant: small-caps;
+  text-transform: lowercase;
+}
+
+#depgraph-preview img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#depgraph-preview {
+  padding: 1em;
+}
+
+.memory-box {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5em;
+  align-items: center;
+}
+.memory-preview {
+  width: 75%;
+}
+.memory-preview svg {
+  margin-left: -1em;
+  margin-right: -2em;
+}
+.memory-table {
+}
+.memory-title {
+  text-align: center;
+  font-style: bold;
+}
+.memory-subtitle {
+  text-transform: lowercase;
+  font-variant: small-caps;
+  text-align: center;
+  opacity: 0.8;
+}
+.memory-pad {
+  width: 1.5em;
+}
+.memory-value {
+  text-align: center;
+  margin-right: 2em;
+}
+.rss {
+  color: #ab47bc;
+}
+.vsz {
+  color: #4caf50;
+}
+
+.tags {
+  font-size: small;
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
+.tags-label {
+  display: flex;
+  flex-grow: 0;
+  transform: uppercase;
+}
+.tags-box {
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+}
+
+.tags-list li {
+  display: inline;
+  margin-right: 2em;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  background-color: #ffcc80;
+  color: #263238;
+  border-radius: 20px;
+}
+
+
+@media (prefers-color-scheme: dark){
+  a:link {
+    color: #29b6f6;
+  }
+  a:visited {
+    color: #29b6f6;
+  }
+  a:visited:hover {
+    color: #263238;
+    background-color: #29b6f6;
+  }
+  a:hover {
+    color: #263238;
+    background-color: #29b6f6;
+  }
+  a:active {
+    color: #263238;
+    background-color: #ec407a;
+  }
+  a:visited:active {
+    color: #263238;
+    background-color: #ec407a;
+  }
+  .command-id-link a:link {
+    text-shadow: 1px  1px 0px #000000bb,
+                -1px -1px 0px #ffffffbb;
+  }
+  .command-id-link a:visited {
+    text-shadow: 1px  1px 0px #000000bb,
+                -1px -1px 0px #ffffffbb;
+  }
+  .command-id-link a:visited:hover {
+    color: #ec407a;
+    background-color: #00000000;
+    text-shadow: 1px  1px 0px #000000bb,
+                -1px -1px 0px #ffffffbb.
+                 0px 0px 10px #fff,
+                 0px 0px 5px #ec407a,
+                 0px 0px 5px #ec407a;
+  }
+  .command-id-link a:hover {
+    color: #ec407a;
+    background-color: #00000000;
+    text-shadow: 1px  1px 0px #000000bb,
+                -1px -1px 0px #ffffffbb,
+                 0px 0px 10px #fff,
+                 0px 0px 5px #ec407a,
+                 0px 0px 5px #ec407a;
+  }
+  .command-id-link a:active {
+    color: #ffeb3b;
+    background-color: #00000000;
+    text-shadow: 1px  1px 0px #000000bb,
+                -1px -1px 0px #ffffffbb,
+                 0px 0px 10px #fff,
+                 0px 0px 5px #ffeb3b,
+                 0px 0px 5px #ffeb3b;
+  }
+  .command-id-link a:visited:active {
+    color: #ffeb3b;
+    background-color: #00000000;
+    text-shadow: 1px  1px 0px #000000bb,
+                -1px -1px 0px #ffffffbb,
+                 0px 0px 10px #fff,
+                 0px 0px 5px #ffeb3b,
+                 0px 0px 5px #ffeb3b;
+  }
+  body {
+    color: #babdbe;
+    background-color: #263238;
+  }
+  .outcome-table-info-box p{
+    color: #000a12;
+  }
+  p {
+    color: #babdbe;
+  }
+  #subtitle {
+    color: #fff;
+  }
+  .command-table {
+    background-color: #37474f;
+  }
+  .command-content {
+    background-color: #37474f;
+  }
+  .command-invocation p {
+    color: #fff;
+  }
+  .command-stats-table {
+    background-color: #eae399d0;
+    color: #263238;
+  }
+  .command-stats-table p {
+    color: #263238;
+  }
+  .output-box {
+    color: #cfd8dccc;
+    background-color: #102027;
+  }
+  .stage-name p {
+    text-shadow: -1px  0px 0px #263238,
+                 -2px  0px 0px #26323899,
+                 -1px  1px 0px #26323899;
+  }
+  .status-icon-in-progress { fill: #ddd; }
+  .status-icon-in-progress circle { stroke: #ddd; }
+
+  /* SVG graphs */
+  g text {
+    fill: #eceff1;
+    stroke: #fff0;
+  }
+}
+</style>
+</head>
+<body>
+<div id="content">
+
+  <div id="title">
+    <h1>
+      FreeRTOS coreHTTP pipeline &lsquo;HTTPClient_strerror&rsquo;
+    </h1>
+    <p id="subtitle">
+      Litani CI Dashboard
+    </p>
+  </div><!-- id="title" -->
+
+  <div class=run-info>
+    <ul>
+      <li>Pipeline status: success</li>
+      <li>2025-02-17T06:47:30Z</li>
+      <li>777dc7dd-f057-4f16-899d-8324b19e7250</li>
+    </ul>
+  </div><!-- class=run-info -->
+
+  <div id="contents-container">
+
+    <div id="toc">
+      <div class="toc-title">
+        <p>Summary of jobs for this pipeline</p>
+      </div><!-- class="toc-title" -->
+
+      
+        <div class="toc-section">
+          <p>build</p>
+        </div><!-- class="toc-section" -->
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-603cd16a-cc67-4910-990f-95f0948135f6">
+              
+              HTTPClient_strerror: building proof binary
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-573bef77-3758-47dd-85a4-961b7f2d88b1">
+              
+              HTTPClient_strerror: building project binary
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-b070c34b-4b9e-4e0b-a929-2fa417b5fc8c">
+              
+              HTTPClient_strerror: removing function bodies from project sources
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-296876de-0764-4f07-bdba-3ae9c243938a">
+              
+              HTTPClient_strerror: setting static variables to nondet
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-099d5725-a0c1-47b9-a4f6-5e1f3a302ee5">
+              
+              HTTPClient_strerror: restricting function pointers in project sources
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-64358da9-4ee2-47a4-a7e9-61ffd535f188">
+              
+              HTTPClient_strerror: not unwinding loops
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-f1647065-e906-4068-935b-b4737038456b">
+              
+              HTTPClient_strerror: not linking CPROVER library
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-8f59b7b2-df66-47c0-96b4-fe2913075fb6">
+              
+              HTTPClient_strerror: linking project to proof
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-19e95ae8-245b-4039-bc87-157c4e9329a0">
+              
+              HTTPClient_strerror: slicing global initializations
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-334d5856-0102-4d40-a4f2-86f923565215">
+              
+              HTTPClient_strerror: checking function contracts
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-547972af-f170-4431-9e12-7534f02f11cf">
+              
+              HTTPClient_strerror: copying final goto-binary
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-8972b3d8-3d2a-4263-94ab-c433c96fcacd">
+              
+              HTTPClient_strerror: dropping unused functions
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+      
+        <div class="toc-section">
+          <p>test</p>
+        </div><!-- class="toc-section" -->
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-a6622806-c0bb-4f10-a94e-17f4108d8da1">
+              
+              HTTPClient_strerror: printing safety properties
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-a84f9d63-c232-409f-9f99-271521dc0965">
+              
+              HTTPClient_strerror: calculating coverage
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-fdc8c30e-7543-4c1b-87e3-2a12c5521076">
+              
+              HTTPClient_strerror: checking safety properties
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+      
+        <div class="toc-section">
+          <p>report</p>
+        </div><!-- class="toc-section" -->
+        
+          <div class="toc-row">
+
+            <div class="toc-row-icon">
+              
+                <svg height="16px" width="16px" class="status-icon-tick">
+                  <polygon points="1,11 6,15 15,3 13,1 6,12 3,8"></polygon>
+                </svg>
+              
+            </div><!-- class="toc-row-icon" -->
+
+            <div class="toc-row-job-name">
+              <p>
+              <a href="#job-bddda0f0-431a-4cd4-ad93-5d9a7515a1ce">
+              
+              HTTPClient_strerror: generating report
+              
+              </a>
+              </p>
+            </div><!-- class="toc-row-job-name" -->
+
+          </div><!-- class="toc-row" -->
+
+        
+      
+    </div><!-- id="toc" -->
+
+
+    
+    <div id="depgraph">
+      <div id="depgraph-title">
+        <p>Dependency graph for pipeline</p>
+        <p>(click for larger version)</p>
+      </div><!-- id="depgraph-title" -->
+      <a href="dependencies.svg">
+        <div id="depgraph-preview">
+          <img
+             src="dependencies.svg"
+             alt="pipeline dependency graph" />
+        </div><!-- id="depgraph-preview" -->
+      </a><!-- href="" -->
+    </div><!-- id="depgraph" -->
+    
+
+  </div><!-- id="contents-container" -->
+
+
+  
+  <div class="stage">
+    <div class="stage-name">
+      <p>build</p>
+      <div class="underline"></div>
+    </div><!-- class="stage-name" -->
+
+    
+    <div class="command-table" id="job-603cd16a-cc67-4910-990f-95f0948135f6">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-603cd16a-cc67-4910-990f-95f0948135f6">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                HTTPClient_strerror: building proof binary
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            goto-cc  -fPIC -std=gnu90 --export-file-local-symbols -I/home/justin/coreHTTP/test/cbmc/include -I/home/justin/coreHTTP/source/include -I/home/justin/coreHTTP/source/interface -I/home/justin/coreHTTP/source -I/home/justin/coreHTTP/source/dependency/3rdparty/llhttp/include -Dhttp_EXPORTS -DCBMC=1 -DCBMC_OBJECT_BITS=8 -DCBMC_MAX_OBJECT_SIZE="(SIZE_MAX>>(CBMC_OBJECT_BITS+1))" /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/HTTPClient_strerror_harness.c -o /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/proof0100.goto
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                None
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                None
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:42Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                00s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:42Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+
+
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+    <div class="command-table" id="job-573bef77-3758-47dd-85a4-961b7f2d88b1">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-573bef77-3758-47dd-85a4-961b7f2d88b1">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                HTTPClient_strerror: building project binary
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            goto-cc  -fPIC -std=gnu90 --export-file-local-symbols -I/home/justin/coreHTTP/test/cbmc/include -I/home/justin/coreHTTP/source/include -I/home/justin/coreHTTP/source/interface -I/home/justin/coreHTTP/source -I/home/justin/coreHTTP/source/dependency/3rdparty/llhttp/include -Dhttp_EXPORTS -DCBMC=1 -DCBMC_OBJECT_BITS=8 -DCBMC_MAX_OBJECT_SIZE="(SIZE_MAX>>(CBMC_OBJECT_BITS+1))" /home/justin/coreHTTP/source/core_http_client.c -o /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/project0100.goto
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                None
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                None
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:42Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                00s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:42Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+
+
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+    <div class="command-table" id="job-b070c34b-4b9e-4e0b-a929-2fa417b5fc8c">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-b070c34b-4b9e-4e0b-a929-2fa417b5fc8c">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                HTTPClient_strerror: removing function bodies from project sources
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            goto-instrument   /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/project0100.goto /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/project0200.goto
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                None
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                None
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:43Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                00s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:43Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+
+
+          
+            
+            <div class="output-box"><xmp>stdout:
+              
+Reading GOTO program from '/home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/project0100.goto'
+Writing GOTO program to '/home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/project0200.goto'
+              </xmp>
+            </div><!-- class="output-box" -->
+            
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+    <div class="command-table" id="job-296876de-0764-4f07-bdba-3ae9c243938a">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-296876de-0764-4f07-bdba-3ae9c243938a">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                HTTPClient_strerror: setting static variables to nondet
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            goto-instrument   /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness0200.goto /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness0300.goto
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                None
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                None
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:44Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                00s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:44Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+
+
+          
+            
+            <div class="output-box"><xmp>stdout:
+              
+Reading GOTO program from '/home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness0200.goto'
+Writing GOTO program to '/home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness0300.goto'
+              </xmp>
+            </div><!-- class="output-box" -->
+            
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+    <div class="command-table" id="job-099d5725-a0c1-47b9-a4f6-5e1f3a302ee5">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-099d5725-a0c1-47b9-a4f6-5e1f3a302ee5">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                HTTPClient_strerror: restricting function pointers in project sources
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            goto-instrument   --remove-function-pointers /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness0100.goto /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness0200.goto
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                None
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                None
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:44Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                00s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:44Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+
+
+          
+            
+            <div class="output-box"><xmp>stdout:
+              
+Reading GOTO program from '/home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness0100.goto'
+Function Pointer Removal
+Virtual function removal
+Cleaning inline assembler statements
+Writing GOTO program to '/home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness0200.goto'
+              </xmp>
+            </div><!-- class="output-box" -->
+            
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+    <div class="command-table" id="job-64358da9-4ee2-47a4-a7e9-61ffd535f188">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-64358da9-4ee2-47a4-a7e9-61ffd535f188">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                HTTPClient_strerror: not unwinding loops
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            cp /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness0400.goto /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness0500.goto
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                None
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                None
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:44Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                00s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:44Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+
+
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+    <div class="command-table" id="job-f1647065-e906-4068-935b-b4737038456b">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-f1647065-e906-4068-935b-b4737038456b">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                HTTPClient_strerror: not linking CPROVER library
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            cp /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness0300.goto /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness0400.goto
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                None
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                None
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:44Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                00s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:44Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+
+
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+    <div class="command-table" id="job-8f59b7b2-df66-47c0-96b4-fe2913075fb6">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-8f59b7b2-df66-47c0-96b4-fe2913075fb6">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                HTTPClient_strerror: linking project to proof
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            goto-cc  --function HTTPClient_strerror_harness /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/proof0100.goto /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/project0200.goto -Wall -Werror -o /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness0100.goto
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                None
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                None
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:44Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                00s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:44Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+
+
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+    <div class="command-table" id="job-19e95ae8-245b-4039-bc87-157c4e9329a0">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-19e95ae8-245b-4039-bc87-157c4e9329a0">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                HTTPClient_strerror: slicing global initializations
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            goto-instrument  --slice-global-inits /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness0600.goto /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness0700.goto
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                None
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                None
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:57Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                00s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:57Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+
+
+          
+            
+            <div class="output-box"><xmp>stdout:
+              
+Reading GOTO program from '/home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness0600.goto'
+Function Pointer Removal
+Virtual function removal
+Cleaning inline assembler statements
+Slicing away initializations of unused global variables
+Writing GOTO program to '/home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness0700.goto'
+              </xmp>
+            </div><!-- class="output-box" -->
+            
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+    <div class="command-table" id="job-334d5856-0102-4d40-a4f2-86f923565215">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-334d5856-0102-4d40-a4f2-86f923565215">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                HTTPClient_strerror: checking function contracts
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            goto-instrument       /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness0500.goto /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness0600.goto
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                None
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                None
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:57Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                00s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:57Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+
+
+          
+            
+            <div class="output-box"><xmp>stdout:
+              
+Reading GOTO program from '/home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness0500.goto'
+Writing GOTO program to '/home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness0600.goto'
+              </xmp>
+            </div><!-- class="output-box" -->
+            
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+    <div class="command-table" id="job-547972af-f170-4431-9e12-7534f02f11cf">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-547972af-f170-4431-9e12-7534f02f11cf">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                HTTPClient_strerror: copying final goto-binary
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            cp /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness0800.goto /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness.goto
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                None
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                None
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:58Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                00s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:58Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+
+
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+    <div class="command-table" id="job-8972b3d8-3d2a-4263-94ab-c433c96fcacd">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-8972b3d8-3d2a-4263-94ab-c433c96fcacd">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                HTTPClient_strerror: dropping unused functions
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            goto-instrument  --drop-unused-functions /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness0700.goto /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness0800.goto
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                None
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                None
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:58Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                00s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:58Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+
+
+          
+            
+            <div class="output-box"><xmp>stdout:
+              
+Reading GOTO program from '/home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness0700.goto'
+Function Pointer Removal
+Virtual function removal
+Cleaning inline assembler statements
+Removing unused functions
+Writing GOTO program to '/home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness0800.goto'
+              </xmp>
+            </div><!-- class="output-box" -->
+            
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+
+  </div><!-- class="stage" -->
+  
+  <div class="stage">
+    <div class="stage-name">
+      <p>test</p>
+      <div class="underline"></div>
+    </div><!-- class="stage-name" -->
+
+    
+    <div class="command-table" id="job-a6622806-c0bb-4f10-a94e-17f4108d8da1">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-a6622806-c0bb-4f10-a94e-17f4108d8da1">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                HTTPClient_strerror: printing safety properties
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            cbmc  --flush --object-bits 8   --unwind 1    --pointer-primitive-check --external-sat-solver kissat  --conversion-check  --float-overflow-check --nan-check  --pointer-overflow-check    --unsigned-overflow-check --show-properties --xml-ui /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness.goto
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                ['10']
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                None
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:58Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                00s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:58Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+
+
+          
+            
+            <div class="output-box"><xmp>stdout:
+              
+<?xml version="1.0" encoding="UTF-8"?>
+<cprover>
+<program>CBMC 6.4.1 (cbmc-6.4.1)</program>
+<message type="STATUS-MESSAGE">
+<text>CBMC version 6.4.1 (cbmc-6.4.1) 64-bit x86_64 linux</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Reading GOTO program from file /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness.goto</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Generating GOTO Program</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Adding CPROVER library (x86_64)</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Removal of function pointers and virtual functions</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Generic Property Instrumentation</text>
+</message>
+
+</cprover>
+              </xmp>
+            </div><!-- class="output-box" -->
+            
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+    <div class="command-table" id="job-a84f9d63-c232-409f-9f99-271521dc0965">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-a84f9d63-c232-409f-9f99-271521dc0965">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                HTTPClient_strerror: calculating coverage
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            cbmc  --flush --object-bits 8   --unwind 1   --no-standard-checks --malloc-may-fail --malloc-fail-null --cover location --xml-ui /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness.goto
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                ['10']
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                21600
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:58Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                01s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:59Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+          <div class="tags">
+            <div class="tags-label">
+              <p>Tags:</p>
+            </div>
+            <div class="tags-box">
+              <ul class="tags-list">
+              
+                <li>stats-group:coverage computation</li>
+              
+              </ul><!-- class="tags-list" -->
+            </div><!-- class="tags-box" -->
+          </div><!-- class="tags" -->
+          
+
+
+          
+            
+            <div class="output-box"><xmp>stdout:
+              
+<?xml version="1.0" encoding="UTF-8"?>
+<cprover>
+<program>CBMC 6.4.1 (cbmc-6.4.1)</program>
+<message type="WARNING">
+<text>**** WARNING: Use --unwinding-assertions to obtain sound verification results</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>CBMC version 6.4.1 (cbmc-6.4.1) 64-bit x86_64 linux</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Reading GOTO program from file /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness.goto</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Generating GOTO Program</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Adding CPROVER library (x86_64)</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Removal of function pointers and virtual functions</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Generic Property Instrumentation</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Rewriting existing assertions as assumptions</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Starting Bounded Model Checking</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Passing problem to propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>converting SSA</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Running propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>SAT checker: instance is SATISFIABLE</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Running propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>SAT checker: instance is SATISFIABLE</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Running propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>SAT checker: instance is SATISFIABLE</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Running propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>SAT checker: instance is SATISFIABLE</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Running propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>SAT checker: instance is SATISFIABLE</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Running propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>SAT checker: instance is SATISFIABLE</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Running propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>SAT checker: instance is SATISFIABLE</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Running propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>SAT checker: instance is SATISFIABLE</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Running propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>SAT checker: instance is SATISFIABLE</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Running propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>SAT checker: instance is SATISFIABLE</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Running propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>SAT checker: instance is SATISFIABLE</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Running propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>SAT checker: instance is SATISFIABLE</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Running propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>SAT checker: instance is SATISFIABLE</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Running propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>SAT checker: instance is SATISFIABLE</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Running propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>SAT checker: instance is SATISFIABLE</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Running propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>SAT checker: instance is SATISFIABLE</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Running propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>SAT checker: instance is SATISFIABLE</text>
+</message>
+
+<goal description="block 1 (lines /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/HTTPClient_strerror_harness.c:HTTPClient_strerror_harness:34,36)" id="HTTPClient_strerror_harness.coverage.1" status="SATISFIED">
+<location file="/home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/HTTPClient_strerror_harness.c" function="HTTPClient_strerror_harness" line="34" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/HTTPClient_strerror_harness.c" function="HTTPClient_strerror_harness">34,36</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 2 (lines /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/HTTPClient_strerror_harness.c:HTTPClient_strerror_harness:37)" id="HTTPClient_strerror_harness.coverage.2" status="SATISFIED">
+<location file="/home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/HTTPClient_strerror_harness.c" function="HTTPClient_strerror_harness" line="37" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/HTTPClient_strerror_harness.c" function="HTTPClient_strerror_harness">37</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 1 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2620,2622,2624)" id="HTTPClient_strerror.coverage.1" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2620" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2620,2622,2624</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 2 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2628)" id="HTTPClient_strerror.coverage.2" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2628" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2628</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 3 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2632)" id="HTTPClient_strerror.coverage.3" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2632" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2632</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 4 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2636)" id="HTTPClient_strerror.coverage.4" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2636" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2636</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 5 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2640)" id="HTTPClient_strerror.coverage.5" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2640" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2640</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 6 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2644)" id="HTTPClient_strerror.coverage.6" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2644" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2644</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 7 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2648)" id="HTTPClient_strerror.coverage.7" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2648" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2648</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 8 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2652)" id="HTTPClient_strerror.coverage.8" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2652" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2652</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 9 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2656)" id="HTTPClient_strerror.coverage.9" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2656" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2656</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 10 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2660)" id="HTTPClient_strerror.coverage.10" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2660" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2660</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 11 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2664)" id="HTTPClient_strerror.coverage.11" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2664" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2664</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 12 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2668)" id="HTTPClient_strerror.coverage.12" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2668" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2668</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 13 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2672)" id="HTTPClient_strerror.coverage.13" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2672" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2672</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 14 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2676)" id="HTTPClient_strerror.coverage.14" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2676" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2676</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 15 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2680)" id="HTTPClient_strerror.coverage.15" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2680" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2680</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 16 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2684)" id="HTTPClient_strerror.coverage.16" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2684" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2684</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 17 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2690)" id="HTTPClient_strerror.coverage.17" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2690" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2690</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 18 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2625,2626)" id="HTTPClient_strerror.coverage.18" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2625" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2625,2626</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 19 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2629,2630)" id="HTTPClient_strerror.coverage.19" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2629" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2629,2630</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 20 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2633,2634)" id="HTTPClient_strerror.coverage.20" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2633" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2633,2634</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 21 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2637,2638)" id="HTTPClient_strerror.coverage.21" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2637" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2637,2638</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 22 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2641,2642)" id="HTTPClient_strerror.coverage.22" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2641" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2641,2642</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 23 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2645,2646)" id="HTTPClient_strerror.coverage.23" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2645" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2645,2646</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 24 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2649,2650)" id="HTTPClient_strerror.coverage.24" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2649" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2649,2650</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 25 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2653,2654)" id="HTTPClient_strerror.coverage.25" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2653" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2653,2654</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 26 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2657,2658)" id="HTTPClient_strerror.coverage.26" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2657" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2657,2658</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 27 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2661,2662)" id="HTTPClient_strerror.coverage.27" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2661" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2661,2662</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 28 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2665,2666)" id="HTTPClient_strerror.coverage.28" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2665" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2665,2666</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 29 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2669,2670)" id="HTTPClient_strerror.coverage.29" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2669" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2669,2670</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 30 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2673,2674)" id="HTTPClient_strerror.coverage.30" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2673" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2673,2674</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 31 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2677,2678)" id="HTTPClient_strerror.coverage.31" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2677" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2677,2678</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 32 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2681,2682)" id="HTTPClient_strerror.coverage.32" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2681" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2681,2682</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 33 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2685)" id="HTTPClient_strerror.coverage.33" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2685" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2685</line>
+</basic_block_lines>
+</goal>
+
+<goal description="block 34 (lines /home/justin/coreHTTP/source/core_http_client.c:HTTPClient_strerror:2694,2695)" id="HTTPClient_strerror.coverage.34" status="SATISFIED">
+<location file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror" line="2694" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+<basic_block_lines>
+<line file="/home/justin/coreHTTP/source/core_http_client.c" function="HTTPClient_strerror">2694,2695</line>
+</basic_block_lines>
+</goal>
+
+<message type="STATUS-MESSAGE">
+<text>** 36 of 36 covered (100.0%)</text>
+</message>
+
+</cprover>
+              </xmp>
+            </div><!-- class="output-box" -->
+            
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+    <div class="command-table" id="job-fdc8c30e-7543-4c1b-87e3-2a12c5521076">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-fdc8c30e-7543-4c1b-87e3-2a12c5521076">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                HTTPClient_strerror: checking safety properties
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            cbmc  --flush --object-bits 8   --unwind 1    --pointer-primitive-check --external-sat-solver kissat  --conversion-check  --float-overflow-check --nan-check  --pointer-overflow-check    --unsigned-overflow-check --trace --xml-ui /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness.goto
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                ['10']
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                21600
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:47:58Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                01s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:47:59Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+          <div class="tags">
+            <div class="tags-label">
+              <p>Tags:</p>
+            </div>
+            <div class="tags-box">
+              <ul class="tags-list">
+              
+                <li>stats-group:safety checks</li>
+              
+              </ul><!-- class="tags-list" -->
+            </div><!-- class="tags-box" -->
+          </div><!-- class="tags" -->
+          
+
+
+          
+            
+            <div class="output-box"><xmp>stdout:
+              
+<?xml version="1.0" encoding="UTF-8"?>
+<cprover>
+<program>CBMC 6.4.1 (cbmc-6.4.1)</program>
+<message type="STATUS-MESSAGE">
+<text>CBMC version 6.4.1 (cbmc-6.4.1) 64-bit x86_64 linux</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Reading GOTO program from file /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness.goto</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Generating GOTO Program</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Adding CPROVER library (x86_64)</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Removal of function pointers and virtual functions</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Generic Property Instrumentation</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>Starting Bounded Model Checking</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+<text>VERIFICATION SUCCESSFUL</text>
+</message>
+
+<cprover-status>SUCCESS</cprover-status>
+
+</cprover>
+              </xmp>
+            </div><!-- class="output-box" -->
+            
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+
+  </div><!-- class="stage" -->
+  
+  <div class="stage">
+    <div class="stage-name">
+      <p>report</p>
+      <div class="underline"></div>
+    </div><!-- class="stage-name" -->
+
+    
+    <div class="command-table" id="job-bddda0f0-431a-4cd4-ad93-5d9a7515a1ce">
+      
+      <div class="success">
+      
+        <div class="command-content">
+          <div class="command-header">
+            <div class="command-id-link">
+              <p>
+                <a href="#job-bddda0f0-431a-4cd4-ad93-5d9a7515a1ce">#</a>
+              </p>
+            </div><!-- class="command-id-link" -->
+            <div class="command-description">
+              
+              <p>
+                HTTPClient_strerror: generating report
+              </p>
+              
+            </div><!-- class="command-description" -->
+          </div><!-- class="command-header" -->
+          <div class="command-invocation">
+            <p>
+            cbmc-viewer  --result /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/logs/result.xml --coverage /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/logs/coverage.xml --property /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/logs/property.xml --srcdir /home/justin/coreHTTP     --goto /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/gotos/HTTPClient_strerror_harness.goto --reportdir /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/report --config /home/justin/coreHTTP/test/cbmc/proofs/HTTPClient_strerror/cbmc-viewer.json
+            </p>
+          </div><!-- class="command-invocation" -->
+
+          
+          <div class="command-stats-table">
+            
+            <div class="command-stats-row">
+              <p>Command return code:
+              <span class="value">
+                0
+              </span></p>
+              <p>OK returns:
+              <span class="value">
+                None
+              </span></p>
+              <p>Ignored returns:
+              <span class="value">
+                None
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Timeout:
+              <span class="value">
+                None
+              </span></p>
+              <p>Timeout ok:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout ignored:
+              <span class="value">
+                False
+              </span></p>
+              <p>Timeout reached:
+              <span class="value">
+                False
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Start time:
+              <span class="value">
+                2025-02-17T06:48:00Z
+              </span></p>
+              <p>Duration:
+              <span class="value">
+                00s
+              </span></p>
+              <p>End time:
+              <span class="value">
+                2025-02-17T06:48:00Z
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+            <div class="command-stats-row">
+              <p>Command successful:
+              <span class="value">
+              
+              yes
+              
+              </span></p>
+            </div><!-- class="command-stats-row" -->
+             
+          </div><!-- class="command-stats-table" -->
+          
+
+          
+
+
+          
+
+
+          
+
+
+          
+
+          
+
+        </div><!-- class="command-content" -->
+      </div><!-- class="fail" -->
+    </div><!-- id="command-table" -->
+    
+
+  </div><!-- class="stage" -->
+  
+
+
+</div><!-- id="content" -->
+</body>
+</html>

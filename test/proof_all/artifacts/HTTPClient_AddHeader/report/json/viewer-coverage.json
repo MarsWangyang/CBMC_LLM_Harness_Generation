@@ -1,0 +1,311 @@
+{
+  "viewer-coverage": {
+    "coverage": {
+      "source/core_http_client.c": {
+        "HTTPClient_AddHeader": {
+          "1695": "hit",
+          "1698": "hit",
+          "1701": "hit",
+          "1702": "hit",
+          "1703": "hit",
+          "1706": "hit",
+          "1707": "hit",
+          "1708": "hit",
+          "1711": "hit",
+          "1712": "hit",
+          "1713": "hit",
+          "1716": "hit",
+          "1717": "hit",
+          "1718": "hit",
+          "1721": "hit",
+          "1722": "hit",
+          "1723": "hit",
+          "1726": "hit",
+          "1727": "hit",
+          "1728": "hit",
+          "1731": "hit",
+          "1738": "hit",
+          "1740": "hit",
+          "1741": "hit",
+          "1744": "hit",
+          "1745": "hit"
+        },
+        "addHeader": {
+          "1348": "hit",
+          "1349": "hit",
+          "1350": "hit",
+          "1351": "hit",
+          "1355": "hit",
+          "1356": "hit",
+          "1358": "hit",
+          "1359": "hit",
+          "1360": "hit",
+          "1361": "hit",
+          "1362": "hit",
+          "1363": "hit",
+          "1365": "hit",
+          "1366": "hit",
+          "1371": "hit",
+          "1372": "hit",
+          "1373": "hit",
+          "1375": "hit",
+          "1376": "hit",
+          "1377": "hit",
+          "1380": "hit",
+          "1381": "hit",
+          "1382": "hit",
+          "1386": "hit",
+          "1391": "both",
+          "1393": "missed",
+          "1394": "missed",
+          "1396": "hit",
+          "1398": "hit",
+          "1401": "hit",
+          "1402": "hit",
+          "1403": "hit",
+          "1405": "hit",
+          "1408": "both",
+          "1410": "missed",
+          "1411": "missed",
+          "1414": "hit",
+          "1416": "hit",
+          "1419": "hit",
+          "1420": "hit",
+          "1421": "hit",
+          "1424": "hit",
+          "1426": "hit",
+          "1434": "hit",
+          "1437": "hit",
+          "1438": "hit"
+        }
+      },
+      "test/cbmc/proofs/HTTPClient_AddHeader/HTTPClient_AddHeader_harness.c": {
+        "HTTPClient_AddHeader_harness": {
+          "49": "hit",
+          "50": "hit",
+          "51": "hit",
+          "52": "hit",
+          "53": "hit",
+          "56": "hit",
+          "57": "hit",
+          "60": "hit",
+          "61": "hit",
+          "64": "hit",
+          "65": "hit",
+          "67": "hit",
+          "68": "hit",
+          "69": "hit"
+        },
+        "__CPROVER_file_local_core_http_client_c_httpHeaderStrncpy": {
+          "44": "hit",
+          "45": "hit"
+        }
+      },
+      "test/cbmc/sources/http_cbmc_state.c": {
+        "allocateHttpRequestHeaders": {
+          "42": "hit",
+          "44": "hit",
+          "47": "hit",
+          "49": "hit",
+          "50": "hit",
+          "53": "hit",
+          "54": "hit"
+        },
+        "isValidHttpRequestHeaders": {
+          "58": "hit",
+          "60": "hit",
+          "62": "hit",
+          "63": "hit",
+          "66": "hit",
+          "67": "hit"
+        },
+        "mallocCanFail": {
+          "36": "hit",
+          "37": "hit",
+          "38": "hit"
+        }
+      },
+      "test/cbmc/stubs/httpHeaderStrncpy.c": {
+        "httpHeaderStrncpy": {
+          "42": "hit",
+          "43": "hit",
+          "44": "hit",
+          "45": "hit"
+        }
+      }
+    },
+    "function_coverage": {
+      "source/core_http_client.c": {
+        "HTTPClient_AddHeader": {
+          "hit": 26,
+          "percentage": 1.0,
+          "total": 26
+        },
+        "addHeader": {
+          "hit": 42,
+          "percentage": 0.9130434782608695,
+          "total": 46
+        }
+      },
+      "test/cbmc/proofs/HTTPClient_AddHeader/HTTPClient_AddHeader_harness.c": {
+        "HTTPClient_AddHeader_harness": {
+          "hit": 14,
+          "percentage": 1.0,
+          "total": 14
+        },
+        "__CPROVER_file_local_core_http_client_c_httpHeaderStrncpy": {
+          "hit": 2,
+          "percentage": 1.0,
+          "total": 2
+        }
+      },
+      "test/cbmc/sources/http_cbmc_state.c": {
+        "allocateHttpRequestHeaders": {
+          "hit": 7,
+          "percentage": 1.0,
+          "total": 7
+        },
+        "isValidHttpRequestHeaders": {
+          "hit": 6,
+          "percentage": 1.0,
+          "total": 6
+        },
+        "mallocCanFail": {
+          "hit": 3,
+          "percentage": 1.0,
+          "total": 3
+        }
+      },
+      "test/cbmc/stubs/httpHeaderStrncpy.c": {
+        "httpHeaderStrncpy": {
+          "hit": 4,
+          "percentage": 1.0,
+          "total": 4
+        }
+      }
+    },
+    "line_coverage": {
+      "source/core_http_client.c": {
+        "1348": "hit",
+        "1349": "hit",
+        "1350": "hit",
+        "1351": "hit",
+        "1355": "hit",
+        "1356": "hit",
+        "1358": "hit",
+        "1359": "hit",
+        "1360": "hit",
+        "1361": "hit",
+        "1362": "hit",
+        "1363": "hit",
+        "1365": "hit",
+        "1366": "hit",
+        "1371": "hit",
+        "1372": "hit",
+        "1373": "hit",
+        "1375": "hit",
+        "1376": "hit",
+        "1377": "hit",
+        "1380": "hit",
+        "1381": "hit",
+        "1382": "hit",
+        "1386": "hit",
+        "1391": "both",
+        "1393": "missed",
+        "1394": "missed",
+        "1396": "hit",
+        "1398": "hit",
+        "1401": "hit",
+        "1402": "hit",
+        "1403": "hit",
+        "1405": "hit",
+        "1408": "both",
+        "1410": "missed",
+        "1411": "missed",
+        "1414": "hit",
+        "1416": "hit",
+        "1419": "hit",
+        "1420": "hit",
+        "1421": "hit",
+        "1424": "hit",
+        "1426": "hit",
+        "1434": "hit",
+        "1437": "hit",
+        "1438": "hit",
+        "1695": "hit",
+        "1698": "hit",
+        "1701": "hit",
+        "1702": "hit",
+        "1703": "hit",
+        "1706": "hit",
+        "1707": "hit",
+        "1708": "hit",
+        "1711": "hit",
+        "1712": "hit",
+        "1713": "hit",
+        "1716": "hit",
+        "1717": "hit",
+        "1718": "hit",
+        "1721": "hit",
+        "1722": "hit",
+        "1723": "hit",
+        "1726": "hit",
+        "1727": "hit",
+        "1728": "hit",
+        "1731": "hit",
+        "1738": "hit",
+        "1740": "hit",
+        "1741": "hit",
+        "1744": "hit",
+        "1745": "hit"
+      },
+      "test/cbmc/proofs/HTTPClient_AddHeader/HTTPClient_AddHeader_harness.c": {
+        "44": "hit",
+        "45": "hit",
+        "49": "hit",
+        "50": "hit",
+        "51": "hit",
+        "52": "hit",
+        "53": "hit",
+        "56": "hit",
+        "57": "hit",
+        "60": "hit",
+        "61": "hit",
+        "64": "hit",
+        "65": "hit",
+        "67": "hit",
+        "68": "hit",
+        "69": "hit"
+      },
+      "test/cbmc/sources/http_cbmc_state.c": {
+        "36": "hit",
+        "37": "hit",
+        "38": "hit",
+        "42": "hit",
+        "44": "hit",
+        "47": "hit",
+        "49": "hit",
+        "50": "hit",
+        "53": "hit",
+        "54": "hit",
+        "58": "hit",
+        "60": "hit",
+        "62": "hit",
+        "63": "hit",
+        "66": "hit",
+        "67": "hit"
+      },
+      "test/cbmc/stubs/httpHeaderStrncpy.c": {
+        "42": "hit",
+        "43": "hit",
+        "44": "hit",
+        "45": "hit"
+      }
+    },
+    "overall_coverage": {
+      "hit": 104,
+      "percentage": 0.9629629629629629,
+      "total": 108
+    }
+  }
+}

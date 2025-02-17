@@ -1,0 +1,2087 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cprover>
+<program>CBMC 6.4.1 (cbmc-6.4.1)</program>
+<message type="STATUS-MESSAGE">
+  <text>CBMC version 6.4.1 (cbmc-6.4.1) 64-bit x86_64 linux</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Reading GOTO program from file /home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/gotos/findHeaderValueParserCallback_harness.goto</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Generating GOTO Program</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Adding CPROVER library (x86_64)</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Removal of function pointers and virtual functions</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Generic Property Instrumentation</text>
+</message>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.1">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="116" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.2">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="116" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;bufferLen</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.3">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="116" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.4">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="116" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.5">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="116" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;bufferLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 8ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.6">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="116" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 8l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.7">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="117" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.8">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="117" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;pBuffer</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.9">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="117" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.10">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="117" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.11">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="117" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;pBuffer</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pResponse) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.12">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="117" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || pResponse == ((HTTPResponse_t *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.13">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="119" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.14">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="119" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;bufferLen</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.15">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="119" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.16">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="119" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.17">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="119" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;bufferLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 8ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.18">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="119" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 8l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.19">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="121" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.20">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="121" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;pBuffer</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.21">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="121" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.22">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="121" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.23">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="121" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;pBuffer</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pResponse) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.24">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="121" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || pResponse == ((HTTPResponse_t *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.25">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="125" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;pHeaders</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.26">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="125" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;pHeaders</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.27">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="125" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;pHeaders</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.28">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="125" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;pHeaders</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.29">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="125" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;pHeaders</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 32ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.30">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="125" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;pHeaders</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 32l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.31">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="126" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;pBuffer</description>
+  <expression>!(return_value_nondet_bool != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.32">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="126" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;pBuffer</description>
+  <expression>!(return_value_nondet_bool != FALSE) ==&gt; !IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.33">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="126" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;pBuffer</description>
+  <expression>!(return_value_nondet_bool != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.34">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="126" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;pBuffer</description>
+  <expression>!(return_value_nondet_bool != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.35">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="126" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;pBuffer</description>
+  <expression>!(return_value_nondet_bool != FALSE) ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pResponse) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.36">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="126" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;pBuffer</description>
+  <expression>!(return_value_nondet_bool != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || pResponse == ((HTTPResponse_t *)NULL)</expression>
+</property>
+
+<property class="overflow" name="allocateHttpResponse.overflow.1">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="126" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>arithmetic overflow on unsigned to signed type conversion in (signed long int)headerOffset</description>
+  <expression>!(return_value_nondet_bool != FALSE) ==&gt; !(headerOffset &gt;= 9223372036854775808ul)</expression>
+</property>
+
+<property class="pointer arithmetic" name="allocateHttpResponse.pointer_arithmetic.1">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="126" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer NULL in pResponse-&gt;pBuffer + (signed long int)headerOffset</description>
+  <expression>!(return_value_nondet_bool != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(((uint8_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse-&gt;pBuffer))</expression>
+</property>
+
+<property class="pointer arithmetic" name="allocateHttpResponse.pointer_arithmetic.2">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="126" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer invalid in pResponse-&gt;pBuffer + (signed long int)headerOffset</description>
+  <expression>!(return_value_nondet_bool != FALSE) ==&gt; !IS_INVALID_POINTER(pResponse-&gt;pBuffer)</expression>
+</property>
+
+<property class="pointer arithmetic" name="allocateHttpResponse.pointer_arithmetic.3">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="126" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: deallocated dynamic object in pResponse-&gt;pBuffer + (signed long int)headerOffset</description>
+  <expression>!(return_value_nondet_bool != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse-&gt;pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer arithmetic" name="allocateHttpResponse.pointer_arithmetic.4">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="126" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: dead object in pResponse-&gt;pBuffer + (signed long int)headerOffset</description>
+  <expression>!(return_value_nondet_bool != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse-&gt;pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer arithmetic" name="allocateHttpResponse.pointer_arithmetic.5">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="126" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer outside object bounds in pResponse-&gt;pBuffer + (signed long int)headerOffset</description>
+  <expression>!(return_value_nondet_bool != FALSE) ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse-&gt;pBuffer) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse-&gt;pBuffer) + (unsigned long int)(signed long int)headerOffset)</expression>
+</property>
+
+<property class="pointer arithmetic" name="allocateHttpResponse.pointer_arithmetic.6">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="126" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: invalid integer address in pResponse-&gt;pBuffer + (signed long int)headerOffset</description>
+  <expression>!(return_value_nondet_bool != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(((uint8_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse-&gt;pBuffer)) || pResponse-&gt;pBuffer + (signed long int)headerOffset == ((uint8_t *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.37">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="129" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;pHeaders</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.38">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="129" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;pHeaders</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.39">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="129" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;pHeaders</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.40">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="129" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;pHeaders</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.41">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="129" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;pHeaders</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 32ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.42">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="129" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;pHeaders</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 32l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.43">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="133" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;headersLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.44">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="133" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;headersLen</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.45">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="133" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;headersLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.46">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="133" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;headersLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.47">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="133" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;headersLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 40ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.48">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="133" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;headersLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 40l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.49">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="133" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.50">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="133" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;bufferLen</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.51">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="133" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.52">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="133" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.53">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="133" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;bufferLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 8ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.54">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="133" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 8l == ((char *)NULL)</expression>
+</property>
+
+<property class="overflow" name="allocateHttpResponse.overflow.2">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="133" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>arithmetic overflow on unsigned - in pResponse-&gt;bufferLen - headerOffset</description>
+  <expression>!overflow("-", size_t, pResponse-&gt;bufferLen, headerOffset)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.55">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="136" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.56">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="136" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;bufferLen</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.57">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="136" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.58">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="136" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.59">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="136" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;bufferLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 8ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.60">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="136" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 8l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.61">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="142" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.62">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="142" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;bufferLen</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.63">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="142" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.64">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="142" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.65">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="142" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;bufferLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 8ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.66">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="142" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 8l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.67">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="145" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.68">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="145" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;pBuffer</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.69">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="145" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.70">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="145" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.71">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="145" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;pBuffer</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pResponse) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.72">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="145" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || pResponse == ((HTTPResponse_t *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.73">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="147" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;pBody</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.74">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="147" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;pBody</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.75">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="147" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;pBody</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.76">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="147" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;pBody</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.77">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="147" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;pBody</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 48ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.78">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="147" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;pBody</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 48l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.79">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="148" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;pBuffer</description>
+  <expression>!(return_value_nondet_bool$0 != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.80">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="148" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;pBuffer</description>
+  <expression>!(return_value_nondet_bool$0 != FALSE) ==&gt; !IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.81">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="148" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;pBuffer</description>
+  <expression>!(return_value_nondet_bool$0 != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.82">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="148" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;pBuffer</description>
+  <expression>!(return_value_nondet_bool$0 != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.83">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="148" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;pBuffer</description>
+  <expression>!(return_value_nondet_bool$0 != FALSE) ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pResponse) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.84">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="148" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;pBuffer</description>
+  <expression>!(return_value_nondet_bool$0 != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || pResponse == ((HTTPResponse_t *)NULL)</expression>
+</property>
+
+<property class="overflow" name="allocateHttpResponse.overflow.3">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="148" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>arithmetic overflow on unsigned to signed type conversion in (signed long int)bodyOffset</description>
+  <expression>!(return_value_nondet_bool$0 != FALSE) ==&gt; !(bodyOffset &gt;= 9223372036854775808ul)</expression>
+</property>
+
+<property class="pointer arithmetic" name="allocateHttpResponse.pointer_arithmetic.7">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="148" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer NULL in pResponse-&gt;pBuffer + (signed long int)bodyOffset</description>
+  <expression>!(return_value_nondet_bool$0 != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(((uint8_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse-&gt;pBuffer))</expression>
+</property>
+
+<property class="pointer arithmetic" name="allocateHttpResponse.pointer_arithmetic.8">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="148" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer invalid in pResponse-&gt;pBuffer + (signed long int)bodyOffset</description>
+  <expression>!(return_value_nondet_bool$0 != FALSE) ==&gt; !IS_INVALID_POINTER(pResponse-&gt;pBuffer)</expression>
+</property>
+
+<property class="pointer arithmetic" name="allocateHttpResponse.pointer_arithmetic.9">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="148" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: deallocated dynamic object in pResponse-&gt;pBuffer + (signed long int)bodyOffset</description>
+  <expression>!(return_value_nondet_bool$0 != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse-&gt;pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer arithmetic" name="allocateHttpResponse.pointer_arithmetic.10">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="148" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: dead object in pResponse-&gt;pBuffer + (signed long int)bodyOffset</description>
+  <expression>!(return_value_nondet_bool$0 != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse-&gt;pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer arithmetic" name="allocateHttpResponse.pointer_arithmetic.11">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="148" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer outside object bounds in pResponse-&gt;pBuffer + (signed long int)bodyOffset</description>
+  <expression>!(return_value_nondet_bool$0 != FALSE) ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse-&gt;pBuffer) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse-&gt;pBuffer) + (unsigned long int)(signed long int)bodyOffset)</expression>
+</property>
+
+<property class="pointer arithmetic" name="allocateHttpResponse.pointer_arithmetic.12">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="148" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: invalid integer address in pResponse-&gt;pBuffer + (signed long int)bodyOffset</description>
+  <expression>!(return_value_nondet_bool$0 != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(((uint8_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse-&gt;pBuffer)) || pResponse-&gt;pBuffer + (signed long int)bodyOffset == ((uint8_t *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.85">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="153" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;pBody</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.86">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="153" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;pBody</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.87">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="153" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;pBody</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.88">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="153" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;pBody</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.89">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="153" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;pBody</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 48ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.90">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="153" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;pBody</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 48l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.91">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="155" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;bodyLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.92">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="155" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;bodyLen</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.93">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="155" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;bodyLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.94">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="155" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;bodyLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.95">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="155" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;bodyLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 56ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.96">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="155" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;bodyLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 56l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.97">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="155" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.98">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="155" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;bufferLen</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.99">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="155" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.100">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="155" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.101">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="155" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;bufferLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 8ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.102">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="155" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 8l == ((char *)NULL)</expression>
+</property>
+
+<property class="overflow" name="allocateHttpResponse.overflow.4">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="155" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>arithmetic overflow on unsigned - in pResponse-&gt;bufferLen - bodyOffset</description>
+  <expression>!overflow("-", size_t, pResponse-&gt;bufferLen, bodyOffset)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.1">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="51" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;pBuffer</description>
+  <expression>(return_value_isValidHttpResponse != FALSE ? (pResponse != ((HTTPResponse_t *)NULL) ? TRUE : FALSE) : FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.2">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="51" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;pBuffer</description>
+  <expression>(return_value_isValidHttpResponse != FALSE ? (pResponse != ((HTTPResponse_t *)NULL) ? TRUE : FALSE) : FALSE) ==&gt; !IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.3">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="51" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;pBuffer</description>
+  <expression>(return_value_isValidHttpResponse != FALSE ? (pResponse != ((HTTPResponse_t *)NULL) ? TRUE : FALSE) : FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.4">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="51" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;pBuffer</description>
+  <expression>(return_value_isValidHttpResponse != FALSE ? (pResponse != ((HTTPResponse_t *)NULL) ? TRUE : FALSE) : FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.5">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="51" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;pBuffer</description>
+  <expression>(return_value_isValidHttpResponse != FALSE ? (pResponse != ((HTTPResponse_t *)NULL) ? TRUE : FALSE) : FALSE) ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pResponse) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.6">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="51" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;pBuffer</description>
+  <expression>(return_value_isValidHttpResponse != FALSE ? (pResponse != ((HTTPResponse_t *)NULL) ? TRUE : FALSE) : FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || pResponse == ((HTTPResponse_t *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.7">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="52" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;bufferLen</description>
+  <expression>((return_value_isValidHttpResponse != FALSE ? (pResponse != ((HTTPResponse_t *)NULL) ? TRUE : FALSE) : FALSE) ? (pResponse-&gt;pBuffer != ((uint8_t *)NULL) ? TRUE : FALSE) : FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.8">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="52" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;bufferLen</description>
+  <expression>((return_value_isValidHttpResponse != FALSE ? (pResponse != ((HTTPResponse_t *)NULL) ? TRUE : FALSE) : FALSE) ? (pResponse-&gt;pBuffer != ((uint8_t *)NULL) ? TRUE : FALSE) : FALSE) ==&gt; !IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.9">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="52" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;bufferLen</description>
+  <expression>((return_value_isValidHttpResponse != FALSE ? (pResponse != ((HTTPResponse_t *)NULL) ? TRUE : FALSE) : FALSE) ? (pResponse-&gt;pBuffer != ((uint8_t *)NULL) ? TRUE : FALSE) : FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.10">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="52" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;bufferLen</description>
+  <expression>((return_value_isValidHttpResponse != FALSE ? (pResponse != ((HTTPResponse_t *)NULL) ? TRUE : FALSE) : FALSE) ? (pResponse-&gt;pBuffer != ((uint8_t *)NULL) ? TRUE : FALSE) : FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.11">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="52" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;bufferLen</description>
+  <expression>((return_value_isValidHttpResponse != FALSE ? (pResponse != ((HTTPResponse_t *)NULL) ? TRUE : FALSE) : FALSE) ? (pResponse-&gt;pBuffer != ((uint8_t *)NULL) ? TRUE : FALSE) : FALSE) ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 8ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.12">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="52" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;bufferLen</description>
+  <expression>((return_value_isValidHttpResponse != FALSE ? (pResponse != ((HTTPResponse_t *)NULL) ? TRUE : FALSE) : FALSE) ? (pResponse-&gt;pBuffer != ((uint8_t *)NULL) ? TRUE : FALSE) : FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 8l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.13">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="54" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.14">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="54" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;bufferLen</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.15">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="54" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.16">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="54" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.17">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="54" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;bufferLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 8ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.18">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="54" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 8l == ((char *)NULL)</expression>
+</property>
+
+<property class="overflow" name="findHeaderValueParserCallback_harness.overflow.1">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="55" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>arithmetic overflow on unsigned - in pResponse-&gt;bufferLen - valueOffset</description>
+  <expression>!overflow("-", size_t, pResponse-&gt;bufferLen, valueOffset)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.19">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="56" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.20">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="56" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;pBuffer</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.21">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="56" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.22">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="56" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.23">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="56" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;pBuffer</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pResponse) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.24">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="56" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || pResponse == ((HTTPResponse_t *)NULL)</expression>
+</property>
+
+<property class="overflow" name="findHeaderValueParserCallback_harness.overflow.2">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="56" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>arithmetic overflow on unsigned to signed type conversion in (signed long int)valueOffset</description>
+  <expression>!(valueOffset &gt;= 9223372036854775808ul)</expression>
+</property>
+
+<property class="pointer arithmetic" name="findHeaderValueParserCallback_harness.pointer_arithmetic.1">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="56" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer NULL in pResponse-&gt;pBuffer + (signed long int)valueOffset</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse-&gt;pBuffer))</expression>
+</property>
+
+<property class="pointer arithmetic" name="findHeaderValueParserCallback_harness.pointer_arithmetic.2">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="56" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer invalid in pResponse-&gt;pBuffer + (signed long int)valueOffset</description>
+  <expression>!IS_INVALID_POINTER(pResponse-&gt;pBuffer)</expression>
+</property>
+
+<property class="pointer arithmetic" name="findHeaderValueParserCallback_harness.pointer_arithmetic.3">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="56" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: deallocated dynamic object in pResponse-&gt;pBuffer + (signed long int)valueOffset</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse-&gt;pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer arithmetic" name="findHeaderValueParserCallback_harness.pointer_arithmetic.4">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="56" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: dead object in pResponse-&gt;pBuffer + (signed long int)valueOffset</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse-&gt;pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer arithmetic" name="findHeaderValueParserCallback_harness.pointer_arithmetic.5">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="56" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer outside object bounds in pResponse-&gt;pBuffer + (signed long int)valueOffset</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse-&gt;pBuffer) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse-&gt;pBuffer) + (unsigned long int)(signed long int)valueOffset)</expression>
+</property>
+
+<property class="pointer arithmetic" name="findHeaderValueParserCallback_harness.pointer_arithmetic.6">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="56" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: invalid integer address in pResponse-&gt;pBuffer + (signed long int)valueOffset</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse-&gt;pBuffer)) || pResponse-&gt;pBuffer + (signed long int)valueOffset == ((uint8_t *)NULL)</expression>
+</property>
+
+<property class="overflow" name="findHeaderValueParserCallback_harness.overflow.3">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="60" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>arithmetic overflow on unsigned - in pResponse-&gt;bufferLen - fieldOffset</description>
+  <expression>!overflow("-", size_t, pResponse-&gt;bufferLen, fieldOffset)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.25">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="61" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pFindHeaderContext-&gt;pField</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const char **)NULL)) == __CPROVER_POINTER_OBJECT(pFindHeaderContext))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.26">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="61" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pFindHeaderContext-&gt;pField</description>
+  <expression>!IS_INVALID_POINTER(pFindHeaderContext)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.27">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="61" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pFindHeaderContext-&gt;pField</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pFindHeaderContext) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.28">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="61" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pFindHeaderContext-&gt;pField</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pFindHeaderContext) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.29">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="61" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pFindHeaderContext-&gt;pField</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pFindHeaderContext) &gt;= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pFindHeaderContext) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.30">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="61" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pFindHeaderContext-&gt;pField</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const char **)NULL)) == __CPROVER_POINTER_OBJECT(pFindHeaderContext)) || pFindHeaderContext == ((findHeaderContext_t *)NULL)</expression>
+</property>
+
+<property class="overflow" name="findHeaderValueParserCallback_harness.overflow.4">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="61" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>arithmetic overflow on unsigned to signed type conversion in (signed long int)fieldOffset</description>
+  <expression>!(fieldOffset &gt;= 9223372036854775808ul)</expression>
+</property>
+
+<property class="pointer arithmetic" name="findHeaderValueParserCallback_harness.pointer_arithmetic.7">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="61" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer NULL in pResponse-&gt;pBuffer + (signed long int)fieldOffset</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse-&gt;pBuffer))</expression>
+</property>
+
+<property class="pointer arithmetic" name="findHeaderValueParserCallback_harness.pointer_arithmetic.8">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="61" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer invalid in pResponse-&gt;pBuffer + (signed long int)fieldOffset</description>
+  <expression>!IS_INVALID_POINTER(pResponse-&gt;pBuffer)</expression>
+</property>
+
+<property class="pointer arithmetic" name="findHeaderValueParserCallback_harness.pointer_arithmetic.9">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="61" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: deallocated dynamic object in pResponse-&gt;pBuffer + (signed long int)fieldOffset</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse-&gt;pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer arithmetic" name="findHeaderValueParserCallback_harness.pointer_arithmetic.10">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="61" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: dead object in pResponse-&gt;pBuffer + (signed long int)fieldOffset</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse-&gt;pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer arithmetic" name="findHeaderValueParserCallback_harness.pointer_arithmetic.11">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="61" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer outside object bounds in pResponse-&gt;pBuffer + (signed long int)fieldOffset</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse-&gt;pBuffer) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse-&gt;pBuffer) + (unsigned long int)(signed long int)fieldOffset)</expression>
+</property>
+
+<property class="pointer arithmetic" name="findHeaderValueParserCallback_harness.pointer_arithmetic.12">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="61" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: invalid integer address in pResponse-&gt;pBuffer + (signed long int)fieldOffset</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse-&gt;pBuffer)) || pResponse-&gt;pBuffer + (signed long int)fieldOffset == ((uint8_t *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.31">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="62" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pFindHeaderContext-&gt;fieldLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pFindHeaderContext))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.32">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="62" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pFindHeaderContext-&gt;fieldLen</description>
+  <expression>!IS_INVALID_POINTER(pFindHeaderContext)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.33">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="62" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pFindHeaderContext-&gt;fieldLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pFindHeaderContext) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.34">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="62" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pFindHeaderContext-&gt;fieldLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pFindHeaderContext) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.35">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="62" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pFindHeaderContext-&gt;fieldLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pFindHeaderContext) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pFindHeaderContext) + 8ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.36">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="62" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pFindHeaderContext-&gt;fieldLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pFindHeaderContext)) || (char *)pFindHeaderContext + 8l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.37">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="63" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pFindHeaderContext-&gt;pValueLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t **)NULL)) == __CPROVER_POINTER_OBJECT(pFindHeaderContext))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.38">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="63" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pFindHeaderContext-&gt;pValueLen</description>
+  <expression>!IS_INVALID_POINTER(pFindHeaderContext)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.39">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="63" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pFindHeaderContext-&gt;pValueLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pFindHeaderContext) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.40">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="63" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pFindHeaderContext-&gt;pValueLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pFindHeaderContext) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.41">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="63" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pFindHeaderContext-&gt;pValueLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pFindHeaderContext) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pFindHeaderContext) + 24ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.42">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="63" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pFindHeaderContext-&gt;pValueLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t **)NULL)) == __CPROVER_POINTER_OBJECT(pFindHeaderContext)) || (char *)pFindHeaderContext + 24l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.43">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="64" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pFindHeaderContext-&gt;pValueLoc</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const char ***)NULL)) == __CPROVER_POINTER_OBJECT(pFindHeaderContext))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.44">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="64" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pFindHeaderContext-&gt;pValueLoc</description>
+  <expression>!IS_INVALID_POINTER(pFindHeaderContext)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.45">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="64" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pFindHeaderContext-&gt;pValueLoc</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pFindHeaderContext) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.46">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="64" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pFindHeaderContext-&gt;pValueLoc</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pFindHeaderContext) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.47">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="64" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pFindHeaderContext-&gt;pValueLoc</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pFindHeaderContext) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pFindHeaderContext) + 16ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.48">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="64" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pFindHeaderContext-&gt;pValueLoc</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const char ***)NULL)) == __CPROVER_POINTER_OBJECT(pFindHeaderContext)) || (char *)pFindHeaderContext + 16l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.49">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="65" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pFindHeaderContext-&gt;fieldFound</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t *)NULL)) == __CPROVER_POINTER_OBJECT(pFindHeaderContext))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.50">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="65" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pFindHeaderContext-&gt;fieldFound</description>
+  <expression>!IS_INVALID_POINTER(pFindHeaderContext)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.51">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="65" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pFindHeaderContext-&gt;fieldFound</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pFindHeaderContext) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.52">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="65" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pFindHeaderContext-&gt;fieldFound</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pFindHeaderContext) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.53">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="65" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pFindHeaderContext-&gt;fieldFound</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pFindHeaderContext) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pFindHeaderContext) + 32ul) + 1</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.54">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="65" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pFindHeaderContext-&gt;fieldFound</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t *)NULL)) == __CPROVER_POINTER_OBJECT(pFindHeaderContext)) || (char *)pFindHeaderContext + 32l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.55">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="66" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pFindHeaderContext-&gt;valueFound</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t *)NULL)) == __CPROVER_POINTER_OBJECT(pFindHeaderContext))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.56">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="66" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pFindHeaderContext-&gt;valueFound</description>
+  <expression>!IS_INVALID_POINTER(pFindHeaderContext)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.57">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="66" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pFindHeaderContext-&gt;valueFound</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pFindHeaderContext) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.58">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="66" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pFindHeaderContext-&gt;valueFound</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pFindHeaderContext) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.59">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="66" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pFindHeaderContext-&gt;valueFound</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pFindHeaderContext) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pFindHeaderContext) + 33ul) + 1</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.60">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="66" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pFindHeaderContext-&gt;valueFound</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t *)NULL)) == __CPROVER_POINTER_OBJECT(pFindHeaderContext)) || (char *)pFindHeaderContext + 33l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.61">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="67" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pHttpParser-&gt;data</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((void **)NULL)) == __CPROVER_POINTER_OBJECT(pHttpParser))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.62">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="67" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pHttpParser-&gt;data</description>
+  <expression>!IS_INVALID_POINTER(pHttpParser)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.63">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="67" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pHttpParser-&gt;data</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pHttpParser) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.64">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="67" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pHttpParser-&gt;data</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pHttpParser) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.65">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="67" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pHttpParser-&gt;data</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pHttpParser) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pHttpParser) + 48ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback_harness.pointer_dereference.66">
+  <location file="/home/justin/coreHTTP/test/cbmc/proofs/findHeaderValueParserCallback/findHeaderValueParserCallback_harness.c" function="findHeaderValueParserCallback_harness" line="67" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pHttpParser-&gt;data</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((void **)NULL)) == __CPROVER_POINTER_OBJECT(pHttpParser)) || (char *)pHttpParser + 48l == ((char *)NULL)</expression>
+</property>
+
+<property class="assertion" name="malloc.assertion.1">
+  <location file="&lt;builtin-library-malloc&gt;" function="malloc" line="31" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>max allocation size exceeded</description>
+  <expression>malloc_size &lt;= __CPROVER_max_malloc_size</expression>
+</property>
+
+<property class="assertion" name="malloc.assertion.2">
+  <location file="&lt;builtin-library-malloc&gt;" function="malloc" line="36" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>max allocation may fail</description>
+  <expression>!(1 != 0) || !should_malloc_fail</expression>
+</property>
+
+<property class="assertion" name="mallocCanFail.assertion.1">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="mallocCanFail" line="36" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>mallocCanFail size is too big</description>
+  <expression>size &lt; 18446744073709551615ul &gt;&gt; 8 + 1</expression>
+</property>
+
+<property class="assertion" name="findHeaderValueParserCallback.assertion.1">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2361" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>assertion pHttpParser != NULL</description>
+  <expression>pHttpParser != ((llhttp_t *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.1">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2362" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pHttpParser-&gt;data</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((void **)NULL)) == __CPROVER_POINTER_OBJECT(pHttpParser))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.2">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2362" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pHttpParser-&gt;data</description>
+  <expression>!IS_INVALID_POINTER(pHttpParser)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.3">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2362" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pHttpParser-&gt;data</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pHttpParser) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.4">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2362" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pHttpParser-&gt;data</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pHttpParser) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.5">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2362" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pHttpParser-&gt;data</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pHttpParser) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pHttpParser) + 48ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.6">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2362" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pHttpParser-&gt;data</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((void **)NULL)) == __CPROVER_POINTER_OBJECT(pHttpParser)) || (char *)pHttpParser + 48l == ((char *)NULL)</expression>
+</property>
+
+<property class="assertion" name="findHeaderValueParserCallback.assertion.2">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2362" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>assertion pHttpParser-&gt;data != NULL</description>
+  <expression>pHttpParser-&gt;data != (void *)0</expression>
+</property>
+
+<property class="assertion" name="findHeaderValueParserCallback.assertion.3">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2363" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>assertion pValueLoc != NULL</description>
+  <expression>pValueLoc != ((const char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.7">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2367" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pContext-&gt;pField</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const char **)NULL)) == __CPROVER_POINTER_OBJECT(pContext))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.8">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2367" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pContext-&gt;pField</description>
+  <expression>!IS_INVALID_POINTER(pContext)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.9">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2367" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pContext-&gt;pField</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pContext) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.10">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2367" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pContext-&gt;pField</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pContext) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.11">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2367" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pContext-&gt;pField</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pContext) &gt;= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pContext) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.12">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2367" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pContext-&gt;pField</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const char **)NULL)) == __CPROVER_POINTER_OBJECT(pContext)) || pContext == ((findHeaderContext_t *)NULL)</expression>
+</property>
+
+<property class="assertion" name="findHeaderValueParserCallback.assertion.4">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2367" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>assertion pContext-&gt;pField != NULL</description>
+  <expression>pContext-&gt;pField != ((const char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.13">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2368" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pContext-&gt;fieldLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pContext))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.14">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2368" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pContext-&gt;fieldLen</description>
+  <expression>!IS_INVALID_POINTER(pContext)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.15">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2368" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pContext-&gt;fieldLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pContext) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.16">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2368" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pContext-&gt;fieldLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pContext) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.17">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2368" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pContext-&gt;fieldLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pContext) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pContext) + 8ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.18">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2368" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pContext-&gt;fieldLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pContext)) || (char *)pContext + 8l == ((char *)NULL)</expression>
+</property>
+
+<property class="assertion" name="findHeaderValueParserCallback.assertion.5">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2368" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>assertion pContext-&gt;fieldLen &gt; 0U</description>
+  <expression>pContext-&gt;fieldLen &gt; (unsigned long int)0u</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.19">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2369" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pContext-&gt;pValueLoc</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const char ***)NULL)) == __CPROVER_POINTER_OBJECT(pContext))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.20">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2369" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pContext-&gt;pValueLoc</description>
+  <expression>!IS_INVALID_POINTER(pContext)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.21">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2369" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pContext-&gt;pValueLoc</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pContext) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.22">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2369" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pContext-&gt;pValueLoc</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pContext) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.23">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2369" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pContext-&gt;pValueLoc</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pContext) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pContext) + 16ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.24">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2369" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pContext-&gt;pValueLoc</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const char ***)NULL)) == __CPROVER_POINTER_OBJECT(pContext)) || (char *)pContext + 16l == ((char *)NULL)</expression>
+</property>
+
+<property class="assertion" name="findHeaderValueParserCallback.assertion.6">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2369" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>assertion pContext-&gt;pValueLoc != NULL</description>
+  <expression>pContext-&gt;pValueLoc != ((const char **)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.25">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2370" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pContext-&gt;pValueLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t **)NULL)) == __CPROVER_POINTER_OBJECT(pContext))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.26">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2370" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pContext-&gt;pValueLen</description>
+  <expression>!IS_INVALID_POINTER(pContext)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.27">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2370" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pContext-&gt;pValueLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pContext) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.28">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2370" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pContext-&gt;pValueLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pContext) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.29">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2370" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pContext-&gt;pValueLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pContext) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pContext) + 24ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.30">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2370" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pContext-&gt;pValueLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t **)NULL)) == __CPROVER_POINTER_OBJECT(pContext)) || (char *)pContext + 24l == ((char *)NULL)</expression>
+</property>
+
+<property class="assertion" name="findHeaderValueParserCallback.assertion.7">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2370" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>assertion pContext-&gt;pValueLen != NULL</description>
+  <expression>pContext-&gt;pValueLen != ((size_t *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.31">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2373" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pContext-&gt;valueFound</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t *)NULL)) == __CPROVER_POINTER_OBJECT(pContext))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.32">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2373" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pContext-&gt;valueFound</description>
+  <expression>!IS_INVALID_POINTER(pContext)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.33">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2373" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pContext-&gt;valueFound</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pContext) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.34">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2373" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pContext-&gt;valueFound</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pContext) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.35">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2373" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pContext-&gt;valueFound</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pContext) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pContext) + 33ul) + 1</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.36">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2373" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pContext-&gt;valueFound</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t *)NULL)) == __CPROVER_POINTER_OBJECT(pContext)) || (char *)pContext + 33l == ((char *)NULL)</expression>
+</property>
+
+<property class="assertion" name="findHeaderValueParserCallback.assertion.8">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2373" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>assertion pContext-&gt;valueFound == 0U</description>
+  <expression>(unsigned int)pContext-&gt;valueFound == 0u</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.37">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2375" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pContext-&gt;fieldFound</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t *)NULL)) == __CPROVER_POINTER_OBJECT(pContext))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.38">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2375" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pContext-&gt;fieldFound</description>
+  <expression>!IS_INVALID_POINTER(pContext)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.39">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2375" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pContext-&gt;fieldFound</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pContext) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.40">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2375" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pContext-&gt;fieldFound</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pContext) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.41">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2375" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pContext-&gt;fieldFound</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pContext) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pContext) + 32ul) + 1</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.42">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2375" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pContext-&gt;fieldFound</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t *)NULL)) == __CPROVER_POINTER_OBJECT(pContext)) || (char *)pContext + 32l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.43">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2385" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in *pContext-&gt;pValueLoc</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const char **)NULL)) == __CPROVER_POINTER_OBJECT(pContext-&gt;pValueLoc))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.44">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2385" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in *pContext-&gt;pValueLoc</description>
+  <expression>!IS_INVALID_POINTER(pContext-&gt;pValueLoc)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.45">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2385" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in *pContext-&gt;pValueLoc</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pContext-&gt;pValueLoc) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.46">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2385" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in *pContext-&gt;pValueLoc</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pContext-&gt;pValueLoc) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.47">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2385" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in *pContext-&gt;pValueLoc</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pContext-&gt;pValueLoc) &gt;= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pContext-&gt;pValueLoc) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.48">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2385" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in *pContext-&gt;pValueLoc</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const char **)NULL)) == __CPROVER_POINTER_OBJECT(pContext-&gt;pValueLoc)) || pContext-&gt;pValueLoc == ((const char **)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.49">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2386" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pContext-&gt;pValueLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t **)NULL)) == __CPROVER_POINTER_OBJECT(pContext))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.50">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2386" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pContext-&gt;pValueLen</description>
+  <expression>!IS_INVALID_POINTER(pContext)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.51">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2386" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pContext-&gt;pValueLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pContext) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.52">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2386" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pContext-&gt;pValueLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pContext) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.53">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2386" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pContext-&gt;pValueLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pContext) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pContext) + 24ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.54">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2386" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pContext-&gt;pValueLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t **)NULL)) == __CPROVER_POINTER_OBJECT(pContext)) || (char *)pContext + 24l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.55">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2386" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in *pContext-&gt;pValueLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pContext-&gt;pValueLen))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.56">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2386" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in *pContext-&gt;pValueLen</description>
+  <expression>!IS_INVALID_POINTER(pContext-&gt;pValueLen)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.57">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2386" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in *pContext-&gt;pValueLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pContext-&gt;pValueLen) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.58">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2386" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in *pContext-&gt;pValueLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pContext-&gt;pValueLen) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.59">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2386" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in *pContext-&gt;pValueLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pContext-&gt;pValueLen) &gt;= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pContext-&gt;pValueLen) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.60">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2386" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in *pContext-&gt;pValueLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pContext-&gt;pValueLen)) || pContext-&gt;pValueLen == ((size_t *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.61">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2392" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pContext-&gt;pValueLoc</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const char ***)NULL)) == __CPROVER_POINTER_OBJECT(pContext))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.62">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2392" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pContext-&gt;pValueLoc</description>
+  <expression>!IS_INVALID_POINTER(pContext)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.63">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2392" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pContext-&gt;pValueLoc</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pContext) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.64">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2392" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pContext-&gt;pValueLoc</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pContext) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.65">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2392" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pContext-&gt;pValueLoc</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pContext) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pContext) + 16ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.66">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2392" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pContext-&gt;pValueLoc</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const char ***)NULL)) == __CPROVER_POINTER_OBJECT(pContext)) || (char *)pContext + 16l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.67">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2392" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in *pContext-&gt;pValueLoc</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const char **)NULL)) == __CPROVER_POINTER_OBJECT(pContext-&gt;pValueLoc))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.68">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2392" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in *pContext-&gt;pValueLoc</description>
+  <expression>!IS_INVALID_POINTER(pContext-&gt;pValueLoc)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.69">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2392" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in *pContext-&gt;pValueLoc</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pContext-&gt;pValueLoc) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.70">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2392" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in *pContext-&gt;pValueLoc</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pContext-&gt;pValueLoc) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.71">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2392" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in *pContext-&gt;pValueLoc</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pContext-&gt;pValueLoc) &gt;= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pContext-&gt;pValueLoc) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.72">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2392" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in *pContext-&gt;pValueLoc</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const char **)NULL)) == __CPROVER_POINTER_OBJECT(pContext-&gt;pValueLoc)) || pContext-&gt;pValueLoc == ((const char **)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.73">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2393" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pContext-&gt;pValueLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t **)NULL)) == __CPROVER_POINTER_OBJECT(pContext))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.74">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2393" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pContext-&gt;pValueLen</description>
+  <expression>!IS_INVALID_POINTER(pContext)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.75">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2393" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pContext-&gt;pValueLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pContext) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.76">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2393" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pContext-&gt;pValueLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pContext) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.77">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2393" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pContext-&gt;pValueLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pContext) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pContext) + 24ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.78">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2393" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pContext-&gt;pValueLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t **)NULL)) == __CPROVER_POINTER_OBJECT(pContext)) || (char *)pContext + 24l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.79">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2393" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in *pContext-&gt;pValueLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pContext-&gt;pValueLen))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.80">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2393" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in *pContext-&gt;pValueLen</description>
+  <expression>!IS_INVALID_POINTER(pContext-&gt;pValueLen)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.81">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2393" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in *pContext-&gt;pValueLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pContext-&gt;pValueLen) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.82">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2393" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in *pContext-&gt;pValueLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pContext-&gt;pValueLen) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.83">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2393" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in *pContext-&gt;pValueLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pContext-&gt;pValueLen) &gt;= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pContext-&gt;pValueLen) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.84">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2393" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in *pContext-&gt;pValueLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pContext-&gt;pValueLen)) || pContext-&gt;pValueLen == ((size_t *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.85">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2397" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pContext-&gt;valueFound</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t *)NULL)) == __CPROVER_POINTER_OBJECT(pContext))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.86">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2397" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pContext-&gt;valueFound</description>
+  <expression>!IS_INVALID_POINTER(pContext)</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.87">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2397" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pContext-&gt;valueFound</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pContext) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.88">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2397" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pContext-&gt;valueFound</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pContext) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.89">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2397" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pContext-&gt;valueFound</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pContext) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pContext) + 33ul) + 1</expression>
+</property>
+
+<property class="pointer dereference" name="findHeaderValueParserCallback.pointer_dereference.90">
+  <location file="/home/justin/coreHTTP/source/core_http_client.c" function="findHeaderValueParserCallback" line="2397" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pContext-&gt;valueFound</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t *)NULL)) == __CPROVER_POINTER_OBJECT(pContext)) || (char *)pContext + 33l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpReadHeaderParser.pointer_dereference.1">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser" line="267" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pHttpParser-&gt;data</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((void **)NULL)) == __CPROVER_POINTER_OBJECT(pHttpParser))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpReadHeaderParser.pointer_dereference.2">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser" line="267" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pHttpParser-&gt;data</description>
+  <expression>!IS_INVALID_POINTER(pHttpParser)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpReadHeaderParser.pointer_dereference.3">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser" line="267" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pHttpParser-&gt;data</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pHttpParser) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpReadHeaderParser.pointer_dereference.4">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser" line="267" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pHttpParser-&gt;data</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pHttpParser) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpReadHeaderParser.pointer_dereference.5">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser" line="267" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pHttpParser-&gt;data</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pHttpParser) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pHttpParser) + 48ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpReadHeaderParser.pointer_dereference.6">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser" line="267" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pHttpParser-&gt;data</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((void **)NULL)) == __CPROVER_POINTER_OBJECT(pHttpParser)) || (char *)pHttpParser + 48l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.1">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="168" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;bufferLen</description>
+  <expression>TRUE &amp;&amp; TRUE ==&gt; !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.2">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="168" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;bufferLen</description>
+  <expression>TRUE &amp;&amp; TRUE ==&gt; !IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.3">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="168" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;bufferLen</description>
+  <expression>TRUE &amp;&amp; TRUE ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.4">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="168" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;bufferLen</description>
+  <expression>TRUE &amp;&amp; TRUE ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.5">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="168" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;bufferLen</description>
+  <expression>TRUE &amp;&amp; TRUE ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 8ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.6">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="168" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;bufferLen</description>
+  <expression>TRUE &amp;&amp; TRUE ==&gt; !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 8l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.7">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="169" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;bodyLen</description>
+  <expression>TRUE &amp;&amp; pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 ==&gt; !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.8">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="169" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;bodyLen</description>
+  <expression>TRUE &amp;&amp; pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 ==&gt; !IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.9">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="169" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;bodyLen</description>
+  <expression>TRUE &amp;&amp; pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.10">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="169" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;bodyLen</description>
+  <expression>TRUE &amp;&amp; pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.11">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="169" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;bodyLen</description>
+  <expression>TRUE &amp;&amp; pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 56ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.12">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="169" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;bodyLen</description>
+  <expression>TRUE &amp;&amp; pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 ==&gt; !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 56l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.13">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="169" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;bufferLen</description>
+  <expression>TRUE &amp;&amp; pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 ==&gt; !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.14">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="169" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;bufferLen</description>
+  <expression>TRUE &amp;&amp; pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 ==&gt; !IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.15">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="169" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;bufferLen</description>
+  <expression>TRUE &amp;&amp; pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.16">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="169" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;bufferLen</description>
+  <expression>TRUE &amp;&amp; pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.17">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="169" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;bufferLen</description>
+  <expression>TRUE &amp;&amp; pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 8ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.18">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="169" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;bufferLen</description>
+  <expression>TRUE &amp;&amp; pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 ==&gt; !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 8l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.19">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="170" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;headersLen</description>
+  <expression>pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 &amp;&amp; pResponse-&gt;bodyLen &lt; pResponse-&gt;bufferLen ==&gt; !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.20">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="170" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;headersLen</description>
+  <expression>pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 &amp;&amp; pResponse-&gt;bodyLen &lt; pResponse-&gt;bufferLen ==&gt; !IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.21">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="170" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;headersLen</description>
+  <expression>pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 &amp;&amp; pResponse-&gt;bodyLen &lt; pResponse-&gt;bufferLen ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.22">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="170" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;headersLen</description>
+  <expression>pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 &amp;&amp; pResponse-&gt;bodyLen &lt; pResponse-&gt;bufferLen ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.23">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="170" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;headersLen</description>
+  <expression>pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 &amp;&amp; pResponse-&gt;bodyLen &lt; pResponse-&gt;bufferLen ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 40ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.24">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="170" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;headersLen</description>
+  <expression>pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 &amp;&amp; pResponse-&gt;bodyLen &lt; pResponse-&gt;bufferLen ==&gt; !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 40l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.25">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="170" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;bufferLen</description>
+  <expression>pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 &amp;&amp; pResponse-&gt;bodyLen &lt; pResponse-&gt;bufferLen ==&gt; !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.26">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="170" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;bufferLen</description>
+  <expression>pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 &amp;&amp; pResponse-&gt;bodyLen &lt; pResponse-&gt;bufferLen ==&gt; !IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.27">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="170" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;bufferLen</description>
+  <expression>pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 &amp;&amp; pResponse-&gt;bodyLen &lt; pResponse-&gt;bufferLen ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.28">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="170" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;bufferLen</description>
+  <expression>pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 &amp;&amp; pResponse-&gt;bodyLen &lt; pResponse-&gt;bufferLen ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.29">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="170" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;bufferLen</description>
+  <expression>pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 &amp;&amp; pResponse-&gt;bodyLen &lt; pResponse-&gt;bufferLen ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 8ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.30">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="170" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;bufferLen</description>
+  <expression>pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 &amp;&amp; pResponse-&gt;bodyLen &lt; pResponse-&gt;bufferLen ==&gt; !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 8l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.31">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="171" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;pBody</description>
+  <expression>!(isValid != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(((const uint8_t * const *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.32">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="171" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;pBody</description>
+  <expression>!(isValid != FALSE) ==&gt; !IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.33">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="171" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;pBody</description>
+  <expression>!(isValid != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.34">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="171" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;pBody</description>
+  <expression>!(isValid != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.35">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="171" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;pBody</description>
+  <expression>!(isValid != FALSE) ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 48ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.36">
+  <location file="/home/justin/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="171" working-directory="/home/justin/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;pBody</description>
+  <expression>!(isValid != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(((const uint8_t * const *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 48l == ((char *)NULL)</expression>
+</property>
+
+</cprover>
+
