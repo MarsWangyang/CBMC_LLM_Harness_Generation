@@ -32,6 +32,7 @@ def get_tested_code(uncovered_files: dict):
         with open(file_path, 'r') as file:
                 html_cont = file.read()
         
+        html = BeautifulSoup(html_cont, 'html.parser')
         
         for i in range(len(uncovered_files)):
             function_name, line = uncovered_files[i]
@@ -39,8 +40,8 @@ def get_tested_code(uncovered_files: dict):
             function_code_snippet = []
             missed_code_snippet = []
             print(f"function: {function_name}, start from: {line}")
-            while not get_html_code(html_cont, line)[0].startswith("/*------"):        
-                readline_code, is_missed = get_html_code(html_cont, line)
+            while not get_html_code(html, line)[0].startswith("/*------"):        
+                readline_code, is_missed = get_html_code(html, line)
                 function_code_snippet.append(readline_code.strip())
                 if is_missed:
                     missed_code_snippet.append(readline_code.strip())
@@ -50,12 +51,10 @@ def get_tested_code(uncovered_files: dict):
     print("---End Processing---")
     return code_map
 
-def get_html_code(html_cont: str, line: str):
-    html = BeautifulSoup(html_cont, 'html.parser')
-    start_code = html.find(id=line)
+def get_html_code(html: BeautifulSoup, line: str):
+    start_code = html.find("div", {"id": line})
     if start_code is None:
         return ("/*------End of the file------*/", None)
-    # print(start_code)
     missed_line = False
     is_missed_line = start_code.attrs["class"][1]
     
