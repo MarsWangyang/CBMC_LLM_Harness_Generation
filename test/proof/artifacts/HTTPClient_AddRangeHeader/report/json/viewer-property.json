@@ -1,0 +1,3206 @@
+{
+  "viewer-property": {
+    "properties": {
+      "HTTPClient_AddRangeHeader.pointer_dereference.1": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer NULL in pRequestHeaders->pBuffer",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "HTTPClient_AddRangeHeader",
+          "line": 1760
+        }
+      },
+      "HTTPClient_AddRangeHeader.pointer_dereference.10": {
+        "class": "pointer dereference",
+        "description": "dereference failure: dead object in pRequestHeaders->headersLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "HTTPClient_AddRangeHeader",
+          "line": 1765
+        }
+      },
+      "HTTPClient_AddRangeHeader.pointer_dereference.11": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer outside object bounds in pRequestHeaders->headersLen",
+        "expression": "(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pRequestHeaders) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pRequestHeaders) + 16ul) + 8",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "HTTPClient_AddRangeHeader",
+          "line": 1765
+        }
+      },
+      "HTTPClient_AddRangeHeader.pointer_dereference.12": {
+        "class": "pointer dereference",
+        "description": "dereference failure: invalid integer address in pRequestHeaders->headersLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders)) || (char *)pRequestHeaders + 16l == ((char *)NULL)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "HTTPClient_AddRangeHeader",
+          "line": 1765
+        }
+      },
+      "HTTPClient_AddRangeHeader.pointer_dereference.13": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer NULL in pRequestHeaders->bufferLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "HTTPClient_AddRangeHeader",
+          "line": 1765
+        }
+      },
+      "HTTPClient_AddRangeHeader.pointer_dereference.14": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer invalid in pRequestHeaders->bufferLen",
+        "expression": "!IS_INVALID_POINTER(pRequestHeaders)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "HTTPClient_AddRangeHeader",
+          "line": 1765
+        }
+      },
+      "HTTPClient_AddRangeHeader.pointer_dereference.15": {
+        "class": "pointer dereference",
+        "description": "dereference failure: deallocated dynamic object in pRequestHeaders->bufferLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "HTTPClient_AddRangeHeader",
+          "line": 1765
+        }
+      },
+      "HTTPClient_AddRangeHeader.pointer_dereference.16": {
+        "class": "pointer dereference",
+        "description": "dereference failure: dead object in pRequestHeaders->bufferLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "HTTPClient_AddRangeHeader",
+          "line": 1765
+        }
+      },
+      "HTTPClient_AddRangeHeader.pointer_dereference.17": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer outside object bounds in pRequestHeaders->bufferLen",
+        "expression": "(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pRequestHeaders) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pRequestHeaders) + 8ul) + 8",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "HTTPClient_AddRangeHeader",
+          "line": 1765
+        }
+      },
+      "HTTPClient_AddRangeHeader.pointer_dereference.18": {
+        "class": "pointer dereference",
+        "description": "dereference failure: invalid integer address in pRequestHeaders->bufferLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders)) || (char *)pRequestHeaders + 8l == ((char *)NULL)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "HTTPClient_AddRangeHeader",
+          "line": 1765
+        }
+      },
+      "HTTPClient_AddRangeHeader.pointer_dereference.2": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer invalid in pRequestHeaders->pBuffer",
+        "expression": "!IS_INVALID_POINTER(pRequestHeaders)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "HTTPClient_AddRangeHeader",
+          "line": 1760
+        }
+      },
+      "HTTPClient_AddRangeHeader.pointer_dereference.3": {
+        "class": "pointer dereference",
+        "description": "dereference failure: deallocated dynamic object in pRequestHeaders->pBuffer",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "HTTPClient_AddRangeHeader",
+          "line": 1760
+        }
+      },
+      "HTTPClient_AddRangeHeader.pointer_dereference.4": {
+        "class": "pointer dereference",
+        "description": "dereference failure: dead object in pRequestHeaders->pBuffer",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "HTTPClient_AddRangeHeader",
+          "line": 1760
+        }
+      },
+      "HTTPClient_AddRangeHeader.pointer_dereference.5": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer outside object bounds in pRequestHeaders->pBuffer",
+        "expression": "(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pRequestHeaders) >= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pRequestHeaders) + 8",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "HTTPClient_AddRangeHeader",
+          "line": 1760
+        }
+      },
+      "HTTPClient_AddRangeHeader.pointer_dereference.6": {
+        "class": "pointer dereference",
+        "description": "dereference failure: invalid integer address in pRequestHeaders->pBuffer",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders)) || pRequestHeaders == ((HTTPRequestHeaders_t *)NULL)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "HTTPClient_AddRangeHeader",
+          "line": 1760
+        }
+      },
+      "HTTPClient_AddRangeHeader.pointer_dereference.7": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer NULL in pRequestHeaders->headersLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "HTTPClient_AddRangeHeader",
+          "line": 1765
+        }
+      },
+      "HTTPClient_AddRangeHeader.pointer_dereference.8": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer invalid in pRequestHeaders->headersLen",
+        "expression": "!IS_INVALID_POINTER(pRequestHeaders)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "HTTPClient_AddRangeHeader",
+          "line": 1765
+        }
+      },
+      "HTTPClient_AddRangeHeader.pointer_dereference.9": {
+        "class": "pointer dereference",
+        "description": "dereference failure: deallocated dynamic object in pRequestHeaders->headersLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "HTTPClient_AddRangeHeader",
+          "line": 1765
+        }
+      },
+      "__builtin___memcpy_chk.overflow.1": {
+        "class": "overflow",
+        "description": "arithmetic overflow on unsigned to signed type conversion in (signed long int)n",
+        "expression": "!(n >= 9223372036854775808ul)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 39
+        }
+      },
+      "__builtin___memcpy_chk.overflow.2": {
+        "class": "overflow",
+        "description": "arithmetic overflow on signed to unsigned type conversion in (unsigned long int)(signed long int)n",
+        "expression": "(signed long int)n >= 0l",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 39
+        }
+      },
+      "__builtin___memcpy_chk.pointer.1": {
+        "class": "pointer",
+        "description": "same object violation in (const char *)(const void *)httpFieldSeparator >= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator)) ==> __CPROVER_POINTER_OBJECT(httpFieldSeparator) == __CPROVER_POINTER_OBJECT(pBufferCur)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer.2": {
+        "class": "pointer",
+        "description": "same object violation in (const char *)(void *)pBufferCur >= (const char *)(const void *)httpFieldSeparator + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator) || (const char *)(const void *)httpFieldSeparator >= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)) ==> __CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(httpFieldSeparator)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer.3": {
+        "class": "pointer",
+        "description": "same object violation in (const char *)(const void *)pHeaderEndIndicator >= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator)) ==> __CPROVER_POINTER_OBJECT(pHeaderEndIndicator) == __CPROVER_POINTER_OBJECT(pBufferCur)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer.4": {
+        "class": "pointer",
+        "description": "same object violation in (const char *)(void *)pBufferCur >= (const char *)(const void *)pHeaderEndIndicator + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator) || (const char *)(const void *)pHeaderEndIndicator >= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)) ==> __CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(pHeaderEndIndicator)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer.5": {
+        "class": "pointer",
+        "description": "same object violation in (const char *)(const void *)pHttpRangeRequestHeaderValuePrefix >= (const char *)(void *)rangeValueBuffer + (signed long int)(sizeof(char [7l]) /*7ul*/  - (unsigned long int)1u)",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)rangeValueBuffer) != __CPROVER_POINTER_OBJECT((const void *)pHttpRangeRequestHeaderValuePrefix)) ==> __CPROVER_POINTER_OBJECT(pHttpRangeRequestHeaderValuePrefix) == __CPROVER_POINTER_OBJECT(&rangeValueBuffer)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer.6": {
+        "class": "pointer",
+        "description": "same object violation in (const char *)(void *)rangeValueBuffer >= (const char *)(const void *)pHttpRangeRequestHeaderValuePrefix + (signed long int)(sizeof(char [7l]) /*7ul*/  - (unsigned long int)1u)",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)rangeValueBuffer) != __CPROVER_POINTER_OBJECT((const void *)pHttpRangeRequestHeaderValuePrefix) || (const char *)(const void *)pHttpRangeRequestHeaderValuePrefix >= (const char *)(void *)rangeValueBuffer + (signed long int)(sizeof(char [7l]) /*7ul*/  - (unsigned long int)1u)) ==> __CPROVER_POINTER_OBJECT(&rangeValueBuffer) == __CPROVER_POINTER_OBJECT(pHttpRangeRequestHeaderValuePrefix)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.1": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer NULL in (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator)) ==> !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.10": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: dead object in (const char *)(const void *)httpFieldSeparator",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator)) ==> !(__CPROVER_POINTER_OBJECT(httpFieldSeparator) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.11": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: pointer outside object bounds in (const char *)(const void *)httpFieldSeparator",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator)) ==> (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(httpFieldSeparator) >= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(httpFieldSeparator)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.12": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: invalid integer address in (const char *)(const void *)httpFieldSeparator",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator)) ==> !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(httpFieldSeparator)) || httpFieldSeparator == ((const char *)NULL)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.13": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer NULL in (const char *)(const void *)httpFieldSeparator + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator) || (const char *)(const void *)httpFieldSeparator >= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)) ==> !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(httpFieldSeparator))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.14": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer invalid in (const char *)(const void *)httpFieldSeparator + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator) || (const char *)(const void *)httpFieldSeparator >= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)) ==> !IS_INVALID_POINTER(httpFieldSeparator)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.15": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: deallocated dynamic object in (const char *)(const void *)httpFieldSeparator + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator) || (const char *)(const void *)httpFieldSeparator >= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)) ==> !(__CPROVER_POINTER_OBJECT(httpFieldSeparator) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.16": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: dead object in (const char *)(const void *)httpFieldSeparator + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator) || (const char *)(const void *)httpFieldSeparator >= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)) ==> !(__CPROVER_POINTER_OBJECT(httpFieldSeparator) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.17": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer outside object bounds in (const char *)(const void *)httpFieldSeparator + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator) || (const char *)(const void *)httpFieldSeparator >= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)) ==> (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(httpFieldSeparator) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(httpFieldSeparator) + 2ul)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.18": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: invalid integer address in (const char *)(const void *)httpFieldSeparator + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator) || (const char *)(const void *)httpFieldSeparator >= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)) ==> !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(httpFieldSeparator)) || httpFieldSeparator + 2l == ((const char *)NULL)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.19": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: pointer NULL in (const char *)(void *)pBufferCur",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator) || (const char *)(const void *)httpFieldSeparator >= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)) ==> !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.2": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer invalid in (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator)) ==> !IS_INVALID_POINTER(pBufferCur)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.20": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: pointer invalid in (const char *)(void *)pBufferCur",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator) || (const char *)(const void *)httpFieldSeparator >= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)) ==> !IS_INVALID_POINTER(pBufferCur)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.21": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: deallocated dynamic object in (const char *)(void *)pBufferCur",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator) || (const char *)(const void *)httpFieldSeparator >= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)) ==> !(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.22": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: dead object in (const char *)(void *)pBufferCur",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator) || (const char *)(const void *)httpFieldSeparator >= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)) ==> !(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.23": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: pointer outside object bounds in (const char *)(void *)pBufferCur",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator) || (const char *)(const void *)httpFieldSeparator >= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)) ==> (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pBufferCur) >= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pBufferCur)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.24": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: invalid integer address in (const char *)(void *)pBufferCur",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator) || (const char *)(const void *)httpFieldSeparator >= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)) ==> !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur)) || pBufferCur == ((const char *)NULL)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.25": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer NULL in (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator)) ==> !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.26": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer invalid in (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator)) ==> !IS_INVALID_POINTER(pBufferCur)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.27": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: deallocated dynamic object in (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator)) ==> !(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.28": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: dead object in (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator)) ==> !(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.29": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer outside object bounds in (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator)) ==> (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pBufferCur) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pBufferCur) + 4ul)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.3": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: deallocated dynamic object in (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator)) ==> !(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.30": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: invalid integer address in (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator)) ==> !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur)) || pBufferCur + 4l == ((const char *)NULL)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.31": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: pointer NULL in (const char *)(const void *)pHeaderEndIndicator",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator)) ==> !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pHeaderEndIndicator))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.32": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: pointer invalid in (const char *)(const void *)pHeaderEndIndicator",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator)) ==> !IS_INVALID_POINTER(pHeaderEndIndicator)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.33": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: deallocated dynamic object in (const char *)(const void *)pHeaderEndIndicator",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator)) ==> !(__CPROVER_POINTER_OBJECT(pHeaderEndIndicator) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.34": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: dead object in (const char *)(const void *)pHeaderEndIndicator",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator)) ==> !(__CPROVER_POINTER_OBJECT(pHeaderEndIndicator) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.35": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: pointer outside object bounds in (const char *)(const void *)pHeaderEndIndicator",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator)) ==> (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pHeaderEndIndicator) >= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pHeaderEndIndicator)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.36": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: invalid integer address in (const char *)(const void *)pHeaderEndIndicator",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator)) ==> !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pHeaderEndIndicator)) || pHeaderEndIndicator == ((const char *)NULL)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.37": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer NULL in (const char *)(const void *)pHeaderEndIndicator + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator) || (const char *)(const void *)pHeaderEndIndicator >= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)) ==> !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pHeaderEndIndicator))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.38": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer invalid in (const char *)(const void *)pHeaderEndIndicator + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator) || (const char *)(const void *)pHeaderEndIndicator >= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)) ==> !IS_INVALID_POINTER(pHeaderEndIndicator)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.39": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: deallocated dynamic object in (const char *)(const void *)pHeaderEndIndicator + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator) || (const char *)(const void *)pHeaderEndIndicator >= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)) ==> !(__CPROVER_POINTER_OBJECT(pHeaderEndIndicator) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.4": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: dead object in (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator)) ==> !(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.40": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: dead object in (const char *)(const void *)pHeaderEndIndicator + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator) || (const char *)(const void *)pHeaderEndIndicator >= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)) ==> !(__CPROVER_POINTER_OBJECT(pHeaderEndIndicator) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.41": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer outside object bounds in (const char *)(const void *)pHeaderEndIndicator + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator) || (const char *)(const void *)pHeaderEndIndicator >= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)) ==> (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pHeaderEndIndicator) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pHeaderEndIndicator) + 4ul)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.42": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: invalid integer address in (const char *)(const void *)pHeaderEndIndicator + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator) || (const char *)(const void *)pHeaderEndIndicator >= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)) ==> !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pHeaderEndIndicator)) || pHeaderEndIndicator + 4l == ((const char *)NULL)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.43": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: pointer NULL in (const char *)(void *)pBufferCur",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator) || (const char *)(const void *)pHeaderEndIndicator >= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)) ==> !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.44": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: pointer invalid in (const char *)(void *)pBufferCur",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator) || (const char *)(const void *)pHeaderEndIndicator >= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)) ==> !IS_INVALID_POINTER(pBufferCur)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.45": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: deallocated dynamic object in (const char *)(void *)pBufferCur",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator) || (const char *)(const void *)pHeaderEndIndicator >= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)) ==> !(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.46": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: dead object in (const char *)(void *)pBufferCur",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator) || (const char *)(const void *)pHeaderEndIndicator >= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)) ==> !(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.47": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: pointer outside object bounds in (const char *)(void *)pBufferCur",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator) || (const char *)(const void *)pHeaderEndIndicator >= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)) ==> (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pBufferCur) >= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pBufferCur)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.48": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: invalid integer address in (const char *)(void *)pBufferCur",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator) || (const char *)(const void *)pHeaderEndIndicator >= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)) ==> !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur)) || pBufferCur == ((const char *)NULL)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.49": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: dead object in (const char *)(void *)rangeValueBuffer + (signed long int)(sizeof(char [7l]) /*7ul*/  - (unsigned long int)1u)",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)rangeValueBuffer) != __CPROVER_POINTER_OBJECT((const void *)pHttpRangeRequestHeaderValuePrefix)) ==> !(__CPROVER_POINTER_OBJECT(&rangeValueBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.5": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer outside object bounds in (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator)) ==> (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pBufferCur) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pBufferCur) + 2ul)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.50": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: pointer NULL in (const char *)(const void *)pHttpRangeRequestHeaderValuePrefix",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)rangeValueBuffer) != __CPROVER_POINTER_OBJECT((const void *)pHttpRangeRequestHeaderValuePrefix)) ==> !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pHttpRangeRequestHeaderValuePrefix))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.51": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: pointer invalid in (const char *)(const void *)pHttpRangeRequestHeaderValuePrefix",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)rangeValueBuffer) != __CPROVER_POINTER_OBJECT((const void *)pHttpRangeRequestHeaderValuePrefix)) ==> !IS_INVALID_POINTER(pHttpRangeRequestHeaderValuePrefix)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.52": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: deallocated dynamic object in (const char *)(const void *)pHttpRangeRequestHeaderValuePrefix",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)rangeValueBuffer) != __CPROVER_POINTER_OBJECT((const void *)pHttpRangeRequestHeaderValuePrefix)) ==> !(__CPROVER_POINTER_OBJECT(pHttpRangeRequestHeaderValuePrefix) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.53": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: dead object in (const char *)(const void *)pHttpRangeRequestHeaderValuePrefix",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)rangeValueBuffer) != __CPROVER_POINTER_OBJECT((const void *)pHttpRangeRequestHeaderValuePrefix)) ==> !(__CPROVER_POINTER_OBJECT(pHttpRangeRequestHeaderValuePrefix) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.54": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: pointer outside object bounds in (const char *)(const void *)pHttpRangeRequestHeaderValuePrefix",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)rangeValueBuffer) != __CPROVER_POINTER_OBJECT((const void *)pHttpRangeRequestHeaderValuePrefix)) ==> (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pHttpRangeRequestHeaderValuePrefix) >= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pHttpRangeRequestHeaderValuePrefix)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.55": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: invalid integer address in (const char *)(const void *)pHttpRangeRequestHeaderValuePrefix",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)rangeValueBuffer) != __CPROVER_POINTER_OBJECT((const void *)pHttpRangeRequestHeaderValuePrefix)) ==> !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pHttpRangeRequestHeaderValuePrefix)) || pHttpRangeRequestHeaderValuePrefix == ((const char *)NULL)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.56": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer NULL in (const char *)(const void *)pHttpRangeRequestHeaderValuePrefix + (signed long int)(sizeof(char [7l]) /*7ul*/  - (unsigned long int)1u)",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)rangeValueBuffer) != __CPROVER_POINTER_OBJECT((const void *)pHttpRangeRequestHeaderValuePrefix) || (const char *)(const void *)pHttpRangeRequestHeaderValuePrefix >= (const char *)(void *)rangeValueBuffer + (signed long int)(sizeof(char [7l]) /*7ul*/  - (unsigned long int)1u)) ==> !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pHttpRangeRequestHeaderValuePrefix))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.57": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer invalid in (const char *)(const void *)pHttpRangeRequestHeaderValuePrefix + (signed long int)(sizeof(char [7l]) /*7ul*/  - (unsigned long int)1u)",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)rangeValueBuffer) != __CPROVER_POINTER_OBJECT((const void *)pHttpRangeRequestHeaderValuePrefix) || (const char *)(const void *)pHttpRangeRequestHeaderValuePrefix >= (const char *)(void *)rangeValueBuffer + (signed long int)(sizeof(char [7l]) /*7ul*/  - (unsigned long int)1u)) ==> !IS_INVALID_POINTER(pHttpRangeRequestHeaderValuePrefix)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.58": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: deallocated dynamic object in (const char *)(const void *)pHttpRangeRequestHeaderValuePrefix + (signed long int)(sizeof(char [7l]) /*7ul*/  - (unsigned long int)1u)",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)rangeValueBuffer) != __CPROVER_POINTER_OBJECT((const void *)pHttpRangeRequestHeaderValuePrefix) || (const char *)(const void *)pHttpRangeRequestHeaderValuePrefix >= (const char *)(void *)rangeValueBuffer + (signed long int)(sizeof(char [7l]) /*7ul*/  - (unsigned long int)1u)) ==> !(__CPROVER_POINTER_OBJECT(pHttpRangeRequestHeaderValuePrefix) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.59": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: dead object in (const char *)(const void *)pHttpRangeRequestHeaderValuePrefix + (signed long int)(sizeof(char [7l]) /*7ul*/  - (unsigned long int)1u)",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)rangeValueBuffer) != __CPROVER_POINTER_OBJECT((const void *)pHttpRangeRequestHeaderValuePrefix) || (const char *)(const void *)pHttpRangeRequestHeaderValuePrefix >= (const char *)(void *)rangeValueBuffer + (signed long int)(sizeof(char [7l]) /*7ul*/  - (unsigned long int)1u)) ==> !(__CPROVER_POINTER_OBJECT(pHttpRangeRequestHeaderValuePrefix) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.6": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: invalid integer address in (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator)) ==> !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur)) || pBufferCur + 2l == ((const char *)NULL)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.60": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer outside object bounds in (const char *)(const void *)pHttpRangeRequestHeaderValuePrefix + (signed long int)(sizeof(char [7l]) /*7ul*/  - (unsigned long int)1u)",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)rangeValueBuffer) != __CPROVER_POINTER_OBJECT((const void *)pHttpRangeRequestHeaderValuePrefix) || (const char *)(const void *)pHttpRangeRequestHeaderValuePrefix >= (const char *)(void *)rangeValueBuffer + (signed long int)(sizeof(char [7l]) /*7ul*/  - (unsigned long int)1u)) ==> (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pHttpRangeRequestHeaderValuePrefix) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pHttpRangeRequestHeaderValuePrefix) + 6ul)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.61": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: invalid integer address in (const char *)(const void *)pHttpRangeRequestHeaderValuePrefix + (signed long int)(sizeof(char [7l]) /*7ul*/  - (unsigned long int)1u)",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)rangeValueBuffer) != __CPROVER_POINTER_OBJECT((const void *)pHttpRangeRequestHeaderValuePrefix) || (const char *)(const void *)pHttpRangeRequestHeaderValuePrefix >= (const char *)(void *)rangeValueBuffer + (signed long int)(sizeof(char [7l]) /*7ul*/  - (unsigned long int)1u)) ==> !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pHttpRangeRequestHeaderValuePrefix)) || pHttpRangeRequestHeaderValuePrefix + 6l == ((const char *)NULL)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.62": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: dead object in (const char *)(void *)rangeValueBuffer",
+        "expression": "!(__CPROVER_POINTER_OBJECT((void *)rangeValueBuffer) != __CPROVER_POINTER_OBJECT((const void *)pHttpRangeRequestHeaderValuePrefix) || (const char *)(const void *)pHttpRangeRequestHeaderValuePrefix >= (const char *)(void *)rangeValueBuffer + (signed long int)(sizeof(char [7l]) /*7ul*/  - (unsigned long int)1u)) ==> !(__CPROVER_POINTER_OBJECT(&rangeValueBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 28
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.7": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: pointer NULL in (const char *)(const void *)httpFieldSeparator",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator)) ==> !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(httpFieldSeparator))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.8": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: pointer invalid in (const char *)(const void *)httpFieldSeparator",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator)) ==> !IS_INVALID_POINTER(httpFieldSeparator)",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memcpy_chk.pointer_arithmetic.9": {
+        "class": "pointer arithmetic",
+        "description": "pointer relation: deallocated dynamic object in (const char *)(const void *)httpFieldSeparator",
+        "expression": "TRUE && !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator)) ==> !(__CPROVER_POINTER_OBJECT(httpFieldSeparator) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "<builtin-library-__builtin___memcpy_chk>",
+          "function": "__builtin___memcpy_chk",
+          "line": 27
+        }
+      },
+      "__builtin___memset_chk.overflow.1": {
+        "class": "overflow",
+        "description": "arithmetic overflow on unsigned to signed type conversion in (signed long int)n",
+        "expression": "!(n >= 9223372036854775808ul)",
+        "location": {
+          "file": "<builtin-library-__builtin___memset_chk>",
+          "function": "__builtin___memset_chk",
+          "line": 33
+        }
+      },
+      "__builtin___memset_chk.overflow.2": {
+        "class": "overflow",
+        "description": "arithmetic overflow on signed to unsigned type conversion in (unsigned long int)(signed long int)n",
+        "expression": "(signed long int)n >= 0l",
+        "location": {
+          "file": "<builtin-library-__builtin___memset_chk>",
+          "function": "__builtin___memset_chk",
+          "line": 33
+        }
+      },
+      "addHeader.assertion.1": {
+        "class": "assertion",
+        "description": "assertion pRequestHeaders != NULL",
+        "expression": "!((signed long int)(signed long int)!(pRequestHeaders != ((HTTPRequestHeaders_t *)NULL)) != 0l)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1358
+        }
+      },
+      "addHeader.assertion.2": {
+        "class": "assertion",
+        "description": "assertion pRequestHeaders->pBuffer != NULL",
+        "expression": "!((signed long int)(signed long int)!(pRequestHeaders->pBuffer != ((uint8_t *)NULL)) != 0l)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1359
+        }
+      },
+      "addHeader.assertion.3": {
+        "class": "assertion",
+        "description": "assertion pField != NULL",
+        "expression": "!((signed long int)(signed long int)!(pField != ((const char *)NULL)) != 0l)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1360
+        }
+      },
+      "addHeader.assertion.4": {
+        "class": "assertion",
+        "description": "assertion pValue != NULL",
+        "expression": "!((signed long int)(signed long int)!(pValue != ((const char *)NULL)) != 0l)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1361
+        }
+      },
+      "addHeader.assertion.5": {
+        "class": "assertion",
+        "description": "assertion fieldLen != 0U",
+        "expression": "!((signed long int)(signed long int)!(fieldLen != (unsigned long int)0u) != 0l)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1362
+        }
+      },
+      "addHeader.assertion.6": {
+        "class": "assertion",
+        "description": "assertion valueLen != 0U",
+        "expression": "!((signed long int)(signed long int)!(valueLen != (unsigned long int)0u) != 0l)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1363
+        }
+      },
+      "addHeader.overflow.1": {
+        "class": "overflow",
+        "description": "arithmetic overflow on unsigned to signed type conversion in (signed long int)pRequestHeaders->headersLen",
+        "expression": "!(pRequestHeaders->headersLen >= 9223372036854775808ul)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1365
+        }
+      },
+      "addHeader.overflow.10": {
+        "class": "overflow",
+        "description": "arithmetic overflow on unsigned + in backtrackHeaderLen + toAddLen",
+        "expression": "!overflow(\"+\", size_t, backtrackHeaderLen, toAddLen)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1424
+        }
+      },
+      "addHeader.overflow.2": {
+        "class": "overflow",
+        "description": "arithmetic overflow on unsigned - in backtrackHeaderLen - (sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)",
+        "expression": "!overflow(\"-\", size_t, backtrackHeaderLen, 2ul)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1375
+        }
+      },
+      "addHeader.overflow.3": {
+        "class": "overflow",
+        "description": "arithmetic overflow on unsigned + in fieldLen + (sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)",
+        "expression": "!overflow(\"+\", size_t, fieldLen, 2ul)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1380
+        }
+      },
+      "addHeader.overflow.4": {
+        "class": "overflow",
+        "description": "arithmetic overflow on unsigned + in fieldLen + (sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u) + valueLen",
+        "expression": "!overflow(\"+\", size_t, fieldLen + 2ul, valueLen)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1380
+        }
+      },
+      "addHeader.overflow.5": {
+        "class": "overflow",
+        "description": "arithmetic overflow on unsigned + in fieldLen + (sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u) + valueLen + (sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)",
+        "expression": "!overflow(\"+\", size_t, fieldLen + 2ul + valueLen, 2ul)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1380
+        }
+      },
+      "addHeader.overflow.6": {
+        "class": "overflow",
+        "description": "arithmetic overflow on unsigned + in fieldLen + (sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u) + valueLen + (sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u) + (sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)",
+        "expression": "!overflow(\"+\", size_t, fieldLen + 4ul + valueLen, 2ul)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1381
+        }
+      },
+      "addHeader.overflow.7": {
+        "class": "overflow",
+        "description": "arithmetic overflow on unsigned + in backtrackHeaderLen + toAddLen",
+        "expression": "!overflow(\"+\", size_t, backtrackHeaderLen, toAddLen)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1386
+        }
+      },
+      "addHeader.overflow.8": {
+        "class": "overflow",
+        "description": "arithmetic overflow on unsigned to signed type conversion in (signed long int)fieldLen",
+        "expression": "!(fieldLen >= 9223372036854775808ul)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1398
+        }
+      },
+      "addHeader.overflow.9": {
+        "class": "overflow",
+        "description": "arithmetic overflow on unsigned to signed type conversion in (signed long int)valueLen",
+        "expression": "!(valueLen >= 9223372036854775808ul)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1416
+        }
+      },
+      "addHeader.pointer_arithmetic.1": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer NULL in pRequestHeaders->pBuffer + (signed long int)pRequestHeaders->headersLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((uint8_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders->pBuffer))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1365
+        }
+      },
+      "addHeader.pointer_arithmetic.10": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: dead object in pBufferCur + (signed long int)(0 - (signed int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u))",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1372
+        }
+      },
+      "addHeader.pointer_arithmetic.11": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer outside object bounds in pBufferCur + (signed long int)(0 - (signed int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u))",
+        "expression": "(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pBufferCur) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pBufferCur) + 18446744073709551612ul)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1372
+        }
+      },
+      "addHeader.pointer_arithmetic.12": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: invalid integer address in pBufferCur + (signed long int)(0 - (signed int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u))",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur)) || pBufferCur + -4l == ((char *)NULL)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1372
+        }
+      },
+      "addHeader.pointer_arithmetic.13": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer NULL in pBufferCur + (signed long int)(0 - (signed int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u))",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1376
+        }
+      },
+      "addHeader.pointer_arithmetic.14": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer invalid in pBufferCur + (signed long int)(0 - (signed int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u))",
+        "expression": "!IS_INVALID_POINTER(pBufferCur)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1376
+        }
+      },
+      "addHeader.pointer_arithmetic.15": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: deallocated dynamic object in pBufferCur + (signed long int)(0 - (signed int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u))",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1376
+        }
+      },
+      "addHeader.pointer_arithmetic.16": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: dead object in pBufferCur + (signed long int)(0 - (signed int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u))",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1376
+        }
+      },
+      "addHeader.pointer_arithmetic.17": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer outside object bounds in pBufferCur + (signed long int)(0 - (signed int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u))",
+        "expression": "(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pBufferCur) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pBufferCur) + 18446744073709551614ul)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1376
+        }
+      },
+      "addHeader.pointer_arithmetic.18": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: invalid integer address in pBufferCur + (signed long int)(0 - (signed int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u))",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur)) || pBufferCur + -2l == ((char *)NULL)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1376
+        }
+      },
+      "addHeader.pointer_arithmetic.19": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer NULL in pBufferCur + (signed long int)fieldLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1398
+        }
+      },
+      "addHeader.pointer_arithmetic.2": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer invalid in pRequestHeaders->pBuffer + (signed long int)pRequestHeaders->headersLen",
+        "expression": "!IS_INVALID_POINTER(pRequestHeaders->pBuffer)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1365
+        }
+      },
+      "addHeader.pointer_arithmetic.20": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer invalid in pBufferCur + (signed long int)fieldLen",
+        "expression": "!IS_INVALID_POINTER(pBufferCur)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1398
+        }
+      },
+      "addHeader.pointer_arithmetic.21": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: deallocated dynamic object in pBufferCur + (signed long int)fieldLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1398
+        }
+      },
+      "addHeader.pointer_arithmetic.22": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: dead object in pBufferCur + (signed long int)fieldLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1398
+        }
+      },
+      "addHeader.pointer_arithmetic.23": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer outside object bounds in pBufferCur + (signed long int)fieldLen",
+        "expression": "(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pBufferCur) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pBufferCur) + (unsigned long int)(signed long int)fieldLen)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1398
+        }
+      },
+      "addHeader.pointer_arithmetic.24": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: invalid integer address in pBufferCur + (signed long int)fieldLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur)) || pBufferCur + (signed long int)fieldLen == ((char *)NULL)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1398
+        }
+      },
+      "addHeader.pointer_arithmetic.25": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer NULL in pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1405
+        }
+      },
+      "addHeader.pointer_arithmetic.26": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer invalid in pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)",
+        "expression": "!IS_INVALID_POINTER(pBufferCur)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1405
+        }
+      },
+      "addHeader.pointer_arithmetic.27": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: deallocated dynamic object in pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1405
+        }
+      },
+      "addHeader.pointer_arithmetic.28": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: dead object in pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1405
+        }
+      },
+      "addHeader.pointer_arithmetic.29": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer outside object bounds in pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)",
+        "expression": "(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pBufferCur) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pBufferCur) + 2ul)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1405
+        }
+      },
+      "addHeader.pointer_arithmetic.3": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: deallocated dynamic object in pRequestHeaders->pBuffer + (signed long int)pRequestHeaders->headersLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pRequestHeaders->pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1365
+        }
+      },
+      "addHeader.pointer_arithmetic.30": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: invalid integer address in pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur)) || pBufferCur + 2l == ((char *)NULL)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1405
+        }
+      },
+      "addHeader.pointer_arithmetic.31": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer NULL in pBufferCur + (signed long int)valueLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1416
+        }
+      },
+      "addHeader.pointer_arithmetic.32": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer invalid in pBufferCur + (signed long int)valueLen",
+        "expression": "!IS_INVALID_POINTER(pBufferCur)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1416
+        }
+      },
+      "addHeader.pointer_arithmetic.33": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: deallocated dynamic object in pBufferCur + (signed long int)valueLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1416
+        }
+      },
+      "addHeader.pointer_arithmetic.34": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: dead object in pBufferCur + (signed long int)valueLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1416
+        }
+      },
+      "addHeader.pointer_arithmetic.35": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer outside object bounds in pBufferCur + (signed long int)valueLen",
+        "expression": "(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pBufferCur) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pBufferCur) + (unsigned long int)(signed long int)valueLen)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1416
+        }
+      },
+      "addHeader.pointer_arithmetic.36": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: invalid integer address in pBufferCur + (signed long int)valueLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur)) || pBufferCur + (signed long int)valueLen == ((char *)NULL)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1416
+        }
+      },
+      "addHeader.pointer_arithmetic.4": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: dead object in pRequestHeaders->pBuffer + (signed long int)pRequestHeaders->headersLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pRequestHeaders->pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1365
+        }
+      },
+      "addHeader.pointer_arithmetic.5": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer outside object bounds in pRequestHeaders->pBuffer + (signed long int)pRequestHeaders->headersLen",
+        "expression": "(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pRequestHeaders->pBuffer) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pRequestHeaders->pBuffer) + (unsigned long int)(signed long int)pRequestHeaders->headersLen)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1365
+        }
+      },
+      "addHeader.pointer_arithmetic.6": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: invalid integer address in pRequestHeaders->pBuffer + (signed long int)pRequestHeaders->headersLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((uint8_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders->pBuffer)) || pRequestHeaders->pBuffer + (signed long int)pRequestHeaders->headersLen == ((uint8_t *)NULL)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1365
+        }
+      },
+      "addHeader.pointer_arithmetic.7": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer NULL in pBufferCur + (signed long int)(0 - (signed int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u))",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1372
+        }
+      },
+      "addHeader.pointer_arithmetic.8": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer invalid in pBufferCur + (signed long int)(0 - (signed int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u))",
+        "expression": "!IS_INVALID_POINTER(pBufferCur)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1372
+        }
+      },
+      "addHeader.pointer_arithmetic.9": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: deallocated dynamic object in pBufferCur + (signed long int)(0 - (signed int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u))",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1372
+        }
+      },
+      "addHeader.pointer_dereference.1": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer NULL in pRequestHeaders->pBuffer",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1359
+        }
+      },
+      "addHeader.pointer_dereference.10": {
+        "class": "pointer dereference",
+        "description": "dereference failure: dead object in pRequestHeaders->headersLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1365
+        }
+      },
+      "addHeader.pointer_dereference.11": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer outside object bounds in pRequestHeaders->headersLen",
+        "expression": "(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pRequestHeaders) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pRequestHeaders) + 16ul) + 8",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1365
+        }
+      },
+      "addHeader.pointer_dereference.12": {
+        "class": "pointer dereference",
+        "description": "dereference failure: invalid integer address in pRequestHeaders->headersLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders)) || (char *)pRequestHeaders + 16l == ((char *)NULL)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1365
+        }
+      },
+      "addHeader.pointer_dereference.13": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer NULL in pRequestHeaders->bufferLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1386
+        }
+      },
+      "addHeader.pointer_dereference.14": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer invalid in pRequestHeaders->bufferLen",
+        "expression": "!IS_INVALID_POINTER(pRequestHeaders)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1386
+        }
+      },
+      "addHeader.pointer_dereference.15": {
+        "class": "pointer dereference",
+        "description": "dereference failure: deallocated dynamic object in pRequestHeaders->bufferLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1386
+        }
+      },
+      "addHeader.pointer_dereference.16": {
+        "class": "pointer dereference",
+        "description": "dereference failure: dead object in pRequestHeaders->bufferLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1386
+        }
+      },
+      "addHeader.pointer_dereference.17": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer outside object bounds in pRequestHeaders->bufferLen",
+        "expression": "(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pRequestHeaders) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pRequestHeaders) + 8ul) + 8",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1386
+        }
+      },
+      "addHeader.pointer_dereference.18": {
+        "class": "pointer dereference",
+        "description": "dereference failure: invalid integer address in pRequestHeaders->bufferLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders)) || (char *)pRequestHeaders + 8l == ((char *)NULL)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1386
+        }
+      },
+      "addHeader.pointer_dereference.19": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer NULL in pRequestHeaders->headersLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1424
+        }
+      },
+      "addHeader.pointer_dereference.2": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer invalid in pRequestHeaders->pBuffer",
+        "expression": "!IS_INVALID_POINTER(pRequestHeaders)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1359
+        }
+      },
+      "addHeader.pointer_dereference.20": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer invalid in pRequestHeaders->headersLen",
+        "expression": "!IS_INVALID_POINTER(pRequestHeaders)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1424
+        }
+      },
+      "addHeader.pointer_dereference.21": {
+        "class": "pointer dereference",
+        "description": "dereference failure: deallocated dynamic object in pRequestHeaders->headersLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1424
+        }
+      },
+      "addHeader.pointer_dereference.22": {
+        "class": "pointer dereference",
+        "description": "dereference failure: dead object in pRequestHeaders->headersLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1424
+        }
+      },
+      "addHeader.pointer_dereference.23": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer outside object bounds in pRequestHeaders->headersLen",
+        "expression": "(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pRequestHeaders) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pRequestHeaders) + 16ul) + 8",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1424
+        }
+      },
+      "addHeader.pointer_dereference.24": {
+        "class": "pointer dereference",
+        "description": "dereference failure: invalid integer address in pRequestHeaders->headersLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders)) || (char *)pRequestHeaders + 16l == ((char *)NULL)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1424
+        }
+      },
+      "addHeader.pointer_dereference.3": {
+        "class": "pointer dereference",
+        "description": "dereference failure: deallocated dynamic object in pRequestHeaders->pBuffer",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1359
+        }
+      },
+      "addHeader.pointer_dereference.4": {
+        "class": "pointer dereference",
+        "description": "dereference failure: dead object in pRequestHeaders->pBuffer",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1359
+        }
+      },
+      "addHeader.pointer_dereference.5": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer outside object bounds in pRequestHeaders->pBuffer",
+        "expression": "(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pRequestHeaders) >= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pRequestHeaders) + 8",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1359
+        }
+      },
+      "addHeader.pointer_dereference.6": {
+        "class": "pointer dereference",
+        "description": "dereference failure: invalid integer address in pRequestHeaders->pBuffer",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders)) || pRequestHeaders == ((HTTPRequestHeaders_t *)NULL)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1359
+        }
+      },
+      "addHeader.pointer_dereference.7": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer NULL in pRequestHeaders->headersLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1365
+        }
+      },
+      "addHeader.pointer_dereference.8": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer invalid in pRequestHeaders->headersLen",
+        "expression": "!IS_INVALID_POINTER(pRequestHeaders)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1365
+        }
+      },
+      "addHeader.pointer_dereference.9": {
+        "class": "pointer dereference",
+        "description": "dereference failure: deallocated dynamic object in pRequestHeaders->headersLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1365
+        }
+      },
+      "addHeader.precondition_instance.1": {
+        "class": "precondition_instance",
+        "description": "memcpy src/dst overlap",
+        "expression": "__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator) || (const char *)(const void *)httpFieldSeparator >= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u) || (const char *)(void *)pBufferCur >= (const char *)(const void *)httpFieldSeparator + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1401
+        }
+      },
+      "addHeader.precondition_instance.2": {
+        "class": "precondition_instance",
+        "description": "memcpy source region readable",
+        "expression": "R_OK((const void *)httpFieldSeparator, sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1401
+        }
+      },
+      "addHeader.precondition_instance.3": {
+        "class": "precondition_instance",
+        "description": "memcpy destination region writeable",
+        "expression": "W_OK((void *)pBufferCur, sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1401
+        }
+      },
+      "addHeader.precondition_instance.4": {
+        "class": "precondition_instance",
+        "description": "memcpy src/dst overlap",
+        "expression": "__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator) || (const char *)(const void *)pHeaderEndIndicator >= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u) || (const char *)(void *)pBufferCur >= (const char *)(const void *)pHeaderEndIndicator + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1419
+        }
+      },
+      "addHeader.precondition_instance.5": {
+        "class": "precondition_instance",
+        "description": "memcpy source region readable",
+        "expression": "R_OK((const void *)pHeaderEndIndicator, sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1419
+        }
+      },
+      "addHeader.precondition_instance.6": {
+        "class": "precondition_instance",
+        "description": "memcpy destination region writeable",
+        "expression": "W_OK((void *)pBufferCur, sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addHeader",
+          "line": 1419
+        }
+      },
+      "addRangeHeader.array_bounds.1": {
+        "class": "array bounds",
+        "description": "array 'rangeValueBuffer' upper bound in rangeValueBuffer[(signed long int)rangeValueLength]",
+        "expression": "!((signed long int)rangeValueLength >= 27l)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addRangeHeader",
+          "line": 1481
+        }
+      },
+      "addRangeHeader.array_bounds.2": {
+        "class": "array bounds",
+        "description": "array 'rangeValueBuffer' upper bound in rangeValueBuffer[(signed long int)rangeValueLength]",
+        "expression": "!((signed long int)rangeValueLength >= 27l)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addRangeHeader",
+          "line": 1493
+        }
+      },
+      "addRangeHeader.assertion.1": {
+        "class": "assertion",
+        "description": "assertion pRequestHeaders != NULL",
+        "expression": "!((signed long int)(signed long int)!(pRequestHeaders != ((HTTPRequestHeaders_t *)NULL)) != 0l)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addRangeHeader",
+          "line": 1455
+        }
+      },
+      "addRangeHeader.overflow.1": {
+        "class": "overflow",
+        "description": "arithmetic overflow on unsigned + in rangeValueLength + (sizeof(char [7l]) /*7ul*/  - (unsigned long int)1u)",
+        "expression": "!overflow(\"+\", size_t, rangeValueLength, 6ul)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addRangeHeader",
+          "line": 1468
+        }
+      },
+      "addRangeHeader.overflow.10": {
+        "class": "overflow",
+        "description": "arithmetic overflow on unsigned to signed type conversion in (signed long int)rangeValueLength",
+        "expression": "!(rangeValueLength >= 9223372036854775808ul)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addRangeHeader",
+          "line": 1493
+        }
+      },
+      "addRangeHeader.overflow.11": {
+        "class": "overflow",
+        "description": "arithmetic overflow on unsigned + in rangeValueLength + (unsigned long int)1u",
+        "expression": "!overflow(\"+\", size_t, rangeValueLength, 1ul)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addRangeHeader",
+          "line": 1494
+        }
+      },
+      "addRangeHeader.overflow.2": {
+        "class": "overflow",
+        "description": "arithmetic overflow on unsigned to signed type conversion in (signed long int)rangeValueLength",
+        "expression": "!(rangeValueLength >= 9223372036854775808ul)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addRangeHeader",
+          "line": 1472
+        }
+      },
+      "addRangeHeader.overflow.3": {
+        "class": "overflow",
+        "description": "arithmetic overflow on unsigned - in sizeof(char [27l]) /*27ul*/  - rangeValueLength",
+        "expression": "!overflow(\"-\", unsigned long int, sizeof(char [27l]) /*27ul*/ , rangeValueLength)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addRangeHeader",
+          "line": 1473
+        }
+      },
+      "addRangeHeader.overflow.4": {
+        "class": "overflow",
+        "description": "arithmetic overflow on unsigned + in rangeValueLength + (unsigned long int)return_value_convertInt32ToAscii",
+        "expression": "!overflow(\"+\", size_t, rangeValueLength, (unsigned long int)return_value_convertInt32ToAscii)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addRangeHeader",
+          "line": 1471
+        }
+      },
+      "addRangeHeader.overflow.5": {
+        "class": "overflow",
+        "description": "arithmetic overflow on unsigned to signed type conversion in (signed long int)rangeValueLength",
+        "expression": "!(rangeValueLength >= 9223372036854775808ul)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addRangeHeader",
+          "line": 1481
+        }
+      },
+      "addRangeHeader.overflow.6": {
+        "class": "overflow",
+        "description": "arithmetic overflow on unsigned + in rangeValueLength + (unsigned long int)1u",
+        "expression": "!overflow(\"+\", size_t, rangeValueLength, 1ul)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addRangeHeader",
+          "line": 1482
+        }
+      },
+      "addRangeHeader.overflow.7": {
+        "class": "overflow",
+        "description": "arithmetic overflow on unsigned to signed type conversion in (signed long int)rangeValueLength",
+        "expression": "!(rangeValueLength >= 9223372036854775808ul)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addRangeHeader",
+          "line": 1486
+        }
+      },
+      "addRangeHeader.overflow.8": {
+        "class": "overflow",
+        "description": "arithmetic overflow on unsigned - in sizeof(char [27l]) /*27ul*/  - rangeValueLength",
+        "expression": "!overflow(\"-\", unsigned long int, sizeof(char [27l]) /*27ul*/ , rangeValueLength)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addRangeHeader",
+          "line": 1487
+        }
+      },
+      "addRangeHeader.overflow.9": {
+        "class": "overflow",
+        "description": "arithmetic overflow on unsigned + in rangeValueLength + (unsigned long int)return_value_convertInt32ToAscii$0",
+        "expression": "!overflow(\"+\", size_t, rangeValueLength, (unsigned long int)return_value_convertInt32ToAscii$0)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addRangeHeader",
+          "line": 1485
+        }
+      },
+      "addRangeHeader.precondition_instance.1": {
+        "class": "precondition_instance",
+        "description": "memset destination region writeable",
+        "expression": "W_OK((void *)rangeValueBuffer, (sizeof(char [7l]) /*7ul*/  - (unsigned long int)1u) + (unsigned long int)10u + (unsigned long int)1u + (unsigned long int)10u)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addRangeHeader",
+          "line": 1460
+        }
+      },
+      "addRangeHeader.precondition_instance.2": {
+        "class": "precondition_instance",
+        "description": "memcpy src/dst overlap",
+        "expression": "__CPROVER_POINTER_OBJECT((void *)rangeValueBuffer) != __CPROVER_POINTER_OBJECT((const void *)pHttpRangeRequestHeaderValuePrefix) || (const char *)(const void *)pHttpRangeRequestHeaderValuePrefix >= (const char *)(void *)rangeValueBuffer + (signed long int)(sizeof(char [7l]) /*7ul*/  - (unsigned long int)1u) || (const char *)(void *)rangeValueBuffer >= (const char *)(const void *)pHttpRangeRequestHeaderValuePrefix + (signed long int)(sizeof(char [7l]) /*7ul*/  - (unsigned long int)1u)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addRangeHeader",
+          "line": 1465
+        }
+      },
+      "addRangeHeader.precondition_instance.3": {
+        "class": "precondition_instance",
+        "description": "memcpy source region readable",
+        "expression": "R_OK((const void *)pHttpRangeRequestHeaderValuePrefix, sizeof(char [7l]) /*7ul*/  - (unsigned long int)1u)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addRangeHeader",
+          "line": 1465
+        }
+      },
+      "addRangeHeader.precondition_instance.4": {
+        "class": "precondition_instance",
+        "description": "memcpy destination region writeable",
+        "expression": "W_OK((void *)rangeValueBuffer, sizeof(char [7l]) /*7ul*/  - (unsigned long int)1u)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "addRangeHeader",
+          "line": 1465
+        }
+      },
+      "allocateHttpRequestHeaders.pointer_dereference.1": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer NULL in pRequestHeaders->bufferLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders))",
+        "location": {
+          "file": "test/cbmc/sources/http_cbmc_state.c",
+          "function": "allocateHttpRequestHeaders",
+          "line": 49
+        }
+      },
+      "allocateHttpRequestHeaders.pointer_dereference.10": {
+        "class": "pointer dereference",
+        "description": "dereference failure: dead object in pRequestHeaders->pBuffer",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "test/cbmc/sources/http_cbmc_state.c",
+          "function": "allocateHttpRequestHeaders",
+          "line": 50
+        }
+      },
+      "allocateHttpRequestHeaders.pointer_dereference.11": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer outside object bounds in pRequestHeaders->pBuffer",
+        "expression": "(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pRequestHeaders) >= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pRequestHeaders) + 8",
+        "location": {
+          "file": "test/cbmc/sources/http_cbmc_state.c",
+          "function": "allocateHttpRequestHeaders",
+          "line": 50
+        }
+      },
+      "allocateHttpRequestHeaders.pointer_dereference.12": {
+        "class": "pointer dereference",
+        "description": "dereference failure: invalid integer address in pRequestHeaders->pBuffer",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders)) || pRequestHeaders == ((HTTPRequestHeaders_t *)NULL)",
+        "location": {
+          "file": "test/cbmc/sources/http_cbmc_state.c",
+          "function": "allocateHttpRequestHeaders",
+          "line": 50
+        }
+      },
+      "allocateHttpRequestHeaders.pointer_dereference.2": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer invalid in pRequestHeaders->bufferLen",
+        "expression": "!IS_INVALID_POINTER(pRequestHeaders)",
+        "location": {
+          "file": "test/cbmc/sources/http_cbmc_state.c",
+          "function": "allocateHttpRequestHeaders",
+          "line": 49
+        }
+      },
+      "allocateHttpRequestHeaders.pointer_dereference.3": {
+        "class": "pointer dereference",
+        "description": "dereference failure: deallocated dynamic object in pRequestHeaders->bufferLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "test/cbmc/sources/http_cbmc_state.c",
+          "function": "allocateHttpRequestHeaders",
+          "line": 49
+        }
+      },
+      "allocateHttpRequestHeaders.pointer_dereference.4": {
+        "class": "pointer dereference",
+        "description": "dereference failure: dead object in pRequestHeaders->bufferLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "test/cbmc/sources/http_cbmc_state.c",
+          "function": "allocateHttpRequestHeaders",
+          "line": 49
+        }
+      },
+      "allocateHttpRequestHeaders.pointer_dereference.5": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer outside object bounds in pRequestHeaders->bufferLen",
+        "expression": "(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pRequestHeaders) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pRequestHeaders) + 8ul) + 8",
+        "location": {
+          "file": "test/cbmc/sources/http_cbmc_state.c",
+          "function": "allocateHttpRequestHeaders",
+          "line": 49
+        }
+      },
+      "allocateHttpRequestHeaders.pointer_dereference.6": {
+        "class": "pointer dereference",
+        "description": "dereference failure: invalid integer address in pRequestHeaders->bufferLen",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders)) || (char *)pRequestHeaders + 8l == ((char *)NULL)",
+        "location": {
+          "file": "test/cbmc/sources/http_cbmc_state.c",
+          "function": "allocateHttpRequestHeaders",
+          "line": 49
+        }
+      },
+      "allocateHttpRequestHeaders.pointer_dereference.7": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer NULL in pRequestHeaders->pBuffer",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders))",
+        "location": {
+          "file": "test/cbmc/sources/http_cbmc_state.c",
+          "function": "allocateHttpRequestHeaders",
+          "line": 50
+        }
+      },
+      "allocateHttpRequestHeaders.pointer_dereference.8": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer invalid in pRequestHeaders->pBuffer",
+        "expression": "!IS_INVALID_POINTER(pRequestHeaders)",
+        "location": {
+          "file": "test/cbmc/sources/http_cbmc_state.c",
+          "function": "allocateHttpRequestHeaders",
+          "line": 50
+        }
+      },
+      "allocateHttpRequestHeaders.pointer_dereference.9": {
+        "class": "pointer dereference",
+        "description": "dereference failure: deallocated dynamic object in pRequestHeaders->pBuffer",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "test/cbmc/sources/http_cbmc_state.c",
+          "function": "allocateHttpRequestHeaders",
+          "line": 50
+        }
+      },
+      "convertInt32ToAscii.assertion.1": {
+        "class": "assertion",
+        "description": "assertion pBuffer != NULL",
+        "expression": "!((signed long int)(signed long int)!(pBuffer != ((char *)NULL)) != 0l)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1255
+        }
+      },
+      "convertInt32ToAscii.assertion.2": {
+        "class": "assertion",
+        "description": "assertion bufferLength >= MAX_INT32_NO_OF_DECIMAL_DIGITS",
+        "expression": "!((signed long int)(signed long int)!(bufferLength >= (unsigned long int)10u) != 0l)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1256
+        }
+      },
+      "convertInt32ToAscii.overflow.1": {
+        "class": "overflow",
+        "description": "arithmetic overflow on signed * in value * -1",
+        "expression": "!overflow(\"*\", int32_t, value, -1)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1267
+        }
+      },
+      "convertInt32ToAscii.overflow.10": {
+        "class": "overflow",
+        "description": "arithmetic overflow on unsigned + in index + 1",
+        "expression": "!overflow(\"+\", uint8_t, index, 1)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1280
+        }
+      },
+      "convertInt32ToAscii.overflow.11": {
+        "class": "overflow",
+        "description": "arithmetic overflow on signed + in (signed int)isNegative + (signed int)numOfDigits",
+        "expression": "!overflow(\"+\", signed int, (signed int)isNegative, (signed int)numOfDigits)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1288
+        }
+      },
+      "convertInt32ToAscii.overflow.12": {
+        "class": "overflow",
+        "description": "arithmetic overflow on signed to unsigned type conversion in (uint8_t)((signed int)isNegative + (signed int)numOfDigits)",
+        "expression": "(signed int)isNegative + (signed int)numOfDigits >= 0 && !((signed int)isNegative + (signed int)numOfDigits >= 256)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1288
+        }
+      },
+      "convertInt32ToAscii.overflow.2": {
+        "class": "overflow",
+        "description": "arithmetic overflow on signed + in (signed int)isNegative + (signed int)numOfDigits",
+        "expression": "!overflow(\"+\", signed int, (signed int)isNegative, (signed int)numOfDigits)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1273
+        }
+      },
+      "convertInt32ToAscii.overflow.3": {
+        "class": "overflow",
+        "description": "arithmetic overflow on signed + in absoluteValue % 10 + 48",
+        "expression": "!overflow(\"+\", int32_t, absoluteValue % 10, 48)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1273
+        }
+      },
+      "convertInt32ToAscii.overflow.4": {
+        "class": "overflow",
+        "description": "arithmetic overflow on signed type conversion in (char)(absoluteValue % 10 + 48)",
+        "expression": "absoluteValue % 10 + 48 >= -128 && !(absoluteValue % 10 + 48 >= 128)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1273
+        }
+      },
+      "convertInt32ToAscii.overflow.5": {
+        "class": "overflow",
+        "description": "arithmetic overflow on unsigned + in numOfDigits + 1",
+        "expression": "!overflow(\"+\", uint8_t, numOfDigits, 1)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1274
+        }
+      },
+      "convertInt32ToAscii.overflow.6": {
+        "class": "overflow",
+        "description": "arithmetic overflow on signed + in (signed int)isNegative + (signed int)index",
+        "expression": "!overflow(\"+\", signed int, (signed int)isNegative, (signed int)index)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1282
+        }
+      },
+      "convertInt32ToAscii.overflow.7": {
+        "class": "overflow",
+        "description": "arithmetic overflow on signed + in (int32_t)isNegative + (int32_t)numOfDigits",
+        "expression": "!overflow(\"+\", int32_t, (int32_t)isNegative, (int32_t)numOfDigits)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1283
+        }
+      },
+      "convertInt32ToAscii.overflow.8": {
+        "class": "overflow",
+        "description": "arithmetic overflow on signed - in ((int32_t)isNegative + (int32_t)numOfDigits) - (int32_t)index",
+        "expression": "!overflow(\"-\", int32_t, (int32_t)isNegative + (int32_t)numOfDigits, (int32_t)index)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1283
+        }
+      },
+      "convertInt32ToAscii.overflow.9": {
+        "class": "overflow",
+        "description": "arithmetic overflow on signed - in (((int32_t)isNegative + (int32_t)numOfDigits) - (int32_t)index) - 1",
+        "expression": "!overflow(\"-\", int32_t, (int32_t)isNegative + (int32_t)numOfDigits + -((int32_t)index), 1)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1283
+        }
+      },
+      "convertInt32ToAscii.pointer_arithmetic.1": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer NULL in pBuffer + (signed long int)((signed int)isNegative + (signed int)numOfDigits)",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBuffer))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1273
+        }
+      },
+      "convertInt32ToAscii.pointer_arithmetic.10": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: dead object in pBuffer + (signed long int)((signed int)isNegative + (signed int)index)",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1282
+        }
+      },
+      "convertInt32ToAscii.pointer_arithmetic.11": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer outside object bounds in pBuffer + (signed long int)((signed int)isNegative + (signed int)index)",
+        "expression": "(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pBuffer) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pBuffer) + (unsigned long int)(signed long int)((signed int)isNegative + (signed int)index))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1282
+        }
+      },
+      "convertInt32ToAscii.pointer_arithmetic.12": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: invalid integer address in pBuffer + (signed long int)((signed int)isNegative + (signed int)index)",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBuffer)) || pBuffer + (signed long int)((signed int)isNegative + (signed int)index) == ((char *)NULL)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1282
+        }
+      },
+      "convertInt32ToAscii.pointer_arithmetic.13": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer NULL in pBuffer + (signed long int)bufferIndex",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBuffer))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1284
+        }
+      },
+      "convertInt32ToAscii.pointer_arithmetic.14": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer invalid in pBuffer + (signed long int)bufferIndex",
+        "expression": "!IS_INVALID_POINTER(pBuffer)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1284
+        }
+      },
+      "convertInt32ToAscii.pointer_arithmetic.15": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: deallocated dynamic object in pBuffer + (signed long int)bufferIndex",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1284
+        }
+      },
+      "convertInt32ToAscii.pointer_arithmetic.16": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: dead object in pBuffer + (signed long int)bufferIndex",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1284
+        }
+      },
+      "convertInt32ToAscii.pointer_arithmetic.17": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer outside object bounds in pBuffer + (signed long int)bufferIndex",
+        "expression": "(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pBuffer) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pBuffer) + (unsigned long int)(signed long int)bufferIndex)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1284
+        }
+      },
+      "convertInt32ToAscii.pointer_arithmetic.18": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: invalid integer address in pBuffer + (signed long int)bufferIndex",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBuffer)) || pBuffer + (signed long int)bufferIndex == ((char *)NULL)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1284
+        }
+      },
+      "convertInt32ToAscii.pointer_arithmetic.19": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer NULL in pBuffer + (signed long int)bufferIndex",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBuffer))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1285
+        }
+      },
+      "convertInt32ToAscii.pointer_arithmetic.2": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer invalid in pBuffer + (signed long int)((signed int)isNegative + (signed int)numOfDigits)",
+        "expression": "!IS_INVALID_POINTER(pBuffer)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1273
+        }
+      },
+      "convertInt32ToAscii.pointer_arithmetic.20": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer invalid in pBuffer + (signed long int)bufferIndex",
+        "expression": "!IS_INVALID_POINTER(pBuffer)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1285
+        }
+      },
+      "convertInt32ToAscii.pointer_arithmetic.21": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: deallocated dynamic object in pBuffer + (signed long int)bufferIndex",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1285
+        }
+      },
+      "convertInt32ToAscii.pointer_arithmetic.22": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: dead object in pBuffer + (signed long int)bufferIndex",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1285
+        }
+      },
+      "convertInt32ToAscii.pointer_arithmetic.23": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer outside object bounds in pBuffer + (signed long int)bufferIndex",
+        "expression": "(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pBuffer) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pBuffer) + (unsigned long int)(signed long int)bufferIndex)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1285
+        }
+      },
+      "convertInt32ToAscii.pointer_arithmetic.24": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: invalid integer address in pBuffer + (signed long int)bufferIndex",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBuffer)) || pBuffer + (signed long int)bufferIndex == ((char *)NULL)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1285
+        }
+      },
+      "convertInt32ToAscii.pointer_arithmetic.3": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: deallocated dynamic object in pBuffer + (signed long int)((signed int)isNegative + (signed int)numOfDigits)",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1273
+        }
+      },
+      "convertInt32ToAscii.pointer_arithmetic.4": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: dead object in pBuffer + (signed long int)((signed int)isNegative + (signed int)numOfDigits)",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1273
+        }
+      },
+      "convertInt32ToAscii.pointer_arithmetic.5": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer outside object bounds in pBuffer + (signed long int)((signed int)isNegative + (signed int)numOfDigits)",
+        "expression": "(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pBuffer) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pBuffer) + (unsigned long int)(signed long int)((signed int)isNegative + (signed int)numOfDigits))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1273
+        }
+      },
+      "convertInt32ToAscii.pointer_arithmetic.6": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: invalid integer address in pBuffer + (signed long int)((signed int)isNegative + (signed int)numOfDigits)",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBuffer)) || pBuffer + (signed long int)((signed int)isNegative + (signed int)numOfDigits) == ((char *)NULL)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1273
+        }
+      },
+      "convertInt32ToAscii.pointer_arithmetic.7": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer NULL in pBuffer + (signed long int)((signed int)isNegative + (signed int)index)",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBuffer))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1282
+        }
+      },
+      "convertInt32ToAscii.pointer_arithmetic.8": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer invalid in pBuffer + (signed long int)((signed int)isNegative + (signed int)index)",
+        "expression": "!IS_INVALID_POINTER(pBuffer)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1282
+        }
+      },
+      "convertInt32ToAscii.pointer_arithmetic.9": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: deallocated dynamic object in pBuffer + (signed long int)((signed int)isNegative + (signed int)index)",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1282
+        }
+      },
+      "convertInt32ToAscii.pointer_dereference.1": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer NULL in *pBuffer",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBuffer))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1264
+        }
+      },
+      "convertInt32ToAscii.pointer_dereference.10": {
+        "class": "pointer dereference",
+        "description": "dereference failure: dead object in pBuffer[(signed long int)((signed int)isNegative + (signed int)numOfDigits)]",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1273
+        }
+      },
+      "convertInt32ToAscii.pointer_dereference.11": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer outside object bounds in pBuffer[(signed long int)((signed int)isNegative + (signed int)numOfDigits)]",
+        "expression": "(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pBuffer) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pBuffer) + (unsigned long int)(signed long int)((signed int)isNegative + (signed int)numOfDigits)) + 1",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1273
+        }
+      },
+      "convertInt32ToAscii.pointer_dereference.12": {
+        "class": "pointer dereference",
+        "description": "dereference failure: invalid integer address in pBuffer[(signed long int)((signed int)isNegative + (signed int)numOfDigits)]",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBuffer)) || pBuffer + (signed long int)((signed int)isNegative + (signed int)numOfDigits) == ((char *)NULL)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1273
+        }
+      },
+      "convertInt32ToAscii.pointer_dereference.13": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer NULL in pBuffer[(signed long int)((signed int)isNegative + (signed int)index)]",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBuffer))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1282
+        }
+      },
+      "convertInt32ToAscii.pointer_dereference.14": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer invalid in pBuffer[(signed long int)((signed int)isNegative + (signed int)index)]",
+        "expression": "!IS_INVALID_POINTER(pBuffer)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1282
+        }
+      },
+      "convertInt32ToAscii.pointer_dereference.15": {
+        "class": "pointer dereference",
+        "description": "dereference failure: deallocated dynamic object in pBuffer[(signed long int)((signed int)isNegative + (signed int)index)]",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1282
+        }
+      },
+      "convertInt32ToAscii.pointer_dereference.16": {
+        "class": "pointer dereference",
+        "description": "dereference failure: dead object in pBuffer[(signed long int)((signed int)isNegative + (signed int)index)]",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1282
+        }
+      },
+      "convertInt32ToAscii.pointer_dereference.17": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer outside object bounds in pBuffer[(signed long int)((signed int)isNegative + (signed int)index)]",
+        "expression": "(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pBuffer) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pBuffer) + (unsigned long int)(signed long int)((signed int)isNegative + (signed int)index)) + 1",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1282
+        }
+      },
+      "convertInt32ToAscii.pointer_dereference.18": {
+        "class": "pointer dereference",
+        "description": "dereference failure: invalid integer address in pBuffer[(signed long int)((signed int)isNegative + (signed int)index)]",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBuffer)) || pBuffer + (signed long int)((signed int)isNegative + (signed int)index) == ((char *)NULL)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1282
+        }
+      },
+      "convertInt32ToAscii.pointer_dereference.19": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer NULL in pBuffer[(signed long int)bufferIndex]",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBuffer))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1284
+        }
+      },
+      "convertInt32ToAscii.pointer_dereference.2": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer invalid in *pBuffer",
+        "expression": "!IS_INVALID_POINTER(pBuffer)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1264
+        }
+      },
+      "convertInt32ToAscii.pointer_dereference.20": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer invalid in pBuffer[(signed long int)bufferIndex]",
+        "expression": "!IS_INVALID_POINTER(pBuffer)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1284
+        }
+      },
+      "convertInt32ToAscii.pointer_dereference.21": {
+        "class": "pointer dereference",
+        "description": "dereference failure: deallocated dynamic object in pBuffer[(signed long int)bufferIndex]",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1284
+        }
+      },
+      "convertInt32ToAscii.pointer_dereference.22": {
+        "class": "pointer dereference",
+        "description": "dereference failure: dead object in pBuffer[(signed long int)bufferIndex]",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1284
+        }
+      },
+      "convertInt32ToAscii.pointer_dereference.23": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer outside object bounds in pBuffer[(signed long int)bufferIndex]",
+        "expression": "(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pBuffer) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pBuffer) + (unsigned long int)(signed long int)bufferIndex) + 1",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1284
+        }
+      },
+      "convertInt32ToAscii.pointer_dereference.24": {
+        "class": "pointer dereference",
+        "description": "dereference failure: invalid integer address in pBuffer[(signed long int)bufferIndex]",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBuffer)) || pBuffer + (signed long int)bufferIndex == ((char *)NULL)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1284
+        }
+      },
+      "convertInt32ToAscii.pointer_dereference.25": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer NULL in pBuffer[(signed long int)bufferIndex]",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBuffer))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1285
+        }
+      },
+      "convertInt32ToAscii.pointer_dereference.26": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer invalid in pBuffer[(signed long int)bufferIndex]",
+        "expression": "!IS_INVALID_POINTER(pBuffer)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1285
+        }
+      },
+      "convertInt32ToAscii.pointer_dereference.27": {
+        "class": "pointer dereference",
+        "description": "dereference failure: deallocated dynamic object in pBuffer[(signed long int)bufferIndex]",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1285
+        }
+      },
+      "convertInt32ToAscii.pointer_dereference.28": {
+        "class": "pointer dereference",
+        "description": "dereference failure: dead object in pBuffer[(signed long int)bufferIndex]",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1285
+        }
+      },
+      "convertInt32ToAscii.pointer_dereference.29": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer outside object bounds in pBuffer[(signed long int)bufferIndex]",
+        "expression": "(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pBuffer) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pBuffer) + (unsigned long int)(signed long int)bufferIndex) + 1",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1285
+        }
+      },
+      "convertInt32ToAscii.pointer_dereference.3": {
+        "class": "pointer dereference",
+        "description": "dereference failure: deallocated dynamic object in *pBuffer",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1264
+        }
+      },
+      "convertInt32ToAscii.pointer_dereference.30": {
+        "class": "pointer dereference",
+        "description": "dereference failure: invalid integer address in pBuffer[(signed long int)bufferIndex]",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBuffer)) || pBuffer + (signed long int)bufferIndex == ((char *)NULL)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1285
+        }
+      },
+      "convertInt32ToAscii.pointer_dereference.4": {
+        "class": "pointer dereference",
+        "description": "dereference failure: dead object in *pBuffer",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1264
+        }
+      },
+      "convertInt32ToAscii.pointer_dereference.5": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer outside object bounds in *pBuffer",
+        "expression": "(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pBuffer) >= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pBuffer) + 1",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1264
+        }
+      },
+      "convertInt32ToAscii.pointer_dereference.6": {
+        "class": "pointer dereference",
+        "description": "dereference failure: invalid integer address in *pBuffer",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBuffer)) || pBuffer == ((char *)NULL)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1264
+        }
+      },
+      "convertInt32ToAscii.pointer_dereference.7": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer NULL in pBuffer[(signed long int)((signed int)isNegative + (signed int)numOfDigits)]",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBuffer))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1273
+        }
+      },
+      "convertInt32ToAscii.pointer_dereference.8": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer invalid in pBuffer[(signed long int)((signed int)isNegative + (signed int)numOfDigits)]",
+        "expression": "!IS_INVALID_POINTER(pBuffer)",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1273
+        }
+      },
+      "convertInt32ToAscii.pointer_dereference.9": {
+        "class": "pointer dereference",
+        "description": "dereference failure: deallocated dynamic object in pBuffer[(signed long int)((signed int)isNegative + (signed int)numOfDigits)]",
+        "expression": "!(__CPROVER_POINTER_OBJECT(pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "source/core_http_client.c",
+          "function": "convertInt32ToAscii",
+          "line": 1273
+        }
+      },
+      "httpHeaderStrncpy.assertion.1": {
+        "class": "assertion",
+        "description": "write",
+        "expression": "W_OK(pDest, len)",
+        "location": {
+          "file": "test/cbmc/stubs/httpHeaderStrncpy.c",
+          "function": "httpHeaderStrncpy",
+          "line": 42
+        }
+      },
+      "httpHeaderStrncpy.assertion.2": {
+        "class": "assertion",
+        "description": "read",
+        "expression": "R_OK(pSrc, len)",
+        "location": {
+          "file": "test/cbmc/stubs/httpHeaderStrncpy.c",
+          "function": "httpHeaderStrncpy",
+          "line": 43
+        }
+      },
+      "httpHeaderStrncpy.pointer_primitives.1": {
+        "class": "pointer primitives",
+        "description": "pointer invalid in W_OK(pDest, len)",
+        "expression": "__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pDest) || !IS_INVALID_POINTER(pDest)",
+        "location": {
+          "file": "test/cbmc/stubs/httpHeaderStrncpy.c",
+          "function": "httpHeaderStrncpy",
+          "line": 42
+        }
+      },
+      "httpHeaderStrncpy.pointer_primitives.2": {
+        "class": "pointer primitives",
+        "description": "deallocated dynamic object in W_OK(pDest, len)",
+        "expression": "__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pDest) || !(__CPROVER_POINTER_OBJECT(pDest) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "test/cbmc/stubs/httpHeaderStrncpy.c",
+          "function": "httpHeaderStrncpy",
+          "line": 42
+        }
+      },
+      "httpHeaderStrncpy.pointer_primitives.3": {
+        "class": "pointer primitives",
+        "description": "dead object in W_OK(pDest, len)",
+        "expression": "__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pDest) || !(__CPROVER_POINTER_OBJECT(pDest) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "test/cbmc/stubs/httpHeaderStrncpy.c",
+          "function": "httpHeaderStrncpy",
+          "line": 42
+        }
+      },
+      "httpHeaderStrncpy.pointer_primitives.4": {
+        "class": "pointer primitives",
+        "description": "pointer outside object bounds in W_OK(pDest, len)",
+        "expression": "__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pDest) || (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pDest) >= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pDest)",
+        "location": {
+          "file": "test/cbmc/stubs/httpHeaderStrncpy.c",
+          "function": "httpHeaderStrncpy",
+          "line": 42
+        }
+      },
+      "httpHeaderStrncpy.pointer_primitives.5": {
+        "class": "pointer primitives",
+        "description": "pointer invalid in R_OK(pSrc, len)",
+        "expression": "__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pSrc) || !IS_INVALID_POINTER(pSrc)",
+        "location": {
+          "file": "test/cbmc/stubs/httpHeaderStrncpy.c",
+          "function": "httpHeaderStrncpy",
+          "line": 43
+        }
+      },
+      "httpHeaderStrncpy.pointer_primitives.6": {
+        "class": "pointer primitives",
+        "description": "deallocated dynamic object in R_OK(pSrc, len)",
+        "expression": "__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pSrc) || !(__CPROVER_POINTER_OBJECT(pSrc) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "test/cbmc/stubs/httpHeaderStrncpy.c",
+          "function": "httpHeaderStrncpy",
+          "line": 43
+        }
+      },
+      "httpHeaderStrncpy.pointer_primitives.7": {
+        "class": "pointer primitives",
+        "description": "dead object in R_OK(pSrc, len)",
+        "expression": "__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pSrc) || !(__CPROVER_POINTER_OBJECT(pSrc) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "test/cbmc/stubs/httpHeaderStrncpy.c",
+          "function": "httpHeaderStrncpy",
+          "line": 43
+        }
+      },
+      "httpHeaderStrncpy.pointer_primitives.8": {
+        "class": "pointer primitives",
+        "description": "pointer outside object bounds in R_OK(pSrc, len)",
+        "expression": "__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pSrc) || (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pSrc) >= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pSrc)",
+        "location": {
+          "file": "test/cbmc/stubs/httpHeaderStrncpy.c",
+          "function": "httpHeaderStrncpy",
+          "line": 43
+        }
+      },
+      "isValidHttpRequestHeaders.pointer_dereference.1": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer NULL in pRequestHeaders->bufferLen",
+        "expression": "TRUE ==> !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders))",
+        "location": {
+          "file": "test/cbmc/sources/http_cbmc_state.c",
+          "function": "isValidHttpRequestHeaders",
+          "line": 62
+        }
+      },
+      "isValidHttpRequestHeaders.pointer_dereference.10": {
+        "class": "pointer dereference",
+        "description": "dereference failure: dead object in pRequestHeaders->headersLen",
+        "expression": "pRequestHeaders->bufferLen < 18446744073709551615ul >> 8 + 1 ==> !(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "test/cbmc/sources/http_cbmc_state.c",
+          "function": "isValidHttpRequestHeaders",
+          "line": 63
+        }
+      },
+      "isValidHttpRequestHeaders.pointer_dereference.11": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer outside object bounds in pRequestHeaders->headersLen",
+        "expression": "pRequestHeaders->bufferLen < 18446744073709551615ul >> 8 + 1 ==> (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pRequestHeaders) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pRequestHeaders) + 16ul) + 8",
+        "location": {
+          "file": "test/cbmc/sources/http_cbmc_state.c",
+          "function": "isValidHttpRequestHeaders",
+          "line": 63
+        }
+      },
+      "isValidHttpRequestHeaders.pointer_dereference.12": {
+        "class": "pointer dereference",
+        "description": "dereference failure: invalid integer address in pRequestHeaders->headersLen",
+        "expression": "pRequestHeaders->bufferLen < 18446744073709551615ul >> 8 + 1 ==> !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders)) || (char *)pRequestHeaders + 16l == ((char *)NULL)",
+        "location": {
+          "file": "test/cbmc/sources/http_cbmc_state.c",
+          "function": "isValidHttpRequestHeaders",
+          "line": 63
+        }
+      },
+      "isValidHttpRequestHeaders.pointer_dereference.2": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer invalid in pRequestHeaders->bufferLen",
+        "expression": "TRUE ==> !IS_INVALID_POINTER(pRequestHeaders)",
+        "location": {
+          "file": "test/cbmc/sources/http_cbmc_state.c",
+          "function": "isValidHttpRequestHeaders",
+          "line": 62
+        }
+      },
+      "isValidHttpRequestHeaders.pointer_dereference.3": {
+        "class": "pointer dereference",
+        "description": "dereference failure: deallocated dynamic object in pRequestHeaders->bufferLen",
+        "expression": "TRUE ==> !(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "test/cbmc/sources/http_cbmc_state.c",
+          "function": "isValidHttpRequestHeaders",
+          "line": 62
+        }
+      },
+      "isValidHttpRequestHeaders.pointer_dereference.4": {
+        "class": "pointer dereference",
+        "description": "dereference failure: dead object in pRequestHeaders->bufferLen",
+        "expression": "TRUE ==> !(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "test/cbmc/sources/http_cbmc_state.c",
+          "function": "isValidHttpRequestHeaders",
+          "line": 62
+        }
+      },
+      "isValidHttpRequestHeaders.pointer_dereference.5": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer outside object bounds in pRequestHeaders->bufferLen",
+        "expression": "TRUE ==> (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pRequestHeaders) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pRequestHeaders) + 8ul) + 8",
+        "location": {
+          "file": "test/cbmc/sources/http_cbmc_state.c",
+          "function": "isValidHttpRequestHeaders",
+          "line": 62
+        }
+      },
+      "isValidHttpRequestHeaders.pointer_dereference.6": {
+        "class": "pointer dereference",
+        "description": "dereference failure: invalid integer address in pRequestHeaders->bufferLen",
+        "expression": "TRUE ==> !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders)) || (char *)pRequestHeaders + 8l == ((char *)NULL)",
+        "location": {
+          "file": "test/cbmc/sources/http_cbmc_state.c",
+          "function": "isValidHttpRequestHeaders",
+          "line": 62
+        }
+      },
+      "isValidHttpRequestHeaders.pointer_dereference.7": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer NULL in pRequestHeaders->headersLen",
+        "expression": "pRequestHeaders->bufferLen < 18446744073709551615ul >> 8 + 1 ==> !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders))",
+        "location": {
+          "file": "test/cbmc/sources/http_cbmc_state.c",
+          "function": "isValidHttpRequestHeaders",
+          "line": 63
+        }
+      },
+      "isValidHttpRequestHeaders.pointer_dereference.8": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer invalid in pRequestHeaders->headersLen",
+        "expression": "pRequestHeaders->bufferLen < 18446744073709551615ul >> 8 + 1 ==> !IS_INVALID_POINTER(pRequestHeaders)",
+        "location": {
+          "file": "test/cbmc/sources/http_cbmc_state.c",
+          "function": "isValidHttpRequestHeaders",
+          "line": 63
+        }
+      },
+      "isValidHttpRequestHeaders.pointer_dereference.9": {
+        "class": "pointer dereference",
+        "description": "dereference failure: deallocated dynamic object in pRequestHeaders->headersLen",
+        "expression": "pRequestHeaders->bufferLen < 18446744073709551615ul >> 8 + 1 ==> !(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "test/cbmc/sources/http_cbmc_state.c",
+          "function": "isValidHttpRequestHeaders",
+          "line": 63
+        }
+      },
+      "malloc.assertion.1": {
+        "class": "assertion",
+        "description": "max allocation size exceeded",
+        "expression": "malloc_size <= __CPROVER_max_malloc_size",
+        "location": {
+          "file": "<builtin-library-malloc>",
+          "function": "malloc",
+          "line": 31
+        }
+      },
+      "malloc.assertion.2": {
+        "class": "assertion",
+        "description": "max allocation may fail",
+        "expression": "!(1 != 0) || !should_malloc_fail",
+        "location": {
+          "file": "<builtin-library-malloc>",
+          "function": "malloc",
+          "line": 36
+        }
+      },
+      "mallocCanFail.assertion.1": {
+        "class": "assertion",
+        "description": "mallocCanFail size is too big",
+        "expression": "size < 18446744073709551615ul >> 8 + 1",
+        "location": {
+          "file": "test/cbmc/sources/http_cbmc_state.c",
+          "function": "mallocCanFail",
+          "line": 36
+        }
+      },
+      "strncmp.overflow.1": {
+        "class": "overflow",
+        "description": "arithmetic overflow on unsigned + in i + 1ul",
+        "expression": "!overflow(\"+\", __CPROVER_size_t, i, 1ul)",
+        "location": {
+          "file": "<builtin-library-strncmp>",
+          "function": "strncmp",
+          "line": 40
+        }
+      },
+      "strncmp.pointer_arithmetic.1": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer NULL in s1 + (signed long int)i",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(s1))",
+        "location": {
+          "file": "<builtin-library-strncmp>",
+          "function": "strncmp",
+          "line": 28
+        }
+      },
+      "strncmp.pointer_arithmetic.10": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: dead object in s2 + (signed long int)i",
+        "expression": "!(__CPROVER_POINTER_OBJECT(s2) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "<builtin-library-strncmp>",
+          "function": "strncmp",
+          "line": 29
+        }
+      },
+      "strncmp.pointer_arithmetic.11": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer outside object bounds in s2 + (signed long int)i",
+        "expression": "(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(s2) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(s2) + (unsigned long int)(signed long int)i)",
+        "location": {
+          "file": "<builtin-library-strncmp>",
+          "function": "strncmp",
+          "line": 29
+        }
+      },
+      "strncmp.pointer_arithmetic.12": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: invalid integer address in s2 + (signed long int)i",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(s2)) || s2 + (signed long int)i == ((const char *)NULL)",
+        "location": {
+          "file": "<builtin-library-strncmp>",
+          "function": "strncmp",
+          "line": 29
+        }
+      },
+      "strncmp.pointer_arithmetic.2": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer invalid in s1 + (signed long int)i",
+        "expression": "!IS_INVALID_POINTER(s1)",
+        "location": {
+          "file": "<builtin-library-strncmp>",
+          "function": "strncmp",
+          "line": 28
+        }
+      },
+      "strncmp.pointer_arithmetic.3": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: deallocated dynamic object in s1 + (signed long int)i",
+        "expression": "!(__CPROVER_POINTER_OBJECT(s1) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "<builtin-library-strncmp>",
+          "function": "strncmp",
+          "line": 28
+        }
+      },
+      "strncmp.pointer_arithmetic.4": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: dead object in s1 + (signed long int)i",
+        "expression": "!(__CPROVER_POINTER_OBJECT(s1) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "<builtin-library-strncmp>",
+          "function": "strncmp",
+          "line": 28
+        }
+      },
+      "strncmp.pointer_arithmetic.5": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer outside object bounds in s1 + (signed long int)i",
+        "expression": "(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(s1) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(s1) + (unsigned long int)(signed long int)i)",
+        "location": {
+          "file": "<builtin-library-strncmp>",
+          "function": "strncmp",
+          "line": 28
+        }
+      },
+      "strncmp.pointer_arithmetic.6": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: invalid integer address in s1 + (signed long int)i",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(s1)) || s1 + (signed long int)i == ((const char *)NULL)",
+        "location": {
+          "file": "<builtin-library-strncmp>",
+          "function": "strncmp",
+          "line": 28
+        }
+      },
+      "strncmp.pointer_arithmetic.7": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer NULL in s2 + (signed long int)i",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(s2))",
+        "location": {
+          "file": "<builtin-library-strncmp>",
+          "function": "strncmp",
+          "line": 29
+        }
+      },
+      "strncmp.pointer_arithmetic.8": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: pointer invalid in s2 + (signed long int)i",
+        "expression": "!IS_INVALID_POINTER(s2)",
+        "location": {
+          "file": "<builtin-library-strncmp>",
+          "function": "strncmp",
+          "line": 29
+        }
+      },
+      "strncmp.pointer_arithmetic.9": {
+        "class": "pointer arithmetic",
+        "description": "pointer arithmetic: deallocated dynamic object in s2 + (signed long int)i",
+        "expression": "!(__CPROVER_POINTER_OBJECT(s2) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "<builtin-library-strncmp>",
+          "function": "strncmp",
+          "line": 29
+        }
+      },
+      "strncmp.pointer_dereference.1": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer NULL in s1[(signed long int)i]",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(s1))",
+        "location": {
+          "file": "<builtin-library-strncmp>",
+          "function": "strncmp",
+          "line": 28
+        }
+      },
+      "strncmp.pointer_dereference.10": {
+        "class": "pointer dereference",
+        "description": "dereference failure: dead object in s2[(signed long int)i]",
+        "expression": "!(__CPROVER_POINTER_OBJECT(s2) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "<builtin-library-strncmp>",
+          "function": "strncmp",
+          "line": 29
+        }
+      },
+      "strncmp.pointer_dereference.11": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer outside object bounds in s2[(signed long int)i]",
+        "expression": "(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(s2) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(s2) + (unsigned long int)(signed long int)i) + 1",
+        "location": {
+          "file": "<builtin-library-strncmp>",
+          "function": "strncmp",
+          "line": 29
+        }
+      },
+      "strncmp.pointer_dereference.12": {
+        "class": "pointer dereference",
+        "description": "dereference failure: invalid integer address in s2[(signed long int)i]",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(s2)) || s2 + (signed long int)i == ((const char *)NULL)",
+        "location": {
+          "file": "<builtin-library-strncmp>",
+          "function": "strncmp",
+          "line": 29
+        }
+      },
+      "strncmp.pointer_dereference.2": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer invalid in s1[(signed long int)i]",
+        "expression": "!IS_INVALID_POINTER(s1)",
+        "location": {
+          "file": "<builtin-library-strncmp>",
+          "function": "strncmp",
+          "line": 28
+        }
+      },
+      "strncmp.pointer_dereference.3": {
+        "class": "pointer dereference",
+        "description": "dereference failure: deallocated dynamic object in s1[(signed long int)i]",
+        "expression": "!(__CPROVER_POINTER_OBJECT(s1) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "<builtin-library-strncmp>",
+          "function": "strncmp",
+          "line": 28
+        }
+      },
+      "strncmp.pointer_dereference.4": {
+        "class": "pointer dereference",
+        "description": "dereference failure: dead object in s1[(signed long int)i]",
+        "expression": "!(__CPROVER_POINTER_OBJECT(s1) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))",
+        "location": {
+          "file": "<builtin-library-strncmp>",
+          "function": "strncmp",
+          "line": 28
+        }
+      },
+      "strncmp.pointer_dereference.5": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer outside object bounds in s1[(signed long int)i]",
+        "expression": "(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(s1) >= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(s1) + (unsigned long int)(signed long int)i) + 1",
+        "location": {
+          "file": "<builtin-library-strncmp>",
+          "function": "strncmp",
+          "line": 28
+        }
+      },
+      "strncmp.pointer_dereference.6": {
+        "class": "pointer dereference",
+        "description": "dereference failure: invalid integer address in s1[(signed long int)i]",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(s1)) || s1 + (signed long int)i == ((const char *)NULL)",
+        "location": {
+          "file": "<builtin-library-strncmp>",
+          "function": "strncmp",
+          "line": 28
+        }
+      },
+      "strncmp.pointer_dereference.7": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer NULL in s2[(signed long int)i]",
+        "expression": "!(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(s2))",
+        "location": {
+          "file": "<builtin-library-strncmp>",
+          "function": "strncmp",
+          "line": 29
+        }
+      },
+      "strncmp.pointer_dereference.8": {
+        "class": "pointer dereference",
+        "description": "dereference failure: pointer invalid in s2[(signed long int)i]",
+        "expression": "!IS_INVALID_POINTER(s2)",
+        "location": {
+          "file": "<builtin-library-strncmp>",
+          "function": "strncmp",
+          "line": 29
+        }
+      },
+      "strncmp.pointer_dereference.9": {
+        "class": "pointer dereference",
+        "description": "dereference failure: deallocated dynamic object in s2[(signed long int)i]",
+        "expression": "!(__CPROVER_POINTER_OBJECT(s2) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))",
+        "location": {
+          "file": "<builtin-library-strncmp>",
+          "function": "strncmp",
+          "line": 29
+        }
+      }
+    }
+  }
+}

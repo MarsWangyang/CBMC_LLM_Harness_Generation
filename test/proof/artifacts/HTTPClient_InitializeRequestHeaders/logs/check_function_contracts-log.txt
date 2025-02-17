@@ -1,0 +1,3 @@
+Reading GOTO program from '/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs/HTTPClient_InitializeRequestHeaders/gotos/HTTPClient_InitializeRequestHeaders_harness0500.goto'
+Writing GOTO program to '/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs/HTTPClient_InitializeRequestHeaders/gotos/HTTPClient_InitializeRequestHeaders_harness0600.goto'
+

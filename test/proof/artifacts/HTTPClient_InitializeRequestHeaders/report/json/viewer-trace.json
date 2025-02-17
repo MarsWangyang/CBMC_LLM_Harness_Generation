@@ -1,0 +1,4683 @@
+{
+  "viewer-trace": {
+    "traces": {
+      "addHeader.no-body.__CPROVER_file_local_core_http_client_c_httpHeaderStrncpy": [
+        {
+          "detail": {
+            "location": {
+              "file": "<built-in-additions>",
+              "function": null,
+              "line": 24
+            },
+            "name": "__CPROVER_initialize",
+            "name-path": "__CPROVER_initialize"
+          },
+          "hidden": true,
+          "kind": "function-call",
+          "location": {
+            "file": "<built-in-additions>",
+            "function": null,
+            "line": 24
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "<built-in-additions>",
+              "function": null,
+              "line": 24
+            },
+            "name": "__CPROVER_initialize",
+            "name-path": "__CPROVER_initialize"
+          },
+          "hidden": true,
+          "kind": "function-return",
+          "location": {
+            "file": "MISSING",
+            "function": "MISSING",
+            "line": 0
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "test/cbmc/proofs/HTTPClient_InitializeRequestHeaders/HTTPClient_InitializeRequestHeaders_harness.c",
+              "function": null,
+              "line": 34
+            },
+            "name": "HTTPClient_InitializeRequestHeaders_harness",
+            "name-path": "HTTPClient_InitializeRequestHeaders_harness"
+          },
+          "hidden": false,
+          "kind": "function-call",
+          "location": {
+            "file": "test/cbmc/proofs/HTTPClient_InitializeRequestHeaders/HTTPClient_InitializeRequestHeaders_harness.c",
+            "function": null,
+            "line": 34
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pRequestHeaders",
+            "lhs-lexical-scope": "HTTPClient_InitializeRequestHeaders_harness::1::pRequestHeaders",
+            "rhs-binary": null,
+            "rhs-value": "((HTTPRequestHeaders_t *)NULL)"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/proofs/HTTPClient_InitializeRequestHeaders/HTTPClient_InitializeRequestHeaders_harness.c",
+            "function": "HTTPClient_InitializeRequestHeaders_harness",
+            "line": 36
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pRequestInfo",
+            "lhs-lexical-scope": "HTTPClient_InitializeRequestHeaders_harness::1::pRequestInfo",
+            "rhs-binary": null,
+            "rhs-value": "((HTTPRequestInfo_t *)NULL)"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/proofs/HTTPClient_InitializeRequestHeaders/HTTPClient_InitializeRequestHeaders_harness.c",
+            "function": "HTTPClient_InitializeRequestHeaders_harness",
+            "line": 37
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "test/cbmc/sources/http_cbmc_state.c",
+              "function": null,
+              "line": 40
+            },
+            "name": "allocateHttpRequestHeaders",
+            "name-path": "allocateHttpRequestHeaders"
+          },
+          "hidden": false,
+          "kind": "function-call",
+          "location": {
+            "file": "test/cbmc/proofs/HTTPClient_InitializeRequestHeaders/HTTPClient_InitializeRequestHeaders_harness.c",
+            "function": "HTTPClient_InitializeRequestHeaders_harness",
+            "line": 40
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pRequestHeaders",
+            "lhs-lexical-scope": "allocateHttpRequestHeaders::pRequestHeaders",
+            "rhs-binary": null,
+            "rhs-value": "((HTTPRequestHeaders_t *)NULL)"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "test/cbmc/proofs/HTTPClient_InitializeRequestHeaders/HTTPClient_InitializeRequestHeaders_harness.c",
+            "function": "HTTPClient_InitializeRequestHeaders_harness",
+            "line": 40
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "test/cbmc/sources/http_cbmc_state.c",
+              "function": null,
+              "line": 34
+            },
+            "name": "mallocCanFail",
+            "name-path": "mallocCanFail"
+          },
+          "hidden": false,
+          "kind": "function-call",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "allocateHttpRequestHeaders",
+            "line": 44
+          }
+        },
+        {
+          "detail": {
+            "lhs": "size",
+            "lhs-lexical-scope": "mallocCanFail::size",
+            "rhs-binary": "00000000 00000000 00000000 00000000 00000000 00000000 00000000 00011000",
+            "rhs-value": "sizeof(HTTPRequestHeaders_t) /*24ul*/ "
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "allocateHttpRequestHeaders",
+            "line": 44
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "<builtin-library-malloc>",
+              "function": null,
+              "line": 11
+            },
+            "name": "malloc",
+            "name-path": "malloc"
+          },
+          "hidden": false,
+          "kind": "function-call",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "mallocCanFail",
+            "line": 37
+          }
+        },
+        {
+          "detail": {
+            "lhs": "malloc_size",
+            "lhs-lexical-scope": "malloc::malloc_size",
+            "rhs-binary": "00000000 00000000 00000000 00000000 00000000 00000000 00000000 00011000",
+            "rhs-value": "sizeof(HTTPRequestHeaders_t) /*24ul*/ "
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "mallocCanFail",
+            "line": 37
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value___VERIFIER_nondet___CPROVER_bool",
+            "lhs-lexical-scope": "malloc::$tmp::return_value___VERIFIER_nondet___CPROVER_bool",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 19
+          }
+        },
+        {
+          "detail": {
+            "lhs": "should_malloc_fail",
+            "lhs-lexical-scope": "malloc::1::1::should_malloc_fail",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 19
+          }
+        },
+        {
+          "detail": {
+            "lhs": "malloc_res",
+            "lhs-lexical-scope": "malloc::1::malloc_res",
+            "rhs-binary": null,
+            "rhs-value": "NULL"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 42
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dynamic_object",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object",
+            "rhs-binary": null,
+            "rhs-value": "{ .pBuffer=((uint8_t *)NULL), .bufferLen=36028797018959871ul, .headersLen=4294984656ul }"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dynamic_object.pBuffer",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object",
+            "rhs-binary": null,
+            "rhs-value": "((uint8_t *)NULL)"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dynamic_object.bufferLen",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object",
+            "rhs-binary": "00000000 01111111 11111111 11111111 11111111 11111111 11101111 11111111",
+            "rhs-value": "36028797018959871ul"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dynamic_object.headersLen",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object",
+            "rhs-binary": "00000000 00000000 00000000 00000001 00000000 00000000 01000011 11010000",
+            "rhs-value": "4294984656ul"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "malloc_value",
+            "lhs-lexical-scope": "malloc::$tmp::malloc_value",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object.pBuffer"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "malloc_res",
+            "lhs-lexical-scope": "malloc::1::malloc_res",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object.pBuffer"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value___VERIFIER_nondet___CPROVER_bool$1",
+            "lhs-lexical-scope": "malloc::$tmp::return_value___VERIFIER_nondet___CPROVER_bool$1",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 46
+          }
+        },
+        {
+          "detail": {
+            "lhs": "record_malloc",
+            "lhs-lexical-scope": "malloc::1::record_malloc",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 46
+          }
+        },
+        {
+          "detail": {
+            "lhs": "__CPROVER_malloc_is_new_array",
+            "lhs-lexical-scope": "__CPROVER_malloc_is_new_array",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 47
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value___VERIFIER_nondet___CPROVER_bool$2",
+            "lhs-lexical-scope": "malloc::$tmp::return_value___VERIFIER_nondet___CPROVER_bool$2",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 51
+          }
+        },
+        {
+          "detail": {
+            "lhs": "record_may_leak",
+            "lhs-lexical-scope": "malloc::1::record_may_leak",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 51
+          }
+        },
+        {
+          "detail": {
+            "lhs": "__CPROVER_memory_leak",
+            "lhs-lexical-scope": "__CPROVER_memory_leak",
+            "rhs-binary": null,
+            "rhs-value": "NULL"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 52
+          }
+        },
+        {
+          "detail": {
+            "lhs": "goto_symex$$return_value$$malloc",
+            "lhs-lexical-scope": "goto_symex::return_value::malloc",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object.pBuffer"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 58
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "<builtin-library-malloc>",
+              "function": null,
+              "line": 11
+            },
+            "name": "malloc",
+            "name-path": "malloc"
+          },
+          "hidden": false,
+          "kind": "function-return",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 59
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value_malloc",
+            "lhs-lexical-scope": "mallocCanFail::$tmp::return_value_malloc",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object.pBuffer"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "mallocCanFail",
+            "line": 37
+          }
+        },
+        {
+          "detail": {
+            "lhs": "goto_symex$$return_value$$mallocCanFail",
+            "lhs-lexical-scope": "goto_symex::return_value::mallocCanFail",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object.pBuffer"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "mallocCanFail",
+            "line": 37
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "test/cbmc/sources/http_cbmc_state.c",
+              "function": null,
+              "line": 34
+            },
+            "name": "mallocCanFail",
+            "name-path": "mallocCanFail"
+          },
+          "hidden": false,
+          "kind": "function-return",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "mallocCanFail",
+            "line": 38
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value_mallocCanFail",
+            "lhs-lexical-scope": "allocateHttpRequestHeaders::$tmp::return_value_mallocCanFail",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object.pBuffer"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "allocateHttpRequestHeaders",
+            "line": 44
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pRequestHeaders",
+            "lhs-lexical-scope": "allocateHttpRequestHeaders::pRequestHeaders",
+            "rhs-binary": null,
+            "rhs-value": "&dynamic_object"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "allocateHttpRequestHeaders",
+            "line": 44
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "test/cbmc/sources/http_cbmc_state.c",
+              "function": null,
+              "line": 34
+            },
+            "name": "mallocCanFail",
+            "name-path": "mallocCanFail"
+          },
+          "hidden": false,
+          "kind": "function-call",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "allocateHttpRequestHeaders",
+            "line": 50
+          }
+        },
+        {
+          "detail": {
+            "lhs": "size",
+            "lhs-lexical-scope": "mallocCanFail::size",
+            "rhs-binary": "00000000 01111111 11111111 11111111 11111111 11111111 11101111 11111111",
+            "rhs-value": "36028797018959871ul"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "allocateHttpRequestHeaders",
+            "line": 50
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "<builtin-library-malloc>",
+              "function": null,
+              "line": 11
+            },
+            "name": "malloc",
+            "name-path": "malloc"
+          },
+          "hidden": false,
+          "kind": "function-call",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "mallocCanFail",
+            "line": 37
+          }
+        },
+        {
+          "detail": {
+            "lhs": "malloc_size",
+            "lhs-lexical-scope": "malloc::malloc_size",
+            "rhs-binary": "00000000 01111111 11111111 11111111 11111111 11111111 11101111 11111111",
+            "rhs-value": "36028797018959871ul"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "mallocCanFail",
+            "line": 37
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value___VERIFIER_nondet___CPROVER_bool",
+            "lhs-lexical-scope": "malloc::$tmp::return_value___VERIFIER_nondet___CPROVER_bool",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 19
+          }
+        },
+        {
+          "detail": {
+            "lhs": "should_malloc_fail",
+            "lhs-lexical-scope": "malloc::1::1::should_malloc_fail",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 19
+          }
+        },
+        {
+          "detail": {
+            "lhs": "malloc_res",
+            "lhs-lexical-scope": "malloc::1::malloc_res",
+            "rhs-binary": null,
+            "rhs-value": "NULL"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 42
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dynamic_object_size",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object_size",
+            "rhs-binary": "00000000 01111111 11111111 11111111 11111111 11111111 11101111 11111111",
+            "rhs-value": "36028797018959871ul"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dynamic_object$0",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object$0",
+            "rhs-binary": null,
+            "rhs-value": "{ [9007199254740992ul]=0, [9007199254740993ul]=0, [9007199254740994ul]=0, [9007199254740995ul]=0, [9007199254740996ul]=0, [9007199254740997ul]=0, [9007199254740998ul]=0, [9007199254740999ul]=0, [9007199254741000ul]=0, [9007199254741001ul]=0, [9007199254741002ul]=0, [9007199254741003ul]=0, [9007199254741004ul]=0, [9007199254741009ul]=0, [9007199254741010ul]=0, [9007199254741015ul]=8, [9007199254741016ul]=0, [9007199254741033ul]=0, [9007199254741034ul]=0, [9007199254741035ul]=0, [9007199254741036ul]=0, [33776997205278717ul]=41, [33776997205278718ul]=32, [33776997205278719ul]=0, [33776997205278720ul]=0, [33776997205278729ul]=0, [33776997205278730ul]=32, [33776997205278731ul]=0, [33776997205278732ul]=0 }"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "malloc_value",
+            "lhs-lexical-scope": "malloc::$tmp::malloc_value",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$0"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "malloc_res",
+            "lhs-lexical-scope": "malloc::1::malloc_res",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$0"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value___VERIFIER_nondet___CPROVER_bool$1",
+            "lhs-lexical-scope": "malloc::$tmp::return_value___VERIFIER_nondet___CPROVER_bool$1",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 46
+          }
+        },
+        {
+          "detail": {
+            "lhs": "record_malloc",
+            "lhs-lexical-scope": "malloc::1::record_malloc",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 46
+          }
+        },
+        {
+          "detail": {
+            "lhs": "__CPROVER_malloc_is_new_array",
+            "lhs-lexical-scope": "__CPROVER_malloc_is_new_array",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 47
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value___VERIFIER_nondet___CPROVER_bool$2",
+            "lhs-lexical-scope": "malloc::$tmp::return_value___VERIFIER_nondet___CPROVER_bool$2",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 51
+          }
+        },
+        {
+          "detail": {
+            "lhs": "record_may_leak",
+            "lhs-lexical-scope": "malloc::1::record_may_leak",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 51
+          }
+        },
+        {
+          "detail": {
+            "lhs": "__CPROVER_memory_leak",
+            "lhs-lexical-scope": "__CPROVER_memory_leak",
+            "rhs-binary": null,
+            "rhs-value": "NULL"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 52
+          }
+        },
+        {
+          "detail": {
+            "lhs": "goto_symex$$return_value$$malloc",
+            "lhs-lexical-scope": "goto_symex::return_value::malloc",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$0"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 58
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "<builtin-library-malloc>",
+              "function": null,
+              "line": 11
+            },
+            "name": "malloc",
+            "name-path": "malloc"
+          },
+          "hidden": false,
+          "kind": "function-return",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 59
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value_malloc",
+            "lhs-lexical-scope": "mallocCanFail::$tmp::return_value_malloc",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$0"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "mallocCanFail",
+            "line": 37
+          }
+        },
+        {
+          "detail": {
+            "lhs": "goto_symex$$return_value$$mallocCanFail",
+            "lhs-lexical-scope": "goto_symex::return_value::mallocCanFail",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$0"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "mallocCanFail",
+            "line": 37
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "test/cbmc/sources/http_cbmc_state.c",
+              "function": null,
+              "line": 34
+            },
+            "name": "mallocCanFail",
+            "name-path": "mallocCanFail"
+          },
+          "hidden": false,
+          "kind": "function-return",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "mallocCanFail",
+            "line": 38
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value_mallocCanFail$0",
+            "lhs-lexical-scope": "allocateHttpRequestHeaders::$tmp::return_value_mallocCanFail$0",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$0"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "allocateHttpRequestHeaders",
+            "line": 50
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dynamic_object.pBuffer",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object",
+            "rhs-binary": null,
+            "rhs-value": "dynamic_object$0"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "allocateHttpRequestHeaders",
+            "line": 50
+          }
+        },
+        {
+          "detail": {
+            "lhs": "goto_symex$$return_value$$allocateHttpRequestHeaders",
+            "lhs-lexical-scope": "goto_symex::return_value::allocateHttpRequestHeaders",
+            "rhs-binary": null,
+            "rhs-value": "&dynamic_object"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "allocateHttpRequestHeaders",
+            "line": 53
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "test/cbmc/sources/http_cbmc_state.c",
+              "function": null,
+              "line": 40
+            },
+            "name": "allocateHttpRequestHeaders",
+            "name-path": "allocateHttpRequestHeaders"
+          },
+          "hidden": false,
+          "kind": "function-return",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "allocateHttpRequestHeaders",
+            "line": 54
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pRequestHeaders",
+            "lhs-lexical-scope": "HTTPClient_InitializeRequestHeaders_harness::1::pRequestHeaders",
+            "rhs-binary": null,
+            "rhs-value": "&dynamic_object"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/proofs/HTTPClient_InitializeRequestHeaders/HTTPClient_InitializeRequestHeaders_harness.c",
+            "function": "HTTPClient_InitializeRequestHeaders_harness",
+            "line": 40
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "test/cbmc/sources/http_cbmc_state.c",
+              "function": null,
+              "line": 56
+            },
+            "name": "isValidHttpRequestHeaders",
+            "name-path": "isValidHttpRequestHeaders"
+          },
+          "hidden": false,
+          "kind": "function-call",
+          "location": {
+            "file": "test/cbmc/proofs/HTTPClient_InitializeRequestHeaders/HTTPClient_InitializeRequestHeaders_harness.c",
+            "function": "HTTPClient_InitializeRequestHeaders_harness",
+            "line": 41
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pRequestHeaders",
+            "lhs-lexical-scope": "isValidHttpRequestHeaders::pRequestHeaders",
+            "rhs-binary": null,
+            "rhs-value": "&dynamic_object"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "test/cbmc/proofs/HTTPClient_InitializeRequestHeaders/HTTPClient_InitializeRequestHeaders_harness.c",
+            "function": "HTTPClient_InitializeRequestHeaders_harness",
+            "line": 41
+          }
+        },
+        {
+          "detail": {
+            "lhs": "isValid",
+            "lhs-lexical-scope": "isValidHttpRequestHeaders::1::isValid",
+            "rhs-binary": "00000001",
+            "rhs-value": "TRUE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "isValidHttpRequestHeaders",
+            "line": 58
+          }
+        },
+        {
+          "detail": {
+            "lhs": "isValid",
+            "lhs-lexical-scope": "isValidHttpRequestHeaders::1::isValid",
+            "rhs-binary": "00000001",
+            "rhs-value": "TRUE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "isValidHttpRequestHeaders",
+            "line": 62
+          }
+        },
+        {
+          "detail": {
+            "lhs": "goto_symex$$return_value$$isValidHttpRequestHeaders",
+            "lhs-lexical-scope": "goto_symex::return_value::isValidHttpRequestHeaders",
+            "rhs-binary": "00000001",
+            "rhs-value": "TRUE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "isValidHttpRequestHeaders",
+            "line": 66
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "test/cbmc/sources/http_cbmc_state.c",
+              "function": null,
+              "line": 56
+            },
+            "name": "isValidHttpRequestHeaders",
+            "name-path": "isValidHttpRequestHeaders"
+          },
+          "hidden": false,
+          "kind": "function-return",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "isValidHttpRequestHeaders",
+            "line": 67
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value_isValidHttpRequestHeaders",
+            "lhs-lexical-scope": "HTTPClient_InitializeRequestHeaders_harness::$tmp::return_value_isValidHttpRequestHeaders",
+            "rhs-binary": "00000001",
+            "rhs-value": "TRUE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/proofs/HTTPClient_InitializeRequestHeaders/HTTPClient_InitializeRequestHeaders_harness.c",
+            "function": "HTTPClient_InitializeRequestHeaders_harness",
+            "line": 41
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "test/cbmc/sources/http_cbmc_state.c",
+              "function": null,
+              "line": 69
+            },
+            "name": "allocateHttpRequestInfo",
+            "name-path": "allocateHttpRequestInfo"
+          },
+          "hidden": false,
+          "kind": "function-call",
+          "location": {
+            "file": "test/cbmc/proofs/HTTPClient_InitializeRequestHeaders/HTTPClient_InitializeRequestHeaders_harness.c",
+            "function": "HTTPClient_InitializeRequestHeaders_harness",
+            "line": 44
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pRequestInfo",
+            "lhs-lexical-scope": "allocateHttpRequestInfo::pRequestInfo",
+            "rhs-binary": null,
+            "rhs-value": "((HTTPRequestInfo_t *)NULL)"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "test/cbmc/proofs/HTTPClient_InitializeRequestHeaders/HTTPClient_InitializeRequestHeaders_harness.c",
+            "function": "HTTPClient_InitializeRequestHeaders_harness",
+            "line": 44
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "test/cbmc/sources/http_cbmc_state.c",
+              "function": null,
+              "line": 34
+            },
+            "name": "mallocCanFail",
+            "name-path": "mallocCanFail"
+          },
+          "hidden": false,
+          "kind": "function-call",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "allocateHttpRequestInfo",
+            "line": 73
+          }
+        },
+        {
+          "detail": {
+            "lhs": "size",
+            "lhs-lexical-scope": "mallocCanFail::size",
+            "rhs-binary": "00000000 00000000 00000000 00000000 00000000 00000000 00000000 00111000",
+            "rhs-value": "sizeof(HTTPRequestInfo_t) /*56ul*/ "
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "allocateHttpRequestInfo",
+            "line": 73
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "<builtin-library-malloc>",
+              "function": null,
+              "line": 11
+            },
+            "name": "malloc",
+            "name-path": "malloc"
+          },
+          "hidden": false,
+          "kind": "function-call",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "mallocCanFail",
+            "line": 37
+          }
+        },
+        {
+          "detail": {
+            "lhs": "malloc_size",
+            "lhs-lexical-scope": "malloc::malloc_size",
+            "rhs-binary": "00000000 00000000 00000000 00000000 00000000 00000000 00000000 00111000",
+            "rhs-value": "sizeof(HTTPRequestInfo_t) /*56ul*/ "
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "mallocCanFail",
+            "line": 37
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value___VERIFIER_nondet___CPROVER_bool",
+            "lhs-lexical-scope": "malloc::$tmp::return_value___VERIFIER_nondet___CPROVER_bool",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 19
+          }
+        },
+        {
+          "detail": {
+            "lhs": "should_malloc_fail",
+            "lhs-lexical-scope": "malloc::1::1::should_malloc_fail",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 19
+          }
+        },
+        {
+          "detail": {
+            "lhs": "malloc_res",
+            "lhs-lexical-scope": "malloc::1::malloc_res",
+            "rhs-binary": null,
+            "rhs-value": "NULL"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 42
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dynamic_object$1",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object$1",
+            "rhs-binary": null,
+            "rhs-value": "{ .pMethod=((char *)NULL), .methodLen=9007199254740992ul, .pPath=((char *)NULL),\n    .pathLen=0ul, .pHost=((char *)NULL),\n    .hostLen=24769797950537706ul, .reqFlags=2u,\n    .$pad7=0u }"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dynamic_object$1.pMethod",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object$1",
+            "rhs-binary": null,
+            "rhs-value": "((char *)NULL)"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dynamic_object$1.methodLen",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object$1",
+            "rhs-binary": "00000000 00100000 00000000 00000000 00000000 00000000 00000000 00000000",
+            "rhs-value": "9007199254740992ul"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dynamic_object$1.pPath",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object$1",
+            "rhs-binary": null,
+            "rhs-value": "((char *)NULL)"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dynamic_object$1.pathLen",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object$1",
+            "rhs-binary": "00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000",
+            "rhs-value": "0ul"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dynamic_object$1.pHost",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object$1",
+            "rhs-binary": null,
+            "rhs-value": "((char *)NULL)"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dynamic_object$1.hostLen",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object$1",
+            "rhs-binary": "00000000 01010111 11111111 11111111 11111111 11111111 11111111 11101010",
+            "rhs-value": "24769797950537706ul"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dynamic_object$1.reqFlags",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object$1",
+            "rhs-binary": "00000000 00000000 00000000 00000010",
+            "rhs-value": "2u"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dynamic_object$1.$pad7",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object$1",
+            "rhs-binary": "00000000 00000000 00000000 00000000",
+            "rhs-value": "0u"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "malloc_value",
+            "lhs-lexical-scope": "malloc::$tmp::malloc_value",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$1.pMethod"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "malloc_res",
+            "lhs-lexical-scope": "malloc::1::malloc_res",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$1.pMethod"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value___VERIFIER_nondet___CPROVER_bool$1",
+            "lhs-lexical-scope": "malloc::$tmp::return_value___VERIFIER_nondet___CPROVER_bool$1",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 46
+          }
+        },
+        {
+          "detail": {
+            "lhs": "record_malloc",
+            "lhs-lexical-scope": "malloc::1::record_malloc",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 46
+          }
+        },
+        {
+          "detail": {
+            "lhs": "__CPROVER_malloc_is_new_array",
+            "lhs-lexical-scope": "__CPROVER_malloc_is_new_array",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 47
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value___VERIFIER_nondet___CPROVER_bool$2",
+            "lhs-lexical-scope": "malloc::$tmp::return_value___VERIFIER_nondet___CPROVER_bool$2",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 51
+          }
+        },
+        {
+          "detail": {
+            "lhs": "record_may_leak",
+            "lhs-lexical-scope": "malloc::1::record_may_leak",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 51
+          }
+        },
+        {
+          "detail": {
+            "lhs": "__CPROVER_memory_leak",
+            "lhs-lexical-scope": "__CPROVER_memory_leak",
+            "rhs-binary": null,
+            "rhs-value": "NULL"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 52
+          }
+        },
+        {
+          "detail": {
+            "lhs": "goto_symex$$return_value$$malloc",
+            "lhs-lexical-scope": "goto_symex::return_value::malloc",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$1.pMethod"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 58
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "<builtin-library-malloc>",
+              "function": null,
+              "line": 11
+            },
+            "name": "malloc",
+            "name-path": "malloc"
+          },
+          "hidden": false,
+          "kind": "function-return",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 59
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value_malloc",
+            "lhs-lexical-scope": "mallocCanFail::$tmp::return_value_malloc",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$1.pMethod"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "mallocCanFail",
+            "line": 37
+          }
+        },
+        {
+          "detail": {
+            "lhs": "goto_symex$$return_value$$mallocCanFail",
+            "lhs-lexical-scope": "goto_symex::return_value::mallocCanFail",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$1.pMethod"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "mallocCanFail",
+            "line": 37
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "test/cbmc/sources/http_cbmc_state.c",
+              "function": null,
+              "line": 34
+            },
+            "name": "mallocCanFail",
+            "name-path": "mallocCanFail"
+          },
+          "hidden": false,
+          "kind": "function-return",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "mallocCanFail",
+            "line": 38
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value_mallocCanFail",
+            "lhs-lexical-scope": "allocateHttpRequestInfo::$tmp::return_value_mallocCanFail",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$1.pMethod"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "allocateHttpRequestInfo",
+            "line": 73
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pRequestInfo",
+            "lhs-lexical-scope": "allocateHttpRequestInfo::pRequestInfo",
+            "rhs-binary": null,
+            "rhs-value": "&dynamic_object$1"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "allocateHttpRequestInfo",
+            "line": 73
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "test/cbmc/sources/http_cbmc_state.c",
+              "function": null,
+              "line": 34
+            },
+            "name": "mallocCanFail",
+            "name-path": "mallocCanFail"
+          },
+          "hidden": false,
+          "kind": "function-call",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "allocateHttpRequestInfo",
+            "line": 79
+          }
+        },
+        {
+          "detail": {
+            "lhs": "size",
+            "lhs-lexical-scope": "mallocCanFail::size",
+            "rhs-binary": "00000000 00100000 00000000 00000000 00000000 00000000 00000000 00000000",
+            "rhs-value": "9007199254740992ul"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "allocateHttpRequestInfo",
+            "line": 79
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "<builtin-library-malloc>",
+              "function": null,
+              "line": 11
+            },
+            "name": "malloc",
+            "name-path": "malloc"
+          },
+          "hidden": false,
+          "kind": "function-call",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "mallocCanFail",
+            "line": 37
+          }
+        },
+        {
+          "detail": {
+            "lhs": "malloc_size",
+            "lhs-lexical-scope": "malloc::malloc_size",
+            "rhs-binary": "00000000 00100000 00000000 00000000 00000000 00000000 00000000 00000000",
+            "rhs-value": "9007199254740992ul"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "mallocCanFail",
+            "line": 37
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value___VERIFIER_nondet___CPROVER_bool",
+            "lhs-lexical-scope": "malloc::$tmp::return_value___VERIFIER_nondet___CPROVER_bool",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 19
+          }
+        },
+        {
+          "detail": {
+            "lhs": "should_malloc_fail",
+            "lhs-lexical-scope": "malloc::1::1::should_malloc_fail",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 19
+          }
+        },
+        {
+          "detail": {
+            "lhs": "malloc_res",
+            "lhs-lexical-scope": "malloc::1::malloc_res",
+            "rhs-binary": null,
+            "rhs-value": "NULL"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 42
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dynamic_object_size$0",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object_size$0",
+            "rhs-binary": "00000000 00100000 00000000 00000000 00000000 00000000 00000000 00000000",
+            "rhs-value": "9007199254740992ul"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dynamic_object$2",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object$2",
+            "rhs-binary": null,
+            "rhs-value": "{  }"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "malloc_value",
+            "lhs-lexical-scope": "malloc::$tmp::malloc_value",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$2"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "malloc_res",
+            "lhs-lexical-scope": "malloc::1::malloc_res",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$2"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value___VERIFIER_nondet___CPROVER_bool$1",
+            "lhs-lexical-scope": "malloc::$tmp::return_value___VERIFIER_nondet___CPROVER_bool$1",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 46
+          }
+        },
+        {
+          "detail": {
+            "lhs": "record_malloc",
+            "lhs-lexical-scope": "malloc::1::record_malloc",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 46
+          }
+        },
+        {
+          "detail": {
+            "lhs": "__CPROVER_malloc_is_new_array",
+            "lhs-lexical-scope": "__CPROVER_malloc_is_new_array",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 47
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value___VERIFIER_nondet___CPROVER_bool$2",
+            "lhs-lexical-scope": "malloc::$tmp::return_value___VERIFIER_nondet___CPROVER_bool$2",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 51
+          }
+        },
+        {
+          "detail": {
+            "lhs": "record_may_leak",
+            "lhs-lexical-scope": "malloc::1::record_may_leak",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 51
+          }
+        },
+        {
+          "detail": {
+            "lhs": "__CPROVER_memory_leak",
+            "lhs-lexical-scope": "__CPROVER_memory_leak",
+            "rhs-binary": null,
+            "rhs-value": "NULL"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 52
+          }
+        },
+        {
+          "detail": {
+            "lhs": "goto_symex$$return_value$$malloc",
+            "lhs-lexical-scope": "goto_symex::return_value::malloc",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$2"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 58
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "<builtin-library-malloc>",
+              "function": null,
+              "line": 11
+            },
+            "name": "malloc",
+            "name-path": "malloc"
+          },
+          "hidden": false,
+          "kind": "function-return",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 59
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value_malloc",
+            "lhs-lexical-scope": "mallocCanFail::$tmp::return_value_malloc",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$2"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "mallocCanFail",
+            "line": 37
+          }
+        },
+        {
+          "detail": {
+            "lhs": "goto_symex$$return_value$$mallocCanFail",
+            "lhs-lexical-scope": "goto_symex::return_value::mallocCanFail",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$2"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "mallocCanFail",
+            "line": 37
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "test/cbmc/sources/http_cbmc_state.c",
+              "function": null,
+              "line": 34
+            },
+            "name": "mallocCanFail",
+            "name-path": "mallocCanFail"
+          },
+          "hidden": false,
+          "kind": "function-return",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "mallocCanFail",
+            "line": 38
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value_mallocCanFail$0",
+            "lhs-lexical-scope": "allocateHttpRequestInfo::$tmp::return_value_mallocCanFail$0",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$2"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "allocateHttpRequestInfo",
+            "line": 79
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dynamic_object$1.pMethod",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object$1",
+            "rhs-binary": null,
+            "rhs-value": "(char *)&dynamic_object$2"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "allocateHttpRequestInfo",
+            "line": 79
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "test/cbmc/sources/http_cbmc_state.c",
+              "function": null,
+              "line": 34
+            },
+            "name": "mallocCanFail",
+            "name-path": "mallocCanFail"
+          },
+          "hidden": false,
+          "kind": "function-call",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "allocateHttpRequestInfo",
+            "line": 82
+          }
+        },
+        {
+          "detail": {
+            "lhs": "size",
+            "lhs-lexical-scope": "mallocCanFail::size",
+            "rhs-binary": "00000000 01010111 11111111 11111111 11111111 11111111 11111111 11101010",
+            "rhs-value": "24769797950537706ul"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "allocateHttpRequestInfo",
+            "line": 82
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "<builtin-library-malloc>",
+              "function": null,
+              "line": 11
+            },
+            "name": "malloc",
+            "name-path": "malloc"
+          },
+          "hidden": false,
+          "kind": "function-call",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "mallocCanFail",
+            "line": 37
+          }
+        },
+        {
+          "detail": {
+            "lhs": "malloc_size",
+            "lhs-lexical-scope": "malloc::malloc_size",
+            "rhs-binary": "00000000 01010111 11111111 11111111 11111111 11111111 11111111 11101010",
+            "rhs-value": "24769797950537706ul"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "mallocCanFail",
+            "line": 37
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value___VERIFIER_nondet___CPROVER_bool",
+            "lhs-lexical-scope": "malloc::$tmp::return_value___VERIFIER_nondet___CPROVER_bool",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 19
+          }
+        },
+        {
+          "detail": {
+            "lhs": "should_malloc_fail",
+            "lhs-lexical-scope": "malloc::1::1::should_malloc_fail",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 19
+          }
+        },
+        {
+          "detail": {
+            "lhs": "malloc_res",
+            "lhs-lexical-scope": "malloc::1::malloc_res",
+            "rhs-binary": null,
+            "rhs-value": "NULL"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 42
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dynamic_object_size$1",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object_size$1",
+            "rhs-binary": "00000000 01010111 11111111 11111111 11111111 11111111 11111111 11101010",
+            "rhs-value": "24769797950537706ul"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dynamic_object$3",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object$3",
+            "rhs-binary": null,
+            "rhs-value": "dynamic_object$3#1"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "malloc_value",
+            "lhs-lexical-scope": "malloc::$tmp::malloc_value",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$3"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "malloc_res",
+            "lhs-lexical-scope": "malloc::1::malloc_res",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$3"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value___VERIFIER_nondet___CPROVER_bool$1",
+            "lhs-lexical-scope": "malloc::$tmp::return_value___VERIFIER_nondet___CPROVER_bool$1",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 46
+          }
+        },
+        {
+          "detail": {
+            "lhs": "record_malloc",
+            "lhs-lexical-scope": "malloc::1::record_malloc",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 46
+          }
+        },
+        {
+          "detail": {
+            "lhs": "__CPROVER_malloc_is_new_array",
+            "lhs-lexical-scope": "__CPROVER_malloc_is_new_array",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 47
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value___VERIFIER_nondet___CPROVER_bool$2",
+            "lhs-lexical-scope": "malloc::$tmp::return_value___VERIFIER_nondet___CPROVER_bool$2",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 51
+          }
+        },
+        {
+          "detail": {
+            "lhs": "record_may_leak",
+            "lhs-lexical-scope": "malloc::1::record_may_leak",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 51
+          }
+        },
+        {
+          "detail": {
+            "lhs": "__CPROVER_memory_leak",
+            "lhs-lexical-scope": "__CPROVER_memory_leak",
+            "rhs-binary": null,
+            "rhs-value": "NULL"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 52
+          }
+        },
+        {
+          "detail": {
+            "lhs": "goto_symex$$return_value$$malloc",
+            "lhs-lexical-scope": "goto_symex::return_value::malloc",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$3"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 58
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "<builtin-library-malloc>",
+              "function": null,
+              "line": 11
+            },
+            "name": "malloc",
+            "name-path": "malloc"
+          },
+          "hidden": false,
+          "kind": "function-return",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 59
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value_malloc",
+            "lhs-lexical-scope": "mallocCanFail::$tmp::return_value_malloc",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$3"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "mallocCanFail",
+            "line": 37
+          }
+        },
+        {
+          "detail": {
+            "lhs": "goto_symex$$return_value$$mallocCanFail",
+            "lhs-lexical-scope": "goto_symex::return_value::mallocCanFail",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$3"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "mallocCanFail",
+            "line": 37
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "test/cbmc/sources/http_cbmc_state.c",
+              "function": null,
+              "line": 34
+            },
+            "name": "mallocCanFail",
+            "name-path": "mallocCanFail"
+          },
+          "hidden": false,
+          "kind": "function-return",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "mallocCanFail",
+            "line": 38
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value_mallocCanFail$1",
+            "lhs-lexical-scope": "allocateHttpRequestInfo::$tmp::return_value_mallocCanFail$1",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$3"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "allocateHttpRequestInfo",
+            "line": 82
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dynamic_object$1.pHost",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object$1",
+            "rhs-binary": null,
+            "rhs-value": "(char *)&dynamic_object$3"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "allocateHttpRequestInfo",
+            "line": 82
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "test/cbmc/sources/http_cbmc_state.c",
+              "function": null,
+              "line": 34
+            },
+            "name": "mallocCanFail",
+            "name-path": "mallocCanFail"
+          },
+          "hidden": false,
+          "kind": "function-call",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "allocateHttpRequestInfo",
+            "line": 85
+          }
+        },
+        {
+          "detail": {
+            "lhs": "size",
+            "lhs-lexical-scope": "mallocCanFail::size",
+            "rhs-binary": "00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000",
+            "rhs-value": "0ul"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "allocateHttpRequestInfo",
+            "line": 85
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "<builtin-library-malloc>",
+              "function": null,
+              "line": 11
+            },
+            "name": "malloc",
+            "name-path": "malloc"
+          },
+          "hidden": false,
+          "kind": "function-call",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "mallocCanFail",
+            "line": 37
+          }
+        },
+        {
+          "detail": {
+            "lhs": "malloc_size",
+            "lhs-lexical-scope": "malloc::malloc_size",
+            "rhs-binary": "00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000",
+            "rhs-value": "0ul"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "mallocCanFail",
+            "line": 37
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value___VERIFIER_nondet___CPROVER_bool",
+            "lhs-lexical-scope": "malloc::$tmp::return_value___VERIFIER_nondet___CPROVER_bool",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 19
+          }
+        },
+        {
+          "detail": {
+            "lhs": "should_malloc_fail",
+            "lhs-lexical-scope": "malloc::1::1::should_malloc_fail",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 19
+          }
+        },
+        {
+          "detail": {
+            "lhs": "malloc_res",
+            "lhs-lexical-scope": "malloc::1::malloc_res",
+            "rhs-binary": null,
+            "rhs-value": "NULL"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 42
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dynamic_object_size$2",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object_size$2",
+            "rhs-binary": "00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000",
+            "rhs-value": "0ul"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dynamic_object$4",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object$4",
+            "rhs-binary": null,
+            "rhs-value": "{  }"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "malloc_value",
+            "lhs-lexical-scope": "malloc::$tmp::malloc_value",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$4"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "malloc_res",
+            "lhs-lexical-scope": "malloc::1::malloc_res",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$4"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 43
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value___VERIFIER_nondet___CPROVER_bool$1",
+            "lhs-lexical-scope": "malloc::$tmp::return_value___VERIFIER_nondet___CPROVER_bool$1",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 46
+          }
+        },
+        {
+          "detail": {
+            "lhs": "record_malloc",
+            "lhs-lexical-scope": "malloc::1::record_malloc",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 46
+          }
+        },
+        {
+          "detail": {
+            "lhs": "__CPROVER_malloc_is_new_array",
+            "lhs-lexical-scope": "__CPROVER_malloc_is_new_array",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 47
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value___VERIFIER_nondet___CPROVER_bool$2",
+            "lhs-lexical-scope": "malloc::$tmp::return_value___VERIFIER_nondet___CPROVER_bool$2",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 51
+          }
+        },
+        {
+          "detail": {
+            "lhs": "record_may_leak",
+            "lhs-lexical-scope": "malloc::1::record_may_leak",
+            "rhs-binary": null,
+            "rhs-value": "FALSE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 51
+          }
+        },
+        {
+          "detail": {
+            "lhs": "__CPROVER_memory_leak",
+            "lhs-lexical-scope": "__CPROVER_memory_leak",
+            "rhs-binary": null,
+            "rhs-value": "NULL"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 52
+          }
+        },
+        {
+          "detail": {
+            "lhs": "goto_symex$$return_value$$malloc",
+            "lhs-lexical-scope": "goto_symex::return_value::malloc",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$4"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 58
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "<builtin-library-malloc>",
+              "function": null,
+              "line": 11
+            },
+            "name": "malloc",
+            "name-path": "malloc"
+          },
+          "hidden": false,
+          "kind": "function-return",
+          "location": {
+            "file": "<builtin-library-malloc>",
+            "function": "malloc",
+            "line": 59
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value_malloc",
+            "lhs-lexical-scope": "mallocCanFail::$tmp::return_value_malloc",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$4"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "mallocCanFail",
+            "line": 37
+          }
+        },
+        {
+          "detail": {
+            "lhs": "goto_symex$$return_value$$mallocCanFail",
+            "lhs-lexical-scope": "goto_symex::return_value::mallocCanFail",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$4"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "mallocCanFail",
+            "line": 37
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "test/cbmc/sources/http_cbmc_state.c",
+              "function": null,
+              "line": 34
+            },
+            "name": "mallocCanFail",
+            "name-path": "mallocCanFail"
+          },
+          "hidden": false,
+          "kind": "function-return",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "mallocCanFail",
+            "line": 38
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value_mallocCanFail$2",
+            "lhs-lexical-scope": "allocateHttpRequestInfo::$tmp::return_value_mallocCanFail$2",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$4"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "allocateHttpRequestInfo",
+            "line": 85
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dynamic_object$1.pPath",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object$1",
+            "rhs-binary": null,
+            "rhs-value": "(char *)&dynamic_object$4"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "allocateHttpRequestInfo",
+            "line": 85
+          }
+        },
+        {
+          "detail": {
+            "lhs": "goto_symex$$return_value$$allocateHttpRequestInfo",
+            "lhs-lexical-scope": "goto_symex::return_value::allocateHttpRequestInfo",
+            "rhs-binary": null,
+            "rhs-value": "&dynamic_object$1"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "allocateHttpRequestInfo",
+            "line": 88
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "test/cbmc/sources/http_cbmc_state.c",
+              "function": null,
+              "line": 69
+            },
+            "name": "allocateHttpRequestInfo",
+            "name-path": "allocateHttpRequestInfo"
+          },
+          "hidden": false,
+          "kind": "function-return",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "allocateHttpRequestInfo",
+            "line": 89
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pRequestInfo",
+            "lhs-lexical-scope": "HTTPClient_InitializeRequestHeaders_harness::1::pRequestInfo",
+            "rhs-binary": null,
+            "rhs-value": "&dynamic_object$1"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/proofs/HTTPClient_InitializeRequestHeaders/HTTPClient_InitializeRequestHeaders_harness.c",
+            "function": "HTTPClient_InitializeRequestHeaders_harness",
+            "line": 44
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "test/cbmc/sources/http_cbmc_state.c",
+              "function": null,
+              "line": 91
+            },
+            "name": "isValidHttpRequestInfo",
+            "name-path": "isValidHttpRequestInfo"
+          },
+          "hidden": false,
+          "kind": "function-call",
+          "location": {
+            "file": "test/cbmc/proofs/HTTPClient_InitializeRequestHeaders/HTTPClient_InitializeRequestHeaders_harness.c",
+            "function": "HTTPClient_InitializeRequestHeaders_harness",
+            "line": 45
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pRequestInfo",
+            "lhs-lexical-scope": "isValidHttpRequestInfo::pRequestInfo",
+            "rhs-binary": null,
+            "rhs-value": "&dynamic_object$1"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "test/cbmc/proofs/HTTPClient_InitializeRequestHeaders/HTTPClient_InitializeRequestHeaders_harness.c",
+            "function": "HTTPClient_InitializeRequestHeaders_harness",
+            "line": 45
+          }
+        },
+        {
+          "detail": {
+            "lhs": "isValid",
+            "lhs-lexical-scope": "isValidHttpRequestInfo::1::isValid",
+            "rhs-binary": "00000001",
+            "rhs-value": "TRUE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "isValidHttpRequestInfo",
+            "line": 93
+          }
+        },
+        {
+          "detail": {
+            "lhs": "isValid",
+            "lhs-lexical-scope": "isValidHttpRequestInfo::1::isValid",
+            "rhs-binary": "00000001",
+            "rhs-value": "TRUE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "isValidHttpRequestInfo",
+            "line": 97
+          }
+        },
+        {
+          "detail": {
+            "lhs": "goto_symex$$return_value$$isValidHttpRequestInfo",
+            "lhs-lexical-scope": "goto_symex::return_value::isValidHttpRequestInfo",
+            "rhs-binary": "00000001",
+            "rhs-value": "TRUE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "isValidHttpRequestInfo",
+            "line": 102
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "test/cbmc/sources/http_cbmc_state.c",
+              "function": null,
+              "line": 91
+            },
+            "name": "isValidHttpRequestInfo",
+            "name-path": "isValidHttpRequestInfo"
+          },
+          "hidden": false,
+          "kind": "function-return",
+          "location": {
+            "file": "test/cbmc/sources/http_cbmc_state.c",
+            "function": "isValidHttpRequestInfo",
+            "line": 103
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value_isValidHttpRequestInfo",
+            "lhs-lexical-scope": "HTTPClient_InitializeRequestHeaders_harness::$tmp::return_value_isValidHttpRequestInfo",
+            "rhs-binary": "00000001",
+            "rhs-value": "TRUE"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "test/cbmc/proofs/HTTPClient_InitializeRequestHeaders/HTTPClient_InitializeRequestHeaders_harness.c",
+            "function": "HTTPClient_InitializeRequestHeaders_harness",
+            "line": 45
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "source/core_http_client.c",
+              "function": null,
+              "line": 1589
+            },
+            "name": "HTTPClient_InitializeRequestHeaders",
+            "name-path": "HTTPClient_InitializeRequestHeaders"
+          },
+          "hidden": false,
+          "kind": "function-call",
+          "location": {
+            "file": "test/cbmc/proofs/HTTPClient_InitializeRequestHeaders/HTTPClient_InitializeRequestHeaders_harness.c",
+            "function": "HTTPClient_InitializeRequestHeaders_harness",
+            "line": 47
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pRequestHeaders",
+            "lhs-lexical-scope": "HTTPClient_InitializeRequestHeaders::pRequestHeaders",
+            "rhs-binary": null,
+            "rhs-value": "&dynamic_object"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "test/cbmc/proofs/HTTPClient_InitializeRequestHeaders/HTTPClient_InitializeRequestHeaders_harness.c",
+            "function": "HTTPClient_InitializeRequestHeaders_harness",
+            "line": 47
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pRequestInfo",
+            "lhs-lexical-scope": "HTTPClient_InitializeRequestHeaders::pRequestInfo",
+            "rhs-binary": null,
+            "rhs-value": "&dynamic_object$1"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "test/cbmc/proofs/HTTPClient_InitializeRequestHeaders/HTTPClient_InitializeRequestHeaders_harness.c",
+            "function": "HTTPClient_InitializeRequestHeaders_harness",
+            "line": 47
+          }
+        },
+        {
+          "detail": {
+            "lhs": "returnStatus",
+            "lhs-lexical-scope": "HTTPClient_InitializeRequestHeaders::1::returnStatus",
+            "rhs-binary": null,
+            "rhs-value": "/*enum*/HTTPSuccess"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "HTTPClient_InitializeRequestHeaders",
+            "line": 1592
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dynamic_object.headersLen",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object",
+            "rhs-binary": "00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000",
+            "rhs-value": "0ul"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "HTTPClient_InitializeRequestHeaders",
+            "line": 1638
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "source/core_http_client.c",
+              "function": null,
+              "line": 1513
+            },
+            "name": "writeRequestLine",
+            "name-path": "__CPROVER_file_local_core_http_client_c_writeRequestLine"
+          },
+          "hidden": false,
+          "kind": "function-call",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "HTTPClient_InitializeRequestHeaders",
+            "line": 1641
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pRequestHeaders",
+            "lhs-lexical-scope": "writeRequestLine::pRequestHeaders",
+            "rhs-binary": null,
+            "rhs-value": "&dynamic_object"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "HTTPClient_InitializeRequestHeaders",
+            "line": 1641
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pMethod",
+            "lhs-lexical-scope": "writeRequestLine::pMethod",
+            "rhs-binary": null,
+            "rhs-value": "(char *)&dynamic_object$2"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "HTTPClient_InitializeRequestHeaders",
+            "line": 1641
+          }
+        },
+        {
+          "detail": {
+            "lhs": "methodLen",
+            "lhs-lexical-scope": "writeRequestLine::methodLen",
+            "rhs-binary": "00000000 00100000 00000000 00000000 00000000 00000000 00000000 00000000",
+            "rhs-value": "9007199254740992ul"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "HTTPClient_InitializeRequestHeaders",
+            "line": 1641
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pPath",
+            "lhs-lexical-scope": "writeRequestLine::pPath",
+            "rhs-binary": null,
+            "rhs-value": "(char *)&dynamic_object$4"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "HTTPClient_InitializeRequestHeaders",
+            "line": 1641
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pathLen",
+            "lhs-lexical-scope": "writeRequestLine::pathLen",
+            "rhs-binary": "00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000",
+            "rhs-value": "0ul"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "HTTPClient_InitializeRequestHeaders",
+            "line": 1641
+          }
+        },
+        {
+          "detail": {
+            "lhs": "returnStatus",
+            "lhs-lexical-scope": "writeRequestLine::1::returnStatus",
+            "rhs-binary": null,
+            "rhs-value": "/*enum*/HTTPSuccess"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1519
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pBufferCur",
+            "lhs-lexical-scope": "writeRequestLine::1::pBufferCur",
+            "rhs-binary": null,
+            "rhs-value": "((char *)NULL)"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1520
+          }
+        },
+        {
+          "detail": {
+            "lhs": "toAddLen",
+            "lhs-lexical-scope": "writeRequestLine::1::toAddLen",
+            "rhs-binary": "00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000",
+            "rhs-value": "0ul"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1521
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pHeaderLineSeparator",
+            "lhs-lexical-scope": "writeRequestLine::1::pHeaderLineSeparator",
+            "rhs-binary": null,
+            "rhs-value": "\"\\r\\n\""
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1525
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pHttpProtocolVersion",
+            "lhs-lexical-scope": "writeRequestLine::1::pHttpProtocolVersion",
+            "rhs-binary": null,
+            "rhs-value": "\"HTTP/1.1\""
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1526
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pHttpEmptyPath",
+            "lhs-lexical-scope": "writeRequestLine::1::pHttpEmptyPath",
+            "rhs-binary": null,
+            "rhs-value": "\"/\""
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1527
+          }
+        },
+        {
+          "detail": {
+            "lhs": "toAddLen",
+            "lhs-lexical-scope": "writeRequestLine::1::toAddLen",
+            "rhs-binary": "00000000 00100000 00000000 00000000 00000000 00000000 00000000 00001100",
+            "rhs-value": "9007199254741004ul"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1534
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pBufferCur",
+            "lhs-lexical-scope": "writeRequestLine::1::pBufferCur",
+            "rhs-binary": null,
+            "rhs-value": "(char *)&dynamic_object$0"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1540
+          }
+        },
+        {
+          "detail": {
+            "lhs": "toAddLen",
+            "lhs-lexical-scope": "writeRequestLine::1::toAddLen",
+            "rhs-binary": "00000000 00100000 00000000 00000000 00000000 00000000 00000000 00001101",
+            "rhs-value": "9007199254741005ul"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1541
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "<builtin-library-__builtin___memcpy_chk>",
+              "function": null,
+              "line": 2
+            },
+            "name": "__builtin___memcpy_chk",
+            "name-path": "__builtin___memcpy_chk"
+          },
+          "hidden": false,
+          "kind": "function-call",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1551
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dst",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::dst",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$0"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1551
+          }
+        },
+        {
+          "detail": {
+            "lhs": "src",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::src",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&dynamic_object$2"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1551
+          }
+        },
+        {
+          "detail": {
+            "lhs": "n",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::n",
+            "rhs-binary": "00000000 00100000 00000000 00000000 00000000 00000000 00000000 00000000",
+            "rhs-value": "9007199254740992ul"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1551
+          }
+        },
+        {
+          "detail": {
+            "lhs": "size",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::size",
+            "rhs-binary": "11111111 11111111 11111111 11111111 11111111 11111111 11111111 11111111",
+            "rhs-value": "18446744073709551615ul"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1551
+          }
+        },
+        {
+          "detail": {
+            "lhs": "src_n$array_size",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::1::1::src_n$array_size::src_n$array_size",
+            "rhs-binary": "00000000 00100000 00000000 00000000 00000000 00000000 00000000 00000000",
+            "rhs-value": "9007199254740992ul"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 39
+          }
+        },
+        {
+          "detail": {
+            "lhs": "src_n",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::1::1::src_n",
+            "rhs-binary": null,
+            "rhs-value": "src_n!0@1#1"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 39
+          }
+        },
+        {
+          "detail": {
+            "lhs": "src_n",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::1::1::src_n",
+            "rhs-binary": null,
+            "rhs-value": "{  }"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 40
+          }
+        },
+        {
+          "detail": {
+            "lhs": "byte_extract_little_endian(dynamic_object$0, 0l, char [src_n$array_size])",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object$0",
+            "rhs-binary": null,
+            "rhs-value": "byte_extract_little_endian({ [9007199254740992ul]=0, [9007199254740993ul]=0, [9007199254740994ul]=0, [9007199254740995ul]=0, [9007199254740996ul]=0, [9007199254740997ul]=0, [9007199254740998ul]=0, [9007199254740999ul]=0, [9007199254741000ul]=0, [9007199254741001ul]=0, [9007199254741002ul]=0, [9007199254741003ul]=0, [9007199254741004ul]=0, [9007199254741009ul]=0, [9007199254741010ul]=0, [9007199254741015ul]=8, [9007199254741016ul]=0, [9007199254741033ul]=0, [9007199254741034ul]=0, [9007199254741035ul]=0, [9007199254741036ul]=0, [33776997205278717ul]=41, [33776997205278718ul]=32, [33776997205278719ul]=0, [33776997205278720ul]=0, [33776997205278729ul]=0, [33776997205278730ul]=32, [33776997205278731ul]=0, [33776997205278732ul]=0 }, 0l, char [9007199254740992ul])"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 41
+          }
+        },
+        {
+          "detail": {
+            "lhs": "__CPROVER_dead_object",
+            "lhs-lexical-scope": "__CPROVER_dead_object",
+            "rhs-binary": null,
+            "rhs-value": "NULL"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 42
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "<builtin-library-__builtin___memcpy_chk>",
+              "function": null,
+              "line": 2
+            },
+            "name": "__builtin___memcpy_chk",
+            "name-path": "__builtin___memcpy_chk"
+          },
+          "hidden": false,
+          "kind": "function-return",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 45
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pBufferCur",
+            "lhs-lexical-scope": "writeRequestLine::1::pBufferCur",
+            "rhs-binary": null,
+            "rhs-value": "(char *)&dynamic_object$0 + 9007199254740992l"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1552
+          }
+        },
+        {
+          "detail": {
+            "lhs": "(char)dynamic_object$0[(signed long int)__CPROVER_POINTER_OFFSET((char *)&dynamic_object$0 + 9007199254740992l)]",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object$0",
+            "rhs-binary": null,
+            "rhs-value": "(char){ [9007199254740992ul]=32, [9007199254740993ul]=0, [9007199254740994ul]=0, [9007199254740995ul]=0, [9007199254740996ul]=0, [9007199254740997ul]=0, [9007199254740998ul]=0, [9007199254740999ul]=0, [9007199254741000ul]=0, [9007199254741001ul]=0, [9007199254741002ul]=0, [9007199254741003ul]=0, [9007199254741004ul]=0, [9007199254741009ul]=0, [9007199254741010ul]=0, [9007199254741015ul]=8, [9007199254741016ul]=0, [9007199254741033ul]=0, [9007199254741034ul]=0, [9007199254741035ul]=0, [9007199254741036ul]=0, [33776997205278717ul]=41, [33776997205278718ul]=32, [33776997205278719ul]=0, [33776997205278720ul]=0, [33776997205278729ul]=0, [33776997205278730ul]=32, [33776997205278731ul]=0, [33776997205278732ul]=0 }[(signed long int)__CPROVER_POINTER_OFFSET((char *)&dynamic_object$0 + 9007199254740992l)]"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1554
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pBufferCur",
+            "lhs-lexical-scope": "writeRequestLine::1::pBufferCur",
+            "rhs-binary": null,
+            "rhs-value": "(char *)&dynamic_object$0 + 9007199254740993l"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1555
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "<builtin-library-__builtin___memcpy_chk>",
+              "function": null,
+              "line": 2
+            },
+            "name": "__builtin___memcpy_chk",
+            "name-path": "__builtin___memcpy_chk"
+          },
+          "hidden": false,
+          "kind": "function-call",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1560
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dst",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::dst",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)((char *)&dynamic_object$0 + 9007199254740993l)"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1560
+          }
+        },
+        {
+          "detail": {
+            "lhs": "src",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::src",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&\"/\""
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1560
+          }
+        },
+        {
+          "detail": {
+            "lhs": "n",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::n",
+            "rhs-binary": "00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001",
+            "rhs-value": "1ul"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1560
+          }
+        },
+        {
+          "detail": {
+            "lhs": "size",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::size",
+            "rhs-binary": "11111111 11111111 11111111 11111111 11111111 11111111 11111111 11111111",
+            "rhs-value": "18446744073709551615ul"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1560
+          }
+        },
+        {
+          "detail": {
+            "lhs": "src_n$array_size",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::1::1::src_n$array_size::src_n$array_size",
+            "rhs-binary": "00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001",
+            "rhs-value": "1ul"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 39
+          }
+        },
+        {
+          "detail": {
+            "lhs": "src_n",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::1::1::src_n",
+            "rhs-binary": null,
+            "rhs-value": "{ 0 }"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 39
+          }
+        },
+        {
+          "detail": {
+            "lhs": "src_n",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::1::1::src_n",
+            "rhs-binary": null,
+            "rhs-value": "{ '/' }"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 40
+          }
+        },
+        {
+          "detail": {
+            "lhs": "src_n[0l]",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::1::1::src_n",
+            "rhs-binary": "00101111",
+            "rhs-value": "'/'"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 40
+          }
+        },
+        {
+          "detail": {
+            "lhs": "byte_extract_little_endian(dynamic_object$0, (signed long int)__CPROVER_POINTER_OFFSET(dst), char [1ul])",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object$0",
+            "rhs-binary": null,
+            "rhs-value": "byte_extract_little_endian({ [9007199254740992ul]=32, [9007199254740993ul]=47, [9007199254740994ul]=0, [9007199254740995ul]=0, [9007199254740996ul]=0, [9007199254740997ul]=0, [9007199254740998ul]=0, [9007199254740999ul]=0, [9007199254741000ul]=0, [9007199254741001ul]=0, [9007199254741002ul]=0, [9007199254741003ul]=0, [9007199254741004ul]=0, [9007199254741009ul]=0, [9007199254741010ul]=0, [9007199254741015ul]=8, [9007199254741016ul]=0, [9007199254741033ul]=0, [9007199254741034ul]=0, [9007199254741035ul]=0, [9007199254741036ul]=0, [33776997205278717ul]=41, [33776997205278718ul]=32, [33776997205278719ul]=0, [33776997205278720ul]=0, [33776997205278729ul]=0, [33776997205278730ul]=32, [33776997205278731ul]=0, [33776997205278732ul]=0 }, (signed long int)__CPROVER_POINTER_OFFSET((const void *)((char *)&dynamic_object$0 + 9007199254740993l)), char [1ul])"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 41
+          }
+        },
+        {
+          "detail": {
+            "lhs": "__CPROVER_dead_object",
+            "lhs-lexical-scope": "__CPROVER_dead_object",
+            "rhs-binary": null,
+            "rhs-value": "NULL"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 42
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "<builtin-library-__builtin___memcpy_chk>",
+              "function": null,
+              "line": 2
+            },
+            "name": "__builtin___memcpy_chk",
+            "name-path": "__builtin___memcpy_chk"
+          },
+          "hidden": false,
+          "kind": "function-return",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 45
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pBufferCur",
+            "lhs-lexical-scope": "writeRequestLine::1::pBufferCur",
+            "rhs-binary": null,
+            "rhs-value": "(char *)&dynamic_object$0 + 9007199254740994l"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1563
+          }
+        },
+        {
+          "detail": {
+            "lhs": "(char)dynamic_object$0[(signed long int)__CPROVER_POINTER_OFFSET((char *)&dynamic_object$0 + 9007199254740994l)]",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object$0",
+            "rhs-binary": null,
+            "rhs-value": "(char){ [9007199254740992ul]=32, [9007199254740993ul]=47, [9007199254740994ul]=32, [9007199254740995ul]=0, [9007199254740996ul]=0, [9007199254740997ul]=0, [9007199254740998ul]=0, [9007199254740999ul]=0, [9007199254741000ul]=0, [9007199254741001ul]=0, [9007199254741002ul]=0, [9007199254741003ul]=0, [9007199254741004ul]=0, [9007199254741009ul]=0, [9007199254741010ul]=0, [9007199254741015ul]=8, [9007199254741016ul]=0, [9007199254741033ul]=0, [9007199254741034ul]=0, [9007199254741035ul]=0, [9007199254741036ul]=0, [33776997205278717ul]=41, [33776997205278718ul]=32, [33776997205278719ul]=0, [33776997205278720ul]=0, [33776997205278729ul]=0, [33776997205278730ul]=32, [33776997205278731ul]=0, [33776997205278732ul]=0 }[(signed long int)__CPROVER_POINTER_OFFSET((char *)&dynamic_object$0 + 9007199254740994l)]"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1571
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pBufferCur",
+            "lhs-lexical-scope": "writeRequestLine::1::pBufferCur",
+            "rhs-binary": null,
+            "rhs-value": "(char *)&dynamic_object$0 + 9007199254740995l"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1572
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "<builtin-library-__builtin___memcpy_chk>",
+              "function": null,
+              "line": 2
+            },
+            "name": "__builtin___memcpy_chk",
+            "name-path": "__builtin___memcpy_chk"
+          },
+          "hidden": false,
+          "kind": "function-call",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1574
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dst",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::dst",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)((char *)&dynamic_object$0 + 9007199254740995l)"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1574
+          }
+        },
+        {
+          "detail": {
+            "lhs": "src",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::src",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&\"HTTP/1.1\""
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1574
+          }
+        },
+        {
+          "detail": {
+            "lhs": "n",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::n",
+            "rhs-binary": "00000000 00000000 00000000 00000000 00000000 00000000 00000000 00001000",
+            "rhs-value": "8ul"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1574
+          }
+        },
+        {
+          "detail": {
+            "lhs": "size",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::size",
+            "rhs-binary": "11111111 11111111 11111111 11111111 11111111 11111111 11111111 11111111",
+            "rhs-value": "18446744073709551615ul"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1574
+          }
+        },
+        {
+          "detail": {
+            "lhs": "src_n$array_size",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::1::1::src_n$array_size::src_n$array_size",
+            "rhs-binary": "00000000 00000000 00000000 00000000 00000000 00000000 00000000 00001000",
+            "rhs-value": "8ul"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 39
+          }
+        },
+        {
+          "detail": {
+            "lhs": "src_n",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::1::1::src_n",
+            "rhs-binary": null,
+            "rhs-value": "{ 0, 0, 0, 0, 0, 0, 0, 0 }"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 39
+          }
+        },
+        {
+          "detail": {
+            "lhs": "src_n",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::1::1::src_n",
+            "rhs-binary": null,
+            "rhs-value": "{ 'H', 'T', 'T', 'P', '/', '1', '.', '1' }"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 40
+          }
+        },
+        {
+          "detail": {
+            "lhs": "src_n[0l]",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::1::1::src_n",
+            "rhs-binary": "01001000",
+            "rhs-value": "'H'"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 40
+          }
+        },
+        {
+          "detail": {
+            "lhs": "src_n[1l]",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::1::1::src_n",
+            "rhs-binary": "01010100",
+            "rhs-value": "'T'"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 40
+          }
+        },
+        {
+          "detail": {
+            "lhs": "src_n[2l]",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::1::1::src_n",
+            "rhs-binary": "01010100",
+            "rhs-value": "'T'"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 40
+          }
+        },
+        {
+          "detail": {
+            "lhs": "src_n[3l]",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::1::1::src_n",
+            "rhs-binary": "01010000",
+            "rhs-value": "'P'"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 40
+          }
+        },
+        {
+          "detail": {
+            "lhs": "src_n[4l]",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::1::1::src_n",
+            "rhs-binary": "00101111",
+            "rhs-value": "'/'"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 40
+          }
+        },
+        {
+          "detail": {
+            "lhs": "src_n[5l]",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::1::1::src_n",
+            "rhs-binary": "00110001",
+            "rhs-value": "'1'"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 40
+          }
+        },
+        {
+          "detail": {
+            "lhs": "src_n[6l]",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::1::1::src_n",
+            "rhs-binary": "00101110",
+            "rhs-value": "'.'"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 40
+          }
+        },
+        {
+          "detail": {
+            "lhs": "src_n[7l]",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::1::1::src_n",
+            "rhs-binary": "00110001",
+            "rhs-value": "'1'"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 40
+          }
+        },
+        {
+          "detail": {
+            "lhs": "byte_extract_little_endian(dynamic_object$0, (signed long int)__CPROVER_POINTER_OFFSET(dst), char [8ul])",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object$0",
+            "rhs-binary": null,
+            "rhs-value": "byte_extract_little_endian({ [9007199254740992ul]=32, [9007199254740993ul]=47, [9007199254740994ul]=32, [9007199254740995ul]=72, [9007199254740996ul]=84, [9007199254740997ul]=84, [9007199254740998ul]=80, [9007199254740999ul]=47, [9007199254741000ul]=49, [9007199254741001ul]=46, [9007199254741002ul]=49, [9007199254741003ul]=0, [9007199254741004ul]=0, [9007199254741009ul]=0, [9007199254741010ul]=0, [9007199254741015ul]=8, [9007199254741016ul]=0, [9007199254741033ul]=0, [9007199254741034ul]=0, [9007199254741035ul]=0, [9007199254741036ul]=0, [33776997205278717ul]=41, [33776997205278718ul]=32, [33776997205278719ul]=0, [33776997205278720ul]=0, [33776997205278729ul]=0, [33776997205278730ul]=32, [33776997205278731ul]=0, [33776997205278732ul]=0 }, (signed long int)__CPROVER_POINTER_OFFSET((const void *)((char *)&dynamic_object$0 + 9007199254740995l)), char [8ul])"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 41
+          }
+        },
+        {
+          "detail": {
+            "lhs": "__CPROVER_dead_object",
+            "lhs-lexical-scope": "__CPROVER_dead_object",
+            "rhs-binary": null,
+            "rhs-value": "NULL"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 42
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "<builtin-library-__builtin___memcpy_chk>",
+              "function": null,
+              "line": 2
+            },
+            "name": "__builtin___memcpy_chk",
+            "name-path": "__builtin___memcpy_chk"
+          },
+          "hidden": false,
+          "kind": "function-return",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 45
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pBufferCur",
+            "lhs-lexical-scope": "writeRequestLine::1::pBufferCur",
+            "rhs-binary": null,
+            "rhs-value": "(char *)&dynamic_object$0 + 9007199254741003l"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1577
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "<builtin-library-__builtin___memcpy_chk>",
+              "function": null,
+              "line": 2
+            },
+            "name": "__builtin___memcpy_chk",
+            "name-path": "__builtin___memcpy_chk"
+          },
+          "hidden": false,
+          "kind": "function-call",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1578
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dst",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::dst",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)((char *)&dynamic_object$0 + 9007199254741003l)"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1578
+          }
+        },
+        {
+          "detail": {
+            "lhs": "src",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::src",
+            "rhs-binary": null,
+            "rhs-value": "(const void *)&\"\\r\\n\""
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1578
+          }
+        },
+        {
+          "detail": {
+            "lhs": "n",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::n",
+            "rhs-binary": "00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000010",
+            "rhs-value": "2ul"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1578
+          }
+        },
+        {
+          "detail": {
+            "lhs": "size",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::size",
+            "rhs-binary": "11111111 11111111 11111111 11111111 11111111 11111111 11111111 11111111",
+            "rhs-value": "18446744073709551615ul"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1578
+          }
+        },
+        {
+          "detail": {
+            "lhs": "src_n$array_size",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::1::1::src_n$array_size::src_n$array_size",
+            "rhs-binary": "00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000010",
+            "rhs-value": "2ul"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 39
+          }
+        },
+        {
+          "detail": {
+            "lhs": "src_n",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::1::1::src_n",
+            "rhs-binary": null,
+            "rhs-value": "{ 0, 0 }"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 39
+          }
+        },
+        {
+          "detail": {
+            "lhs": "src_n",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::1::1::src_n",
+            "rhs-binary": null,
+            "rhs-value": "{ '\\r', '\\n' }"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 40
+          }
+        },
+        {
+          "detail": {
+            "lhs": "src_n[0l]",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::1::1::src_n",
+            "rhs-binary": "00001101",
+            "rhs-value": "'\\r'"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 40
+          }
+        },
+        {
+          "detail": {
+            "lhs": "src_n[1l]",
+            "lhs-lexical-scope": "__builtin___memcpy_chk::1::1::src_n",
+            "rhs-binary": "00001010",
+            "rhs-value": "'\\n'"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 40
+          }
+        },
+        {
+          "detail": {
+            "lhs": "byte_extract_little_endian(dynamic_object$0, (signed long int)__CPROVER_POINTER_OFFSET(dst), char [2ul])",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object$0",
+            "rhs-binary": null,
+            "rhs-value": "byte_extract_little_endian({ [9007199254740992ul]=32, [9007199254740993ul]=47, [9007199254740994ul]=32, [9007199254740995ul]=72, [9007199254740996ul]=84, [9007199254740997ul]=84, [9007199254740998ul]=80, [9007199254740999ul]=47, [9007199254741000ul]=49, [9007199254741001ul]=46, [9007199254741002ul]=49, [9007199254741003ul]=13, [9007199254741004ul]=10, [9007199254741009ul]=0, [9007199254741010ul]=0, [9007199254741015ul]=8, [9007199254741016ul]=0, [9007199254741033ul]=0, [9007199254741034ul]=0, [9007199254741035ul]=0, [9007199254741036ul]=0, [33776997205278717ul]=41, [33776997205278718ul]=32, [33776997205278719ul]=0, [33776997205278720ul]=0, [33776997205278729ul]=0, [33776997205278730ul]=32, [33776997205278731ul]=0, [33776997205278732ul]=0 }, (signed long int)__CPROVER_POINTER_OFFSET((const void *)((char *)&dynamic_object$0 + 9007199254741003l)), char [2ul])"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 41
+          }
+        },
+        {
+          "detail": {
+            "lhs": "__CPROVER_dead_object",
+            "lhs-lexical-scope": "__CPROVER_dead_object",
+            "rhs-binary": null,
+            "rhs-value": "NULL"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 42
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "<builtin-library-__builtin___memcpy_chk>",
+              "function": null,
+              "line": 2
+            },
+            "name": "__builtin___memcpy_chk",
+            "name-path": "__builtin___memcpy_chk"
+          },
+          "hidden": false,
+          "kind": "function-return",
+          "location": {
+            "file": "<builtin-library-__builtin___memcpy_chk>",
+            "function": "__builtin___memcpy_chk",
+            "line": 45
+          }
+        },
+        {
+          "detail": {
+            "lhs": "dynamic_object.headersLen",
+            "lhs-lexical-scope": "symex_dynamic::dynamic_object",
+            "rhs-binary": "00000000 00100000 00000000 00000000 00000000 00000000 00000000 00001101",
+            "rhs-value": "9007199254741005ul"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1581
+          }
+        },
+        {
+          "detail": {
+            "lhs": "goto_symex$$return_value$$__CPROVER_file_local_core_http_client_c_writeRequestLine",
+            "lhs-lexical-scope": "goto_symex::return_value::__CPROVER_file_local_core_http_client_c_writeRequestLine",
+            "rhs-binary": null,
+            "rhs-value": "/*enum*/HTTPSuccess"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1584
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "source/core_http_client.c",
+              "function": null,
+              "line": 1513
+            },
+            "name": "writeRequestLine",
+            "name-path": "__CPROVER_file_local_core_http_client_c_writeRequestLine"
+          },
+          "hidden": false,
+          "kind": "function-return",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "writeRequestLine",
+            "line": 1585
+          }
+        },
+        {
+          "detail": {
+            "lhs": "returnStatus",
+            "lhs-lexical-scope": "HTTPClient_InitializeRequestHeaders::1::returnStatus",
+            "rhs-binary": null,
+            "rhs-value": "/*enum*/HTTPSuccess"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "HTTPClient_InitializeRequestHeaders",
+            "line": 1641
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "source/core_http_client.c",
+              "function": null,
+              "line": 1342
+            },
+            "name": "addHeader",
+            "name-path": "__CPROVER_file_local_core_http_client_c_addHeader"
+          },
+          "hidden": false,
+          "kind": "function-call",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "HTTPClient_InitializeRequestHeaders",
+            "line": 1664
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pRequestHeaders",
+            "lhs-lexical-scope": "addHeader::pRequestHeaders",
+            "rhs-binary": null,
+            "rhs-value": "&dynamic_object"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "HTTPClient_InitializeRequestHeaders",
+            "line": 1664
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pField",
+            "lhs-lexical-scope": "addHeader::pField",
+            "rhs-binary": null,
+            "rhs-value": "\"Host\""
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "HTTPClient_InitializeRequestHeaders",
+            "line": 1664
+          }
+        },
+        {
+          "detail": {
+            "lhs": "fieldLen",
+            "lhs-lexical-scope": "addHeader::fieldLen",
+            "rhs-binary": "00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100",
+            "rhs-value": "4ul"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "HTTPClient_InitializeRequestHeaders",
+            "line": 1664
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pValue",
+            "lhs-lexical-scope": "addHeader::pValue",
+            "rhs-binary": null,
+            "rhs-value": "(char *)&dynamic_object$3"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "HTTPClient_InitializeRequestHeaders",
+            "line": 1664
+          }
+        },
+        {
+          "detail": {
+            "lhs": "valueLen",
+            "lhs-lexical-scope": "addHeader::valueLen",
+            "rhs-binary": "00000000 01010111 11111111 11111111 11111111 11111111 11111111 11101010",
+            "rhs-value": "24769797950537706ul"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "HTTPClient_InitializeRequestHeaders",
+            "line": 1664
+          }
+        },
+        {
+          "detail": {
+            "lhs": "returnStatus",
+            "lhs-lexical-scope": "addHeader::1::returnStatus",
+            "rhs-binary": null,
+            "rhs-value": "/*enum*/HTTPSuccess"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "addHeader",
+            "line": 1348
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pBufferCur",
+            "lhs-lexical-scope": "addHeader::1::pBufferCur",
+            "rhs-binary": null,
+            "rhs-value": "((char *)NULL)"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "addHeader",
+            "line": 1349
+          }
+        },
+        {
+          "detail": {
+            "lhs": "toAddLen",
+            "lhs-lexical-scope": "addHeader::1::toAddLen",
+            "rhs-binary": "00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000",
+            "rhs-value": "0ul"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "addHeader",
+            "line": 1350
+          }
+        },
+        {
+          "detail": {
+            "lhs": "backtrackHeaderLen",
+            "lhs-lexical-scope": "addHeader::1::backtrackHeaderLen",
+            "rhs-binary": "00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000",
+            "rhs-value": "0ul"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "addHeader",
+            "line": 1351
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pHeaderEndIndicator",
+            "lhs-lexical-scope": "addHeader::1::pHeaderEndIndicator",
+            "rhs-binary": null,
+            "rhs-value": "\"\\r\\n\\r\\n\""
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "addHeader",
+            "line": 1355
+          }
+        },
+        {
+          "detail": {
+            "lhs": "httpFieldSeparator",
+            "lhs-lexical-scope": "addHeader::1::httpFieldSeparator",
+            "rhs-binary": null,
+            "rhs-value": "\": \""
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "addHeader",
+            "line": 1356
+          }
+        },
+        {
+          "detail": {
+            "lhs": "pBufferCur",
+            "lhs-lexical-scope": "addHeader::1::pBufferCur",
+            "rhs-binary": null,
+            "rhs-value": "(char *)&dynamic_object$0 + 9007199254741005l"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "addHeader",
+            "line": 1365
+          }
+        },
+        {
+          "detail": {
+            "lhs": "backtrackHeaderLen",
+            "lhs-lexical-scope": "addHeader::1::backtrackHeaderLen",
+            "rhs-binary": "00000000 00100000 00000000 00000000 00000000 00000000 00000000 00001101",
+            "rhs-value": "9007199254741005ul"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "addHeader",
+            "line": 1366
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "<builtin-library-strncmp>",
+              "function": null,
+              "line": 9
+            },
+            "name": "strncmp",
+            "name-path": "strncmp"
+          },
+          "hidden": false,
+          "kind": "function-call",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "addHeader",
+            "line": 1372
+          }
+        },
+        {
+          "detail": {
+            "lhs": "s1",
+            "lhs-lexical-scope": "strncmp::s1",
+            "rhs-binary": null,
+            "rhs-value": "(char *)&dynamic_object$0 + 9007199254741001l"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "addHeader",
+            "line": 1372
+          }
+        },
+        {
+          "detail": {
+            "lhs": "s2",
+            "lhs-lexical-scope": "strncmp::s2",
+            "rhs-binary": null,
+            "rhs-value": "\"\\r\\n\\r\\n\""
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "addHeader",
+            "line": 1372
+          }
+        },
+        {
+          "detail": {
+            "lhs": "n",
+            "lhs-lexical-scope": "strncmp::n",
+            "rhs-binary": "00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100",
+            "rhs-value": "4ul"
+          },
+          "hidden": false,
+          "kind": "parameter-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "addHeader",
+            "line": 1372
+          }
+        },
+        {
+          "detail": {
+            "lhs": "i",
+            "lhs-lexical-scope": "strncmp::1::i",
+            "rhs-binary": "00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000",
+            "rhs-value": "0ul"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-strncmp>",
+            "function": "strncmp",
+            "line": 20
+          }
+        },
+        {
+          "detail": {
+            "lhs": "ch1",
+            "lhs-lexical-scope": "strncmp::1::ch1",
+            "rhs-binary": "00000000",
+            "rhs-value": "0"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-strncmp>",
+            "function": "strncmp",
+            "line": 21
+          }
+        },
+        {
+          "detail": {
+            "lhs": "ch2",
+            "lhs-lexical-scope": "strncmp::1::ch2",
+            "rhs-binary": "00000000",
+            "rhs-value": "0"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-strncmp>",
+            "function": "strncmp",
+            "line": 21
+          }
+        },
+        {
+          "detail": {
+            "lhs": "ch1",
+            "lhs-lexical-scope": "strncmp::1::ch1",
+            "rhs-binary": "00101110",
+            "rhs-value": "46"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-strncmp>",
+            "function": "strncmp",
+            "line": 28
+          }
+        },
+        {
+          "detail": {
+            "lhs": "ch2",
+            "lhs-lexical-scope": "strncmp::1::ch2",
+            "rhs-binary": "00001101",
+            "rhs-value": "13"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-strncmp>",
+            "function": "strncmp",
+            "line": 29
+          }
+        },
+        {
+          "detail": {
+            "lhs": "goto_symex$$return_value$$strncmp",
+            "lhs-lexical-scope": "goto_symex::return_value::strncmp",
+            "rhs-binary": "00000000 00000000 00000000 00000001",
+            "rhs-value": "1"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "<builtin-library-strncmp>",
+            "function": "strncmp",
+            "line": 38
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "<builtin-library-strncmp>",
+              "function": null,
+              "line": 9
+            },
+            "name": "strncmp",
+            "name-path": "strncmp"
+          },
+          "hidden": false,
+          "kind": "function-return",
+          "location": {
+            "file": "<builtin-library-strncmp>",
+            "function": "strncmp",
+            "line": 45
+          }
+        },
+        {
+          "detail": {
+            "lhs": "return_value_strncmp",
+            "lhs-lexical-scope": "addHeader::$tmp::return_value_strncmp",
+            "rhs-binary": "00000000 00000000 00000000 00000001",
+            "rhs-value": "1"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "addHeader",
+            "line": 1372
+          }
+        },
+        {
+          "detail": {
+            "lhs": "toAddLen",
+            "lhs-lexical-scope": "addHeader::1::toAddLen",
+            "rhs-binary": "00000000 01010111 11111111 11111111 11111111 11111111 11111111 11110100",
+            "rhs-value": "24769797950537716ul"
+          },
+          "hidden": false,
+          "kind": "variable-assignment",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "addHeader",
+            "line": 1380
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "source/core_http_client.c",
+              "function": null,
+              "line": 1293
+            },
+            "name": "httpHeaderStrncpy",
+            "name-path": "__CPROVER_file_local_core_http_client_c_httpHeaderStrncpy"
+          },
+          "hidden": false,
+          "kind": "function-call",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "addHeader",
+            "line": 1391
+          }
+        },
+        {
+          "detail": {
+            "property": "addHeader.no-body.__CPROVER_file_local_core_http_client_c_httpHeaderStrncpy",
+            "reason": "no body for callee httpHeaderStrncpy"
+          },
+          "hidden": false,
+          "kind": "failure",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "addHeader",
+            "line": 1391
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "source/core_http_client.c",
+              "function": null,
+              "line": 1293
+            },
+            "name": "httpHeaderStrncpy",
+            "name-path": "__CPROVER_file_local_core_http_client_c_httpHeaderStrncpy"
+          },
+          "hidden": true,
+          "kind": "function-return",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "addHeader",
+            "line": 1391
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "source/core_http_client.c",
+              "function": null,
+              "line": 1342
+            },
+            "name": "addHeader",
+            "name-path": "__CPROVER_file_local_core_http_client_c_addHeader"
+          },
+          "hidden": true,
+          "kind": "function-return",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "addHeader",
+            "line": 1391
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "source/core_http_client.c",
+              "function": null,
+              "line": 1589
+            },
+            "name": "HTTPClient_InitializeRequestHeaders",
+            "name-path": "HTTPClient_InitializeRequestHeaders"
+          },
+          "hidden": true,
+          "kind": "function-return",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "addHeader",
+            "line": 1391
+          }
+        },
+        {
+          "detail": {
+            "location": {
+              "file": "test/cbmc/proofs/HTTPClient_InitializeRequestHeaders/HTTPClient_InitializeRequestHeaders_harness.c",
+              "function": null,
+              "line": 34
+            },
+            "name": "HTTPClient_InitializeRequestHeaders_harness",
+            "name-path": "HTTPClient_InitializeRequestHeaders_harness"
+          },
+          "hidden": true,
+          "kind": "function-return",
+          "location": {
+            "file": "source/core_http_client.c",
+            "function": "addHeader",
+            "line": 1391
+          }
+        }
+      ]
+    }
+  }
+}

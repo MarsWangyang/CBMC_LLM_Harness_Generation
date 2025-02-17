@@ -1,0 +1,1325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cprover>
+<program>CBMC 6.3.1 (cbmc-6.3.1)</program>
+<message type="STATUS-MESSAGE">
+  <text>CBMC version 6.3.1 (cbmc-6.3.1) 64-bit x86_64 macos</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Reading GOTO program from file /Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs/HTTPClient_AddHeader/gotos/HTTPClient_AddHeader_harness.goto</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Generating GOTO Program</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Adding CPROVER library (x86_64)</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Removal of function pointers and virtual functions</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Generic Property Instrumentation</text>
+</message>
+
+<property class="pointer primitives" name="httpHeaderStrncpy.pointer_primitives.1">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/stubs/httpHeaderStrncpy.c" function="httpHeaderStrncpy" line="42" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer invalid in W_OK(pDest, len)</description>
+  <expression>__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pDest) || !IS_INVALID_POINTER(pDest)</expression>
+</property>
+
+<property class="pointer primitives" name="httpHeaderStrncpy.pointer_primitives.2">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/stubs/httpHeaderStrncpy.c" function="httpHeaderStrncpy" line="42" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>deallocated dynamic object in W_OK(pDest, len)</description>
+  <expression>__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pDest) || !(__CPROVER_POINTER_OBJECT(pDest) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer primitives" name="httpHeaderStrncpy.pointer_primitives.3">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/stubs/httpHeaderStrncpy.c" function="httpHeaderStrncpy" line="42" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dead object in W_OK(pDest, len)</description>
+  <expression>__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pDest) || !(__CPROVER_POINTER_OBJECT(pDest) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer primitives" name="httpHeaderStrncpy.pointer_primitives.4">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/stubs/httpHeaderStrncpy.c" function="httpHeaderStrncpy" line="42" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer outside object bounds in W_OK(pDest, len)</description>
+  <expression>__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pDest) || (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pDest) &gt;= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pDest)</expression>
+</property>
+
+<property class="assertion" name="httpHeaderStrncpy.assertion.1">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/stubs/httpHeaderStrncpy.c" function="httpHeaderStrncpy" line="42" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>write</description>
+  <expression>W_OK(pDest, len)</expression>
+</property>
+
+<property class="pointer primitives" name="httpHeaderStrncpy.pointer_primitives.5">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/stubs/httpHeaderStrncpy.c" function="httpHeaderStrncpy" line="43" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer invalid in R_OK(pSrc, len)</description>
+  <expression>__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pSrc) || !IS_INVALID_POINTER(pSrc)</expression>
+</property>
+
+<property class="pointer primitives" name="httpHeaderStrncpy.pointer_primitives.6">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/stubs/httpHeaderStrncpy.c" function="httpHeaderStrncpy" line="43" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>deallocated dynamic object in R_OK(pSrc, len)</description>
+  <expression>__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pSrc) || !(__CPROVER_POINTER_OBJECT(pSrc) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer primitives" name="httpHeaderStrncpy.pointer_primitives.7">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/stubs/httpHeaderStrncpy.c" function="httpHeaderStrncpy" line="43" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dead object in R_OK(pSrc, len)</description>
+  <expression>__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pSrc) || !(__CPROVER_POINTER_OBJECT(pSrc) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer primitives" name="httpHeaderStrncpy.pointer_primitives.8">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/stubs/httpHeaderStrncpy.c" function="httpHeaderStrncpy" line="43" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer outside object bounds in R_OK(pSrc, len)</description>
+  <expression>__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pSrc) || (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pSrc) &gt;= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pSrc)</expression>
+</property>
+
+<property class="assertion" name="httpHeaderStrncpy.assertion.2">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/stubs/httpHeaderStrncpy.c" function="httpHeaderStrncpy" line="43" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>read</description>
+  <expression>R_OK(pSrc, len)</expression>
+</property>
+
+<property class="pointer dereference" name="HTTPClient_AddHeader.pointer_dereference.1">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1703" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pRequestHeaders-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders))</expression>
+</property>
+
+<property class="pointer dereference" name="HTTPClient_AddHeader.pointer_dereference.2">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1703" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pRequestHeaders-&gt;pBuffer</description>
+  <expression>!IS_INVALID_POINTER(pRequestHeaders)</expression>
+</property>
+
+<property class="pointer dereference" name="HTTPClient_AddHeader.pointer_dereference.3">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1703" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pRequestHeaders-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="HTTPClient_AddHeader.pointer_dereference.4">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1703" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pRequestHeaders-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="HTTPClient_AddHeader.pointer_dereference.5">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1703" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pRequestHeaders-&gt;pBuffer</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pRequestHeaders) &gt;= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pRequestHeaders) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="HTTPClient_AddHeader.pointer_dereference.6">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1703" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pRequestHeaders-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders)) || pRequestHeaders == ((HTTPRequestHeaders_t *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="HTTPClient_AddHeader.pointer_dereference.7">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1728" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pRequestHeaders-&gt;headersLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders))</expression>
+</property>
+
+<property class="pointer dereference" name="HTTPClient_AddHeader.pointer_dereference.8">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1728" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pRequestHeaders-&gt;headersLen</description>
+  <expression>!IS_INVALID_POINTER(pRequestHeaders)</expression>
+</property>
+
+<property class="pointer dereference" name="HTTPClient_AddHeader.pointer_dereference.9">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1728" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pRequestHeaders-&gt;headersLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="HTTPClient_AddHeader.pointer_dereference.10">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1728" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pRequestHeaders-&gt;headersLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="HTTPClient_AddHeader.pointer_dereference.11">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1728" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pRequestHeaders-&gt;headersLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pRequestHeaders) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pRequestHeaders) + 16ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="HTTPClient_AddHeader.pointer_dereference.12">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1728" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pRequestHeaders-&gt;headersLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders)) || (char *)pRequestHeaders + 16l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="HTTPClient_AddHeader.pointer_dereference.13">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1728" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pRequestHeaders-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders))</expression>
+</property>
+
+<property class="pointer dereference" name="HTTPClient_AddHeader.pointer_dereference.14">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1728" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pRequestHeaders-&gt;bufferLen</description>
+  <expression>!IS_INVALID_POINTER(pRequestHeaders)</expression>
+</property>
+
+<property class="pointer dereference" name="HTTPClient_AddHeader.pointer_dereference.15">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1728" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pRequestHeaders-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="HTTPClient_AddHeader.pointer_dereference.16">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1728" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pRequestHeaders-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="HTTPClient_AddHeader.pointer_dereference.17">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1728" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pRequestHeaders-&gt;bufferLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pRequestHeaders) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pRequestHeaders) + 8ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="HTTPClient_AddHeader.pointer_dereference.18">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="HTTPClient_AddHeader" line="1728" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pRequestHeaders-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders)) || (char *)pRequestHeaders + 8l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpRequestHeaders.pointer_dereference.1">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpRequestHeaders" line="62" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pRequestHeaders-&gt;bufferLen</description>
+  <expression>TRUE ==&gt; !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpRequestHeaders.pointer_dereference.2">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpRequestHeaders" line="62" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pRequestHeaders-&gt;bufferLen</description>
+  <expression>TRUE ==&gt; !IS_INVALID_POINTER(pRequestHeaders)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpRequestHeaders.pointer_dereference.3">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpRequestHeaders" line="62" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pRequestHeaders-&gt;bufferLen</description>
+  <expression>TRUE ==&gt; !(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpRequestHeaders.pointer_dereference.4">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpRequestHeaders" line="62" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pRequestHeaders-&gt;bufferLen</description>
+  <expression>TRUE ==&gt; !(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpRequestHeaders.pointer_dereference.5">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpRequestHeaders" line="62" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pRequestHeaders-&gt;bufferLen</description>
+  <expression>TRUE ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pRequestHeaders) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pRequestHeaders) + 8ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpRequestHeaders.pointer_dereference.6">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpRequestHeaders" line="62" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pRequestHeaders-&gt;bufferLen</description>
+  <expression>TRUE ==&gt; !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders)) || (char *)pRequestHeaders + 8l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpRequestHeaders.pointer_dereference.7">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpRequestHeaders" line="63" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pRequestHeaders-&gt;headersLen</description>
+  <expression>pRequestHeaders-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 ==&gt; !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpRequestHeaders.pointer_dereference.8">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpRequestHeaders" line="63" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pRequestHeaders-&gt;headersLen</description>
+  <expression>pRequestHeaders-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 ==&gt; !IS_INVALID_POINTER(pRequestHeaders)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpRequestHeaders.pointer_dereference.9">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpRequestHeaders" line="63" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pRequestHeaders-&gt;headersLen</description>
+  <expression>pRequestHeaders-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 ==&gt; !(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpRequestHeaders.pointer_dereference.10">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpRequestHeaders" line="63" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pRequestHeaders-&gt;headersLen</description>
+  <expression>pRequestHeaders-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 ==&gt; !(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpRequestHeaders.pointer_dereference.11">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpRequestHeaders" line="63" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pRequestHeaders-&gt;headersLen</description>
+  <expression>pRequestHeaders-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pRequestHeaders) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pRequestHeaders) + 16ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpRequestHeaders.pointer_dereference.12">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpRequestHeaders" line="63" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pRequestHeaders-&gt;headersLen</description>
+  <expression>pRequestHeaders-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 ==&gt; !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders)) || (char *)pRequestHeaders + 16l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer arithmetic" name="strncmp.pointer_arithmetic.1">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer NULL in s1 + (signed long int)i</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(s1))</expression>
+</property>
+
+<property class="pointer arithmetic" name="strncmp.pointer_arithmetic.2">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer invalid in s1 + (signed long int)i</description>
+  <expression>!IS_INVALID_POINTER(s1)</expression>
+</property>
+
+<property class="pointer arithmetic" name="strncmp.pointer_arithmetic.3">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: deallocated dynamic object in s1 + (signed long int)i</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(s1) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer arithmetic" name="strncmp.pointer_arithmetic.4">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: dead object in s1 + (signed long int)i</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(s1) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer arithmetic" name="strncmp.pointer_arithmetic.5">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer outside object bounds in s1 + (signed long int)i</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(s1) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(s1) + (unsigned long int)(signed long int)i)</expression>
+</property>
+
+<property class="pointer arithmetic" name="strncmp.pointer_arithmetic.6">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: invalid integer address in s1 + (signed long int)i</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(s1)) || s1 + (signed long int)i == ((const char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="strncmp.pointer_dereference.1">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in s1[(signed long int)i]</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(s1))</expression>
+</property>
+
+<property class="pointer dereference" name="strncmp.pointer_dereference.2">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in s1[(signed long int)i]</description>
+  <expression>!IS_INVALID_POINTER(s1)</expression>
+</property>
+
+<property class="pointer dereference" name="strncmp.pointer_dereference.3">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in s1[(signed long int)i]</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(s1) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="strncmp.pointer_dereference.4">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in s1[(signed long int)i]</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(s1) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="strncmp.pointer_dereference.5">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in s1[(signed long int)i]</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(s1) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(s1) + (unsigned long int)(signed long int)i) + 1</expression>
+</property>
+
+<property class="pointer dereference" name="strncmp.pointer_dereference.6">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in s1[(signed long int)i]</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(s1)) || s1 + (signed long int)i == ((const char *)NULL)</expression>
+</property>
+
+<property class="pointer arithmetic" name="strncmp.pointer_arithmetic.7">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="29" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer NULL in s2 + (signed long int)i</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(s2))</expression>
+</property>
+
+<property class="pointer arithmetic" name="strncmp.pointer_arithmetic.8">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="29" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer invalid in s2 + (signed long int)i</description>
+  <expression>!IS_INVALID_POINTER(s2)</expression>
+</property>
+
+<property class="pointer arithmetic" name="strncmp.pointer_arithmetic.9">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="29" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: deallocated dynamic object in s2 + (signed long int)i</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(s2) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer arithmetic" name="strncmp.pointer_arithmetic.10">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="29" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: dead object in s2 + (signed long int)i</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(s2) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer arithmetic" name="strncmp.pointer_arithmetic.11">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="29" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer outside object bounds in s2 + (signed long int)i</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(s2) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(s2) + (unsigned long int)(signed long int)i)</expression>
+</property>
+
+<property class="pointer arithmetic" name="strncmp.pointer_arithmetic.12">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="29" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: invalid integer address in s2 + (signed long int)i</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(s2)) || s2 + (signed long int)i == ((const char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="strncmp.pointer_dereference.7">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="29" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in s2[(signed long int)i]</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(s2))</expression>
+</property>
+
+<property class="pointer dereference" name="strncmp.pointer_dereference.8">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="29" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in s2[(signed long int)i]</description>
+  <expression>!IS_INVALID_POINTER(s2)</expression>
+</property>
+
+<property class="pointer dereference" name="strncmp.pointer_dereference.9">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="29" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in s2[(signed long int)i]</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(s2) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="strncmp.pointer_dereference.10">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="29" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in s2[(signed long int)i]</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(s2) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="strncmp.pointer_dereference.11">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="29" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in s2[(signed long int)i]</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(s2) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(s2) + (unsigned long int)(signed long int)i) + 1</expression>
+</property>
+
+<property class="pointer dereference" name="strncmp.pointer_dereference.12">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="29" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in s2[(signed long int)i]</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(s2)) || s2 + (signed long int)i == ((const char *)NULL)</expression>
+</property>
+
+<property class="overflow" name="strncmp.overflow.1">
+  <location file="&lt;builtin-library-strncmp&gt;" function="strncmp" line="40" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>arithmetic overflow on unsigned + in i + 1ul</description>
+  <expression>!overflow("+", __CPROVER_size_t, i, 1ul)</expression>
+</property>
+
+<property class="assertion" name="mallocCanFail.assertion.1">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="mallocCanFail" line="36" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>mallocCanFail size is too big</description>
+  <expression>size &lt; 18446744073709551615ul &gt;&gt; 8 + 1</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpRequestHeaders.pointer_dereference.1">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpRequestHeaders" line="49" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pRequestHeaders-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpRequestHeaders.pointer_dereference.2">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpRequestHeaders" line="49" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pRequestHeaders-&gt;bufferLen</description>
+  <expression>!IS_INVALID_POINTER(pRequestHeaders)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpRequestHeaders.pointer_dereference.3">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpRequestHeaders" line="49" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pRequestHeaders-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpRequestHeaders.pointer_dereference.4">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpRequestHeaders" line="49" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pRequestHeaders-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpRequestHeaders.pointer_dereference.5">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpRequestHeaders" line="49" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pRequestHeaders-&gt;bufferLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pRequestHeaders) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pRequestHeaders) + 8ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpRequestHeaders.pointer_dereference.6">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpRequestHeaders" line="49" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pRequestHeaders-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders)) || (char *)pRequestHeaders + 8l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpRequestHeaders.pointer_dereference.7">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpRequestHeaders" line="50" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pRequestHeaders-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpRequestHeaders.pointer_dereference.8">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpRequestHeaders" line="50" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pRequestHeaders-&gt;pBuffer</description>
+  <expression>!IS_INVALID_POINTER(pRequestHeaders)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpRequestHeaders.pointer_dereference.9">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpRequestHeaders" line="50" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pRequestHeaders-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpRequestHeaders.pointer_dereference.10">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpRequestHeaders" line="50" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pRequestHeaders-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpRequestHeaders.pointer_dereference.11">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpRequestHeaders" line="50" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pRequestHeaders-&gt;pBuffer</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pRequestHeaders) &gt;= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pRequestHeaders) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpRequestHeaders.pointer_dereference.12">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpRequestHeaders" line="50" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pRequestHeaders-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders)) || pRequestHeaders == ((HTTPRequestHeaders_t *)NULL)</expression>
+</property>
+
+<property class="assertion" name="malloc.assertion.1">
+  <location file="&lt;builtin-library-malloc&gt;" function="malloc" line="31" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>max allocation size exceeded</description>
+  <expression>malloc_size &lt;= __CPROVER_max_malloc_size</expression>
+</property>
+
+<property class="assertion" name="malloc.assertion.2">
+  <location file="&lt;builtin-library-malloc&gt;" function="malloc" line="36" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>max allocation may fail</description>
+  <expression>!(1 != 0) || !should_malloc_fail</expression>
+</property>
+
+<property class="assertion" name="addHeader.assertion.1">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1358" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>assertion pRequestHeaders != NULL</description>
+  <expression>!((signed long int)(signed long int)!(pRequestHeaders != ((HTTPRequestHeaders_t *)NULL)) != 0l)</expression>
+</property>
+
+<property class="pointer dereference" name="addHeader.pointer_dereference.1">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1359" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pRequestHeaders-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders))</expression>
+</property>
+
+<property class="pointer dereference" name="addHeader.pointer_dereference.2">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1359" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pRequestHeaders-&gt;pBuffer</description>
+  <expression>!IS_INVALID_POINTER(pRequestHeaders)</expression>
+</property>
+
+<property class="pointer dereference" name="addHeader.pointer_dereference.3">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1359" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pRequestHeaders-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="addHeader.pointer_dereference.4">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1359" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pRequestHeaders-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="addHeader.pointer_dereference.5">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1359" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pRequestHeaders-&gt;pBuffer</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pRequestHeaders) &gt;= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pRequestHeaders) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="addHeader.pointer_dereference.6">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1359" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pRequestHeaders-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders)) || pRequestHeaders == ((HTTPRequestHeaders_t *)NULL)</expression>
+</property>
+
+<property class="assertion" name="addHeader.assertion.2">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1359" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>assertion pRequestHeaders-&gt;pBuffer != NULL</description>
+  <expression>!((signed long int)(signed long int)!(pRequestHeaders-&gt;pBuffer != ((uint8_t *)NULL)) != 0l)</expression>
+</property>
+
+<property class="assertion" name="addHeader.assertion.3">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1360" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>assertion pField != NULL</description>
+  <expression>!((signed long int)(signed long int)!(pField != ((const char *)NULL)) != 0l)</expression>
+</property>
+
+<property class="assertion" name="addHeader.assertion.4">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1361" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>assertion pValue != NULL</description>
+  <expression>!((signed long int)(signed long int)!(pValue != ((const char *)NULL)) != 0l)</expression>
+</property>
+
+<property class="assertion" name="addHeader.assertion.5">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1362" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>assertion fieldLen != 0U</description>
+  <expression>!((signed long int)(signed long int)!(fieldLen != (unsigned long int)0u) != 0l)</expression>
+</property>
+
+<property class="assertion" name="addHeader.assertion.6">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1363" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>assertion valueLen != 0U</description>
+  <expression>!((signed long int)(signed long int)!(valueLen != (unsigned long int)0u) != 0l)</expression>
+</property>
+
+<property class="pointer dereference" name="addHeader.pointer_dereference.7">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1365" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pRequestHeaders-&gt;headersLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders))</expression>
+</property>
+
+<property class="pointer dereference" name="addHeader.pointer_dereference.8">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1365" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pRequestHeaders-&gt;headersLen</description>
+  <expression>!IS_INVALID_POINTER(pRequestHeaders)</expression>
+</property>
+
+<property class="pointer dereference" name="addHeader.pointer_dereference.9">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1365" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pRequestHeaders-&gt;headersLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="addHeader.pointer_dereference.10">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1365" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pRequestHeaders-&gt;headersLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="addHeader.pointer_dereference.11">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1365" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pRequestHeaders-&gt;headersLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pRequestHeaders) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pRequestHeaders) + 16ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="addHeader.pointer_dereference.12">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1365" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pRequestHeaders-&gt;headersLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders)) || (char *)pRequestHeaders + 16l == ((char *)NULL)</expression>
+</property>
+
+<property class="overflow" name="addHeader.overflow.1">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1365" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>arithmetic overflow on unsigned to signed type conversion in (signed long int)pRequestHeaders-&gt;headersLen</description>
+  <expression>!(pRequestHeaders-&gt;headersLen &gt;= 9223372036854775808ul)</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.1">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1365" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer NULL in pRequestHeaders-&gt;pBuffer + (signed long int)pRequestHeaders-&gt;headersLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders-&gt;pBuffer))</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.2">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1365" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer invalid in pRequestHeaders-&gt;pBuffer + (signed long int)pRequestHeaders-&gt;headersLen</description>
+  <expression>!IS_INVALID_POINTER(pRequestHeaders-&gt;pBuffer)</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.3">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1365" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: deallocated dynamic object in pRequestHeaders-&gt;pBuffer + (signed long int)pRequestHeaders-&gt;headersLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pRequestHeaders-&gt;pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.4">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1365" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: dead object in pRequestHeaders-&gt;pBuffer + (signed long int)pRequestHeaders-&gt;headersLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pRequestHeaders-&gt;pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.5">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1365" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer outside object bounds in pRequestHeaders-&gt;pBuffer + (signed long int)pRequestHeaders-&gt;headersLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pRequestHeaders-&gt;pBuffer) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pRequestHeaders-&gt;pBuffer) + (unsigned long int)(signed long int)pRequestHeaders-&gt;headersLen)</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.6">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1365" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: invalid integer address in pRequestHeaders-&gt;pBuffer + (signed long int)pRequestHeaders-&gt;headersLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders-&gt;pBuffer)) || pRequestHeaders-&gt;pBuffer + (signed long int)pRequestHeaders-&gt;headersLen == ((uint8_t *)NULL)</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.7">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1372" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer NULL in pBufferCur + (signed long int)(0 - (signed int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u))</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur))</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.8">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1372" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer invalid in pBufferCur + (signed long int)(0 - (signed int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u))</description>
+  <expression>!IS_INVALID_POINTER(pBufferCur)</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.9">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1372" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: deallocated dynamic object in pBufferCur + (signed long int)(0 - (signed int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u))</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.10">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1372" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: dead object in pBufferCur + (signed long int)(0 - (signed int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u))</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.11">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1372" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer outside object bounds in pBufferCur + (signed long int)(0 - (signed int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u))</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pBufferCur) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pBufferCur) + 18446744073709551612ul)</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.12">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1372" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: invalid integer address in pBufferCur + (signed long int)(0 - (signed int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u))</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur)) || pBufferCur + -4l == ((char *)NULL)</expression>
+</property>
+
+<property class="overflow" name="addHeader.overflow.2">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1375" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>arithmetic overflow on unsigned - in backtrackHeaderLen - (sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)</description>
+  <expression>!overflow("-", size_t, backtrackHeaderLen, 2ul)</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.13">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1376" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer NULL in pBufferCur + (signed long int)(0 - (signed int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u))</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur))</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.14">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1376" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer invalid in pBufferCur + (signed long int)(0 - (signed int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u))</description>
+  <expression>!IS_INVALID_POINTER(pBufferCur)</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.15">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1376" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: deallocated dynamic object in pBufferCur + (signed long int)(0 - (signed int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u))</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.16">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1376" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: dead object in pBufferCur + (signed long int)(0 - (signed int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u))</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.17">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1376" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer outside object bounds in pBufferCur + (signed long int)(0 - (signed int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u))</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pBufferCur) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pBufferCur) + 18446744073709551614ul)</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.18">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1376" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: invalid integer address in pBufferCur + (signed long int)(0 - (signed int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u))</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur)) || pBufferCur + -2l == ((char *)NULL)</expression>
+</property>
+
+<property class="overflow" name="addHeader.overflow.3">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1380" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>arithmetic overflow on unsigned + in fieldLen + (sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)</description>
+  <expression>!overflow("+", size_t, fieldLen, 2ul)</expression>
+</property>
+
+<property class="overflow" name="addHeader.overflow.4">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1380" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>arithmetic overflow on unsigned + in fieldLen + (sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u) + valueLen</description>
+  <expression>!overflow("+", size_t, fieldLen + 2ul, valueLen)</expression>
+</property>
+
+<property class="overflow" name="addHeader.overflow.5">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1380" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>arithmetic overflow on unsigned + in fieldLen + (sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u) + valueLen + (sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)</description>
+  <expression>!overflow("+", size_t, fieldLen + 2ul + valueLen, 2ul)</expression>
+</property>
+
+<property class="overflow" name="addHeader.overflow.6">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1381" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>arithmetic overflow on unsigned + in fieldLen + (sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u) + valueLen + (sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u) + (sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)</description>
+  <expression>!overflow("+", size_t, fieldLen + 4ul + valueLen, 2ul)</expression>
+</property>
+
+<property class="overflow" name="addHeader.overflow.7">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1386" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>arithmetic overflow on unsigned + in backtrackHeaderLen + toAddLen</description>
+  <expression>!overflow("+", size_t, backtrackHeaderLen, toAddLen)</expression>
+</property>
+
+<property class="pointer dereference" name="addHeader.pointer_dereference.13">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1386" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pRequestHeaders-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders))</expression>
+</property>
+
+<property class="pointer dereference" name="addHeader.pointer_dereference.14">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1386" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pRequestHeaders-&gt;bufferLen</description>
+  <expression>!IS_INVALID_POINTER(pRequestHeaders)</expression>
+</property>
+
+<property class="pointer dereference" name="addHeader.pointer_dereference.15">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1386" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pRequestHeaders-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="addHeader.pointer_dereference.16">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1386" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pRequestHeaders-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="addHeader.pointer_dereference.17">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1386" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pRequestHeaders-&gt;bufferLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pRequestHeaders) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pRequestHeaders) + 8ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="addHeader.pointer_dereference.18">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1386" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pRequestHeaders-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders)) || (char *)pRequestHeaders + 8l == ((char *)NULL)</expression>
+</property>
+
+<property class="overflow" name="addHeader.overflow.8">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1398" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>arithmetic overflow on unsigned to signed type conversion in (signed long int)fieldLen</description>
+  <expression>!(fieldLen &gt;= 9223372036854775808ul)</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.19">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1398" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer NULL in pBufferCur + (signed long int)fieldLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur))</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.20">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1398" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer invalid in pBufferCur + (signed long int)fieldLen</description>
+  <expression>!IS_INVALID_POINTER(pBufferCur)</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.21">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1398" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: deallocated dynamic object in pBufferCur + (signed long int)fieldLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.22">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1398" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: dead object in pBufferCur + (signed long int)fieldLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.23">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1398" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer outside object bounds in pBufferCur + (signed long int)fieldLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pBufferCur) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pBufferCur) + (unsigned long int)(signed long int)fieldLen)</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.24">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1398" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: invalid integer address in pBufferCur + (signed long int)fieldLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur)) || pBufferCur + (signed long int)fieldLen == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.1">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="27" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer NULL in (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)</description>
+  <expression>TRUE &amp;&amp; !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator)) ==&gt; !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur))</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.2">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="27" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer invalid in (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)</description>
+  <expression>TRUE &amp;&amp; !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator)) ==&gt; !IS_INVALID_POINTER(pBufferCur)</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.3">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="27" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: deallocated dynamic object in (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)</description>
+  <expression>TRUE &amp;&amp; !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator)) ==&gt; !(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.4">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="27" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: dead object in (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)</description>
+  <expression>TRUE &amp;&amp; !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator)) ==&gt; !(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.5">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="27" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer outside object bounds in (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)</description>
+  <expression>TRUE &amp;&amp; !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator)) ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pBufferCur) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pBufferCur) + 2ul)</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.6">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="27" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: invalid integer address in (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)</description>
+  <expression>TRUE &amp;&amp; !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator)) ==&gt; !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur)) || pBufferCur + 2l == ((const char *)NULL)</expression>
+</property>
+
+<property class="pointer" name="__builtin___memcpy_chk.pointer.1">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="27" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>same object violation in (const char *)(const void *)httpFieldSeparator &gt;= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)</description>
+  <expression>TRUE &amp;&amp; !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator)) ==&gt; __CPROVER_POINTER_OBJECT(httpFieldSeparator) == __CPROVER_POINTER_OBJECT(pBufferCur)</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.7">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="27" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer relation: pointer NULL in (const char *)(const void *)httpFieldSeparator</description>
+  <expression>TRUE &amp;&amp; !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator)) ==&gt; !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(httpFieldSeparator))</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.8">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="27" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer relation: pointer invalid in (const char *)(const void *)httpFieldSeparator</description>
+  <expression>TRUE &amp;&amp; !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator)) ==&gt; !IS_INVALID_POINTER(httpFieldSeparator)</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.9">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="27" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer relation: deallocated dynamic object in (const char *)(const void *)httpFieldSeparator</description>
+  <expression>TRUE &amp;&amp; !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator)) ==&gt; !(__CPROVER_POINTER_OBJECT(httpFieldSeparator) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.10">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="27" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer relation: dead object in (const char *)(const void *)httpFieldSeparator</description>
+  <expression>TRUE &amp;&amp; !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator)) ==&gt; !(__CPROVER_POINTER_OBJECT(httpFieldSeparator) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.11">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="27" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer relation: pointer outside object bounds in (const char *)(const void *)httpFieldSeparator</description>
+  <expression>TRUE &amp;&amp; !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator)) ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(httpFieldSeparator) &gt;= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(httpFieldSeparator)</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.12">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="27" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer relation: invalid integer address in (const char *)(const void *)httpFieldSeparator</description>
+  <expression>TRUE &amp;&amp; !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator)) ==&gt; !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(httpFieldSeparator)) || httpFieldSeparator == ((const char *)NULL)</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.13">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer NULL in (const char *)(const void *)httpFieldSeparator + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)</description>
+  <expression>!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator) || (const char *)(const void *)httpFieldSeparator &gt;= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)) ==&gt; !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(httpFieldSeparator))</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.14">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer invalid in (const char *)(const void *)httpFieldSeparator + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)</description>
+  <expression>!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator) || (const char *)(const void *)httpFieldSeparator &gt;= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)) ==&gt; !IS_INVALID_POINTER(httpFieldSeparator)</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.15">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: deallocated dynamic object in (const char *)(const void *)httpFieldSeparator + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)</description>
+  <expression>!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator) || (const char *)(const void *)httpFieldSeparator &gt;= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)) ==&gt; !(__CPROVER_POINTER_OBJECT(httpFieldSeparator) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.16">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: dead object in (const char *)(const void *)httpFieldSeparator + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)</description>
+  <expression>!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator) || (const char *)(const void *)httpFieldSeparator &gt;= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)) ==&gt; !(__CPROVER_POINTER_OBJECT(httpFieldSeparator) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.17">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer outside object bounds in (const char *)(const void *)httpFieldSeparator + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)</description>
+  <expression>!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator) || (const char *)(const void *)httpFieldSeparator &gt;= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)) ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(httpFieldSeparator) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(httpFieldSeparator) + 2ul)</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.18">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: invalid integer address in (const char *)(const void *)httpFieldSeparator + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)</description>
+  <expression>!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator) || (const char *)(const void *)httpFieldSeparator &gt;= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)) ==&gt; !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(httpFieldSeparator)) || httpFieldSeparator + 2l == ((const char *)NULL)</expression>
+</property>
+
+<property class="pointer" name="__builtin___memcpy_chk.pointer.2">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>same object violation in (const char *)(void *)pBufferCur &gt;= (const char *)(const void *)httpFieldSeparator + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)</description>
+  <expression>!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator) || (const char *)(const void *)httpFieldSeparator &gt;= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)) ==&gt; __CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(httpFieldSeparator)</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.19">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer relation: pointer NULL in (const char *)(void *)pBufferCur</description>
+  <expression>!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator) || (const char *)(const void *)httpFieldSeparator &gt;= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)) ==&gt; !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur))</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.20">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer relation: pointer invalid in (const char *)(void *)pBufferCur</description>
+  <expression>!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator) || (const char *)(const void *)httpFieldSeparator &gt;= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)) ==&gt; !IS_INVALID_POINTER(pBufferCur)</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.21">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer relation: deallocated dynamic object in (const char *)(void *)pBufferCur</description>
+  <expression>!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator) || (const char *)(const void *)httpFieldSeparator &gt;= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)) ==&gt; !(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.22">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer relation: dead object in (const char *)(void *)pBufferCur</description>
+  <expression>!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator) || (const char *)(const void *)httpFieldSeparator &gt;= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)) ==&gt; !(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.23">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer relation: pointer outside object bounds in (const char *)(void *)pBufferCur</description>
+  <expression>!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator) || (const char *)(const void *)httpFieldSeparator &gt;= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)) ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pBufferCur) &gt;= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pBufferCur)</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.24">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer relation: invalid integer address in (const char *)(void *)pBufferCur</description>
+  <expression>!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator) || (const char *)(const void *)httpFieldSeparator &gt;= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)) ==&gt; !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur)) || pBufferCur == ((const char *)NULL)</expression>
+</property>
+
+<property class="precondition_instance" name="addHeader.precondition_instance.1">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1401" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>memcpy src/dst overlap</description>
+  <expression>__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)httpFieldSeparator) || (const char *)(const void *)httpFieldSeparator &gt;= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u) || (const char *)(void *)pBufferCur &gt;= (const char *)(const void *)httpFieldSeparator + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)</expression>
+</property>
+
+<property class="precondition_instance" name="addHeader.precondition_instance.2">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1401" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>memcpy source region readable</description>
+  <expression>R_OK((const void *)httpFieldSeparator, sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)</expression>
+</property>
+
+<property class="precondition_instance" name="addHeader.precondition_instance.3">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1401" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>memcpy destination region writeable</description>
+  <expression>W_OK((void *)pBufferCur, sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.25">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1405" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer NULL in pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur))</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.26">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1405" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer invalid in pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)</description>
+  <expression>!IS_INVALID_POINTER(pBufferCur)</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.27">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1405" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: deallocated dynamic object in pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.28">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1405" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: dead object in pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.29">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1405" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer outside object bounds in pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pBufferCur) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pBufferCur) + 2ul)</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.30">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1405" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: invalid integer address in pBufferCur + (signed long int)(sizeof(char [3l]) /*3ul*/  - (unsigned long int)1u)</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur)) || pBufferCur + 2l == ((char *)NULL)</expression>
+</property>
+
+<property class="overflow" name="addHeader.overflow.9">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1416" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>arithmetic overflow on unsigned to signed type conversion in (signed long int)valueLen</description>
+  <expression>!(valueLen &gt;= 9223372036854775808ul)</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.31">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1416" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer NULL in pBufferCur + (signed long int)valueLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur))</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.32">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1416" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer invalid in pBufferCur + (signed long int)valueLen</description>
+  <expression>!IS_INVALID_POINTER(pBufferCur)</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.33">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1416" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: deallocated dynamic object in pBufferCur + (signed long int)valueLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.34">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1416" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: dead object in pBufferCur + (signed long int)valueLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.35">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1416" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer outside object bounds in pBufferCur + (signed long int)valueLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pBufferCur) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pBufferCur) + (unsigned long int)(signed long int)valueLen)</expression>
+</property>
+
+<property class="pointer arithmetic" name="addHeader.pointer_arithmetic.36">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1416" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: invalid integer address in pBufferCur + (signed long int)valueLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur)) || pBufferCur + (signed long int)valueLen == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.25">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="27" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer NULL in (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)</description>
+  <expression>TRUE &amp;&amp; !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator)) ==&gt; !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur))</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.26">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="27" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer invalid in (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)</description>
+  <expression>TRUE &amp;&amp; !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator)) ==&gt; !IS_INVALID_POINTER(pBufferCur)</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.27">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="27" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: deallocated dynamic object in (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)</description>
+  <expression>TRUE &amp;&amp; !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator)) ==&gt; !(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.28">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="27" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: dead object in (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)</description>
+  <expression>TRUE &amp;&amp; !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator)) ==&gt; !(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.29">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="27" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer outside object bounds in (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)</description>
+  <expression>TRUE &amp;&amp; !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator)) ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pBufferCur) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pBufferCur) + 4ul)</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.30">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="27" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: invalid integer address in (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)</description>
+  <expression>TRUE &amp;&amp; !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator)) ==&gt; !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur)) || pBufferCur + 4l == ((const char *)NULL)</expression>
+</property>
+
+<property class="pointer" name="__builtin___memcpy_chk.pointer.3">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="27" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>same object violation in (const char *)(const void *)pHeaderEndIndicator &gt;= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)</description>
+  <expression>TRUE &amp;&amp; !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator)) ==&gt; __CPROVER_POINTER_OBJECT(pHeaderEndIndicator) == __CPROVER_POINTER_OBJECT(pBufferCur)</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.31">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="27" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer relation: pointer NULL in (const char *)(const void *)pHeaderEndIndicator</description>
+  <expression>TRUE &amp;&amp; !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator)) ==&gt; !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pHeaderEndIndicator))</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.32">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="27" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer relation: pointer invalid in (const char *)(const void *)pHeaderEndIndicator</description>
+  <expression>TRUE &amp;&amp; !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator)) ==&gt; !IS_INVALID_POINTER(pHeaderEndIndicator)</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.33">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="27" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer relation: deallocated dynamic object in (const char *)(const void *)pHeaderEndIndicator</description>
+  <expression>TRUE &amp;&amp; !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator)) ==&gt; !(__CPROVER_POINTER_OBJECT(pHeaderEndIndicator) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.34">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="27" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer relation: dead object in (const char *)(const void *)pHeaderEndIndicator</description>
+  <expression>TRUE &amp;&amp; !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator)) ==&gt; !(__CPROVER_POINTER_OBJECT(pHeaderEndIndicator) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.35">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="27" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer relation: pointer outside object bounds in (const char *)(const void *)pHeaderEndIndicator</description>
+  <expression>TRUE &amp;&amp; !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator)) ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pHeaderEndIndicator) &gt;= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pHeaderEndIndicator)</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.36">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="27" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer relation: invalid integer address in (const char *)(const void *)pHeaderEndIndicator</description>
+  <expression>TRUE &amp;&amp; !(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator)) ==&gt; !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pHeaderEndIndicator)) || pHeaderEndIndicator == ((const char *)NULL)</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.37">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer NULL in (const char *)(const void *)pHeaderEndIndicator + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)</description>
+  <expression>!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator) || (const char *)(const void *)pHeaderEndIndicator &gt;= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)) ==&gt; !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pHeaderEndIndicator))</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.38">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer invalid in (const char *)(const void *)pHeaderEndIndicator + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)</description>
+  <expression>!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator) || (const char *)(const void *)pHeaderEndIndicator &gt;= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)) ==&gt; !IS_INVALID_POINTER(pHeaderEndIndicator)</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.39">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: deallocated dynamic object in (const char *)(const void *)pHeaderEndIndicator + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)</description>
+  <expression>!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator) || (const char *)(const void *)pHeaderEndIndicator &gt;= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)) ==&gt; !(__CPROVER_POINTER_OBJECT(pHeaderEndIndicator) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.40">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: dead object in (const char *)(const void *)pHeaderEndIndicator + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)</description>
+  <expression>!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator) || (const char *)(const void *)pHeaderEndIndicator &gt;= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)) ==&gt; !(__CPROVER_POINTER_OBJECT(pHeaderEndIndicator) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.41">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer outside object bounds in (const char *)(const void *)pHeaderEndIndicator + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)</description>
+  <expression>!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator) || (const char *)(const void *)pHeaderEndIndicator &gt;= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)) ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pHeaderEndIndicator) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pHeaderEndIndicator) + 4ul)</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.42">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: invalid integer address in (const char *)(const void *)pHeaderEndIndicator + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)</description>
+  <expression>!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator) || (const char *)(const void *)pHeaderEndIndicator &gt;= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)) ==&gt; !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pHeaderEndIndicator)) || pHeaderEndIndicator + 4l == ((const char *)NULL)</expression>
+</property>
+
+<property class="pointer" name="__builtin___memcpy_chk.pointer.4">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>same object violation in (const char *)(void *)pBufferCur &gt;= (const char *)(const void *)pHeaderEndIndicator + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)</description>
+  <expression>!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator) || (const char *)(const void *)pHeaderEndIndicator &gt;= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)) ==&gt; __CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(pHeaderEndIndicator)</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.43">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer relation: pointer NULL in (const char *)(void *)pBufferCur</description>
+  <expression>!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator) || (const char *)(const void *)pHeaderEndIndicator &gt;= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)) ==&gt; !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur))</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.44">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer relation: pointer invalid in (const char *)(void *)pBufferCur</description>
+  <expression>!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator) || (const char *)(const void *)pHeaderEndIndicator &gt;= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)) ==&gt; !IS_INVALID_POINTER(pBufferCur)</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.45">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer relation: deallocated dynamic object in (const char *)(void *)pBufferCur</description>
+  <expression>!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator) || (const char *)(const void *)pHeaderEndIndicator &gt;= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)) ==&gt; !(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.46">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer relation: dead object in (const char *)(void *)pBufferCur</description>
+  <expression>!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator) || (const char *)(const void *)pHeaderEndIndicator &gt;= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)) ==&gt; !(__CPROVER_POINTER_OBJECT(pBufferCur) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.47">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer relation: pointer outside object bounds in (const char *)(void *)pBufferCur</description>
+  <expression>!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator) || (const char *)(const void *)pHeaderEndIndicator &gt;= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)) ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pBufferCur) &gt;= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pBufferCur)</expression>
+</property>
+
+<property class="pointer arithmetic" name="__builtin___memcpy_chk.pointer_arithmetic.48">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="28" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer relation: invalid integer address in (const char *)(void *)pBufferCur</description>
+  <expression>!(__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator) || (const char *)(const void *)pHeaderEndIndicator &gt;= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)) ==&gt; !(__CPROVER_POINTER_OBJECT(((const char *)NULL)) == __CPROVER_POINTER_OBJECT(pBufferCur)) || pBufferCur == ((const char *)NULL)</expression>
+</property>
+
+<property class="precondition_instance" name="addHeader.precondition_instance.4">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1419" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>memcpy src/dst overlap</description>
+  <expression>__CPROVER_POINTER_OBJECT((void *)pBufferCur) != __CPROVER_POINTER_OBJECT((const void *)pHeaderEndIndicator) || (const char *)(const void *)pHeaderEndIndicator &gt;= (const char *)(void *)pBufferCur + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u) || (const char *)(void *)pBufferCur &gt;= (const char *)(const void *)pHeaderEndIndicator + (signed long int)(sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)</expression>
+</property>
+
+<property class="precondition_instance" name="addHeader.precondition_instance.5">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1419" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>memcpy source region readable</description>
+  <expression>R_OK((const void *)pHeaderEndIndicator, sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)</expression>
+</property>
+
+<property class="precondition_instance" name="addHeader.precondition_instance.6">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1419" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>memcpy destination region writeable</description>
+  <expression>W_OK((void *)pBufferCur, sizeof(char [5l]) /*5ul*/  - (unsigned long int)1u)</expression>
+</property>
+
+<property class="pointer dereference" name="addHeader.pointer_dereference.19">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1424" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pRequestHeaders-&gt;headersLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders))</expression>
+</property>
+
+<property class="pointer dereference" name="addHeader.pointer_dereference.20">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1424" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pRequestHeaders-&gt;headersLen</description>
+  <expression>!IS_INVALID_POINTER(pRequestHeaders)</expression>
+</property>
+
+<property class="pointer dereference" name="addHeader.pointer_dereference.21">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1424" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pRequestHeaders-&gt;headersLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="addHeader.pointer_dereference.22">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1424" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pRequestHeaders-&gt;headersLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pRequestHeaders) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="addHeader.pointer_dereference.23">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1424" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pRequestHeaders-&gt;headersLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pRequestHeaders) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pRequestHeaders) + 16ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="addHeader.pointer_dereference.24">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1424" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pRequestHeaders-&gt;headersLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pRequestHeaders)) || (char *)pRequestHeaders + 16l == ((char *)NULL)</expression>
+</property>
+
+<property class="overflow" name="addHeader.overflow.10">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="addHeader" line="1424" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>arithmetic overflow on unsigned + in backtrackHeaderLen + toAddLen</description>
+  <expression>!overflow("+", size_t, backtrackHeaderLen, toAddLen)</expression>
+</property>
+
+<property class="overflow" name="__builtin___memcpy_chk.overflow.1">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="39" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>arithmetic overflow on unsigned to signed type conversion in (signed long int)n</description>
+  <expression>!(n &gt;= 9223372036854775808ul)</expression>
+</property>
+
+<property class="overflow" name="__builtin___memcpy_chk.overflow.2">
+  <location file="&lt;builtin-library-__builtin___memcpy_chk&gt;" function="__builtin___memcpy_chk" line="39" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>arithmetic overflow on signed to unsigned type conversion in (unsigned long int)(signed long int)n</description>
+  <expression>(signed long int)n &gt;= 0l</expression>
+</property>
+
+</cprover>
+
