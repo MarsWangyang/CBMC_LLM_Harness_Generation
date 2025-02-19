@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-import os
+import os, json
 from typing import *
 
 def get_uncovered_files(html_cont: str) -> Dict[str, list]:
@@ -71,7 +71,7 @@ def get_missed_code(uncovered_files: dict) -> Dict[str, list]:
     print("---Processing---")
     
     for file_path, uncovered_files in uncovered_files.items():
-        file_path = os.path.join(TEST_FILE_PATH, file_path) # need to be modified in next version to be more general
+        file_path = os.path.join(ROOT_FILE_PATH, "html", file_path) # need to be modified in next version to be more general
         with open(file_path, 'r') as file:
                 html_cont = file.read()
         
@@ -118,12 +118,81 @@ def get_missed_code(uncovered_files: dict) -> Dict[str, list]:
     print("---End Processing---")
     return code_map
 
+def get_failure(property_cont: dict, result_cont: dict) -> List[str]:
+    """
+    Get the failure line from the property and result json file
+    :param property_cont: The content of the property json file (viewer-property.json)
+    :param result_cont: The content of the result json file (viewer-result.json)
+    :return: The list of failure line
+    """
+    
+    failure_map = {}
+    
+    fail_result_list = result_cont["viewer-result"]["results"]["false"]
+    property_list = property_cont["viewer-property"]["properties"]
+    
+    for fail in fail_result_list:
+        print("fail: ", fail)
+        if fail.split(".")[1] == "no-body":
+            failure_map[fail] = {
+                "description": f"The harness currently doen't have function that is named after '{fail.split(".")[0]}' to be called"
+            }
+        else:
+            if not property_list.get(fail):
+                failure_map[fail] = {
+                    "description": f"We currently don't know what is happening to this error. Need to figure this out"
+                }
+            else:
+                fail_error = property_list.get(fail)
+                fail_class = fail_error["class"]
+                fail_description = fail_error["description"]
+                fail_expression = fail_error["expression"] # what expression makes the line of the code wrong
+                fail_location = fail_error["location"]["file"]
+                fail_location_line = fail_error["location"]["line"]
+                
+                file_path = os.path.join(TEST_FILE_PATH , 'html/', fail_location+".html") # need to be modified in next version to be more general
+                
+                with open(file_path, 'r') as file:
+                        html_cont = file.read()
+                
+                html = BeautifulSoup(html_cont, 'html.parser')
+                fail_code = get_html_code(html, fail_location_line)
+                
+                failure_map[fail] = {
+                    "class": f"{fail_class}",
+                    "description": f"{fail_description}",
+                    "expression": f"{fail_expression}",
+                    "code": f"{fail_code[0]}"
+                }
+    if failure_map == {}:
+        failure_map["noError"] = {
+            "description": "No Error is found in the harness."
+        }
+        
+    return failure_map
+
 
 if __name__ == "__main__":
-    # FUNCTION_NAME = "HTTPClient_ReadHeader"
-    FUNCTION_NAME = "HTTPClient_Send"
-    TEST_FILE_PATH = f"./test/proof/artifacts/{FUNCTION_NAME}/report/html/"
-    with open(TEST_FILE_PATH + 'index.html', 'r', encoding='utf-8') as file:
+    # ------ Missed line parser ------
+    FUNCTION_NAME = "HTTPClient_ReadHeader"
+    # FUNCTION_NAME = "HTTPClient_Send"
+    ROOT_FILE_PATH = f"./test/proof/artifacts/{FUNCTION_NAME}/report/"
+    TEST_FILE_PATH = os.path.join(ROOT_FILE_PATH, "html", "index.html")
+    print(TEST_FILE_PATH)
+    with open(TEST_FILE_PATH, 'r', encoding='utf-8') as file:
         html_cont = file.read()
     uncovered_files = get_uncovered_files(html_cont)
     extracted_uncovered_file = get_missed_code(uncovered_files)
+    print(extracted_uncovered_file)
+    
+    # ------ Property and Result parser ------
+    
+    # it only used for testing, need to remove '_test' for the real implementation
+    PROPERTY = "viewer-property.json"
+    RESULT = "viewer-result.json"
+    with open(ROOT_FILE_PATH + 'json/' + PROPERTY, 'r', encoding='utf-8') as file:
+        property_cont = json.load(file)
+    with open(ROOT_FILE_PATH + 'json/' + RESULT, 'r', encoding='utf-8') as file:
+        result_cont = json.load(file)
+    
+    print(get_failure(property_cont, result_cont))
