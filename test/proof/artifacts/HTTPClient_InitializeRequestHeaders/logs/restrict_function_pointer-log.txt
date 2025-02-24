@@ -1,0 +1,6 @@
+Reading GOTO program from '/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs/HTTPClient_InitializeRequestHeaders/gotos/HTTPClient_InitializeRequestHeaders_harness0100.goto'
+Function Pointer Removal
+Virtual function removal
+Cleaning inline assembler statements
+Writing GOTO program to '/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs/HTTPClient_InitializeRequestHeaders/gotos/HTTPClient_InitializeRequestHeaders_harness0200.goto'
+

@@ -1,0 +1,1421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cprover>
+<program>CBMC 6.3.1 (cbmc-6.3.1)</program>
+<message type="STATUS-MESSAGE">
+  <text>CBMC version 6.3.1 (cbmc-6.3.1) 64-bit x86_64 macos</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Reading GOTO program from file /Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs/httpParserOnMessageCompleteCallback/gotos/httpParserOnMessageCompleteCallback_harness.goto</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Generating GOTO Program</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Adding CPROVER library (x86_64)</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Removal of function pointers and virtual functions</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Generic Property Instrumentation</text>
+</message>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.1">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="235" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;pBuffer</description>
+  <expression>(return_value_isValidHttpResponse != FALSE ? (pResponse != ((HTTPResponse_t *)NULL) ? TRUE : FALSE) : FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.2">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="235" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;pBuffer</description>
+  <expression>(return_value_isValidHttpResponse != FALSE ? (pResponse != ((HTTPResponse_t *)NULL) ? TRUE : FALSE) : FALSE) ==&gt; !IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.3">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="235" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;pBuffer</description>
+  <expression>(return_value_isValidHttpResponse != FALSE ? (pResponse != ((HTTPResponse_t *)NULL) ? TRUE : FALSE) : FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.4">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="235" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;pBuffer</description>
+  <expression>(return_value_isValidHttpResponse != FALSE ? (pResponse != ((HTTPResponse_t *)NULL) ? TRUE : FALSE) : FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.5">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="235" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;pBuffer</description>
+  <expression>(return_value_isValidHttpResponse != FALSE ? (pResponse != ((HTTPResponse_t *)NULL) ? TRUE : FALSE) : FALSE) ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pResponse) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.6">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="235" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;pBuffer</description>
+  <expression>(return_value_isValidHttpResponse != FALSE ? (pResponse != ((HTTPResponse_t *)NULL) ? TRUE : FALSE) : FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || pResponse == ((HTTPResponse_t *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.7">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="236" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;bufferLen</description>
+  <expression>((return_value_isValidHttpResponse != FALSE ? (pResponse != ((HTTPResponse_t *)NULL) ? TRUE : FALSE) : FALSE) ? (pResponse-&gt;pBuffer != ((uint8_t *)NULL) ? TRUE : FALSE) : FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.8">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="236" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;bufferLen</description>
+  <expression>((return_value_isValidHttpResponse != FALSE ? (pResponse != ((HTTPResponse_t *)NULL) ? TRUE : FALSE) : FALSE) ? (pResponse-&gt;pBuffer != ((uint8_t *)NULL) ? TRUE : FALSE) : FALSE) ==&gt; !IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.9">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="236" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;bufferLen</description>
+  <expression>((return_value_isValidHttpResponse != FALSE ? (pResponse != ((HTTPResponse_t *)NULL) ? TRUE : FALSE) : FALSE) ? (pResponse-&gt;pBuffer != ((uint8_t *)NULL) ? TRUE : FALSE) : FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.10">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="236" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;bufferLen</description>
+  <expression>((return_value_isValidHttpResponse != FALSE ? (pResponse != ((HTTPResponse_t *)NULL) ? TRUE : FALSE) : FALSE) ? (pResponse-&gt;pBuffer != ((uint8_t *)NULL) ? TRUE : FALSE) : FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.11">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="236" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;bufferLen</description>
+  <expression>((return_value_isValidHttpResponse != FALSE ? (pResponse != ((HTTPResponse_t *)NULL) ? TRUE : FALSE) : FALSE) ? (pResponse-&gt;pBuffer != ((uint8_t *)NULL) ? TRUE : FALSE) : FALSE) ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 8ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.12">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="236" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;bufferLen</description>
+  <expression>((return_value_isValidHttpResponse != FALSE ? (pResponse != ((HTTPResponse_t *)NULL) ? TRUE : FALSE) : FALSE) ? (pResponse-&gt;pBuffer != ((uint8_t *)NULL) ? TRUE : FALSE) : FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 8l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.13">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="237" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pHttpParsingContext-&gt;pResponse</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((HTTPResponse_t **)NULL)) == __CPROVER_POINTER_OBJECT(pHttpParsingContext))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.14">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="237" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pHttpParsingContext-&gt;pResponse</description>
+  <expression>!IS_INVALID_POINTER(pHttpParsingContext)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.15">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="237" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pHttpParsingContext-&gt;pResponse</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pHttpParsingContext) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.16">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="237" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pHttpParsingContext-&gt;pResponse</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pHttpParsingContext) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.17">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="237" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pHttpParsingContext-&gt;pResponse</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pHttpParsingContext) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pHttpParsingContext) + 224ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.18">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="237" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pHttpParsingContext-&gt;pResponse</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((HTTPResponse_t **)NULL)) == __CPROVER_POINTER_OBJECT(pHttpParsingContext)) || (char *)pHttpParsingContext + 224l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.19">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="239" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.20">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="239" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;bufferLen</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.21">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="239" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.22">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="239" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.23">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="239" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;bufferLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 8ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.24">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="239" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 8l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.25">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="240" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pHttpParsingContext-&gt;pBufferCur</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const char **)NULL)) == __CPROVER_POINTER_OBJECT(pHttpParsingContext))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.26">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="240" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pHttpParsingContext-&gt;pBufferCur</description>
+  <expression>!IS_INVALID_POINTER(pHttpParsingContext)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.27">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="240" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pHttpParsingContext-&gt;pBufferCur</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pHttpParsingContext) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.28">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="240" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pHttpParsingContext-&gt;pBufferCur</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pHttpParsingContext) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.29">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="240" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pHttpParsingContext-&gt;pBufferCur</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pHttpParsingContext) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pHttpParsingContext) + 240ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.30">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="240" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pHttpParsingContext-&gt;pBufferCur</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const char **)NULL)) == __CPROVER_POINTER_OBJECT(pHttpParsingContext)) || (char *)pHttpParsingContext + 240l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.31">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="240" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.32">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="240" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;pBuffer</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.33">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="240" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.34">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="240" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.35">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="240" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;pBuffer</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pResponse) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParsingContext.pointer_dereference.36">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="240" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || pResponse == ((HTTPResponse_t *)NULL)</expression>
+</property>
+
+<property class="overflow" name="allocateHttpSendParsingContext.overflow.1">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="240" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>arithmetic overflow on unsigned to signed type conversion in (signed long int)bufferOffset</description>
+  <expression>!(bufferOffset &gt;= 9223372036854775808ul)</expression>
+</property>
+
+<property class="pointer arithmetic" name="allocateHttpSendParsingContext.pointer_arithmetic.1">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="240" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer NULL in pResponse-&gt;pBuffer + (signed long int)bufferOffset</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse-&gt;pBuffer))</expression>
+</property>
+
+<property class="pointer arithmetic" name="allocateHttpSendParsingContext.pointer_arithmetic.2">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="240" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer invalid in pResponse-&gt;pBuffer + (signed long int)bufferOffset</description>
+  <expression>!IS_INVALID_POINTER(pResponse-&gt;pBuffer)</expression>
+</property>
+
+<property class="pointer arithmetic" name="allocateHttpSendParsingContext.pointer_arithmetic.3">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="240" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: deallocated dynamic object in pResponse-&gt;pBuffer + (signed long int)bufferOffset</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse-&gt;pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer arithmetic" name="allocateHttpSendParsingContext.pointer_arithmetic.4">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="240" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: dead object in pResponse-&gt;pBuffer + (signed long int)bufferOffset</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse-&gt;pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer arithmetic" name="allocateHttpSendParsingContext.pointer_arithmetic.5">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="240" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer outside object bounds in pResponse-&gt;pBuffer + (signed long int)bufferOffset</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse-&gt;pBuffer) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse-&gt;pBuffer) + (unsigned long int)(signed long int)bufferOffset)</expression>
+</property>
+
+<property class="pointer arithmetic" name="allocateHttpSendParsingContext.pointer_arithmetic.6">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParsingContext" line="240" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: invalid integer address in pResponse-&gt;pBuffer + (signed long int)bufferOffset</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse-&gt;pBuffer)) || pResponse-&gt;pBuffer + (signed long int)bufferOffset == ((uint8_t *)NULL)</expression>
+</property>
+
+<property class="assertion" name="mallocCanFail.assertion.1">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="mallocCanFail" line="36" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>mallocCanFail size is too big</description>
+  <expression>size &lt; 18446744073709551615ul &gt;&gt; 8 + 1</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.1">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="116" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.2">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="116" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;bufferLen</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.3">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="116" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.4">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="116" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.5">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="116" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;bufferLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 8ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.6">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="116" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 8l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.7">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="117" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.8">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="117" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;pBuffer</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.9">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="117" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.10">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="117" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.11">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="117" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;pBuffer</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pResponse) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.12">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="117" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || pResponse == ((HTTPResponse_t *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.13">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="119" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.14">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="119" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;bufferLen</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.15">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="119" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.16">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="119" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.17">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="119" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;bufferLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 8ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.18">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="119" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 8l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.19">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="121" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.20">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="121" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;pBuffer</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.21">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="121" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.22">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="121" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.23">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="121" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;pBuffer</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pResponse) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.24">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="121" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || pResponse == ((HTTPResponse_t *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.25">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="125" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;pHeaders</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.26">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="125" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;pHeaders</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.27">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="125" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;pHeaders</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.28">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="125" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;pHeaders</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.29">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="125" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;pHeaders</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 32ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.30">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="125" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;pHeaders</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 32l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.31">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="126" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;pBuffer</description>
+  <expression>!(return_value_nondet_bool != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.32">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="126" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;pBuffer</description>
+  <expression>!(return_value_nondet_bool != FALSE) ==&gt; !IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.33">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="126" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;pBuffer</description>
+  <expression>!(return_value_nondet_bool != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.34">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="126" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;pBuffer</description>
+  <expression>!(return_value_nondet_bool != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.35">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="126" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;pBuffer</description>
+  <expression>!(return_value_nondet_bool != FALSE) ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pResponse) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.36">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="126" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;pBuffer</description>
+  <expression>!(return_value_nondet_bool != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || pResponse == ((HTTPResponse_t *)NULL)</expression>
+</property>
+
+<property class="overflow" name="allocateHttpResponse.overflow.1">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="126" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>arithmetic overflow on unsigned to signed type conversion in (signed long int)headerOffset</description>
+  <expression>!(return_value_nondet_bool != FALSE) ==&gt; !(headerOffset &gt;= 9223372036854775808ul)</expression>
+</property>
+
+<property class="pointer arithmetic" name="allocateHttpResponse.pointer_arithmetic.1">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="126" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer NULL in pResponse-&gt;pBuffer + (signed long int)headerOffset</description>
+  <expression>!(return_value_nondet_bool != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(((uint8_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse-&gt;pBuffer))</expression>
+</property>
+
+<property class="pointer arithmetic" name="allocateHttpResponse.pointer_arithmetic.2">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="126" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer invalid in pResponse-&gt;pBuffer + (signed long int)headerOffset</description>
+  <expression>!(return_value_nondet_bool != FALSE) ==&gt; !IS_INVALID_POINTER(pResponse-&gt;pBuffer)</expression>
+</property>
+
+<property class="pointer arithmetic" name="allocateHttpResponse.pointer_arithmetic.3">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="126" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: deallocated dynamic object in pResponse-&gt;pBuffer + (signed long int)headerOffset</description>
+  <expression>!(return_value_nondet_bool != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse-&gt;pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer arithmetic" name="allocateHttpResponse.pointer_arithmetic.4">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="126" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: dead object in pResponse-&gt;pBuffer + (signed long int)headerOffset</description>
+  <expression>!(return_value_nondet_bool != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse-&gt;pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer arithmetic" name="allocateHttpResponse.pointer_arithmetic.5">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="126" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer outside object bounds in pResponse-&gt;pBuffer + (signed long int)headerOffset</description>
+  <expression>!(return_value_nondet_bool != FALSE) ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse-&gt;pBuffer) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse-&gt;pBuffer) + (unsigned long int)(signed long int)headerOffset)</expression>
+</property>
+
+<property class="pointer arithmetic" name="allocateHttpResponse.pointer_arithmetic.6">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="126" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: invalid integer address in pResponse-&gt;pBuffer + (signed long int)headerOffset</description>
+  <expression>!(return_value_nondet_bool != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(((uint8_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse-&gt;pBuffer)) || pResponse-&gt;pBuffer + (signed long int)headerOffset == ((uint8_t *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.37">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="129" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;pHeaders</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.38">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="129" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;pHeaders</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.39">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="129" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;pHeaders</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.40">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="129" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;pHeaders</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.41">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="129" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;pHeaders</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 32ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.42">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="129" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;pHeaders</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 32l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.43">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="133" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;headersLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.44">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="133" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;headersLen</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.45">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="133" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;headersLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.46">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="133" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;headersLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.47">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="133" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;headersLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 40ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.48">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="133" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;headersLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 40l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.49">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="133" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.50">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="133" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;bufferLen</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.51">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="133" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.52">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="133" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.53">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="133" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;bufferLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 8ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.54">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="133" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 8l == ((char *)NULL)</expression>
+</property>
+
+<property class="overflow" name="allocateHttpResponse.overflow.2">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="133" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>arithmetic overflow on unsigned - in pResponse-&gt;bufferLen - headerOffset</description>
+  <expression>!overflow("-", size_t, pResponse-&gt;bufferLen, headerOffset)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.55">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="136" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.56">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="136" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;bufferLen</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.57">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="136" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.58">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="136" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.59">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="136" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;bufferLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 8ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.60">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="136" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 8l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.61">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="142" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.62">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="142" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;bufferLen</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.63">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="142" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.64">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="142" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.65">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="142" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;bufferLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 8ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.66">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="142" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 8l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.67">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="145" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.68">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="145" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;pBuffer</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.69">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="145" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.70">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="145" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.71">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="145" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;pBuffer</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pResponse) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.72">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="145" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;pBuffer</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || pResponse == ((HTTPResponse_t *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.73">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="147" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;pBody</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.74">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="147" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;pBody</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.75">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="147" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;pBody</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.76">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="147" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;pBody</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.77">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="147" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;pBody</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 48ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.78">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="147" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;pBody</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 48l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.79">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="148" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;pBuffer</description>
+  <expression>!(return_value_nondet_bool$0 != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.80">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="148" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;pBuffer</description>
+  <expression>!(return_value_nondet_bool$0 != FALSE) ==&gt; !IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.81">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="148" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;pBuffer</description>
+  <expression>!(return_value_nondet_bool$0 != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.82">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="148" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;pBuffer</description>
+  <expression>!(return_value_nondet_bool$0 != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.83">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="148" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;pBuffer</description>
+  <expression>!(return_value_nondet_bool$0 != FALSE) ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])__CPROVER_POINTER_OFFSET(pResponse) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.84">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="148" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;pBuffer</description>
+  <expression>!(return_value_nondet_bool$0 != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(((uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || pResponse == ((HTTPResponse_t *)NULL)</expression>
+</property>
+
+<property class="overflow" name="allocateHttpResponse.overflow.3">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="148" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>arithmetic overflow on unsigned to signed type conversion in (signed long int)bodyOffset</description>
+  <expression>!(return_value_nondet_bool$0 != FALSE) ==&gt; !(bodyOffset &gt;= 9223372036854775808ul)</expression>
+</property>
+
+<property class="pointer arithmetic" name="allocateHttpResponse.pointer_arithmetic.7">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="148" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer NULL in pResponse-&gt;pBuffer + (signed long int)bodyOffset</description>
+  <expression>!(return_value_nondet_bool$0 != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(((uint8_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse-&gt;pBuffer))</expression>
+</property>
+
+<property class="pointer arithmetic" name="allocateHttpResponse.pointer_arithmetic.8">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="148" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer invalid in pResponse-&gt;pBuffer + (signed long int)bodyOffset</description>
+  <expression>!(return_value_nondet_bool$0 != FALSE) ==&gt; !IS_INVALID_POINTER(pResponse-&gt;pBuffer)</expression>
+</property>
+
+<property class="pointer arithmetic" name="allocateHttpResponse.pointer_arithmetic.9">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="148" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: deallocated dynamic object in pResponse-&gt;pBuffer + (signed long int)bodyOffset</description>
+  <expression>!(return_value_nondet_bool$0 != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse-&gt;pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer arithmetic" name="allocateHttpResponse.pointer_arithmetic.10">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="148" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: dead object in pResponse-&gt;pBuffer + (signed long int)bodyOffset</description>
+  <expression>!(return_value_nondet_bool$0 != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse-&gt;pBuffer) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer arithmetic" name="allocateHttpResponse.pointer_arithmetic.11">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="148" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: pointer outside object bounds in pResponse-&gt;pBuffer + (signed long int)bodyOffset</description>
+  <expression>!(return_value_nondet_bool$0 != FALSE) ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse-&gt;pBuffer) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse-&gt;pBuffer) + (unsigned long int)(signed long int)bodyOffset)</expression>
+</property>
+
+<property class="pointer arithmetic" name="allocateHttpResponse.pointer_arithmetic.12">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="148" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>pointer arithmetic: invalid integer address in pResponse-&gt;pBuffer + (signed long int)bodyOffset</description>
+  <expression>!(return_value_nondet_bool$0 != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(((uint8_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse-&gt;pBuffer)) || pResponse-&gt;pBuffer + (signed long int)bodyOffset == ((uint8_t *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.85">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="153" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;pBody</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.86">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="153" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;pBody</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.87">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="153" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;pBody</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.88">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="153" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;pBody</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.89">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="153" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;pBody</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 48ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.90">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="153" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;pBody</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((const uint8_t **)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 48l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.91">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="155" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;bodyLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.92">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="155" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;bodyLen</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.93">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="155" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;bodyLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.94">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="155" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;bodyLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.95">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="155" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;bodyLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 56ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.96">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="155" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;bodyLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 56l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.97">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="155" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.98">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="155" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;bufferLen</description>
+  <expression>!IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.99">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="155" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.100">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="155" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.101">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="155" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;bufferLen</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 8ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpResponse.pointer_dereference.102">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="155" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;bufferLen</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 8l == ((char *)NULL)</expression>
+</property>
+
+<property class="overflow" name="allocateHttpResponse.overflow.4">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpResponse" line="155" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>arithmetic overflow on unsigned - in pResponse-&gt;bufferLen - bodyOffset</description>
+  <expression>!overflow("-", size_t, pResponse-&gt;bufferLen, bodyOffset)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParser.pointer_dereference.1">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParser" line="217" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pHttpParser-&gt;data</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((void **)NULL)) == __CPROVER_POINTER_OBJECT(pHttpParser))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParser.pointer_dereference.2">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParser" line="217" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pHttpParser-&gt;data</description>
+  <expression>!IS_INVALID_POINTER(pHttpParser)</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParser.pointer_dereference.3">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParser" line="217" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pHttpParser-&gt;data</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pHttpParser) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParser.pointer_dereference.4">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParser" line="217" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pHttpParser-&gt;data</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pHttpParser) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParser.pointer_dereference.5">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParser" line="217" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pHttpParser-&gt;data</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pHttpParser) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pHttpParser) + 48ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="allocateHttpSendParser.pointer_dereference.6">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpSendParser" line="217" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pHttpParser-&gt;data</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((void **)NULL)) == __CPROVER_POINTER_OBJECT(pHttpParser)) || (char *)pHttpParser + 48l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpSendParsingContext.pointer_dereference.1">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpSendParsingContext" line="250" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pHttpParsingContext-&gt;lastHeaderFieldLen</description>
+  <expression>isValid != FALSE ==&gt; !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pHttpParsingContext))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpSendParsingContext.pointer_dereference.2">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpSendParsingContext" line="250" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pHttpParsingContext-&gt;lastHeaderFieldLen</description>
+  <expression>isValid != FALSE ==&gt; !IS_INVALID_POINTER(pHttpParsingContext)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpSendParsingContext.pointer_dereference.3">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpSendParsingContext" line="250" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pHttpParsingContext-&gt;lastHeaderFieldLen</description>
+  <expression>isValid != FALSE ==&gt; !(__CPROVER_POINTER_OBJECT(pHttpParsingContext) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpSendParsingContext.pointer_dereference.4">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpSendParsingContext" line="250" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pHttpParsingContext-&gt;lastHeaderFieldLen</description>
+  <expression>isValid != FALSE ==&gt; !(__CPROVER_POINTER_OBJECT(pHttpParsingContext) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpSendParsingContext.pointer_dereference.5">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpSendParsingContext" line="250" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pHttpParsingContext-&gt;lastHeaderFieldLen</description>
+  <expression>isValid != FALSE ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pHttpParsingContext) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pHttpParsingContext) + 256ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpSendParsingContext.pointer_dereference.6">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpSendParsingContext" line="250" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pHttpParsingContext-&gt;lastHeaderFieldLen</description>
+  <expression>isValid != FALSE ==&gt; !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pHttpParsingContext)) || (char *)pHttpParsingContext + 256l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpSendParsingContext.pointer_dereference.7">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpSendParsingContext" line="251" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pHttpParsingContext-&gt;lastHeaderValueLen</description>
+  <expression>isValid != FALSE ==&gt; !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pHttpParsingContext))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpSendParsingContext.pointer_dereference.8">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpSendParsingContext" line="251" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pHttpParsingContext-&gt;lastHeaderValueLen</description>
+  <expression>isValid != FALSE ==&gt; !IS_INVALID_POINTER(pHttpParsingContext)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpSendParsingContext.pointer_dereference.9">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpSendParsingContext" line="251" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pHttpParsingContext-&gt;lastHeaderValueLen</description>
+  <expression>isValid != FALSE ==&gt; !(__CPROVER_POINTER_OBJECT(pHttpParsingContext) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpSendParsingContext.pointer_dereference.10">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpSendParsingContext" line="251" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pHttpParsingContext-&gt;lastHeaderValueLen</description>
+  <expression>isValid != FALSE ==&gt; !(__CPROVER_POINTER_OBJECT(pHttpParsingContext) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpSendParsingContext.pointer_dereference.11">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpSendParsingContext" line="251" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pHttpParsingContext-&gt;lastHeaderValueLen</description>
+  <expression>isValid != FALSE ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pHttpParsingContext) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pHttpParsingContext) + 272ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpSendParsingContext.pointer_dereference.12">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpSendParsingContext" line="251" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pHttpParsingContext-&gt;lastHeaderValueLen</description>
+  <expression>isValid != FALSE ==&gt; !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pHttpParsingContext)) || (char *)pHttpParsingContext + 272l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.1">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="168" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;bufferLen</description>
+  <expression>TRUE &amp;&amp; TRUE ==&gt; !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.2">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="168" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;bufferLen</description>
+  <expression>TRUE &amp;&amp; TRUE ==&gt; !IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.3">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="168" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;bufferLen</description>
+  <expression>TRUE &amp;&amp; TRUE ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.4">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="168" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;bufferLen</description>
+  <expression>TRUE &amp;&amp; TRUE ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.5">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="168" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;bufferLen</description>
+  <expression>TRUE &amp;&amp; TRUE ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 8ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.6">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="168" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;bufferLen</description>
+  <expression>TRUE &amp;&amp; TRUE ==&gt; !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 8l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.7">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="169" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;bodyLen</description>
+  <expression>TRUE &amp;&amp; pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 ==&gt; !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.8">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="169" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;bodyLen</description>
+  <expression>TRUE &amp;&amp; pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 ==&gt; !IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.9">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="169" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;bodyLen</description>
+  <expression>TRUE &amp;&amp; pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.10">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="169" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;bodyLen</description>
+  <expression>TRUE &amp;&amp; pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.11">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="169" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;bodyLen</description>
+  <expression>TRUE &amp;&amp; pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 56ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.12">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="169" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;bodyLen</description>
+  <expression>TRUE &amp;&amp; pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 ==&gt; !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 56l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.13">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="169" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;bufferLen</description>
+  <expression>TRUE &amp;&amp; pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 ==&gt; !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.14">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="169" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;bufferLen</description>
+  <expression>TRUE &amp;&amp; pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 ==&gt; !IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.15">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="169" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;bufferLen</description>
+  <expression>TRUE &amp;&amp; pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.16">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="169" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;bufferLen</description>
+  <expression>TRUE &amp;&amp; pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.17">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="169" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;bufferLen</description>
+  <expression>TRUE &amp;&amp; pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 8ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.18">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="169" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;bufferLen</description>
+  <expression>TRUE &amp;&amp; pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 ==&gt; !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 8l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.19">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="170" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;headersLen</description>
+  <expression>pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 &amp;&amp; pResponse-&gt;bodyLen &lt; pResponse-&gt;bufferLen ==&gt; !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.20">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="170" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;headersLen</description>
+  <expression>pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 &amp;&amp; pResponse-&gt;bodyLen &lt; pResponse-&gt;bufferLen ==&gt; !IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.21">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="170" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;headersLen</description>
+  <expression>pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 &amp;&amp; pResponse-&gt;bodyLen &lt; pResponse-&gt;bufferLen ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.22">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="170" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;headersLen</description>
+  <expression>pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 &amp;&amp; pResponse-&gt;bodyLen &lt; pResponse-&gt;bufferLen ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.23">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="170" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;headersLen</description>
+  <expression>pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 &amp;&amp; pResponse-&gt;bodyLen &lt; pResponse-&gt;bufferLen ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 40ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.24">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="170" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;headersLen</description>
+  <expression>pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 &amp;&amp; pResponse-&gt;bodyLen &lt; pResponse-&gt;bufferLen ==&gt; !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 40l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.25">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="170" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;bufferLen</description>
+  <expression>pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 &amp;&amp; pResponse-&gt;bodyLen &lt; pResponse-&gt;bufferLen ==&gt; !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.26">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="170" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;bufferLen</description>
+  <expression>pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 &amp;&amp; pResponse-&gt;bodyLen &lt; pResponse-&gt;bufferLen ==&gt; !IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.27">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="170" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;bufferLen</description>
+  <expression>pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 &amp;&amp; pResponse-&gt;bodyLen &lt; pResponse-&gt;bufferLen ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.28">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="170" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;bufferLen</description>
+  <expression>pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 &amp;&amp; pResponse-&gt;bodyLen &lt; pResponse-&gt;bufferLen ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.29">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="170" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;bufferLen</description>
+  <expression>pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 &amp;&amp; pResponse-&gt;bodyLen &lt; pResponse-&gt;bufferLen ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 8ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.30">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="170" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;bufferLen</description>
+  <expression>pResponse-&gt;bufferLen &lt; 18446744073709551615ul &gt;&gt; 8 + 1 &amp;&amp; pResponse-&gt;bodyLen &lt; pResponse-&gt;bufferLen ==&gt; !(__CPROVER_POINTER_OBJECT(((const size_t *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 8l == ((char *)NULL)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.31">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="171" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pResponse-&gt;pBody</description>
+  <expression>!(isValid != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(((const uint8_t * const *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.32">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="171" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pResponse-&gt;pBody</description>
+  <expression>!(isValid != FALSE) ==&gt; !IS_INVALID_POINTER(pResponse)</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.33">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="171" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pResponse-&gt;pBody</description>
+  <expression>!(isValid != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.34">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="171" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pResponse-&gt;pBody</description>
+  <expression>!(isValid != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(pResponse) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.35">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="171" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pResponse-&gt;pBody</description>
+  <expression>!(isValid != FALSE) ==&gt; (unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pResponse) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pResponse) + 48ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="isValidHttpResponse.pointer_dereference.36">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="isValidHttpResponse" line="171" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pResponse-&gt;pBody</description>
+  <expression>!(isValid != FALSE) ==&gt; !(__CPROVER_POINTER_OBJECT(((const uint8_t * const *)NULL)) == __CPROVER_POINTER_OBJECT(pResponse)) || (char *)pResponse + 48l == ((char *)NULL)</expression>
+</property>
+
+<property class="assertion" name="malloc.assertion.1">
+  <location file="&lt;builtin-library-malloc&gt;" function="malloc" line="31" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>max allocation size exceeded</description>
+  <expression>malloc_size &lt;= __CPROVER_max_malloc_size</expression>
+</property>
+
+<property class="assertion" name="malloc.assertion.2">
+  <location file="&lt;builtin-library-malloc&gt;" function="malloc" line="36" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>max allocation may fail</description>
+  <expression>!(1 != 0) || !should_malloc_fail</expression>
+</property>
+
+<property class="assertion" name="httpParserOnMessageCompleteCallback.assertion.1">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="httpParserOnMessageCompleteCallback" line="985" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>assertion pHttpParser != NULL</description>
+  <expression>!((signed long int)(signed long int)!(pHttpParser != ((llhttp_t *)NULL)) != 0l)</expression>
+</property>
+
+<property class="pointer dereference" name="httpParserOnMessageCompleteCallback.pointer_dereference.1">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="httpParserOnMessageCompleteCallback" line="986" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pHttpParser-&gt;data</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((void **)NULL)) == __CPROVER_POINTER_OBJECT(pHttpParser))</expression>
+</property>
+
+<property class="pointer dereference" name="httpParserOnMessageCompleteCallback.pointer_dereference.2">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="httpParserOnMessageCompleteCallback" line="986" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pHttpParser-&gt;data</description>
+  <expression>!IS_INVALID_POINTER(pHttpParser)</expression>
+</property>
+
+<property class="pointer dereference" name="httpParserOnMessageCompleteCallback.pointer_dereference.3">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="httpParserOnMessageCompleteCallback" line="986" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pHttpParser-&gt;data</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pHttpParser) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="httpParserOnMessageCompleteCallback.pointer_dereference.4">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="httpParserOnMessageCompleteCallback" line="986" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pHttpParser-&gt;data</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pHttpParser) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="httpParserOnMessageCompleteCallback.pointer_dereference.5">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="httpParserOnMessageCompleteCallback" line="986" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pHttpParser-&gt;data</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pHttpParser) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pHttpParser) + 48ul) + 8</expression>
+</property>
+
+<property class="pointer dereference" name="httpParserOnMessageCompleteCallback.pointer_dereference.6">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="httpParserOnMessageCompleteCallback" line="986" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pHttpParser-&gt;data</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((void **)NULL)) == __CPROVER_POINTER_OBJECT(pHttpParser)) || (char *)pHttpParser + 48l == ((char *)NULL)</expression>
+</property>
+
+<property class="assertion" name="httpParserOnMessageCompleteCallback.assertion.2">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="httpParserOnMessageCompleteCallback" line="986" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>assertion pHttpParser-&gt;data != NULL</description>
+  <expression>!((signed long int)(signed long int)!(pHttpParser-&gt;data != (void *)0) != 0l)</expression>
+</property>
+
+<property class="pointer dereference" name="httpParserOnMessageCompleteCallback.pointer_dereference.7">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="httpParserOnMessageCompleteCallback" line="991" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer NULL in pParsingContext-&gt;state</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((HTTPParsingState_t *)NULL)) == __CPROVER_POINTER_OBJECT(pParsingContext))</expression>
+</property>
+
+<property class="pointer dereference" name="httpParserOnMessageCompleteCallback.pointer_dereference.8">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="httpParserOnMessageCompleteCallback" line="991" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer invalid in pParsingContext-&gt;state</description>
+  <expression>!IS_INVALID_POINTER(pParsingContext)</expression>
+</property>
+
+<property class="pointer dereference" name="httpParserOnMessageCompleteCallback.pointer_dereference.9">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="httpParserOnMessageCompleteCallback" line="991" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: deallocated dynamic object in pParsingContext-&gt;state</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pParsingContext) == __CPROVER_POINTER_OBJECT(__CPROVER_deallocated))</expression>
+</property>
+
+<property class="pointer dereference" name="httpParserOnMessageCompleteCallback.pointer_dereference.10">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="httpParserOnMessageCompleteCallback" line="991" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: dead object in pParsingContext-&gt;state</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(pParsingContext) == __CPROVER_POINTER_OBJECT(__CPROVER_dead_object))</expression>
+</property>
+
+<property class="pointer dereference" name="httpParserOnMessageCompleteCallback.pointer_dereference.11">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="httpParserOnMessageCompleteCallback" line="991" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: pointer outside object bounds in pParsingContext-&gt;state</description>
+  <expression>(unsigned __CPROVER_bitvector[65])__CPROVER_OBJECT_SIZE(pParsingContext) &gt;= (unsigned __CPROVER_bitvector[65])(__CPROVER_POINTER_OFFSET(pParsingContext) + 216ul) + 4</expression>
+</property>
+
+<property class="pointer dereference" name="httpParserOnMessageCompleteCallback.pointer_dereference.12">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="httpParserOnMessageCompleteCallback" line="991" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+  <description>dereference failure: invalid integer address in pParsingContext-&gt;state</description>
+  <expression>!(__CPROVER_POINTER_OBJECT(((HTTPParsingState_t *)NULL)) == __CPROVER_POINTER_OBJECT(pParsingContext)) || (char *)pParsingContext + 216l == ((char *)NULL)</expression>
+</property>
+
+</cprover>
+

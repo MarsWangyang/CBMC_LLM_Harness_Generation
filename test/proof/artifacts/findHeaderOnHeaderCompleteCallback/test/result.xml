@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cprover>
+<program>CBMC 6.3.1 (cbmc-6.3.1)</program>
+<message type="STATUS-MESSAGE">
+  <text>CBMC version 6.3.1 (cbmc-6.3.1) 64-bit x86_64 macos</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Reading GOTO program from file /Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs/findHeaderOnHeaderCompleteCallback/gotos/findHeaderOnHeaderCompleteCallback_harness.goto</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Generating GOTO Program</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Adding CPROVER library (x86_64)</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Removal of function pointers and virtual functions</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Generic Property Instrumentation</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Starting Bounded Model Checking</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Passing problem to propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>converting SSA</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Running propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>SAT checker: instance is UNSATISFIABLE</text>
+</message>
+
+<result property="findHeaderOnHeaderCompleteCallback.assertion.1" status="SUCCESS">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="findHeaderOnHeaderCompleteCallback" line="2422" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="allocateHttpReadHeaderParser.pointer_dereference.1" status="SUCCESS">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser" line="267" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="allocateHttpReadHeaderParser.pointer_dereference.2" status="SUCCESS">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser" line="267" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="allocateHttpReadHeaderParser.pointer_dereference.3" status="SUCCESS">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser" line="267" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="allocateHttpReadHeaderParser.pointer_dereference.4" status="SUCCESS">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser" line="267" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="allocateHttpReadHeaderParser.pointer_dereference.5" status="SUCCESS">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser" line="267" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="allocateHttpReadHeaderParser.pointer_dereference.6" status="SUCCESS">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/sources/http_cbmc_state.c" function="allocateHttpReadHeaderParser" line="267" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="malloc.assertion.1" status="SUCCESS">
+  <location file="&lt;builtin-library-malloc&gt;" function="malloc" line="31" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="malloc.assertion.2" status="SUCCESS">
+  <location file="&lt;builtin-library-malloc&gt;" function="malloc" line="36" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="findHeaderOnHeaderCompleteCallback.pointer_dereference.1" status="SUCCESS">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="findHeaderOnHeaderCompleteCallback" line="2424" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="findHeaderOnHeaderCompleteCallback.pointer_dereference.2" status="SUCCESS">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="findHeaderOnHeaderCompleteCallback" line="2424" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="findHeaderOnHeaderCompleteCallback.pointer_dereference.3" status="SUCCESS">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="findHeaderOnHeaderCompleteCallback" line="2424" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="findHeaderOnHeaderCompleteCallback.pointer_dereference.4" status="SUCCESS">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="findHeaderOnHeaderCompleteCallback" line="2424" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="findHeaderOnHeaderCompleteCallback.pointer_dereference.5" status="SUCCESS">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="findHeaderOnHeaderCompleteCallback" line="2424" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<result property="findHeaderOnHeaderCompleteCallback.pointer_dereference.6" status="SUCCESS">
+  <location file="/Users/mars/Desktop/CBMC/coreHTTP/source/core_http_client.c" function="findHeaderOnHeaderCompleteCallback" line="2424" working-directory="/Users/mars/Desktop/CBMC/coreHTTP/test/cbmc/proofs"/>
+</result>
+
+<message type="STATUS-MESSAGE">
+  <text>VERIFICATION SUCCESSFUL</text>
+</message>
+
+<cprover-status>SUCCESS</cprover-status>
+
+</cprover>
+
