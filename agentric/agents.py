@@ -1,6 +1,6 @@
 class Generator:
     MODEL = "gpt-4"
-    TEMPERATURE = 0
+    TEMPERATURE = 0.7
     SYSTEM_PROMPT = '''
     You are a helpful software engineer assistor, specialized in generating CBMC harnesses  
     for potentially faulty C/C++ code.
@@ -18,7 +18,7 @@ class Generator:
 
 class Critic:
     MODEL = "gpt-4"
-    TEMPERATURE = 0.7
+    TEMPERATURE = 0
     SYSTEM_PROMPT = '''
     You are a harsh critic that seeks to ensure a proper CBMC harness is generated for the 
     given C/C++ code, evaluate the given harness and provide feedback. ONLY CRITIC, DO NOT 
