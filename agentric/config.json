@@ -1,0 +1,12 @@
+{
+    "data_path": "data",
+    "generator": {
+        "model": "gpt-4",
+        "temperature": 0.7
+    },
+    "critic": {
+        "model": "gpt-4",
+        "temperature": 0
+    }
+
+}
