@@ -4,27 +4,19 @@ import langchain, langgraph, openai
 from langchain_openai import ChatOpenAI
 from langgraph.graph import StateGraph, MessagesState, START, END
 from langgraph.types import Command
+from typing_extensions import Literal
 
 import utils
-from typing_extensions import Literal
+from agents import Generator, Critic
 
 
 os.environ["OPENAI_API_KEY"] = os.getenv("KEY")
-CONFIG = utils.load_config()
-DATA = CONFIG["data_path"]
-GENERATOR_MODEL= CONFIG["generator"]["model"]
-CRITIC_MODEL= CONFIG["critic"]["model"]
-GENERATOR_TEMPERATURE= CONFIG["generator"]["temperature"]
-CRITIC_TEMPERATURE= CONFIG["critic"]["temperature"]
 
 
 def generator(state: MessagesState) -> Command[Literal["critic", "__end__"]]:
     print(f"GENERATOR {int(len(state['messages'])/2+1)}->")
-    generator_llm = ChatOpenAI(model = GENERATOR_MODEL, temperature = GENERATOR_TEMPERATURE)
-    system_prompt = (
-        '''You are a helpful software engineer assistor, specialized in generating CBMC harnesses for potentially faulty C/C++ code.
-        output only the C code for the harness'''
-    )
+    generator_llm = ChatOpenAI(model = Generator.MODEL, temperature = Generator.TEMPERATURE)
+    system_prompt = (Generator.SYSTEM_PROMPT)
     messages = [{"role": "system", "content": system_prompt}] + state["messages"]
     ai_msg = generator_llm.invoke(messages)
     return Command(
@@ -34,11 +26,8 @@ def generator(state: MessagesState) -> Command[Literal["critic", "__end__"]]:
 
 def critic(state: MessagesState) -> Command[Literal["generator", "__end__"]]:
     print(f"CRITIC {int(len(state['messages'])/2)}->")
-    critic_llm = ChatOpenAI(model=CRITIC_MODEL, temperature = CRITIC_TEMPERATURE)
-    system_prompt = (
-        '''You are a harsh critic that seeks to ensure a proper CBMC harness is generated for the given C/C++ code, evaluate the 
-        given harness and provide feedback. ONLY CRITIC, DO NOT generate your idea of the solution. If you are satisfied with the 
-        generation or believe it can do its job, respond with "FINISH".'''
+    critic_llm = ChatOpenAI(model=Critic.MODEL, temperature = Critic.TEMPERATURE)
+    system_prompt = (Critic.SYSTEM_PROMPT
     )
     messages = [{"role": "system", "content": system_prompt}] + state["messages"]
     ai_msg = critic_llm.invoke(messages)
@@ -66,16 +55,24 @@ def run_pipeline(graph, source, path):
     for idx, chunk in enumerate(graph.stream(
         {"messages": [source]}
         )):
+
         agent = next(iter(chunk))
         msg = next(iter(chunk[agent]))
 
         response = chunk[agent][msg][-1]
 
-        header = f"\n_____________________________________________ {agent.upper()} MODEL {int(idx/2+1)}_____________________________________________\n\n"
+        header = f"\n{agent.upper()} MODEL {int(idx/2+1)}___________________________________________________________\n\n"
         utils.write_to_log(header + response + "\n", path)
+        
         if agent == "generator":
             code = utils.extract_c_code(response)
             utils.save_c_file(code, path)
+        
+        #temp endpoint
+        if idx == 4:
+            break
+        
+
         #add count for token
 
 def main(data_dir, start, num_files, run_all):

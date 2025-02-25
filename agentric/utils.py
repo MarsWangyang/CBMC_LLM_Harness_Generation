@@ -1,11 +1,6 @@
 import json
 import os
 
-def load_config():
-     with open("config.json") as f:
-          config = json.load(f)
-          return config
-
 def read_c_file(path: str) -> str:
         filepath = os.path.join(path, "sc.c")
         if os.path.exists(filepath):

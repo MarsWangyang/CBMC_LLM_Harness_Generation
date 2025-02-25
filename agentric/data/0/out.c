@@ -1,76 +1,80 @@
-C
 #include <assert.h>
 #include <stdint.h>
-#include <stdlib.h>
+#include <cbmc_proof/proof_allocators.h>
 
-#define INT32_MAX 2147483647
-#define HTTP_MINIMUM_REQUEST_LINE_LENGTH 14
-
-/* Function under verification */
+/* Function under test */
 HTTPStatus_t HTTPClient_Send( const TransportInterface_t * pTransport,
-                              HTTPRequestHeaders_t * pRequestHeaders,
-                              const uint8_t * pRequestBodyBuf,
-                              size_t reqBodyBufLen,
-                              HTTPResponse_t * pResponse,
-                              uint32_t sendFlags );
+    HTTPRequestHeaders_t * pRequestHeaders,
+    const uint8_t * pRequestBodyBuf,
+    size_t reqBodyBufLen,
+    HTTPResponse_t * pResponse,
+    uint32_t sendFlags );
 
-void harness() {
-    /* Non-deterministic inputs */
-    TransportInterface_t *pTransport = nondet_bool() ? malloc(sizeof(*pTransport)) : NULL;
-    if(pTransport) {
-        pTransport->send = nondet_bool() ? send : NULL;
-        pTransport->recv = nondet_bool() ? recv : NULL;
-    }
+/* Stub for the LogError function. */
+void LogError( const char * const pErrString )
+{
+    assert( pErrString != NULL );
+}
 
-    HTTPRequestHeaders_t *pRequestHeaders = nondet_bool() ? malloc(sizeof(*pRequestHeaders)) : NULL;
-    if(pRequestHeaders) {
-        pRequestHeaders->pBuffer = nondet_bool() ? malloc(sizeof(*(pRequestHeaders->pBuffer))) : NULL;
-        pRequestHeaders->headersLen = nondet_size_t();
-        pRequestHeaders->bufferLen = nondet_size_t();
-        __CPROVER_assume(pRequestHeaders->headersLen >= HTTP_MINIMUM_REQUEST_LINE_LENGTH);
-        __CPROVER_assume(pRequestHeaders->headersLen <= pRequestHeaders->bufferLen);
-    }
+/* Stub for the send function. */
+int32_t send( const NetworkContext_t * pNetworkContext,
+              const void * pBuffer,
+              size_t bytesToSend )
+{
+    assert( pNetworkContext != NULL );
+    assert( pBuffer != NULL );
+    return nondet_int32_t();
+}
 
+/* Stub for the recv function. */
+int32_t recv( const NetworkContext_t * pNetworkContext,
+              void * pBuffer,
+              size_t bytesToRecv )
+{
+    assert( pNetworkContext != NULL );
+    assert( pBuffer != NULL );
+    return nondet_int32_t();
+}
+
+/* Stub for the getZeroTimestampMs function. */
+uint32_t getZeroTimestampMs( void )
+{
+    return nondet_uint32_t();
+}
+
+void harness()
+{
+    TransportInterface_t * pTransport = can_fail_malloc(sizeof(TransportInterface_t));
+    HTTPRequestHeaders_t * pRequestHeaders = can_fail_malloc(sizeof(HTTPRequestHeaders_t));
     size_t reqBodyBufLen = nondet_size_t();
-    __CPROVER_assume(reqBodyBufLen <= INT32_MAX);
-    uint8_t *pRequestBodyBuf = nondet_bool() ? malloc(reqBodyBufLen) : NULL;
-    if(pRequestBodyBuf == NULL) {
-        __CPROVER_assume(reqBodyBufLen == 0);
-    }
-
-    HTTPResponse_t *pResponse = nondet_bool() ? malloc(sizeof(*pResponse)) : NULL;
-    if (pResponse) {
-        pResponse->pBuffer = nondet_bool() ? malloc(sizeof(*(pResponse->pBuffer))) : NULL;
-        pResponse->bufferLen = nondet_size_t();
-        __CPROVER_assume(pResponse->bufferLen > 0);
-        pResponse->getTime = nondet_bool() ? getTime : NULL;
-    }
-
+    uint8_t * pRequestBodyBuf = can_fail_malloc(reqBodyBufLen * sizeof(uint8_t));
+    HTTPResponse_t * pResponse = can_fail_malloc(sizeof(HTTPResponse_t));
     uint32_t sendFlags = nondet_uint32_t();
 
-    /* Function call */
+    if (pTransport != NULL) {
+        pTransport->send = nondet_bool() ? NULL : send;
+        pTransport->recv = nondet_bool() ? NULL : recv;
+    }
+
+    if (pRequestHeaders != NULL) {
+        pRequestHeaders->bufferLen = nondet_size_t();
+        pRequestHeaders->headersLen = nondet_size_t();
+        __CPROVER_assume(pRequestHeaders->headersLen <= pRequestHeaders->bufferLen);
+        pRequestHeaders->pBuffer = can_fail_malloc(pRequestHeaders->bufferLen * sizeof(uint8_t));
+    }
+
+    if (pResponse != NULL) {
+        pResponse->bufferLen = nondet_size_t();
+        pResponse->pBuffer = can_fail_malloc(pResponse->bufferLen * sizeof(uint8_t));
+        pResponse->getTime = nondet_bool() ? NULL : getZeroTimestampMs;
+    }
+
     HTTPStatus_t returnStatus = HTTPClient_Send(pTransport, pRequestHeaders, pRequestBodyBuf, reqBodyBufLen, pResponse, sendFlags);
 
-    /* Asserts to verify the post-conditions */
-    assert(returnStatus != 0);  // Assuming that 0 is not a valid return value.
-
-    /* Free allocated memory */
-    if (pTransport) {
-        free(pTransport);
-    }
-    if (pRequestHeaders) {
-        if (pRequestHeaders->pBuffer) {
-            free(pRequestHeaders->pBuffer);
-        }
-        free(pRequestHeaders);
-    }
-    if (pRequestBodyBuf) {
-        free(pRequestBodyBuf);
-    }
-    if (pResponse) {
-        if (pResponse->pBuffer) {
-            free(pResponse->pBuffer);
-        }
-        free(pResponse);
+    /* Check post-conditions */
+    if (returnStatus == HTTPSuccess || returnStatus == HTTPNoResponse || returnStatus == HTTPPartialResponse) {
+        assert(pTransport != NULL);
+        assert(pRequestHeaders != NULL);
+        assert(pResponse != NULL);
     }
 }
