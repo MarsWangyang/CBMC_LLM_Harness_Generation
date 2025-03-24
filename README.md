@@ -24,6 +24,8 @@ The system is particularly effective at detecting:
 
 ## Architecture
 
+![CBMC Harness Generation System Workflow](SystemWorkflow.png)
+
 The system follows a workflow design pattern with distinct processing nodes:
 
 ### Main Components
