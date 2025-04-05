@@ -1,99 +1,123 @@
 # CBMC Harness Generation System
 
-An AI-powered tool for generating CBMC verification harnesses to detect memory and arithmetic issues in C code.
+An AI-powered tool for generating CBMC verification harnesses to detect memory and arithmetic issues in C code using advanced Language Model and Retrieval-Augmented Generation (RAG) techniques.
 
 ## Overview
 
-This system uses LangGraph workflows and LLMs to automatically:
+This system leverages LangGraph workflows, Large Language Models (LLMs), and a sophisticated Knowledge Base to automatically:
 
 1. Parse and analyze C source code
-2. Identify functions with potential memory or arithmetic issues
+2. Identify functions with potential memory or arithmetic vulnerabilities
 3. Generate CBMC-compatible verification harnesses
 4. Run verification using CBMC
-5. Refine harnesses based on verification results
-6. Generate comprehensive reports
+5. Iteratively refine harnesses based on verification results
+6. Generate comprehensive, insightful reports with knowledge base learnings
 
-The system is particularly effective at detecting:
-- Memory leaks
+### Key Detection Capabilities
+
+The system excels at identifying complex issues in C code:
+- Memory leaks and improper memory management
 - Buffer overflows
 - Null pointer dereferences
-- Division by zero
-- Integer overflows
+- Division by zero errors
+- Integer overflow vulnerabilities
 - Array bounds violations
 - Type conversion issues
+- Pointer arithmetic problems
 
 ## Architecture
 
+The system employs a sophisticated multi-node workflow with advanced knowledge tracking:
+
 ![CBMC Harness Generation System Workflow](SystemWorkflow.png)
 
-The system follows a workflow design pattern with distinct processing nodes:
+### Core Components
 
-### Main Components
+- **Frontend Node**: Processes source code inputs
+- **Code Embedding Node**: Extracts and vectorizes function information
+- **Analyzer Node**: Identifies vulnerable functions
+- **Junction Node**: Orchestrates sequential function processing
+- **Generator Node**: Creates and refines verification harnesses
+- **CBMC Node**: Executes verification checks
+- **Evaluator Node**: Assesses harness quality and suggests improvements
+- **Output Node**: Generates comprehensive reports
 
-- **Frontend**: Processes source code inputs
-- **Code Embedding System**: Extracts and stores function information
-- **Analyzer**: Identifies vulnerable functions
-- **Junction**: Orchestrates sequential function processing
-- **Generator**: Creates harnesses for each function
-- **CBMC**: Executes verification
-- **Evaluator**: Assesses harness quality and suggests improvements
-- **Output**: Generates comprehensive reports
+### Retrieval-Augmented Generation (RAG) Knowledge Base
+
+The system maintains a dynamic knowledge base that:
+- Stores code embeddings
+- Tracks error patterns
+- Manages solution strategies
+- Provides intelligent recommendations
+- Learns and adapts across verification attempts
 
 ### Workflow Process
 
-1. Source code is processed by the Frontend
-2. Code Embedding System extracts and stores function information
-3. Analyzer identifies functions with potential memory or arithmetic issues
-4. Junction orchestrates sequential processing of each function
-5. Generator creates verification harnesses
-6. CBMC executes verification
-7. Evaluator assesses results and determines if refinement is needed
-8. If refinement is needed, return to Generator
-9. If no refinement is needed, Junction processes the next function
-10. After all functions are processed, Output generates comprehensive reports
+1. Source code processed by Frontend
+2. Code Embedding System extracts function information
+3. Analyzer identifies vulnerable functions
+4. Junction manages sequential function processing
+5. Generator creates initial harnesses
+6. CBMC verifies harness correctness
+7. Evaluator assesses results and determines refinement needs
+8. Iterative refinement using RAG insights
+9. Generate comprehensive reports with knowledge base learnings
 
 ## Project Structure
 
 ```
-├── main.py                      # Main entry point
+cbmc-harness-generator/
+├── main.py                      # Primary entry point
 ├── requirements.txt             # Python dependencies
-├── setup.sh                     # Setup script
+├── setup.sh                     # Project setup script
 │
-├── core/                        # Core components
-│   ├── state.py                 # State definitions
-│   ├── workflow.py              # LangGraph workflow
-│   └── embedding_db.py          # Database operations
+├── core/                        # Core system components
+│   ├── state.py                 # Workflow state definitions
+│   ├── workflow.py              # LangGraph workflow configuration
+│   └── embedding_db.py          # Embedding database management
 │
-├── nodes/                       # Workflow nodes
-│   ├── frontend.py              # Frontend node
-│   ├── code_embedding.py        # Code embedding node
-│   ├── analyzer.py              # Analyzer node
-│   ├── junction.py              # Junction node
-│   ├── generator.py             # Generator node
-│   ├── cbmc.py                  # CBMC execution node
-│   ├── evaluator.py             # Harness evaluator
-│   └── output.py                # Output node
+├── nodes/                       # Workflow processing nodes
+│   ├── frontend.py              # Initial source code processing
+│   ├── code_embedding.py        # Function embedding generation
+│   ├── analyzer.py              # Vulnerability analysis
+│   ├── junction.py              # Processing orchestration
+│   ├── generator.py             # Harness generation
+│   ├── cbmc.py                  # CBMC verification execution
+│   ├── evaluator.py             # Harness refinement
+│   └── output.py                # Result reporting
 │
-├── utils/                       # Utilities
-│   ├── code_parser.py           # Code parsing
-│   ├── file_utils.py            # File handling
-│   └── llm_utils.py             # LLM setup
+├── utils/                       # Utility modules
+│   ├── code_parser.py           # Advanced code parsing
+│   ├── file_utils.py            # File handling utilities
+│   ├── llm_utils.py             # LLM configuration
+│   └── rag/                     # Retrieval-Augmented Generation
+│       ├── db.py                # RAG knowledge base
+│       └── patterns.py          # Vulnerability pattern recognition
 │
-├── harnesses/                   # Generated harnesses (created at runtime)
-├── verification/                # Verification results (created at runtime)
-├── reports/                     # Summary reports (created at runtime)
+├── results/                     # Runtime output directories
+│   ├── harnesses/               # Generated verification harnesses
+│   ├── verification/            # Detailed verification results
+│   └── reports/                 # Summary and analysis reports
 ```
 
 ## Requirements
 
-- Python 3.8+
-- CBMC (Model Checker for C)
-- Anthropic API key for Claude
-- Python libraries (see requirements.txt)
+### System Requirements
+- Python 3.9+
+- CBMC (C Model Checker)
+- One or more of the following LLM APIs:
+  - Anthropic (Claude)
+  - OpenAI (GPT)
+  - Google (Gemini)
+
+### Recommended Setup
+- Virtual environment support
+- Stable internet connection
+- Minimum 16GB RAM recommended
 
 ## Installation
 
-1. Clone this repository
+1. Clone the repository
 ```bash
 git clone https://github.com/yourusername/cbmc-harness-generator.git
 cd cbmc-harness-generator
@@ -106,53 +130,67 @@ chmod +x setup.sh
 ```
 
 The setup script will:
-- Check if Python 3.8+ is installed
-- Check if CBMC is installed
-- Install Python dependencies
-- Create necessary directories
-- Help you set up your Anthropic API key
+- Verify Python version
+- Check CBMC installation
+- Create virtual environment
+- Install dependencies
+- Help configure API keys
 
-3. If CBMC is not installed, follow the instructions to install it:
-   - Ubuntu/Debian: `sudo apt-get install cbmc`
-   - macOS: `brew install cbmc`
-   - Windows: Download from [CBMC GitHub Releases](https://github.com/diffblue/cbmc/releases)
+## Usage Options
 
-## Usage
-
-### Analyzing a single file
-
+### Single File Analysis
 ```bash
+# Default (uses Claude)
 python main.py -f path/to/your/file.c
+
+# Specify LLM
+python main.py -f path/to/your/file.c --llm claude
+python main.py -f path/to/your/file.c --llm openai
+python main.py -f path/to/your/file.c --llm gemini
 ```
 
-### Analyzing a directory of C files
-
+### Directory Analysis
 ```bash
 python main.py -d path/to/your/project
 ```
 
+### Advanced Options
+```bash
+# Set custom timeout
+python main.py -f file.c --timeout 7200
+
+# Enable verbose logging
+python main.py -f file.c -v
+```
+
 ## Output
 
-The tool generates several output directories:
+### Generated Artifacts
+- `results/harnesses/`: Generated verification harnesses
+- `results/verification/`: Detailed CBMC verification results
+- `results/reports/`: Comprehensive HTML and Markdown reports
 
-- `harnesses/`: Contains the generated harness files
-- `verification/`: Contains CBMC verification results and reports
-- `reports/`: Contains summary reports with an HTML index
+### Report Features
+- Function-level verification metrics
+- Error pattern analysis
+- Solution effectiveness tracking
+- Vulnerability insights
+- Knowledge base learnings
 
-Open `reports/index.html` in a web browser to see the complete verification results.
+## Environment Configuration
 
-## Features
+### Required Environment Variables
+- `ANTHROPIC_API_KEY`: Claude API Key
+- `OPENAI_API_KEY`: OpenAI API Key
+- `GOOGLE_API_KEY`: Google Gemini API Key
 
-- **Multi-file support**: Process entire C codebases
-- **Automated refinement**: Iteratively improves harnesses based on verification results
-- **Pattern recognition**: Uses known vulnerability patterns to guide harness generation
-- **Comprehensive reporting**: Detailed HTML and Markdown reports
-- **Modular architecture**: Clean separation of concerns with LangGraph workflow
+### Optional Configuration
+- `TOKENIZERS_PARALLELISM`: Set to "false" to avoid warnings
 
-## Environment Variables
-
-- `ANTHROPIC_API_KEY`: Your Anthropic API key for Claude (required)
-- `TOKENIZERS_PARALLELISM`: Set to "false" by default to avoid warnings
+## Known Limitations
+- Requires active internet connection for LLM APIs
+- Performance depends on LLM response quality
+- Some complex codebases might require manual intervention
 
 ## License
 
@@ -160,4 +198,13 @@ Open `reports/index.html` in a web browser to see the complete verification resu
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! Please submit pull requests or open issues to help improve the system.
+
+## Acknowledgments
+- CBMC Community
+- LangChain and LangGraph Projects
+- Anthropic, OpenAI, and Google for their LLM technologies
+
+## Support
+
+For issues, please [open a GitHub issue](https://github.com/yourusername/cbmc-harness-generator/issues).
