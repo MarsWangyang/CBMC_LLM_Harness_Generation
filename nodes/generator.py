@@ -8,7 +8,6 @@ import json
 import logging
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from core.embedding_db import code_collection
-from utils.metrics_utils import get_metrics_tracker
 from utils.rag import get_unified_db
 
 # Set up logging
@@ -735,17 +734,6 @@ def generator_node(state):
             if rag_recommendations["has_matching_patterns"]:
                 message_content += f"\nIdentified {len(rag_recommendations['matching_patterns'])} relevant vulnerability patterns"
         
-        # Get metrics tracker and update
-        metrics_tracker = get_metrics_tracker()
-        metrics = {
-            "verification_status": "PENDING",
-            "reachable_lines": 0,
-            "covered_lines": 0,
-            "coverage_pct": 0.0,
-            "errors": 0
-        }
-        metrics_tracker.add_function_metrics(func_name, version_num, metrics, generation_time_ms)
-        
         return {
             "messages": [AIMessage(content=message_content)],
             "harnesses": harnesses,
@@ -770,23 +758,10 @@ def generator_node(state):
         if func_name not in failed_functions:
             failed_functions.append(func_name)
         
-        # Get metrics tracker and update with error
-        metrics_tracker = get_metrics_tracker()
-        metrics = {
-            "verification_status": "ERROR",
-            "reachable_lines": 0,
-            "covered_lines": 0,
-            "coverage_pct": 0.0,
-            "errors": 1,
-            "error_categories": ["system_error"]
-        }
-        
         # Get refinement attempt number
         refinement_num = state.get("refinement_attempts", {}).get(func_name, 0)
         version_num = refinement_num + 1
         generation_time_ms = int((time.time() - generation_start) * 1000)
-        
-        metrics_tracker.add_function_metrics(func_name, version_num, metrics, generation_time_ms)
         
         # Return to junction to try next function
         return {

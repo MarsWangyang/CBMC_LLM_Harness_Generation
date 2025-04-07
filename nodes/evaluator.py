@@ -7,7 +7,6 @@ import os
 from langchain_core.messages import AIMessage
 from utils.cbmc_parser import generate_improvement_recommendation
 from utils.rag import get_unified_db
-from utils.metrics_utils import get_metrics_tracker
 
 logger = logging.getLogger("evaluator")
 
@@ -129,20 +128,6 @@ def harness_evaluator_node(state):
         if func_name not in state_processed_functions:
             state_processed_functions.append(func_name)
         
-        # Get metrics tracker and add success metrics
-        metrics_tracker = get_metrics_tracker()
-        metrics = {
-            "verification_status": "SUCCESS",
-            "reachable_lines": cbmc_result.get("reachable_lines", 0),
-            "covered_lines": cbmc_result.get("covered_lines", 0),
-            "coverage_pct": cbmc_result.get("coverage_pct", 0.0),
-            "errors": 0,
-            "error_categories": []
-        }
-        
-        evaluation_time_ms = int((time.time() - evaluation_start) * 1000)
-        metrics_tracker.add_function_metrics(func_name, current_attempts + 1, metrics, evaluation_time_ms)
-        
         return {
             "messages": [AIMessage(content=f"CBMC verification successful for {func_name}. Solution stored in knowledge base. Moving to next function.")],
             "refinement_attempts": state_refinement_attempts,
@@ -198,20 +183,7 @@ def harness_evaluator_node(state):
     # Determine whether to proceed with refinement or move to next function
     if current_attempts < max_refinements - 1:
         state_refinement_attempts[func_name] = current_attempts + 1
-        
-        # Get metrics tracker and add failure metrics
-        metrics_tracker = get_metrics_tracker()
-        metrics = {
-            "verification_status": cbmc_result.get("status", "FAILED"),
-            "reachable_lines": cbmc_result.get("reachable_lines", 0),
-            "covered_lines": cbmc_result.get("covered_lines", 0),
-            "coverage_pct": cbmc_result.get("coverage_pct", 0.0),
-            "errors": cbmc_result.get("errors", 0),
-            "error_categories": cbmc_result.get("error_categories", [])
-        }
-        
-        evaluation_time_ms = int((time.time() - evaluation_start) * 1000)
-        metrics_tracker.add_function_metrics(func_name, current_attempts + 1, metrics, evaluation_time_ms)
+
         
         return {
             "messages": [AIMessage(content=f"Evaluated harness for {func_name}. Needs improvement (attempt {current_attempts + 1} of {max_refinements}). Using insights from unified knowledge base.")],
@@ -247,20 +219,6 @@ def harness_evaluator_node(state):
             logger.info(f"Cleared RAG data for {func_name} after reaching max refinement attempts")
         except Exception as e:
             logger.warning(f"Error resetting RAG data for {func_name} after max refinements: {str(e)}")
-        
-        # Get metrics tracker and add final failure metrics
-        metrics_tracker = get_metrics_tracker()
-        metrics = {
-            "verification_status": cbmc_result.get("status", "FAILED"),
-            "reachable_lines": cbmc_result.get("reachable_lines", 0),
-            "covered_lines": cbmc_result.get("covered_lines", 0),
-            "coverage_pct": cbmc_result.get("coverage_pct", 0.0),
-            "errors": cbmc_result.get("errors", 0),
-            "error_categories": cbmc_result.get("error_categories", [])
-        }
-        
-        evaluation_time_ms = int((time.time() - evaluation_start) * 1000)
-        metrics_tracker.add_function_metrics(func_name, current_attempts + 1, metrics, evaluation_time_ms)
         
         return {
             "messages": [AIMessage(content=f"Final refinement attempt for {func_name} completed. Moving to next function.")],
