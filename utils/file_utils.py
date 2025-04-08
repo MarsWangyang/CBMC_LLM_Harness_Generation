@@ -78,11 +78,11 @@ def calculate_recursion_limit(num_files):
     """Calculate a safe recursion limit based on estimated complexity."""
     # Estimate number of functions based on number of files
     # On average, a C file might have 5-10 functions
-    estimated_functions_per_file = 10
+    estimated_functions_per_file = 20
     estimated_functions = num_files * estimated_functions_per_file
     
     # Default max refinements per function
-    max_refinements = 3
+    max_refinements = 9
     
     # Base recursion limit
     base_limit = 20

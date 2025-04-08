@@ -480,10 +480,10 @@ class UnifiedEmbeddingDB:
     # ERROR AND SOLUTION METHODS
     
     def store_error(self, 
-                    func_name: str, 
-                    harness_code: str, 
-                    cbmc_result: Dict[str, Any], 
-                    iteration: int) -> str:
+                func_name: str, 
+                harness_code: str, 
+                cbmc_result: Dict[str, Any], 
+                iteration: int) -> str:
         """
         Enhanced error storage with pattern evolution tracking.
         """
@@ -522,11 +522,15 @@ class UnifiedEmbeddingDB:
         
         # Store error in knowledge base with enhanced tracking
         try:
+            # Convert lists to strings for ChromaDB compatibility
+            # Fix: Convert the list to a JSON string
+            refinement_attempts_str = json.dumps([iteration])
+            
             # Add new metadata fields for pattern evolution
             error_metadata = {
                 "func_name": func_name,
                 "iteration": iteration,
-                "error_categories": json.dumps(error_categories),
+                "error_categories": json.dumps(error_categories),  # Convert list to JSON string
                 "error_message": error_message,
                 "has_memory_leak": "memory_leak" in error_categories,
                 "has_array_bounds": "array_bounds" in error_categories,
@@ -534,14 +538,14 @@ class UnifiedEmbeddingDB:
                 "has_arithmetic_issue": any(cat in error_categories for cat in ["division_by_zero", "arithmetic_overflow"]),
                 "timestamp": time.time(),
                 
-                # NEW FIELDS FOR TRACKING
-                "refinement_attempts": [iteration],
+                # NEW FIELDS FOR TRACKING - Fix: Convert lists to JSON strings
+                "refinement_attempts": refinement_attempts_str,  # Fixed: JSON string instead of list
                 "persistence_count": 1,
                 "is_resolved": False,
                 "is_challenging": False,
                 
-                # Error pattern details
-                "error_lines": json.dumps(error_lines),
+                # Error pattern details - Fix: Convert lists to JSON strings
+                "error_lines": json.dumps(error_lines),  # Convert list to JSON string
                 "cbmc_error_details": json.dumps({
                     "reachable_lines": cbmc_result.get("reachable_lines", 0),
                     "covered_lines": cbmc_result.get("covered_lines", 0),

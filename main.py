@@ -23,7 +23,6 @@ logging.getLogger("chromadb").setLevel(logging.WARNING)
 # Import local modules
 from utils.file_utils import process_directory, calculate_recursion_limit, setup_verification_directories
 from utils.llm_utils import setup_llm
-from utils.metrics_utils import initialize_metrics_tracker
 
 def initialize_rag_system(result_base_dir):
     """
@@ -123,10 +122,6 @@ def main():
         
         # Set up verification directories with LLM model name
         directories = setup_verification_directories(llm_used=args.llm)
-        
-        # Initialize metrics tracker with reports directory
-        metrics_output_dir = directories["reports"]
-        initialize_metrics_tracker(metrics_output_dir)
         
         # Initialize the RAG system if not disabled
         rag_result = {"db": None, "global_error_patterns": None}

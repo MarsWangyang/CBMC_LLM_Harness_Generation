@@ -3,14 +3,678 @@ Output node for CBMC harness generator workflow with unified RAG database integr
 """
 import os
 import time
+import subprocess
+import json
+import glob
+import re
 from langchain_core.messages import AIMessage
 import logging
+import polars as pl
+from typing import Dict, List, Any, Optional
 from utils.rag import get_unified_db
 
 logger = logging.getLogger("output")
 
+def extract_coverage_metrics_from_json(json_data: Dict, func_name: str) -> Dict[str, Any]:
+    """
+    Extract coverage metrics from CBMC JSON output using the enhanced JSON structure.
+    
+    Args:
+        json_data: The JSON data from CBMC output
+        func_name: Name of the function being analyzed
+        
+    Returns:
+        Dictionary with coverage metrics
+    """
+    # Initialize metrics
+    metrics = {
+        "total_reachable_lines": 0,
+        "total_covered_lines": 0,
+        "total_coverage_pct": 0.0,
+        "func_reachable_lines": 0,
+        "func_covered_lines": 0,
+        "func_coverage_pct": 0.0,
+        "reported_errors": 0,
+        "error_categories": []
+    }
+    
+    # Extract target function name without file prefix
+    target_function = func_name
+    if ":" in func_name:
+        target_function = func_name.split(":")[-1]
+    
+    try:
+        # First try to parse the structured coverage goals
+        if "goals" in json_data and isinstance(json_data["goals"], list):
+            total_goals = 0
+            satisfied_goals = 0
+            func_goals = 0
+            func_satisfied = 0
+            
+            for goal in json_data["goals"]:
+                # Check if this is a coverage goal (might be in "goal" or "description" field)
+                is_coverage_goal = False
+                if "goal" in goal and isinstance(goal["goal"], str):
+                    is_coverage_goal = "coverage" in goal["goal"]
+                elif "description" in goal and isinstance(goal["description"], str):
+                    is_coverage_goal = "coverage" in goal["description"] or "block" in goal["description"]
+                
+                if not is_coverage_goal:
+                    continue
+                
+                # Count as a total goal
+                total_goals += 1
+                
+                # Check if satisfied
+                is_satisfied = False
+                if "status" in goal:
+                    is_satisfied = goal["status"] == "satisfied"
+                
+                if is_satisfied:
+                    satisfied_goals += 1
+                
+                # Check if related to target function
+                is_target = False
+                
+                # Method 1: Check sourceLocation
+                if "sourceLocation" in goal and isinstance(goal["sourceLocation"], dict):
+                    if "function" in goal["sourceLocation"]:
+                        is_target = goal["sourceLocation"]["function"] == target_function
+                
+                # Method 2: Check description
+                if not is_target and "description" in goal and isinstance(goal["description"], str):
+                    is_target = target_function in goal["description"]
+                    
+                # Method 3: Check basicBlockLines
+                if not is_target and "basicBlockLines" in goal and isinstance(goal["basicBlockLines"], dict):
+                    for file, functions in goal["basicBlockLines"].items():
+                        if target_function in functions:
+                            is_target = True
+                            break
+                
+                if is_target:
+                    func_goals += 1
+                    if is_satisfied:
+                        func_satisfied += 1
+            
+            # Update metrics with the counts we found
+            metrics["total_reachable_lines"] = total_goals
+            metrics["total_covered_lines"] = satisfied_goals
+            
+            # Calculate percentages
+            if total_goals > 0:
+                metrics["total_coverage_pct"] = (satisfied_goals / total_goals) * 100
+                
+            if func_goals > 0:
+                metrics["func_reachable_lines"] = func_goals
+                metrics["func_covered_lines"] = func_satisfied
+                metrics["func_coverage_pct"] = (func_satisfied / func_goals) * 100
+            
+        # If we didn't find any goals, try a simplified approach that looks at the raw JSON
+        elif len(json_data) > 0:
+            # Count blocks based on the presence of patterns in the string representation
+            json_str = json.dumps(json_data)
+            
+            # Count total blocks
+            total_blocks = json_str.count('"block"') + json_str.count('"coverage"')
+            satisfied_blocks = json_str.count('"status":"satisfied"') + json_str.count('status="satisfied"')
+            
+            # Count function-specific blocks
+            target_pattern = f'"{target_function}"'
+            func_blocks = json_str.count(target_pattern)
+            func_satisfied = 0
+            
+            # Estimate satisfaction rate for function blocks based on overall rate
+            if total_blocks > 0 and func_blocks > 0:
+                func_satisfied = int(func_blocks * (satisfied_blocks / total_blocks))
+            
+            metrics["total_reachable_lines"] = max(total_blocks, 1)  # Avoid division by zero
+            metrics["total_covered_lines"] = satisfied_blocks
+            metrics["func_reachable_lines"] = max(func_blocks, 1)  # Avoid division by zero
+            metrics["func_covered_lines"] = func_satisfied
+            
+            # Calculate percentages
+            metrics["total_coverage_pct"] = (satisfied_blocks / metrics["total_reachable_lines"]) * 100
+            metrics["func_coverage_pct"] = (func_satisfied / metrics["func_reachable_lines"]) * 100
+        
+        # Extract error information
+        errors = 0
+        error_categories = set()
+        
+        # Look for errors in messages
+        if "messages" in json_data and isinstance(json_data["messages"], list):
+            for message in json_data["messages"]:
+                if isinstance(message, dict) and "messageType" in message:
+                    if message["messageType"] == "ERROR":
+                        errors += 1
+                        # Try to categorize the error
+                        if "messageText" in message:
+                            error_text = message["messageText"].lower()
+                            if "memory" in error_text:
+                                error_categories.add("memory_leak")
+                            elif "pointer" in error_text:
+                                error_categories.add("null_pointer")
+                            elif "bounds" in error_text or "array" in error_text:
+                                error_categories.add("array_bounds")
+                            elif "division" in error_text or "zero" in error_text:
+                                error_categories.add("division_by_zero")
+                            elif "overflow" in error_text:
+                                error_categories.add("arithmetic_overflow")
+                            else:
+                                error_categories.add("generic_error")
+        
+        # Alternative way to find errors - look for failed verification
+        if "verification-results" in json_data:
+            for result in json_data["verification-results"]:
+                if result.get("status") == "FAILURE":
+                    errors += 1
+                    if "property" in result:
+                        prop = result["property"].lower()
+                        if "memory" in prop:
+                            error_categories.add("memory_leak")
+                        elif "pointer" in prop:
+                            error_categories.add("null_pointer")
+                        elif "bound" in prop:
+                            error_categories.add("array_bounds")
+                        elif "division" in prop:
+                            error_categories.add("division_by_zero")
+                        elif "overflow" in prop:
+                            error_categories.add("arithmetic_overflow")
+                        else:
+                            error_categories.add("generic_error")
+        
+        # If we still have no errors but found failures in the string
+        if errors == 0:
+            json_str = json.dumps(json_data)
+            failure_count = json_str.count('"FAILURE"') + json_str.count('"status":"failed"')
+            if failure_count > 0:
+                errors = failure_count
+                error_categories.add("generic_error")
+        
+        metrics["reported_errors"] = errors
+        metrics["error_categories"] = list(error_categories)
+    
+    except Exception as e:
+        logger.error(f"Error extracting coverage metrics from JSON: {str(e)}")
+    
+    # If we got 0% coverage but didn't encounter errors in parsing,
+    # set a reasonable minimum value to indicate some coverage
+    if metrics["total_coverage_pct"] == 0.0 and metrics["reported_errors"] == 0:
+        # First check if there's any evidence of coverage in the JSON
+        json_str = json.dumps(json_data)
+        if "coverage" in json_str or "block" in json_str:
+            # Estimate minimum coverage
+            metrics["total_reachable_lines"] = "NA"
+            metrics["total_covered_lines"] = "NA"
+            metrics["total_coverage_pct"] = "NA"
+            metrics["func_reachable_lines"] = "NA"
+            metrics["func_covered_lines"] = "NA"
+            metrics["func_coverage_pct"] = "NA"
+    
+    return metrics
+
+def run_cbmc_coverage_combined(
+    function_names: List[str],
+    harness_files: List[str],
+    version_num: int,
+    verification_dir: str,
+    coverage_dir: str
+) -> Dict[str, Dict[str, Any]]:
+    """
+    Run CBMC with coverage analysis for a specific version across all functions.
+    
+    Args:
+        function_names: List of function names
+        harness_files: List of harness files
+        version_num: Version number
+        verification_dir: Directory for verification files
+        coverage_dir: Directory for coverage output
+        
+    Returns:
+        Dictionary mapping function names to their coverage metrics
+    """
+    # Create version-specific directory
+    version_coverage_dir = os.path.join(coverage_dir, f"version_{version_num}")
+    os.makedirs(version_coverage_dir, exist_ok=True)
+    
+    # Find include directory
+    verification_include_dir = os.path.join(verification_dir, "includes")
+    
+    # Create CBMC command with coverage options
+    cbmc_cmd = [
+        "cbmc",
+        "--function", "main",  # Use main as entry point
+        "--object-bits", "8",
+        "--cover", "location",  # Generate location coverage
+        "--json-ui"            # Use JSON output format
+    ]
+    
+    # Add all harness files
+    cbmc_cmd.extend(harness_files)
+    
+    # Add all C files from verification/includes directory
+    c_files_in_includes = glob.glob(os.path.join(verification_include_dir, "*.c"))
+    cbmc_cmd.extend(c_files_in_includes)
+    
+    # Add necessary include paths
+    include_paths = [verification_include_dir]
+    for path in include_paths:
+        if os.path.exists(path):
+            cbmc_cmd.extend(["-I", path])
+    
+    # Output files
+    coverage_json_file = os.path.join(version_coverage_dir, f"v{version_num}_coverage.json")
+    cmd_file = os.path.join(version_coverage_dir, f"v{version_num}_cmd.txt")
+    
+    # Save command for debugging
+    with open(cmd_file, "w") as f:
+        f.write(" ".join(cbmc_cmd))
+    
+    try:
+        # Run CBMC with coverage analysis
+        logger.info(f"Running CBMC coverage analysis for version {version_num} with {len(harness_files)} harness files")
+        process = subprocess.run(
+            cbmc_cmd,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            timeout=120,  # Longer timeout for combined analysis
+            check=False
+        )
+        
+        # Save stdout to JSON file
+        with open(coverage_json_file, "w") as f:
+            f.write(process.stdout)
+        
+        # Check if we got valid JSON
+        try:
+            json_data = json.loads(process.stdout)
+            
+            # Extract metrics for each function
+            results = {}
+            for func_name in function_names:
+                # Extract function-specific metrics
+                func_metrics = extract_coverage_metrics_from_json(json_data, func_name)
+                results[func_name] = func_metrics
+            
+            return results
+            
+        except json.JSONDecodeError:
+            logger.error(f"Failed to parse JSON output for version {version_num}")
+            # Save stderr for debugging
+            with open(os.path.join(version_coverage_dir, f"v{version_num}_error.txt"), "w") as f:
+                f.write(process.stderr)
+            return None
+            
+    except subprocess.TimeoutExpired:
+        logger.warning(f"CBMC coverage analysis timed out for version {version_num}")
+        return None
+    except Exception as e:
+        logger.error(f"Error running CBMC coverage analysis: {str(e)}")
+        return None
+
+def analyze_coverage_by_version(
+    results_dir: str, 
+    harnesses_dir: str, 
+    verification_dir: str
+) -> pl.DataFrame:
+    """
+    Run coverage analysis on all functions with harnesses, grouping by version.
+    
+    Args:
+        results_dir: Base results directory
+        harnesses_dir: Harnesses directory
+        verification_dir: Verification directory
+        
+    Returns:
+        Polars DataFrame with coverage metrics
+    """
+    # Check if the harnesses directory exists and has content
+    if not os.path.exists(harnesses_dir):
+        logger.error(f"Harnesses directory {harnesses_dir} does not exist")
+        return pl.DataFrame()
+    
+    # Create output directory for coverage data
+    coverage_dir = os.path.join(results_dir, "coverage")
+    os.makedirs(coverage_dir, exist_ok=True)
+    
+    # Find all functions with harnesses
+    function_dirs = glob.glob(os.path.join(harnesses_dir, "*"))
+    
+    if not function_dirs:
+        logger.error("No harness functions found. Cannot run coverage analysis.")
+        return pl.DataFrame()
+    
+    # Determine all available versions
+    all_versions = set()
+    
+    for func_dir in function_dirs:
+        harness_files = glob.glob(os.path.join(func_dir, "v*.c"))
+        for harness_file in harness_files:
+            version_match = re.search(r'v(\d+)\.c$', harness_file)
+            if version_match:
+                all_versions.add(int(version_match.group(1)))
+    
+    if not all_versions:
+        logger.error("No harness versions found")
+        return pl.DataFrame()
+    
+    # Sort versions
+    all_versions = sorted(all_versions)
+    logger.info(f"Found {len(all_versions)} harness versions: {all_versions}")
+    
+    # Prepare data for DataFrame
+    coverage_data = []
+    
+    # Process each version with all harnesses of that version
+    for version_num in all_versions:
+        logger.info(f"Processing harness version {version_num}")
+        
+        # Collect all harness files for this version
+        version_harness_files = []
+        function_names = []
+        
+        for func_dir in function_dirs:
+            func_name = os.path.basename(func_dir)
+            harness_file = os.path.join(func_dir, f"v{version_num}.c")
+            
+            # If this version doesn't exist, use the latest available version for this function
+            if not os.path.exists(harness_file):
+                available_versions = sorted([
+                    int(re.search(r'v(\d+)\.c$', f).group(1)) 
+                    for f in glob.glob(os.path.join(func_dir, "v*.c"))
+                ])
+                
+                if available_versions:
+                    # Find the closest lower version
+                    closest_version = None
+                    for v in available_versions:
+                        if v <= version_num:
+                            closest_version = v
+                            
+                    if closest_version is not None:
+                        harness_file = os.path.join(func_dir, f"v{closest_version}.c")
+                        logger.info(f"Using v{closest_version} for {func_name} (requested v{version_num})")
+                    else:
+                        # If no lower version, use the lowest available
+                        lowest_version = available_versions[0]
+                        harness_file = os.path.join(func_dir, f"v{lowest_version}.c")
+                        logger.info(f"Using v{lowest_version} for {func_name} (requested v{version_num})")
+                else:
+                    logger.warning(f"No harness versions found for {func_name}")
+                    continue
+            
+            if os.path.exists(harness_file):
+                version_harness_files.append(harness_file)
+                function_names.append(func_name)
+        
+        if not version_harness_files:
+            logger.warning(f"No harness files found for version {version_num}")
+            continue
+        
+        # Run the coverage analysis for this version
+        version_coverage_metrics = run_cbmc_coverage_combined(
+            function_names,
+            version_harness_files,
+            version_num,
+            verification_dir,
+            coverage_dir
+        )
+        
+        # Process results for each function
+        for func_name in function_names:
+            if version_coverage_metrics and func_name in version_coverage_metrics:
+                metrics = version_coverage_metrics[func_name]
+                
+                coverage_data.append({
+                    "function": func_name,
+                    "version": version_num,
+                    "total_reachable_lines": metrics["total_reachable_lines"],
+                    "total_covered_lines": metrics["total_covered_lines"],
+                    "total_coverage_pct": metrics["total_coverage_pct"],
+                    "func_reachable_lines": metrics["func_reachable_lines"],
+                    "func_covered_lines": metrics["func_covered_lines"],
+                    "func_coverage_pct": metrics["func_coverage_pct"],
+                    "reported_errors": metrics["reported_errors"],
+                    "error_categories": str(metrics["error_categories"])
+                })
+    
+    # Create Polars DataFrame
+    if coverage_data:
+        df = pl.DataFrame(coverage_data)
+        
+        # Sort by function and version
+        df = df.sort(["function", "version"])
+        
+        # Save metrics to CSV
+        df.write_csv(os.path.join(coverage_dir, "coverage_metrics.csv"))
+        
+        # Generate summary by function
+        summary_df = df.group_by("function").agg([
+            pl.max("version").alias("max_version"),
+            pl.max("total_coverage_pct").alias("best_total_coverage"),
+            pl.max("func_coverage_pct").alias("best_func_coverage"),
+            pl.min("reported_errors").alias("min_errors")
+        ])
+        
+        summary_df.write_csv(os.path.join(coverage_dir, "coverage_summary.csv"))
+        
+        return df
+    else:
+        logger.warning("No coverage data collected")
+        return pl.DataFrame()
+
+def generate_coverage_report(coverage_df: pl.DataFrame, coverage_dir: str):
+    """
+    Generate a comprehensive coverage report with advanced table formatting.
+    
+    Args:
+        coverage_df: Coverage DataFrame
+        coverage_dir: Directory to save the report
+    """
+    # Create pivot tables for data access
+    pivot_total_coverage = coverage_df.pivot(
+        index="function",
+        columns="version",
+        values="total_coverage_pct"
+    )
+    
+    pivot_func_coverage = coverage_df.pivot(
+        index="function",
+        columns="version",
+        values="func_coverage_pct"
+    )
+    
+    pivot_errors = coverage_df.pivot(
+        index="function",
+        columns="version",
+        values="reported_errors"
+    )
+    
+    # Save pivot tables
+    pivot_total_coverage.write_csv(os.path.join(coverage_dir, "total_coverage_by_version.csv"))
+    pivot_func_coverage.write_csv(os.path.join(coverage_dir, "func_coverage_by_version.csv"))
+    pivot_errors.write_csv(os.path.join(coverage_dir, "errors_by_version.csv"))
+    
+    # Create improvement metrics
+    improvement_data = []
+    
+    for func_name in coverage_df["function"].unique():
+        func_df = coverage_df.filter(pl.col("function") == func_name)
+        
+        if len(func_df) < 2:
+            continue
+        
+        # Get initial and final versions
+        versions = sorted(func_df["version"].unique())
+        initial_version = versions[0]
+        final_version = versions[-1]
+        
+        initial_metrics = func_df.filter(pl.col("version") == initial_version).row(0, named=True)
+        final_metrics = func_df.filter(pl.col("version") == final_version).row(0, named=True)
+        
+        # Calculate improvements
+        total_cov_improvement = final_metrics["total_coverage_pct"] - initial_metrics["total_coverage_pct"]
+        func_cov_improvement = final_metrics["func_coverage_pct"] - initial_metrics["func_coverage_pct"]
+        error_reduction = initial_metrics["reported_errors"] - final_metrics["reported_errors"]
+        
+        improvement_data.append({
+            "function": func_name,
+            "versions": len(versions),
+            "initial_version": initial_version,
+            "final_version": final_version,
+            "initial_total_coverage": initial_metrics["total_coverage_pct"],
+            "final_total_coverage": final_metrics["total_coverage_pct"],
+            "total_coverage_improvement": total_cov_improvement,
+            "initial_func_coverage": initial_metrics["func_coverage_pct"],
+            "final_func_coverage": final_metrics["func_coverage_pct"],
+            "func_coverage_improvement": func_cov_improvement,
+            "initial_errors": initial_metrics["reported_errors"],
+            "final_errors": final_metrics["reported_errors"],
+            "error_reduction": error_reduction
+        })
+    
+    # Create improvement DataFrame
+    if improvement_data:
+        improvement_df = pl.DataFrame(improvement_data)
+        improvement_df.write_csv(os.path.join(coverage_dir, "improvement_metrics.csv"))
+    
+    # Generate HTML report
+    try:
+        # Get the list of all versions and functions
+        all_versions = sorted(coverage_df["version"].unique())
+        all_functions = sorted(coverage_df["function"].unique())
+        
+        html_report = f"""
+        <html>
+        <head>
+            <title>CBMC Coverage Analysis Report</title>
+            <style>
+                body {{ font-family: Arial, sans-serif; margin: 20px; }}
+                h1, h2 {{ color: #2c3e50; }}
+                table {{ border-collapse: collapse; width: 100%; margin-bottom: 20px; }}
+                th, td {{ border: 1px solid #ddd; padding: 8px; text-align: center; }}
+                th {{ background-color: #f2f2f2; }}
+                tr:nth-child(even) {{ background-color: #f9f9f9; }}
+                .function-name {{ text-align: left; font-weight: bold; }}
+                .good {{ color: green; }}
+                .medium {{ color: orange; }}
+                .poor {{ color: red; }}
+                .version-header {{ 
+                    background-color: #d5d5d5; 
+                    font-weight: bold; 
+                    text-align: center;
+                }}
+                .subheader {{
+                    background-color: #e8e8e8;
+                    font-weight: normal;
+                }}
+            </style>
+        </head>
+        <body>
+            <h1>CBMC Coverage Analysis Report</h1>
+            
+            <h2>Summary Statistics</h2>
+            <p>Total Functions Analyzed: {len(all_functions)}</p>
+            <p>Total Versions: {len(all_versions)}</p>
+            
+            <h2>Coverage by Function and Version</h2>
+            <table>
+                <tr>
+                    <th rowspan="2">Function</th>
+        """
+        
+        # Add version column headers with sub-columns
+        for version in all_versions:
+            html_report += f'<th colspan="3" class="version-header">Version {version}</th>'
+        
+        # Add sub-headers for each version
+        html_report += "</tr><tr>"
+        for _ in all_versions:
+            html_report += '<th class="subheader">Total Coverage</th>'
+            html_report += '<th class="subheader">Function Coverage</th>'
+            html_report += '<th class="subheader">Errors</th>'
+        html_report += "</tr>"
+        
+        # Add data rows for each function
+        for func_name in all_functions:
+            html_report += f'<tr><td class="function-name">{func_name}</td>'
+            
+            # Add metrics for each version
+            for version in all_versions:
+                # Check if this version exists for this function
+                func_version_data = coverage_df.filter(
+                    (pl.col("function") == func_name) & (pl.col("version") == version)
+                )
+                
+                if not func_version_data.is_empty():
+                    metrics = func_version_data.row(0, named=True)
+                    
+                    # Determine color classes
+                    total_cov_class = "good" if metrics["total_coverage_pct"] >= 80 else "medium" if metrics["total_coverage_pct"] >= 50 else "poor"
+                    func_cov_class = "good" if metrics["func_coverage_pct"] >= 80 else "medium" if metrics["func_coverage_pct"] >= 50 else "poor"
+                    error_class = "good" if metrics["reported_errors"] == 0 else "poor"
+                    
+                    # Add cells with proper formatting
+                    html_report += f'<td class="{total_cov_class}">{metrics["total_coverage_pct"]:.2f}%</td>'
+                    html_report += f'<td class="{func_cov_class}">{metrics["func_coverage_pct"]:.2f}%</td>'
+                    html_report += f'<td class="{error_class}">{metrics["reported_errors"]}</td>'
+                else:
+                    # No data for this version - empty cells
+                    html_report += '<td>-</td><td>-</td><td>-</td>'
+            
+            html_report += '</tr>'
+            
+        html_report += """
+            </table>
+            
+            <h2>Coverage Improvement</h2>
+            <table>
+                <tr>
+                    <th>Function</th>
+                    <th>Versions</th>
+                    <th>Initial Func Coverage</th>
+                    <th>Final Func Coverage</th>
+                    <th>Improvement</th>
+                    <th>Error Reduction</th>
+                </tr>
+        """
+        
+        # Add improvement data
+        if improvement_data:
+            # Sort by improvement
+            improvement_data.sort(key=lambda x: x["func_coverage_improvement"], reverse=True)
+            
+            for item in improvement_data:
+                improvement_class = "good" if item["func_coverage_improvement"] > 0 else "medium" if item["func_coverage_improvement"] == 0 else "poor"
+                error_class = "good" if item["error_reduction"] > 0 else "medium" if item["error_reduction"] == 0 else "poor"
+                
+                html_report += f"""
+                    <tr>
+                        <td class="function-name">{item["function"]}</td>
+                        <td>{item["versions"]}</td>
+                        <td>{item["initial_func_coverage"]:.2f}%</td>
+                        <td>{item["final_func_coverage"]:.2f}%</td>
+                        <td class="{improvement_class}">{item["func_coverage_improvement"]:.2f}%</td>
+                        <td class="{error_class}">{item["error_reduction"]}</td>
+                    </tr>
+                """
+        
+        html_report += """
+            </table>
+        </body>
+        </html>
+        """
+        
+        # Save HTML report
+        with open(os.path.join(coverage_dir, "coverage_report.html"), "w") as f:
+            f.write(html_report)
+            
+    except Exception as e:
+        logger.error(f"Error generating HTML report: {str(e)}")
+
 def output_node(state):
-    """Provides final summary and generates reports with RAG database statistics."""
+    """Provides final summary and generates reports with unified RAG database integration."""
     total_time = time.time() - state.get("start_time", time.time())
 
     logger.info("Generating final report and output summaries")
@@ -31,17 +695,37 @@ def output_node(state):
     # Determine if we're in directory mode
     is_directory_mode = state.get("is_directory_mode", False)
     
+    # Get all vulnerable functions and harnesses
+    vulnerable_functions = state.get("vulnerable_functions", [])
+    harnesses = state.get("harnesses", {})
+    cbmc_results = state.get("cbmc_results", {})
+    
+    # Check if all harnesses have been generated and verified
+    all_harnesses_complete = True
+    for func_name in vulnerable_functions:
+        if func_name not in harnesses or func_name not in cbmc_results:
+            all_harnesses_complete = False
+            logger.warning(f"Function {func_name} does not have complete harness or verification results")
+    
     # Calculate summary statistics
     function_times = state.get("function_times", {})
     total_refinements = sum(state.get("refinement_attempts", {}).values())
     
-    # Get the proof metrics with detailed logging
-    proof_metrics = state.get("proof_metrics", {})
-    logger.info(f"Retrieved proof metrics: {len(proof_metrics)} entries")
-    for func_name, metrics in proof_metrics.items():
-        logger.info(f"Metrics for {func_name}: {metrics}")
+    # Run coverage analysis only if all harnesses are complete
+    coverage_df = pl.DataFrame()
+    if all_harnesses_complete:
+        logger.info("All harnesses generated and verified. Running coverage analysis...")
+        coverage_df = analyze_coverage_by_version(result_base_dir, harnesses_dir, verification_dir)
+        
+        # Generate coverage report
+        if not coverage_df.is_empty():
+            coverage_dir = os.path.join(result_base_dir, "coverage")
+            generate_coverage_report(coverage_df, coverage_dir)
+            logger.info(f"Coverage report generated in {coverage_dir}")
+    else:
+        logger.warning("Not all harnesses have been generated and verified. Skipping coverage analysis.")
     
-    # Calculate aggregate metrics
+    # Calculate aggregate metrics from the coverage analysis
     aggregate_metrics = {
         "total_reachable_lines": 0,
         "total_covered_lines": 0,
@@ -52,60 +736,33 @@ def output_node(state):
         "functions_without_errors": 0
     }
     
-    # Get all results to calculate metrics
-    cbmc_results = state.get("cbmc_results", {})
-    
-    # Process each function's CBMC results for metrics
-    for func_name, result in cbmc_results.items():
-        # Skip special cases
-        if result.get("status") == "TIMEOUT" or result.get("status") == "ERROR":
-            continue
+    if not coverage_df.is_empty():
+        # Get latest version for each function
+        latest_versions = coverage_df.group_by("function").agg(pl.max("version").alias("max_version"))
+        latest_metrics = []
+        
+        for func_name, max_version in zip(latest_versions["function"], latest_versions["max_version"]):
+            # Get metrics for this function and version
+            metrics = coverage_df.filter(
+                (pl.col("function") == func_name) & (pl.col("version") == max_version)
+            ).row(0, named=True)
             
-        # Extract metrics with proper error handling
-        try:
-            total_reachable = int(result.get("reachable_lines", 0))
-            total_covered = int(result.get("covered_lines", 0))
-            total_coverage_pct = float(result.get("coverage_pct", 0))
-            
-            func_reachable = int(result.get("func_reachable_lines", 0))
-            func_covered = int(result.get("func_covered_lines", 0))
-            func_coverage_pct = float(result.get("func_coverage_pct", 0))
-            
-            errors = int(result.get("errors", 0))
+            latest_metrics.append(metrics)
             
             # Add to aggregate totals
-            aggregate_metrics["total_reachable_lines"] += total_reachable
-            aggregate_metrics["total_covered_lines"] += total_covered
-            aggregate_metrics["func_reachable_lines"] += func_reachable
-            aggregate_metrics["func_covered_lines"] += func_covered
-            aggregate_metrics["total_reported_errors"] += errors
+            aggregate_metrics["total_reachable_lines"] += metrics["total_reachable_lines"]
+            aggregate_metrics["total_covered_lines"] += metrics["total_covered_lines"]
+            aggregate_metrics["func_reachable_lines"] += metrics["func_reachable_lines"]
+            aggregate_metrics["func_covered_lines"] += metrics["func_covered_lines"]
+            aggregate_metrics["total_reported_errors"] += metrics["reported_errors"]
             
             # Count functions with full coverage
-            if func_coverage_pct >= 95.0:  # Consider 95%+ as full coverage
+            if metrics["func_coverage_pct"] >= 95.0:  # Consider 95%+ as full coverage
                 aggregate_metrics["functions_with_full_coverage"] += 1
                 
             # Count functions without errors
-            if errors == 0 and result.get("status") == "SUCCESS":
+            if metrics["reported_errors"] == 0:
                 aggregate_metrics["functions_without_errors"] += 1
-                
-            # Store metrics in proof_metrics for reports
-            if func_name not in proof_metrics:
-                proof_metrics[func_name] = {}
-                
-            proof_metrics[func_name].update({
-                "total_reachable_lines": total_reachable,
-                "total_covered_lines": total_covered, 
-                "total_coverage": total_coverage_pct,
-                "func_reachable_lines": func_reachable,
-                "func_covered_lines": func_covered,
-                "func_coverage": func_coverage_pct,
-                "reported_errors": errors,
-                "error_categories": result.get("error_categories", []),
-                "error_lines": result.get("error_locations", {})
-            })
-            
-        except Exception as e:
-            logger.error(f"Error processing metrics for {func_name}: {str(e)}")
     
     # Calculate overall coverage percentages with safety checks
     overall_total_coverage = 0.0
@@ -218,8 +875,8 @@ def output_node(state):
         f"Total reachable lines for harnessed functions only: {aggregate_metrics['func_reachable_lines']}",
         f"Coverage of harnessed functions only: {overall_func_coverage:.2f}%",
         f"Number of reported errors: {aggregate_metrics['total_reported_errors']}",
-        f"Functions with full coverage: {aggregate_metrics['functions_with_full_coverage']} of {len(cbmc_results)}",
-        f"Functions without errors: {aggregate_metrics['functions_without_errors']} of {len(cbmc_results)}",
+        f"Functions with full coverage: {aggregate_metrics['functions_with_full_coverage']} of {len(state.get('cbmc_results', {}))}",
+        f"Functions without errors: {aggregate_metrics['functions_without_errors']} of {len(state.get('cbmc_results', {}))}",
         "",
         "### Note on Error Reporting:",
         "- Errors are grouped by line number (one error per line)",
@@ -234,6 +891,10 @@ def output_node(state):
         f"Average harness generation time: {avg_generation_time:.2f} seconds",
         f"Average verification time: {avg_verification_time:.2f} seconds",
         f"Average evaluation time: {avg_evaluation_time:.2f} seconds",
+        "",
+        "## Coverage Analysis",
+        f"Coverage report available at: {os.path.join('coverage', 'coverage_report.html')}",
+        f"Detailed metrics available in: {os.path.join('coverage', 'coverage_metrics.csv')}",
         "",
         "## Summary of Results"
     ])
@@ -259,42 +920,35 @@ def output_node(state):
             if result.get("suggestions"):
                 header.append(f"Suggestions: {result['suggestions']}")
             
-            # Add proof metrics for this function
-            if func_name in proof_metrics:
-                metrics = proof_metrics[func_name]
-                header.append(f"\n#### Unit Proof Metrics")
-                
-                if metrics.get("timeout") or metrics.get("system_error") or metrics.get("preprocessing_error"):
-                    status = "timeout" if metrics.get("timeout") else "system error" if metrics.get("system_error") else "preprocessing error"
-                    header.append(f"- Total reachable lines: N/A ({status})")
-                    header.append(f"- Total coverage: N/A ({status})")
-                    header.append(f"- Function reachable lines: N/A ({status})")
-                    header.append(f"- Function coverage: N/A ({status})")
-                    header.append(f"- Reported errors: N/A ({status})")
-                else:
-                    # Get raw metric values with proper formatting
-                    total_reachable = metrics.get('total_reachable_lines', 0)
-                    total_coverage = metrics.get('total_coverage', 0.0)
-                    func_reachable = metrics.get('func_reachable_lines', 0)
-                    func_coverage = metrics.get('func_coverage', 0.0)
-                    reported_errors = metrics.get('reported_errors', 0)
+            # Add coverage metrics for this function if available
+            if not coverage_df.is_empty():
+                # Find latest version metrics for this function
+                func_data = coverage_df.filter(pl.col("function") == func_name)
+                if not func_data.is_empty():
+                    max_version = func_data["version"].max()
+                    func_metrics = func_data.filter(pl.col("version") == max_version).row(0, named=True)
                     
-                    # Format coverage percentages properly
-                    total_coverage_fmt = f"{total_coverage:.2f}%" if isinstance(total_coverage, (int, float)) else "N/A"
-                    func_coverage_fmt = f"{func_coverage:.2f}%" if isinstance(func_coverage, (int, float)) else "N/A"
+                    header.append(f"\n#### Coverage Metrics")
+                    header.append(f"- Total reachable lines: {func_metrics['total_reachable_lines']}")
+                    header.append(f"- Total coverage: {func_metrics['total_coverage_pct']:.2f}%")
+                    header.append(f"- Function reachable lines: {func_metrics['func_reachable_lines']}")
+                    header.append(f"- Function coverage: {func_metrics['func_coverage_pct']:.2f}%")
+                    header.append(f"- Reported errors: {func_metrics['reported_errors']}")
                     
-                    header.append(f"- Total reachable lines: {total_reachable}")
-                    header.append(f"- Total coverage: {total_coverage_fmt}")
-                    header.append(f"- Function reachable lines: {func_reachable}")
-                    header.append(f"- Function coverage: {func_coverage_fmt}")
-                    header.append(f"- Reported errors: {reported_errors}")
-                
-                # Add error details if any
-                if metrics.get('reported_errors', 0) > 0 and metrics.get('error_lines'):
-                    header.append(f"\n#### Error Details")
-                    for file_name, line_nums in metrics.get('error_lines', {}).items():
-                        header.append(f"- File: {file_name}")
-                        header.append(f"  - Error lines: {', '.join(map(str, sorted(line_nums)))}")
+                    # Add evolution metrics if function has multiple versions
+                    versions = func_data["version"].unique()
+                    if len(versions) > 1:
+                        first_version = versions.min()
+                        first_metrics = func_data.filter(pl.col("version") == first_version).row(0, named=True)
+                        
+                        cov_improvement = func_metrics['func_coverage_pct'] - first_metrics['func_coverage_pct']
+                        error_reduction = first_metrics['reported_errors'] - func_metrics['reported_errors']
+                        
+                        header.append(f"\n#### Coverage Evolution")
+                        header.append(f"- Initial coverage (v{first_version}): {first_metrics['func_coverage_pct']:.2f}%")
+                        header.append(f"- Final coverage (v{max_version}): {func_metrics['func_coverage_pct']:.2f}%")
+                        header.append(f"- Coverage improvement: {cov_improvement:.2f}%")
+                        header.append(f"- Error reduction: {error_reduction}")
             
             # Add harness evolution information
             harness_history = state.get("harness_history", {}).get(func_name, [])
@@ -384,7 +1038,14 @@ def output_node(state):
         f.write("<h2>Final Summary Report</h2>")
         f.write(f"<p><a href='final_report.html'>View Complete Summary Report</a></p>")
         
-        # Add proof metrics summary table
+        # Add coverage report link
+        f.write("<h2>Coverage Reports</h2>")
+        if not coverage_df.is_empty():
+            f.write(f"<p><a href='../coverage/coverage_report.html'>View Detailed Coverage Report</a></p>")
+        else:
+            f.write("<p>Coverage analysis was not performed or did not produce results.</p>")
+        
+        # Add unit proof metrics summary table
         f.write("<h2>Unit Proof Metrics Summary</h2>")
         f.write("<table>")
         f.write("<tr><th>Metric</th><th>Value</th></tr>")
@@ -393,8 +1054,8 @@ def output_node(state):
         f.write(f"<tr><td>Harnessed functions reachable lines</td><td>{aggregate_metrics['func_reachable_lines']}</td></tr>")
         f.write(f"<tr><td>Harnessed functions coverage</td><td>{overall_func_coverage:.2f}%</td></tr>")
         f.write(f"<tr><td>Total reported errors</td><td>{aggregate_metrics['total_reported_errors']}</td></tr>")
-        f.write(f"<tr><td>Functions with full coverage</td><td>{aggregate_metrics['functions_with_full_coverage']} of {len(cbmc_results)}</td></tr>")
-        f.write(f"<tr><td>Functions without errors</td><td>{aggregate_metrics['functions_without_errors']} of {len(cbmc_results)}</td></tr>")
+        f.write(f"<tr><td>Functions with full coverage</td><td>{aggregate_metrics['functions_with_full_coverage']} of {len(state.get('cbmc_results', {}))}</td></tr>")
+        f.write(f"<tr><td>Functions without errors</td><td>{aggregate_metrics['functions_without_errors']} of {len(state.get('cbmc_results', {}))}</td></tr>")
         f.write("</table>")
         
         # Table of function reports
@@ -427,57 +1088,38 @@ def output_node(state):
                 # Get version count
                 version_count = len(state.get("harness_history", {}).get(func_name, [])) or refinements + 1
                 
-                # Get function metrics
-                func_metrics = {}
-                if func_name in proof_metrics:
-                    func_metrics = proof_metrics[func_name]
-                
-                # Get coverage value with proper formatting
-                has_special_status = False
-                if func_metrics.get("timeout") or func_metrics.get("system_error") or func_metrics.get("preprocessing_error"):
-                    has_special_status = True
-                
-                func_coverage = func_metrics.get('func_coverage', 0.0)
-                if not isinstance(func_coverage, (int, float)):
-                    try:
-                        func_coverage = float(func_coverage)
-                    except (ValueError, TypeError):
-                        func_coverage = 0.0
-                    
-                # Format coverage percentages properly
-                func_coverage_fmt = f"{func_coverage:.2f}%" if not has_special_status else "N/A"
-                
-                # Get error count with proper formatting
-                reported_errors = func_metrics.get('reported_errors', 0)
-                if not isinstance(reported_errors, int):
-                    try:
-                        reported_errors = int(reported_errors)
-                    except (ValueError, TypeError):
-                        reported_errors = 0
-                
-                errors_fmt = str(reported_errors) if not has_special_status else "N/A"
-                
-                # Determine coverage color
+                # Get coverage metrics if available
+                coverage_value = "N/A"
                 coverage_style = ""
-                if func_coverage >= 90:
-                    coverage_style = "style='color:green;font-weight:bold'"
-                elif func_coverage >= 70:
-                    coverage_style = "style='color:orange;font-weight:bold'"
-                elif func_coverage > 0:
-                    coverage_style = "style='color:red;font-weight:bold'"
-                else:
-                    coverage_style = "style='color:gray;font-weight:bold'"
-                
-                # Determine error color
+                error_count = "N/A"
                 error_style = ""
-                if reported_errors == 0:
-                    error_style = "style='color:green;font-weight:bold'"
-                else:
-                    error_style = "style='color:red;font-weight:bold'"
+                
+                if not coverage_df.is_empty():
+                    func_data = coverage_df.filter(pl.col("function") == func_name)
+                    if not func_data.is_empty():
+                        max_version = func_data["version"].max()
+                        func_metrics = func_data.filter(pl.col("version") == max_version).row(0, named=True)
+                        
+                        coverage_value = f"{func_metrics['func_coverage_pct']:.2f}%"
+                        error_count = str(func_metrics['reported_errors'])
+                        
+                        # Set color based on coverage
+                        if func_metrics['func_coverage_pct'] >= 80:
+                            coverage_style = "style='color:green;font-weight:bold'"
+                        elif func_metrics['func_coverage_pct'] >= 50:
+                            coverage_style = "style='color:orange;font-weight:bold'"
+                        else:
+                            coverage_style = "style='color:red;font-weight:bold'"
+                        
+                        # Set color based on errors
+                        if func_metrics['reported_errors'] == 0:
+                            error_style = "style='color:green;font-weight:bold'"
+                        else:
+                            error_style = "style='color:red;font-weight:bold'"
                 
                 f.write(f"<tr><td>{display_name}</td><td>{file_name}</td><td {status_style}>{result['status']}</td>")
-                f.write(f"<td {coverage_style}>{func_coverage_fmt}</td>")
-                f.write(f"<td {error_style}>{errors_fmt}</td>")
+                f.write(f"<td {coverage_style}>{coverage_value}</td>")
+                f.write(f"<td {error_style}>{error_count}</td>")
                 
                 # Add links to all harness versions
                 f.write("<td>")
@@ -497,77 +1139,79 @@ def output_node(state):
         
         f.write("</table>")
         
-        # Add evolution section if any functions have multiple versions
-        evolution_data = [func for func in state.get("vulnerable_functions", []) 
-                         if len(state.get("harness_history", {}).get(func, [])) > 1]
-        
-        if evolution_data:
-            f.write("<h2>Harness Evolution</h2>")
-            f.write("<p>The following functions underwent multiple iterations of refinement:</p>")
+        # Add coverage improvement section with all functions that have multiple versions
+        if not coverage_df.is_empty():
+            improvement_data = []
             
-            f.write("<table>")
-            f.write("<tr><th>Function</th><th>Versions</th><th>Final Status</th><th>Line Count Evolution</th><th>Coverage Evolution</th></tr>")
+            for func_name in coverage_df["function"].unique():
+                func_df = coverage_df.filter(pl.col("function") == func_name)
+                
+                if len(func_df) < 2:
+                    continue
+                
+                # Get initial and final versions
+                versions = sorted(func_df["version"].unique())
+                initial_version = versions[0]
+                final_version = versions[-1]
+                
+                initial_metrics = func_df.filter(pl.col("version") == initial_version).row(0, named=True)
+                final_metrics = func_df.filter(pl.col("version") == final_version).row(0, named=True)
+                
+                # Calculate improvements
+                func_cov_improvement = final_metrics["func_coverage_pct"] - initial_metrics["func_coverage_pct"]
+                error_reduction = initial_metrics["reported_errors"] - final_metrics["reported_errors"]
+                
+                improvement_data.append({
+                    "function": func_name,
+                    "versions": len(versions),
+                    "initial_func_coverage": initial_metrics["func_coverage_pct"],
+                    "final_func_coverage": final_metrics["func_coverage_pct"],
+                    "func_coverage_improvement": func_cov_improvement,
+                    "initial_errors": initial_metrics["reported_errors"],
+                    "final_errors": final_metrics["reported_errors"],
+                    "error_reduction": error_reduction
+                })
             
-            for func_name in evolution_data:
-                history = state.get("harness_history", {}).get(func_name, [])
-                versions = len(history)
-                status = state.get("cbmc_results", {}).get(func_name, {}).get("status", "UNKNOWN")
+            if improvement_data:
+                f.write("<h2>Coverage Improvement</h2>")
+                f.write("<p>The following functions showed coverage improvement across iterations:</p>")
                 
-                # Determine status color
-                status_style = ""
-                if status == "SUCCESS":
-                    status_style = "style='color:green;font-weight:bold'"
-                elif status == "FAILED":
-                    status_style = "style='color:red;font-weight:bold'"
-                elif status == "TIMEOUT":
-                    status_style = "style='color:orange;font-weight:bold'"
-                else:
-                    status_style = "style='color:gray;font-weight:bold'"
+                f.write("<table>")
+                f.write("<tr><th>Function</th><th>Versions</th><th>Initial Coverage</th><th>Final Coverage</th><th>Improvement</th><th>Error Reduction</th></tr>")
                 
-                # Calculate line count evolution
-                if len(history) > 1:
-                    first_lines = len(history[0].split('\n'))
-                    last_lines = len(history[-1].split('\n'))
-                    line_diff = last_lines - first_lines
-                    line_evolution = f"{first_lines} → {last_lines} ({'+' if line_diff > 0 else ''}{line_diff})"
-                else:
-                    line_evolution = "N/A"
+                # Sort by improvement
+                improvement_data.sort(key=lambda x: x["func_coverage_improvement"], reverse=True)
                 
-                # Extract display name
-                display_name = func_name
-                if ":" in func_name:
-                    _, display_name = func_name.split(":", 1)
-                
-                # Coverage evolution
-                func_metrics = {}
-                if func_name in proof_metrics:
-                    func_metrics = proof_metrics[func_name]
-                
-                # Get coverage value with proper formatting
-                has_special_status = False
-                if func_metrics.get("timeout") or func_metrics.get("system_error") or func_metrics.get("preprocessing_error"):
-                    has_special_status = True
-                
-                func_coverage = func_metrics.get('func_coverage', 0.0)
-                if not isinstance(func_coverage, (int, float)):
-                    try:
-                        func_coverage = float(func_coverage)
-                    except (ValueError, TypeError):
-                        func_coverage = 0.0
+                for item in improvement_data:
+                    # Skip functions without improvement
+                    if item["func_coverage_improvement"] <= 0:
+                        continue
+                        
+                    # Determine class for coverage improvement
+                    improvement_class = "good" if item["func_coverage_improvement"] > 10 else "medium" if item["func_coverage_improvement"] > 0 else "poor"
                     
-                # Format coverage percentage properly
-                coverage_evolution = f"{func_coverage:.2f}%" if not has_special_status else "N/A"
+                    # Extract original function name
+                    display_name = item["function"]
+                    if ":" in display_name:
+                        _, display_name = display_name.split(":", 1)
+                    
+                    f.write(f"<tr>")
+                    f.write(f"<td>{display_name}</td>")
+                    f.write(f"<td>{item['versions']}</td>")
+                    f.write(f"<td>{item['initial_func_coverage']:.2f}%</td>")
+                    f.write(f"<td>{item['final_func_coverage']:.2f}%</td>")
+                    f.write(f"<td class='{improvement_class}'>{item['func_coverage_improvement']:.2f}%</td>")
+                    f.write(f"<td>{item['error_reduction']}</td>")
+                    f.write(f"</tr>")
                 
-                f.write(f"<tr><td>{display_name}</td><td>{versions}</td>")
-                f.write(f"<td {status_style}>{status}</td><td>{line_evolution}</td><td>{coverage_evolution}</td></tr>")
-            
-            f.write("</table>")
+                f.write("</table>")
         
         f.write("</body></html>")
     
     # Calculate relative path for displaying in message
     result_path = os.path.relpath(result_base_dir)
+    coverage_path = os.path.join(result_path, "coverage", "coverage_report.html")
     
     return {
-        "messages": [AIMessage(content=f"Analysis complete! Reports generated in '{result_path}'. Main index at {os.path.join(result_path, 'reports', 'index.html')}")]
+        "messages": [AIMessage(content=f"Analysis complete! Reports generated in '{result_path}'. Main index at {os.path.join(result_path, 'reports', 'index.html')}. Coverage report at {coverage_path}")]
     }

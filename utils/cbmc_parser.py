@@ -42,8 +42,6 @@ def process_cbmc_output(stdout: str, stderr: str) -> Dict[str, Any]:
     if "VERIFICATION SUCCESSFUL" in stdout:
         result["verification_status"] = "SUCCESS"
         result["message"] = "Verification successful"
-        # Extract coverage from successful verification
-        extract_coverage_metrics(stdout, result)
         return result
     
     # Check for critical errors in stderr
@@ -161,8 +159,6 @@ def process_cbmc_output(stdout: str, stderr: str) -> Dict[str, Any]:
                 func_name = match.group(1)
                 missing_functions.add(func_name)
     
-    # Extract coverage information
-    extract_coverage_metrics(stdout, result)
     
     # Count errors and set suggestions based on categories
     if failure_categories:
@@ -208,131 +204,6 @@ def process_cbmc_output(stdout: str, stderr: str) -> Dict[str, Any]:
         result["error_locations"] = failure_locations
     
     return result
-
-def extract_coverage_metrics(stdout: str, result: Dict[str, Any]) -> None:
-    """
-    Extract coverage metrics from CBMC output, distinguishing between
-    total coverage and function-specific coverage.
-    
-    Args:
-        stdout: The standard output from CBMC
-        result: The result dictionary to update with coverage information
-    """
-    # Initialize metrics
-    total_blocks = 0
-    covered_blocks = 0
-    func_blocks = 0
-    func_covered = 0
-    
-    # Extract the target function name from the result
-    target_function = ""
-    if "function" in result:
-        target_function = result["function"]
-        # Strip any file prefix if present (file.c:function -> function)
-        if ":" in target_function:
-            target_function = target_function.split(":")[-1]
-    
-    # Look for function-specific coverage context in the output
-    current_function = ""
-    in_function_context = False
-    
-    # Split the output by lines for processing
-    lines = stdout.split('\n')
-    
-    for i, line in enumerate(lines):
-        # Check for function context indicators
-        if "function " in line:
-            match = re.search(r'function\s+(\w+)', line)
-            if match:
-                current_function = match.group(1)
-                in_function_context = (current_function == target_function)
-        
-        # Look for coverage information
-        is_coverage_line = any(term in line.lower() for term in 
-                             ["coverage", "block", "line", "branch", "<status>"])
-        
-        if is_coverage_line:
-            total_blocks += 1
-            is_covered = any(term in line for term in 
-                           ["SATISFIED", "COVERED", "TRUE", "status=\"true\"", "satisfied"])
-            
-            if is_covered:
-                covered_blocks += 1
-            
-            # If this is for the target function, track function-specific metrics
-            if in_function_context or (target_function != "" and target_function in line):
-                func_blocks += 1
-                if is_covered:
-                    func_covered += 1
-    
-    # If we couldn't identify function-specific blocks, make a reasonable estimate
-    if func_blocks == 0 and target_function != "":
-        # Extract all blocks within suspected function context
-        in_function = False
-        for i, line in enumerate(lines):
-            if target_function in line and "function" in line:
-                in_function = True
-                continue
-            
-            if in_function and "function" in line and target_function not in line:
-                in_function = False
-                continue
-                
-            if in_function and any(term in line.lower() for term in 
-                                ["coverage", "block", "line", "branch"]):
-                func_blocks += 1
-                if any(term in line for term in 
-                     ["SATISFIED", "COVERED", "TRUE", "status=\"true\"", "satisfied"]):
-                    func_covered += 1
-    
-    # Calculate coverage percentages
-    coverage_pct = 0.0
-    if total_blocks > 0:
-        coverage_pct = (covered_blocks / total_blocks) * 100.0
-    
-    func_coverage_pct = 0.0
-    if func_blocks > 0:
-        func_coverage_pct = (func_covered / func_blocks) * 100.0
-    
-    # If we couldn't determine function-specific blocks, make an educated estimate
-    if func_blocks == 0:
-        # Estimate function size based on common C function patterns
-        estimated_size = 20  # Default size estimate for a small function
-        
-        if target_function:
-            # Look for the function in the output to get a better size estimate
-            for i in range(len(lines)):
-                if target_function in lines[i] and "function" in lines[i]:
-                    # Count lines that likely belong to this function
-                    start_idx = i
-                    end_idx = len(lines)
-                    
-                    # Find where the function definition likely ends
-                    for j in range(i+1, min(i+500, len(lines))):  # Look at next 500 lines max
-                        if "function" in lines[j] and target_function not in lines[j]:
-                            end_idx = j
-                            break
-                    
-                    # Estimate based on lines between start and end
-                    func_size = end_idx - start_idx
-                    if func_size > 10:  # Reasonable function found
-                        estimated_size = func_size
-                    break
-                        
-        # Set reasonable estimates for function blocks and coverage
-        func_blocks = max(10, min(estimated_size, total_blocks // 10))
-        func_covered = max(5, int(func_blocks * 0.85))  # Assume 85% coverage as reasonable default
-        func_coverage_pct = (func_covered / func_blocks) * 100.0
-    
-    # Update the result dictionary
-    result["reachable_lines"] = total_blocks
-    result["covered_lines"] = covered_blocks
-    result["coverage_pct"] = coverage_pct
-    
-    # Add function-specific metrics
-    result["func_reachable_lines"] = func_blocks
-    result["func_covered_lines"] = func_covered
-    result["func_coverage_pct"] = func_coverage_pct
 
 def extract_function_name_from_result(result: Dict[str, Any]) -> str:
     """
@@ -559,13 +430,12 @@ def generate_improvement_recommendation(harness_code: str, func_code: str, cbmc_
         # Add critical instructions
         recommendation.append("""
         CRITICAL INSTRUCTIONS:
-        1. INCLUDE THE COMPLETE FUNCTION IMPLEMENTATION in your harness file
-        2. Fix the specific issues identified in the error feedback
-        3. Ensure proper memory management (allocation and freeing)
-        4. Add appropriate constraints using __CPROVER_assume()
-        5. Implement any missing function bodies or avoid calling them
-        6. Follow the recommended patterns for specific error types
-        7. Focus on creating a minimal, focused harness that verifies the function
+        1. Fix the specific issues identified in the error feedback
+        2. Ensure proper memory management (allocation and freeing)
+        3. Add appropriate constraints using __CPROVER_assume()
+        4. Implement any missing function bodies or avoid calling them
+        5. Follow the recommended patterns for specific error types
+        6. Focus on creating a minimal, focused harness that verifies the function
         """)
         
         return "\n".join(recommendation)
