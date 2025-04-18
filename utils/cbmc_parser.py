@@ -395,55 +395,12 @@ def process_cbmc_output(stdout: str, stderr: str) -> Dict[str, Any]:
         "has_redeclaration_error": False,  # Track redeclaration errors specifically
         "redeclared_symbols": []    # List of redeclared symbols
     }
-    
-    # IMPORTANT: Ensure stderr is preserved in the result for downstream processing
-    result["stderr"] = stderr
-    
-    # First, check if we have any content in stderr (prioritize stderr)
-    has_stderr_content = stderr.strip() != ""
-    
-    # Extract line-specific errors from stderr first
-    stderr_error_locations = {}
-    stderr_error_messages = []
-    stderr_redeclaration_errors = []
-    
-    if has_stderr_content:
-        # Look for specific error patterns in stderr with line numbers
-        for line in stderr.split('\n'):
-            # Skip warning lines unless they contain critical information
-            if 'warning:' in line.lower() and not any(critical in line.lower() 
-                                                     for critical in ['pointer', 'memory', 'null', 'invalid', 'error']):
-                continue
-                
-            # Check for redeclaration errors
-            if 'redeclaration' in line.lower():
-                result["has_redeclaration_error"] = True
-                stderr_redeclaration_errors.append(line.strip())
-                
-                # Extract the redeclared symbol
-                redecl_match = re.search(r"redeclaration of '([^']+)'", line)
-                if redecl_match:
-                    redecl_symbol = redecl_match.group(1)
-                    if redecl_symbol not in result["redeclared_symbols"]:
-                        result["redeclared_symbols"].append(redecl_symbol)
-            
-            # Look for error message patterns with line numbers
-            if 'error:' in line or ('warning:' in line and any(critical in line.lower() 
-                                                             for critical in ['pointer', 'memory', 'null', 'invalid'])):
-                stderr_error_messages.append(line.strip())
-                
-                # Extract file and line information using improved regex pattern
-                # This handles both "file.c:123:" and "file.c:123:12:" formats
-                loc_match = re.search(r'([^:]+):(\d+)(?::\d+)?:', line)
-                if loc_match:
-                    file_name = loc_match.group(1)
-                    line_num = int(loc_match.group(2))
-                    
-                    # Add to location tracking
-                    if file_name not in stderr_error_locations:
-                        stderr_error_locations[file_name] = []
-                    if line_num not in stderr_error_locations[file_name]:
-                        stderr_error_locations[file_name].append(line_num)
+
+    # Check for successful verification first
+    if "VERIFICATION SUCCESSFUL" in stdout:
+        result["verification_status"] = "SUCCESS"
+        result["message"] = "Verification successful"
+        return result
     
     # Check for preprocessing errors, parsing errors, or other critical errors in stderr
     if has_stderr_content and ("PARSING ERROR" in stderr or "preprocessing failed" in stderr.lower() 
@@ -568,71 +525,7 @@ def process_cbmc_output(stdout: str, stderr: str) -> Dict[str, Any]:
                 func_name = match.group(1)
                 missing_functions.add(func_name)
     
-    # Parse coverage information - extract lines for analysis
-    # Extract lines of code information from coverage output
-    line_info_pattern = r'line (\d+) function ([^,]+), file ([^,]+)'
-    line_matches = re.finditer(line_info_pattern, stdout)
-    
-    # Initialize coverage tracking
-    main_lines = set()
-    main_covered = set()
-    target_lines = set()
-    target_covered = set()
-    
-    # Process all line matches
-    for match in line_matches:
-        line_num = int(match.group(1))
-        func_name = match.group(2)
-        file_name = match.group(3)
-        
-        # Check coverage status
-        is_covered = False
-        # Look at the preceding text for coverage status
-        start_pos = max(0, match.start() - 100)
-        preceding_text = stdout[start_pos:match.start()]
-        if "SATISFIED" in preceding_text or "satisfied" in preceding_text.lower():
-            is_covered = True
-        
-        # Categorize by function
-        if func_name == "main":
-            main_lines.add(line_num)
-            if is_covered:
-                main_covered.add(line_num)
-        else:
-            # Assume other functions are target functions
-            target_lines.add(line_num)
-            if is_covered:
-                target_covered.add(line_num)
-    
-    # Update coverage metrics
-    result["main_total_lines"] = len(main_lines)
-    result["main_reachable_lines"] = len(main_covered)
-    result["main_uncovered_lines"] = len(main_lines) - len(main_covered)
-    
-    result["target_total_lines"] = len(target_lines)
-    result["target_reachable_lines"] = len(target_covered)
-    result["target_uncovered_lines"] = len(target_lines) - len(target_covered)
-    
-    result["total_combined_lines"] = len(main_lines) + len(target_lines)
-    result["reachable_combined_lines"] = len(main_covered) + len(target_covered)
-    
-    # Also set old metrics for backward compatibility
-    result["reachable_lines"] = result["total_combined_lines"]
-    result["covered_lines"] = result["reachable_combined_lines"]
-    
-    if result["total_combined_lines"] > 0:
-        result["coverage_pct"] = (result["reachable_combined_lines"] / result["total_combined_lines"]) * 100
-    
-    result["func_reachable_lines"] = result["target_total_lines"]
-    result["func_covered_lines"] = result["target_reachable_lines"]
-    
-    if result["target_total_lines"] > 0:
-        result["func_coverage_pct"] = (result["target_reachable_lines"] / result["target_total_lines"]) * 100
-    
-    # Add the failure and error counts to the result
-    result["failure_count"] = failure_count
-    result["error_count"] = error_count
-    
+
     # Count errors and set suggestions based on categories
     if failure_categories:
         result["error_categories"] = list(failure_categories)
@@ -1778,13 +1671,12 @@ array[index] = value;  // Safe array access
         # Add critical instructions
         recommendation.append("""
         CRITICAL INSTRUCTIONS:
-        1. Fix the specific issues identified in the line-by-line error feedback
-        2. Target fixes to the exact line numbers indicated in error locations
-        3. Ensure proper memory management (allocation and freeing)
-        4. Add appropriate constraints using __CPROVER_assume()
-        5. Implement any missing function bodies or avoid calling them
-        6. Follow the recommended patterns for specific error types
-        7. Focus on creating a minimal, focused harness that verifies the function
+        1. Fix the specific issues identified in the error feedback
+        2. Ensure proper memory management (allocation and freeing)
+        3. Add appropriate constraints using __CPROVER_assume()
+        4. Implement any missing function bodies or avoid calling them
+        5. Follow the recommended patterns for specific error types
+        6. Focus on creating a minimal, focused harness that verifies the function
         """)
         
         return "\n".join(recommendation)

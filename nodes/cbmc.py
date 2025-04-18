@@ -10,7 +10,8 @@ import glob
 import json
 from langchain_core.messages import AIMessage
 import logging
-from utils.cbmc_parser import extract_coverage_metrics_from_json, process_cbmc_output
+from utils.cbmc_parser import process_cbmc_output
+
 
 logger = logging.getLogger("cbmc")
 
@@ -328,7 +329,7 @@ def cbmc_node(state):
     coverage_cmd = cbmc_cmd.copy()
     coverage_cmd.extend([
         "--cover", "location",
-        "--json-ui"  # Using JSON format for consistent parsing
+        "--json-ui"  # Using XML format for consistent parsing
     ])
     
     # Initialize result variables
@@ -385,84 +386,19 @@ def cbmc_node(state):
             with open(coverage_json_file, "w") as f:
                 f.write(coverage_stdout)
             
-            # Process the coverage JSON immediately
+            # Parse the JSON coverage data
             try:
-                # Parse the JSON coverage data
+                import json
                 json_data = json.loads(coverage_stdout)
                 
-                # Define function to parse line ranges
-                def parse_line_ranges(line_ranges):
-                    """Parse a string of line ranges into a set of unique line numbers."""
-                    unique_lines = set()
-                    for line_range in line_ranges.split(','):
-                        if '-' in line_range:
-                            start, end = map(int, line_range.split('-'))
-                            unique_lines.update(range(start, end + 1))
-                        else:
-                            try:
-                                unique_lines.add(int(line_range))
-                            except ValueError:
-                                pass  # Skip if not a valid integer
-                    return unique_lines
-
-                # Extract coverage metrics
-                coverage_metrics = extract_coverage_metrics_from_json(json_data, func_name, version_num)
+                # Extract coverage metrics from the JSON data
+                from utils.cbmc_parser import extract_coverage_metrics
+                # Use the already defined cbmc_result variable (from earlier in the function)
+                coverage_metrics = extract_coverage_metrics(json_data, func_name)
                 
-                # Store metrics in a dedicated file
-                metrics_file = os.path.join(func_verification_dir, f"v{version_num}_metrics.json")
-                with open(metrics_file, "w") as f:
-                    json.dump(coverage_metrics, f, indent=2)
-                    
-                # Create coverage directory structure for centralized collection
-                coverage_dir = os.path.join(result_base_dir, "coverage", "data")
-                os.makedirs(coverage_dir, exist_ok=True)
-                
-                # Create flattened data for CSV storage
-                flat_data = {
-                    "function": func_name,
-                    "version": version_num,
-                    "total_coverage_pct": coverage_metrics.get("total_coverage_pct", 0),
-                    "func_coverage_pct": coverage_metrics.get("func_coverage_pct", 0),
-                    "main_total_lines": coverage_metrics.get("main_total_lines", 0),
-                    "main_reachable_lines": coverage_metrics.get("main_reachable_lines", 0),
-                    "main_uncovered_lines": coverage_metrics.get("main_uncovered_lines", 0),
-                    "target_total_lines": coverage_metrics.get("target_total_lines", 0),
-                    "target_reachable_lines": coverage_metrics.get("target_reachable_lines", 0),
-                    "target_uncovered_lines": coverage_metrics.get("target_uncovered_lines", 0),
-                    "total_combined_lines": coverage_metrics.get("total_combined_lines", 0),
-                    "reachable_combined_lines": coverage_metrics.get("reachable_combined_lines", 0),
-                }
-                
-                # Save as JSON for each function version
-                func_metrics_file = os.path.join(coverage_dir, f"{func_name}_v{version_num}.json")
-                with open(func_metrics_file, "w") as f:
-                    json.dump(flat_data, f, indent=2)
-                
-                # Update the running CSV file
-                csv_path = os.path.join(coverage_dir, "coverage_metrics.csv")
-                file_exists = os.path.exists(csv_path)
-                
-                with open(csv_path, "a") as f:
-                    # Write headers if file is new
-                    if not file_exists:
-                        headers = ",".join(flat_data.keys())
-                        f.write(f"{headers}\n")
-                    
-                    # Write data row
-                    values = [str(v).replace(",", ";") for v in flat_data.values()]
-                    f.write(f"{','.join(values)}\n")
-                
-                # Print coverage summary
-                print(f"\n=== Coverage Metrics for {func_name} (v{version_num}) ===")
-                print(f"Main function: {coverage_metrics['main_reachable_lines']}/{coverage_metrics['main_total_lines']} lines")
-                print(f"Target function: {coverage_metrics['target_reachable_lines']}/{coverage_metrics['target_total_lines']} lines")
-                print(f"Total coverage: {coverage_metrics['total_coverage_pct']:.2f}%")
-                print(f"Function coverage: {coverage_metrics['func_coverage_pct']:.2f}%")
-                print("=" * 50)
-                
-                # Store coverage metrics for later use with cbmc_result
-                # We'll apply them after cbmc_result is initialized
-                stored_coverage_metrics = coverage_metrics.copy()
+                # Add coverage metrics to cbmc_result
+                for key, value in coverage_metrics.items():
+                    cbmc_result[key] = value
                 
             except json.JSONDecodeError as e:
                 logger.error(f"Error parsing JSON coverage data: {str(e)}")
@@ -477,28 +413,6 @@ def cbmc_node(state):
         # Process CBMC output using our enhanced parser (with stderr prioritization)
         # The process_cbmc_output function now automatically preserves stderr in the result
         cbmc_result = process_cbmc_output(cbmc_stdout, cbmc_stderr)
-        
-        # Double-check that stderr is included in the result for line-specific error tracing
-        if "stderr" not in cbmc_result:
-            cbmc_result["stderr"] = cbmc_stderr
-            
-        # Make sure we prioritize stderr output when there are critical errors
-        # This ensures that downstream components focus on the most important error information
-        if cbmc_stderr and ("error:" in cbmc_stderr or "undefined reference" in cbmc_stderr):
-            logger.warning("Critical errors found in STDERR output, prioritizing these errors")
-            
-            # Ensure error categories reflect stderr issues
-            if "redeclaration" in cbmc_stderr and "redeclaration" not in cbmc_result["error_categories"]:
-                cbmc_result["error_categories"].append("redeclaration")
-                
-            if "undefined reference" in cbmc_stderr and "linking_error" not in cbmc_result["error_categories"]:
-                cbmc_result["error_categories"].append("linking_error")
-        
-        # Apply the stored coverage metrics if they were successfully collected
-        stored_coverage_metrics = locals().get('stored_coverage_metrics')
-        if stored_coverage_metrics:
-            for key, value in stored_coverage_metrics.items():
-                cbmc_result[key] = value
         
         # Create a structured result for the state
         cbmc_results[func_name] = {

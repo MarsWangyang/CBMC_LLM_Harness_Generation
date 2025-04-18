@@ -1282,12 +1282,13 @@ def generator_node(state):
             
         if is_refinement and rag_recommendations:
             # Add info about RAG contributions
-            if rag_recommendations.get("has_similar_errors", False):
-                message_content += f"\nLeveraged {len(rag_recommendations.get('similar_errors', []))} similar past errors from unified database"
-            if rag_recommendations.get("has_solutions", False):
-                message_content += f"\nApplied patterns from {len(rag_recommendations.get('solutions', []))} successful solutions"
-            if rag_recommendations.get("has_matching_patterns", False):
-                message_content += f"\nIdentified {len(rag_recommendations.get('matching_patterns', {}))} relevant vulnerability patterns"
+
+            if rag_recommendations["has_similar_errors"]:
+                message_content += f"\nLeveraged {len(rag_recommendations['similar_errors'])} similar past errors from unified database"
+            if rag_recommendations["has_solutions"]:
+                message_content += f"\nApplied patterns from {len(rag_recommendations['solutions'])} successful solutions"
+            if rag_recommendations["has_matching_patterns"]:
+                message_content += f"\nIdentified {len(rag_recommendations['matching_patterns'])} relevant vulnerability patterns"
         
         return {
             "messages": [AIMessage(content=message_content)],

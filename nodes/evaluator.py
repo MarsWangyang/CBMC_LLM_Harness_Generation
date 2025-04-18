@@ -414,9 +414,12 @@ def harness_evaluator_node(state):
     
     # Determine whether to proceed with refinement or move to next function
     if current_attempts < max_refinements - 1:
-        # Create update_state with all the necessary information
-        update_state = {
-            "messages": [AIMessage(content=f"Evaluated harness for {func_name}. Needs improvement (attempt {version_num} of {max_refinements}). Using insights from unified knowledge base.")],
+
+        state_refinement_attempts[func_name] = current_attempts + 1
+
+        
+        return {
+            "messages": [AIMessage(content=f"Evaluated harness for {func_name}. Needs improvement (attempt {current_attempts + 1} of {max_refinements}). Using insights from unified knowledge base.")],
             "refinement_attempts": state_refinement_attempts,
             "processed_functions": state_processed_functions,
             "improvement_recommendation": improvement_recommendation,
@@ -439,6 +442,28 @@ def harness_evaluator_node(state):
         # Last attempt reached, mark as processed and move on
         if func_name not in state_processed_functions:
             state_processed_functions.append(func_name)
+
+        state_refinement_attempts[func_name] = max_refinements
+        
+        # RESET: Clear existing error and solution data when max refinements reached
+        try:
+            # Delete existing errors for this function from error collection
+            existing_errors = rag_db.error_collection.get(
+                where={"func_name": func_name}
+            )
+            if existing_errors["ids"]:
+                rag_db.error_collection.delete(ids=existing_errors["ids"])
+            
+            # Delete existing solutions for this function from solution collection
+            existing_solutions = rag_db.solution_collection.get(
+                where={"func_name": func_name}
+            )
+            if existing_solutions["ids"]:
+                rag_db.solution_collection.delete(ids=existing_solutions["ids"])
+            
+            logger.info(f"Cleared RAG data for {func_name} after reaching max refinement attempts")
+        except Exception as e:
+            logger.warning(f"Error resetting RAG data for {func_name} after max refinements: {str(e)}")
         
         return {
             "messages": [AIMessage(content=f"Final refinement attempt for {func_name} completed. Moving to next function.")],
