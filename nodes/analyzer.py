@@ -91,10 +91,22 @@ def analyzer_node(state):
     print(f"DEBUG: Processing {len(all_functions['ids'])} functions from database...")
     for i, func_id in enumerate(all_functions["ids"]):
         # Skip if not a regular function (e.g., declaration or header)
-        if func_id.startswith("header:") or func_id.startswith("declaration:"):
+        if (func_id.startswith("header:") or 
+            func_id.startswith("declaration:") or 
+            func_id.startswith("pattern:") or 
+            "pattern:" in func_id or 
+            ":if" in func_id or 
+            ":for" in func_id or 
+            ":while" in func_id):
+            print(f"DEBUG: Skipping non-function entry: {func_id}")
             continue
             
+        # Check if its type is specified in metadata
         metadata = all_functions["metadatas"][i]
+        if metadata.get("type") == "pattern" or metadata.get("is_keyword", False):
+            print(f"DEBUG: Skipping pattern/keyword from metadata: {func_id}")
+            continue
+            
         func_code = all_functions["documents"][i]
         file_path = metadata.get("file_path", "")
         
@@ -154,17 +166,29 @@ def analyzer_node(state):
     if not target_functions:
         print("WARNING: No functions match source directory criteria. Trying to find any .c files...")
         for i, func_id in enumerate(all_functions["ids"]):
-            # Only check regular functions
-            if not (func_id.startswith("header:") or func_id.startswith("declaration:")):
-                metadata = all_functions["metadatas"][i]
-                file_path = metadata.get("file_path", "")
+            # Skip problematic patterns
+            if (func_id.startswith("header:") or 
+                func_id.startswith("declaration:") or 
+                func_id.startswith("pattern:") or 
+                "pattern:" in func_id or 
+                ":if" in func_id or 
+                ":for" in func_id or 
+                ":while" in func_id):
+                continue
                 
-                # Check if this is a .c or .cpp file
-                if file_path and (file_path.endswith(".c") or file_path.endswith(".cpp")):
-                    # Extract filename for debugging
-                    filename = os.path.basename(file_path)
-                    print(f"DEBUG: Adding fallback function: {func_id} (from {filename})")
-                    target_functions.append(func_id)
+            # Skip by metadata type
+            metadata = all_functions["metadatas"][i]
+            if metadata.get("type") == "pattern" or metadata.get("is_keyword", False):
+                continue
+                
+            file_path = metadata.get("file_path", "")
+            
+            # Check if this is a .c or .cpp file
+            if file_path and (file_path.endswith(".c") or file_path.endswith(".cpp")):
+                # Extract filename for debugging
+                filename = os.path.basename(file_path)
+                print(f"DEBUG: Adding fallback function: {func_id} (from {filename})")
+                target_functions.append(func_id)
     
     # Count functions by category
     category_count = {

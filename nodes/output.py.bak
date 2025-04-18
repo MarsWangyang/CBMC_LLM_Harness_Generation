@@ -445,19 +445,33 @@ def analyze_coverage_by_version(
         
         # Sort by function and version
         df = df.sort(["function", "version"])
-
-        # Save metrics to CSV
-        df.write_csv(os.path.join(coverage_dir, "coverage_metrics.csv"))
         
-        # Generate summary by function
-        summary_df = df.group_by("function").agg([
-            pl.max("version").alias("max_version"),
-            pl.max("total_coverage_pct").alias("best_total_coverage"),
-            pl.max("func_coverage_pct").alias("best_func_coverage"),
-            pl.min("reported_errors").alias("min_errors")
-        ])
+        # Create coverage directory for storing the JSON data
+        data_dir = os.path.join(coverage_dir, "data")
+        os.makedirs(data_dir, exist_ok=True)
         
-        summary_df.write_csv(os.path.join(coverage_dir, "coverage_summary.csv"))
+        # Save individual JSON files for each function/version combination
+        for i, row in enumerate(df.iter_rows(named=True)):
+            func_name = row["function"]
+            version = row["version"]
+            
+            # Create a flattened data structure for JSON
+            json_data = {
+                "function": func_name,
+                "version": version,
+                "total_coverage_pct": row["total_coverage_pct"],
+                "func_coverage_pct": row["func_coverage_pct"],
+                "total_reachable_lines": row["total_reachable_lines"],
+                "total_covered_lines": row["total_covered_lines"],
+                "func_reachable_lines": row["func_reachable_lines"],
+                "func_covered_lines": row["func_covered_lines"],
+                "reported_errors": row["reported_errors"]
+            }
+            
+            # Save as JSON
+            json_file = os.path.join(data_dir, f"{func_name}_v{version}.json")
+            with open(json_file, "w") as f:
+                json.dump(json_data, f, indent=2)
         
         return df
     else:
@@ -466,45 +480,129 @@ def analyze_coverage_by_version(
 
 def generate_coverage_report(coverage_df: pl.DataFrame, coverage_dir: str):
     """
-
-    Generate a comprehensive coverage report with advanced table formatting.
+    Generate a simplified coverage report with table derived from JSON data only.
     
     Args:
         coverage_df: Coverage DataFrame
         coverage_dir: Directory to save the report
     """
-
-    # Create pivot tables for data access
-    pivot_total_coverage = coverage_df.pivot(
-        index="function",
-        columns="version",
-        values="total_coverage_pct"
-    )
-    
-    pivot_func_coverage = coverage_df.pivot(
-        index="function",
-        columns="version",
-        values="func_coverage_pct"
-    )
-    
-    pivot_errors = coverage_df.pivot(
-        index="function",
-        columns="version",
-        values="reported_errors"
-    )
-    
-    # Save pivot tables
-    pivot_total_coverage.write_csv(os.path.join(coverage_dir, "total_coverage_by_version.csv"))
-    pivot_func_coverage.write_csv(os.path.join(coverage_dir, "func_coverage_by_version.csv"))
-    pivot_errors.write_csv(os.path.join(coverage_dir, "errors_by_version.csv"))
-    
-    # Create improvement metrics
-    improvement_data = []
-    
-    for func_name in coverage_df["function"].unique():
-        func_df = coverage_df.filter(pl.col("function") == func_name)
+    # Generate HTML report
+    try:
+        html_report = f"""
+        <html>
+        <head>
+            <title>CBMC Coverage Analysis Report</title>
+            <style>
+                body {{ font-family: Arial, sans-serif; margin: 20px; }}
+                h1, h2 {{ color: #2c3e50; }}
+                table {{ border-collapse: collapse; width: 100%; margin-bottom: 20px; }}
+                th, td {{ border: 1px solid #ddd; padding: 8px; text-align: center; }}
+                th {{ background-color: #f2f2f2; }}
+                tr:nth-child(even) {{ background-color: #f9f9f9; }}
+                .function-name {{ text-align: left; font-weight: bold; }}
+                .good {{ color: green; }}
+                .medium {{ color: orange; }}
+                .poor {{ color: red; }}
+                .version-header {{ 
+                    background-color: #d5d5d5; 
+                    font-weight: bold; 
+                    text-align: center;
+                }}
+                .subheader {{
+                    background-color: #e8e8e8;
+                    font-weight: normal;
+                }}
+            </style>
+        </head>
+        <body>
+            <h1>CBMC Coverage Analysis Report</h1>
+        """
+            
+        # Only add function coverage matrix from JSON files in the data directory
+        data_dir = os.path.join(coverage_dir, "data")
+        if os.path.exists(data_dir):
+            json_files = glob.glob(os.path.join(data_dir, "*.json"))
+            if json_files:
+                logger.info(f"Adding coverage matrix from {len(json_files)} JSON files in data directory")
+                
+                # Create a mapping of function and version to metrics
+                json_coverage_data = {}
+                
+                for json_file in json_files:
+                    try:
+                        with open(json_file, 'r') as f:
+                            data = json.load(f)
+                            function = data.get("function")
+                            version = data.get("version")
+                            
+                            if function and version is not None:
+                                if function not in json_coverage_data:
+                                    json_coverage_data[function] = {}
+                                json_coverage_data[function][version] = data
+                    except Exception as e:
+                        logger.error(f"Error reading JSON file {json_file}: {str(e)}")
+                
+                if json_coverage_data:
+                    # Add a section for the matrix from JSON data only
+                    all_json_functions = sorted(json_coverage_data.keys())
+                    all_json_versions = sorted(set(v for func_data in json_coverage_data.values() for v in func_data.keys()))
+                    
+                    html_report += """
+                        <h2>Coverage Matrix from JSON Data</h2>
+                        <p>This table shows coverage metrics extracted directly from JSON data files:</p>
+                        <table>
+                            <tr>
+                                <th rowspan="2">Function</th>
+                    """
+                    
+                    # Add version column headers
+                    for version in all_json_versions:
+                        html_report += f'<th colspan="2" class="version-header">Version {version}</th>'
+                    
+                    # Add sub-headers for total and func coverage
+                    html_report += "</tr><tr>"
+                    for _ in all_json_versions:
+                        html_report += '<th class="subheader">Total %</th>'
+                        html_report += '<th class="subheader">Func %</th>'
+                    html_report += "</tr>"
+                    
+                    # Add data rows
+                    for func_name in all_json_functions:
+                        html_report += f'<tr><td class="function-name">{func_name}</td>'
+                        
+                        for version in all_json_versions:
+                            data = json_coverage_data.get(func_name, {}).get(version)
+                            
+                            if data:
+                                total_cov = data.get("total_coverage_pct", 0)
+                                func_cov = data.get("func_coverage_pct", 0)
+                                
+                                # Determine color classes
+                                total_class = "good" if total_cov >= 80 else "medium" if total_cov >= 50 else "poor"
+                                func_class = "good" if func_cov >= 80 else "medium" if func_cov >= 50 else "poor"
+                                
+                                html_report += f'<td class="{total_class}">{total_cov:.2f}%</td>'
+                                html_report += f'<td class="{func_class}">{func_cov:.2f}%</td>'
+                            else:
+                                html_report += '<td>-</td><td>-</td>'
+                        
+                        html_report += '</tr>'
+                    
+                    html_report += """
+                        </table>
+                    """
         
-        if len(func_df) < 2:
+        html_report += """
+        </body>
+        </html>
+        """
+        
+        # Save HTML report
+        with open(os.path.join(coverage_dir, "coverage_report.html"), "w") as f:
+            f.write(html_report)
+            
+    except Exception as e:
+        logger.error(f"Error generating HTML report: {str(e)}")
             continue
         
         # Get initial and final versions
@@ -629,6 +727,126 @@ def generate_coverage_report(coverage_df: pl.DataFrame, coverage_dir: str):
             
         html_report += """
             </table>
+        """
+            
+        # Add function coverage matrix from JSON files in the data directory
+        data_dir = os.path.join(coverage_dir, "data")
+        if os.path.exists(data_dir):
+            json_files = glob.glob(os.path.join(data_dir, "*.json"))
+            if json_files:
+                logger.info(f"Adding coverage matrix from {len(json_files)} JSON files in data directory")
+                
+                # Create a mapping of function and version to metrics
+                json_coverage_data = {}
+                
+                for json_file in json_files:
+                    try:
+                        with open(json_file, 'r') as f:
+                            data = json.load(f)
+                            function = data.get("function")
+                            version = data.get("version")
+                            
+                            if function and version is not None:
+                                if function not in json_coverage_data:
+                                    json_coverage_data[function] = {}
+                                json_coverage_data[function][version] = data
+                    except Exception as e:
+                        logger.error(f"Error reading JSON file {json_file}: {str(e)}")
+                
+                if json_coverage_data:
+                    # Add a new section for the matrix from JSON data
+                    all_json_functions = sorted(json_coverage_data.keys())
+                    all_json_versions = sorted(set(v for func_data in json_coverage_data.values() for v in func_data.keys()))
+                    
+                    html_report += """
+                        <h2>Coverage Matrix from JSON Data</h2>
+                        <p>This table shows coverage metrics extracted directly from JSON data files:</p>
+                        <table>
+                            <tr>
+                                <th rowspan="2">Function</th>
+                    """
+                    
+                    # Add version column headers
+                    for version in all_json_versions:
+                        html_report += f'<th colspan="2" class="version-header">Version {version}</th>'
+                    
+                    # Add sub-headers for total and func coverage
+                    html_report += "</tr><tr>"
+                    for _ in all_json_versions:
+                        html_report += '<th class="subheader">Total %</th>'
+                        html_report += '<th class="subheader">Func %</th>'
+                    html_report += "</tr>"
+                    
+                    # Add data rows
+                    for func_name in all_json_functions:
+                        html_report += f'<tr><td class="function-name">{func_name}</td>'
+                        
+                        for version in all_json_versions:
+                            data = json_coverage_data.get(func_name, {}).get(version)
+                            
+                            if data:
+                                total_cov = data.get("total_coverage_pct", 0)
+                                func_cov = data.get("func_coverage_pct", 0)
+                                
+                                # Determine color classes
+                                total_class = "good" if total_cov >= 80 else "medium" if total_cov >= 50 else "poor"
+                                func_class = "good" if func_cov >= 80 else "medium" if func_cov >= 50 else "poor"
+                                
+                                html_report += f'<td class="{total_class}">{total_cov:.2f}%</td>'
+                                html_report += f'<td class="{func_class}">{func_cov:.2f}%</td>'
+                            else:
+                                html_report += '<td>-</td><td>-</td>'
+                        
+                        html_report += '</tr>'
+                    
+                    html_report += """
+                        </table>
+                    """
+        
+        html_report += """
+            <h2>Coverage Improvement</h2>
+            <table>
+                <tr>
+                    <th>Function</th>
+                    <th>Versions</th>
+                    <th>Initial Func Coverage</th>
+                    <th>Final Func Coverage</th>
+                    <th>Improvement</th>
+                    <th>Error Reduction</th>
+                </tr>
+        """
+        
+        # Add data rows for each function
+        for func_name in all_functions:
+            html_report += f'<tr><td class="function-name">{func_name}</td>'
+            
+            # Add metrics for each version
+            for version in all_versions:
+                # Check if this version exists for this function
+                func_version_data = coverage_df.filter(
+                    (pl.col("function") == func_name) & (pl.col("version") == version)
+                )
+                
+                if not func_version_data.is_empty():
+                    metrics = func_version_data.row(0, named=True)
+                    
+                    # Determine color classes
+                    total_cov_class = "good" if metrics["total_coverage_pct"] >= 80 else "medium" if metrics["total_coverage_pct"] >= 50 else "poor"
+                    func_cov_class = "good" if metrics["func_coverage_pct"] >= 80 else "medium" if metrics["func_coverage_pct"] >= 50 else "poor"
+                    error_class = "good" if metrics["reported_errors"] == 0 else "poor"
+                    
+                    # Add cells with proper formatting
+                    html_report += f'<td class="{total_cov_class}">{metrics["total_coverage_pct"]:.2f}%</td>'
+                    html_report += f'<td class="{func_cov_class}">{metrics["func_coverage_pct"]:.2f}%</td>'
+                    html_report += f'<td class="{error_class}">{metrics["reported_errors"]}</td>'
+                else:
+                    # No data for this version - empty cells
+                    html_report += '<td>-</td><td>-</td><td>-</td>'
+            
+            html_report += '</tr>'
+            
+        html_report += """
+            </table>
             
             <h2>Coverage Improvement</h2>
             <table>
@@ -714,7 +932,6 @@ def output_node(state):
     function_times = state.get("function_times", {})
     total_refinements = sum(state.get("refinement_attempts", {}).values())
     
-
     # Run coverage analysis only if all harnesses are complete
     coverage_df = pl.DataFrame()
     if all_harnesses_complete:
@@ -730,7 +947,6 @@ def output_node(state):
         logger.warning("Not all harnesses have been generated and verified. Skipping coverage analysis.")
     
     # Calculate aggregate metrics from the coverage analysis
-
     aggregate_metrics = {
         "total_reachable_lines": 0,
         "total_covered_lines": 0,
@@ -743,7 +959,6 @@ def output_node(state):
     
     if not coverage_df.is_empty():
         # Get latest version for each function
-
         latest_versions = coverage_df.group_by("function").agg(pl.max("version").alias("max_version"))
         latest_metrics = []
         
@@ -769,15 +984,14 @@ def output_node(state):
             # Count functions without errors
             if metrics["reported_errors"] == 0:
                 aggregate_metrics["functions_without_errors"] += 1
-
     
     # Calculate overall coverage percentages with safety checks
     overall_total_coverage = 0.0
-    if aggregate_metrics["total_reachable_lines"] > 0 and aggregate_metrics["total_covered_lines"] > 0:
+    if aggregate_metrics["total_reachable_lines"] > 0:
         overall_total_coverage = (aggregate_metrics["total_covered_lines"] / aggregate_metrics["total_reachable_lines"]) * 100
         
     overall_func_coverage = 0.0
-    if aggregate_metrics["func_reachable_lines"] > 0 and aggregate_metrics["func_covered_lines"] > 0:
+    if aggregate_metrics["func_reachable_lines"] > 0:
         overall_func_coverage = (aggregate_metrics["func_covered_lines"] / aggregate_metrics["func_reachable_lines"]) * 100
     
     # Create performance metrics
@@ -891,95 +1105,73 @@ def output_node(state):
         "- Loop unwinding assertions are excluded from error count",
     ])
     
-    # Generate the enhanced coverage matrix table with more detailed metrics
-    if not coverage_df.is_empty():
-        # Extract functions and versions from the dataframe
-        functions = sorted(list(set(coverage_df["function"].to_list())))
-        versions = sorted(list(set(coverage_df["version"].to_list())))
-        
-        # Add table title
-        header.extend([
-            "",
-            "## Detailed Coverage Matrix by Function and Version",
-            "",
-            "The table below shows detailed metrics for each function across different versions of the generated harnesses:",
-            ""
-        ])
-        
-        # Create markdown table with functions as rows and versions as columns
-        # For each version, we have three sub-columns: Total Coverage, Functional Coverage, and Errors
-        
-        # Table header row with version columns
-        header_row = "| Function "
-        for version in versions:
-            header_row += f"| Version {version} |||"
-        header.append(header_row)
-        
-        # Sub-header row with Total, Func, and Errors columns for each version
-        subheader_row = "| --- "
-        for _ in versions:
-            subheader_row += "| Total % | Func % | Errors |"
-        header.append(subheader_row)
-        
-        # Data rows
-        for function in functions:
-            func_row = f"| {function} "
-            for version in versions:
-                # Find the record for this function and version
-                try:
-                    func_data = coverage_df.filter(
-                        (pl.col("function") == function) & (pl.col("version") == version)
-                    )
-                    
-                    if not func_data.is_empty():
-                        record = func_data.row(0, named=True)
-                        
-                        # Handle both numeric and string values safely
-                        total_cov_val = record.get("total_coverage_pct", "N/A")
-                        func_cov_val = record.get("func_coverage_pct", "N/A")
-                        errors_val = record.get("reported_errors", "N/A")
-                        
-                        # Also check for failure_count which might be present instead of reported_errors
-                        if errors_val == "N/A" and "failure_count" in record:
-                            errors_val = record.get("failure_count", "N/A")
-                        # Also check for error_count which might be present instead
-                        if errors_val == "N/A" and "error_count" in record:
-                            errors_val = record.get("error_count", "N/A")
-                        
-                        # Format values properly
-                        if isinstance(total_cov_val, (int, float)):
-                            total_cov = f"{total_cov_val:.2f}%"
-                        else:
-                            total_cov = "N/A"
-                            
-                        if isinstance(func_cov_val, (int, float)):
-                            func_cov = f"{func_cov_val:.2f}%"
-                        else:
-                            func_cov = "N/A"
-                            
-                        if isinstance(errors_val, (int, float)):
-                            errors = str(errors_val)
-                        else:
-                            errors = "N/A"
-                            
-                        func_row += f"| {total_cov} | {func_cov} | {errors} |"
-                    else:
-                        func_row += "| - | - | - |"
-                except Exception as e:
-                    logger.error(f"Error formatting coverage data: {str(e)}")
-                    func_row += "| - | - | - |"
+    # Generate the coverage matrix table from JSON files
+    coverage_data_dir = os.path.join(result_base_dir, "coverage", "data")
+    if os.path.exists(coverage_data_dir):
+        # Check if there are JSON files
+        json_files = glob.glob(os.path.join(coverage_data_dir, "*.json"))
+        if json_files:
+            logger.info(f"Creating coverage matrix table from {len(json_files)} JSON files")
             
-            header.append(func_row)
-        
-        # Add a note about the metrics
-        header.extend([
-            "",
-            "**Metrics Legend:**",
-            "- **Total %**: Percentage of all reachable lines that were covered during verification.",
-            "- **Func %**: Percentage of target function lines that were covered.",
-            "- **Errors**: Number of verification errors or failures detected."
-        ])
-    
+            # Load all JSON files
+            coverage_records = []
+            for json_file in json_files:
+                try:
+                    with open(json_file, 'r') as f:
+                        data = json.load(f)
+                        coverage_records.append(data)
+                except Exception as e:
+                    logger.error(f"Error reading JSON file {json_file}: {str(e)}")
+            
+            if coverage_records:
+                # Extract all unique functions and versions
+                functions = sorted(list(set([record["function"] for record in coverage_records])))
+                versions = sorted(list(set([record["version"] for record in coverage_records])))
+                
+                # Add table title
+                header.extend([
+                    "",
+                    "## Coverage Matrix by Function and Version",
+                    "",
+                    "The table below shows the coverage metrics for each function across different versions of the generated harnesses:",
+                    ""
+                ])
+                
+                # Create markdown table with functions as rows and versions as columns
+                # For each version, we have two sub-columns: Total Coverage and Functional Coverage
+                
+                # Table header row with version columns
+                header_row = "| Function "
+                for version in versions:
+                    header_row += f"| Version {version} ||"
+                header.append(header_row)
+                
+                # Sub-header row with Total and Func columns for each version
+                subheader_row = "| --- "
+                for _ in versions:
+                    subheader_row += "| Total | Func |"
+                header.append(subheader_row)
+                
+                # Data rows
+                for function in functions:
+                    func_row = f"| {function} "
+                    for version in versions:
+                        # Find the record for this function and version
+                        record = next((r for r in coverage_records if r["function"] == function and r["version"] == version), None)
+                        if record:
+                            total_cov = f"{record['total_coverage_pct']:.2f}%"
+                            func_cov = f"{record['func_coverage_pct']:.2f}%"
+                            func_row += f"| {total_cov} | {func_cov} |"
+                        else:
+                            func_row += "| - | - |"
+                    header.append(func_row)
+                
+                # Add a note about the coverage metrics
+                header.extend([
+                    "",
+                    "**Note:** 'Total' shows the percentage of all reachable lines that were covered during verification. 'Func' shows the percentage of target function lines that were covered."
+                ])
+
     # Add performance metrics
     header.extend([
         "",
@@ -1037,7 +1229,6 @@ def output_node(state):
                         first_version = versions.min()
                         first_metrics = func_data.filter(pl.col("version") == first_version).row(0, named=True)
                         
-
                         cov_improvement = func_metrics['func_coverage_pct'] - first_metrics['func_coverage_pct']
                         error_reduction = first_metrics['reported_errors'] - func_metrics['reported_errors']
                         
@@ -1046,7 +1237,6 @@ def output_node(state):
                         header.append(f"- Final coverage (v{max_version}): {func_metrics['func_coverage_pct']:.2f}%")
                         header.append(f"- Coverage improvement: {cov_improvement:.2f}%")
                         header.append(f"- Error reduction: {error_reduction}")
-
             
             # Add harness evolution information
             harness_history = state.get("harness_history", {}).get(func_name, [])
@@ -1156,37 +1346,11 @@ def output_node(state):
         f.write(f"<tr><td>Functions without errors</td><td>{aggregate_metrics['functions_without_errors']} of {len(state.get('cbmc_results', {}))}</td></tr>")
         f.write("</table>")
         
-        # Table of function reports with enhanced metrics
+        # Table of function reports
         f.write("<h2>Function Reports</h2>")
         f.write("<table>")
-        f.write("<tr><th rowspan='2'>Function</th><th rowspan='2'>File</th><th rowspan='2'>Status</th>")
+        f.write("<tr><th>Function</th><th>File</th><th>Status</th><th>Coverage</th><th>Errors</th><th>Versions</th><th>Reports</th></tr>")
         
-        # Add version column headers
-        if not coverage_df.is_empty():
-            versions = sorted(list(set(coverage_df["version"].to_list())))
-            for version in versions:
-                f.write(f"<th colspan='3'>Version {version}</th>")
-            f.write("</tr><tr>")
-            
-            # Add subheaders for each version
-            for _ in versions:
-                f.write("<th>Total %</th><th>Func %</th><th>Errors</th>")
-        
-        f.write("</tr>")
-        
-        # Function to get color based on class name
-        def get_color_for_class(class_name):
-            """Return a color hex code based on the class name."""
-            if class_name == "good":
-                return "#00691c"  # Dark green
-            elif class_name == "medium":
-                return "#FFA500"  # Orange
-            elif class_name == "poor":
-                return "#d32f2f"  # Red
-            else:
-                return "#000000"  # Black
-        
-        # Process each function
         for func_name in state.get("vulnerable_functions", []):
             if func_name in state.get("cbmc_results", {}):
                 result = state.get("cbmc_results", {})[func_name]
@@ -1269,7 +1433,6 @@ def output_node(state):
             
             for func_name in coverage_df["function"].unique():
                 func_df = coverage_df.filter(pl.col("function") == func_name)
-
                 
                 if len(func_df) < 2:
                     continue

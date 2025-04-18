@@ -65,6 +65,92 @@ class UnifiedEmbeddingDB:
         self._initialize_collections()
         
         logger.info(f"Initialized UnifiedEmbeddingDB with persistence at {persistence_dir}")
+
+    def mark_ineffective_solution(self, func_name: str, version: int) -> bool:
+        """
+        Mark a solution as ineffective when the same errors persist across versions.
+        
+        Args:
+            func_name: Name of the function
+            version: Version number of the ineffective solution
+            
+        Returns:
+            True if marked successfully, False otherwise
+        """
+        try:
+            # Use proper where filter syntax with $eq operator
+            where_filter = {"$and": [
+                {"func_name": {"$eq": func_name}}, 
+                {"iteration": {"$eq": version}}
+            ]}
+            
+            # Find the solution by func_name and version
+            solutions = self.solution_collection.get(
+                where=where_filter
+            )
+            
+            if not solutions or not solutions["ids"]:
+                logger.warning(f"No solution found for {func_name} version {version} to mark as ineffective")
+                return False
+            
+            solution_id = solutions["ids"][0]
+            metadata = solutions["metadatas"][0]
+            
+            # Update the metadata to mark as ineffective
+            metadata["is_effective"] = False
+            metadata["ineffective_reason"] = "Same errors persisted after refinement"
+            
+            # Update the solution in the collection
+            self.solution_collection.update(
+                ids=[solution_id],
+                metadatas=[metadata]
+            )
+            
+            logger.info(f"Marked solution {solution_id} for {func_name} version {version} as ineffective")
+            return True
+        
+        except Exception as e:
+            logger.error(f"Error marking solution as ineffective: {str(e)}")
+            return False
+
+    def remove_ineffective_solution(self, func_name: str, version: int) -> bool:
+        """
+        Remove an ineffective solution from the RAG database.
+        
+        Args:
+            func_name: Name of the function
+            version: Version number of the ineffective solution
+            
+        Returns:
+            True if removed successfully, False otherwise
+        """
+        try:
+            # Use proper where filter syntax with $eq operator
+            where_filter = {"$and": [
+                {"func_name": {"$eq": func_name}}, 
+                {"iteration": {"$eq": version}}
+            ]}
+            
+            # Find the solution by func_name and version
+            solutions = self.solution_collection.get(
+                where=where_filter
+            )
+            
+            if not solutions or not solutions["ids"]:
+                logger.warning(f"No solution found for {func_name} version {version} to remove")
+                return False
+            
+            solution_id = solutions["ids"][0]
+            
+            # Remove the solution from the collection
+            self.solution_collection.delete(ids=[solution_id])
+            
+            logger.info(f"Removed ineffective solution {solution_id} for {func_name} version {version} from RAG database")
+            return True
+        
+        except Exception as e:
+            logger.error(f"Error removing ineffective solution: {str(e)}")
+            return False
     
     def _initialize_collections(self):
         """Initialize all embedding collections."""
@@ -618,13 +704,30 @@ class UnifiedEmbeddingDB:
         # Store solution in knowledge base with enhanced tracking
         try:
             # Check for existing solutions for this error or function
-            existing_solutions = self.solution_collection.get(
-                where_document={"$or": [
-                    {"$contains": error_id},
-                    {"$contains": func_name}
-                ]},
-                include=["metadatas"]
-            )
+            # Make sure we only include non-empty strings in the query
+            query_conditions = []
+            if error_id and isinstance(error_id, str):
+                query_conditions.append({"$contains": error_id})
+            if func_name and isinstance(func_name, str):
+                query_conditions.append({"$contains": func_name})
+                
+            # If we have conditions, execute the query
+            if query_conditions:
+                if len(query_conditions) == 1:
+                    # If only one condition, use it directly
+                    existing_solutions = self.solution_collection.get(
+                        where_document=query_conditions[0],
+                        include=["metadatas"]
+                    )
+                else:
+                    # If multiple conditions, use $or operator
+                    existing_solutions = self.solution_collection.get(
+                        where_document={"$or": query_conditions},
+                        include=["metadatas"]
+                    )
+            else:
+                # Default empty result if no valid conditions
+                existing_solutions = {"ids": [], "metadatas": []}
             
             # Track total attempts and effectiveness
             total_attempts = 1
@@ -813,14 +916,29 @@ class UnifiedEmbeddingDB:
                 include=["documents", "metadatas"]
             )
         else:
+            # Build query conditions
+            query_conditions = []
+            if error_id and isinstance(error_id, str):
+                query_conditions.append({"$contains": error_id})
+            if func_name and isinstance(func_name, str):
+                query_conditions.append({"$contains": func_name})
+            
             # Try to find solutions for the specific error
-            solutions = self.solution_collection.get(
-                where_document={"$or": [
-                    {"$contains": error_id},
-                    {"$contains": func_name}
-                ]},
-                include=["documents", "metadatas"]
-            )
+            if not query_conditions:
+                # No valid conditions, use empty result
+                solutions = {"ids": [], "metadatas": []}
+            elif len(query_conditions) == 1:
+                # Only one condition, use it directly
+                solutions = self.solution_collection.get(
+                    where_document=query_conditions[0],
+                    include=["documents", "metadatas"]
+                )
+            else:
+                # Multiple conditions, use $or
+                solutions = self.solution_collection.get(
+                    where_document={"$or": query_conditions},
+                    include=["documents", "metadatas"]
+                )
         
         # Process solutions
         solution_list = []

@@ -47,6 +47,12 @@ def setup_llm(model_choice='claude'):
     - Always ensure balanced braces and complete control structures
     - Keep harnesses simple, focused, and minimal while still testing the function thoroughly
     - Complete all control structures and function bodies
+    - IMPORTANT: If unable to find constant definitions like SHADOW_THINGNAME_MAX_LENGTH, create mock values with #define
+      For example: #define SHADOW_THINGNAME_MAX_LENGTH 128  // Mock value
+    - Always include guard comments for mock definitions to make them easy to identify:
+      /* BEGIN MOCK CONSTANTS */
+      #define MISSING_CONSTANT 10  // Mock value
+      /* END MOCK CONSTANTS */
     
     Your code must compile and run correctly with CBMC verification.
     """
@@ -63,7 +69,7 @@ def setup_llm(model_choice='claude'):
                 model="claude-3-7-sonnet-latest",
                 anthropic_api_key=anthropic_api_key,
                 temperature=0.2,  # Lower temperature for more deterministic code generation
-                max_tokens=4000,  # Ensure we have enough tokens for complete responses
+                max_tokens=20000,  # Ensure we have enough tokens for complete responses
                 model_kwargs={"system": system_prompt},  # Use model_kwargs for the system prompt
             )
         
@@ -74,10 +80,10 @@ def setup_llm(model_choice='claude'):
                 sys.exit(1)
             
             _global_llm = ChatOpenAI(
-                model="gpt-4o",  # Use GPT-4o for best code generation capabilities
+                model="gpt-4.1",  # Use GPT-4o for best code generation capabilities
                 openai_api_key=openai_api_key,
                 temperature=0.2,
-                max_tokens=4000,
+                max_tokens=20000,
                 model_kwargs={"response_format": {"type": "text"}},
             )
         
@@ -92,7 +98,7 @@ def setup_llm(model_choice='claude'):
                     model="gemini-2.5-pro-exp-03-25",  # Use the latest Gemini 2.5 Pro model
                     google_api_key=google_api_key,
                     temperature=0.2,
-                    max_output_tokens=4000,
+                    max_output_tokens=20000,
                     convert_system_message_to_human=True,  # Handle system prompts correctly
                 )
                 # Add a system message for consistency with other models
