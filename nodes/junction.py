@@ -62,6 +62,14 @@ def junction_node(state):
     
     # Find next unprocessed and non-failed function
     for func in vulnerable_functions:
+        # Skip pattern-based IDs to prevent processing them as functions
+        if func.startswith("pattern:") or "pattern:" in func or ":if" in func or ":for" in func or ":while" in func:
+            # If these are in the list but not yet marked as processed, add them to processed
+            if func not in processed_functions:
+                processed_functions.append(func)
+                logger.info(f"Skipping pattern identifier: {func}")
+            continue
+            
         if func not in processed_functions and func not in failed_functions:
             logger.info(f"Selected next function: {func} ({completed_functions + 1}/{total_functions})")
             return {
