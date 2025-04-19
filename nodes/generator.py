@@ -357,6 +357,10 @@ def generator_node(state):
         13. DO NOT CREATE STUBS for existing function dependencies
         14. Properly use project macros that are provided in the PROJECT MACRO LIBRARY section
 
+        15. Make a null check before dereferncing any pointer
+        16: Chceck for bounds before accessing a location out of bounds
+        
+
         Available Project Headers (USE ONLY THESE, DO NOT USE STANDARD LIBRARY HEADERS):
         """
         
