@@ -1,0 +1,362 @@
+<html><head><title>CBMC Verification Report</title><style>body{font-family:Arial,sans-serif;line-height:1.6;max-width:900px;margin:0 auto;padding:20px}h1{color:#2c3e50}h2{color:#3498db}h3{color:#2980b9}pre{background:#f8f8f8;border:1px solid #ddd;padding:10px;overflow:auto;border-radius:3px}table{border-collapse:collapse;width:100%}table,th,td{border:1px solid #ddd;padding:8px}th{background-color:#f2f2f2}tr:nth-child(even){background-color:#f9f9f9}</style></head><body><h1>CBMC Harness Generation Complete - Directory Mode - Openai</h1>
+<p>Total processing time: 423.32 seconds
+Processed 3 source files.
+Analyzed 14 functions.
+Identified 12 functions with memory or arithmetic operations.
+Generated 12 verification harnesses.
+Performed 30 harness refinements (average 2.50 per function).</p>
+<h2>File Analysis</h2>
+<h3>fleet_provisioning.c</h3>
+<p>Functions analyzed: 12
+Functions verified: 12
+Successful verifications: 10
+Failed verifications: 2</p>
+<h2>RAG Knowledge Base Statistics</h2>
+<p>Code functions stored: 18
+Pattern templates: 16
+Error patterns stored: 20
+Successful solutions: 0</p>
+<p>The RAG (Retrieval-Augmented Generation) knowledge base stores code functions, patterns, errors, and solutions to improve harness generation over time. Each run contributes to this knowledge base, helping future runs generate better harnesses with fewer iterations.</p>
+<h2>Unit Proof Metrics Summary</h2>
+<p>Total reachable lines: 0
+Total coverage: 0.00%
+Total reachable lines for harnessed functions only: 0
+Coverage of harnessed functions only: 0.00%
+Number of reported errors: 0
+Functions with full coverage: 2 of 12
+Functions without errors: 0 of 12</p>
+<h3>Note on Error Reporting:</h3>
+<ul>
+<li>Errors are grouped by line number (one error per line)</li>
+<li>Errors about missing function bodies are excluded</li>
+<li>Loop unwinding assertions are excluded from error count</li>
+</ul>
+<h2>Detailed Coverage Matrix by Function and Version</h2>
+<p>The table below shows detailed metrics for each function across different versions of the generated harnesses:</p>
+<p>| Function | Version 1 |||| Version 2 |||| Version 3 |||| Version 4 |||| Version 5 |||| Version 6 |||| Version 7 |||| Version 8 |||| Version 9 |||| Version 10 |||
+| --- | Total % | Func % | Errors || Total % | Func % | Errors || Total % | Func % | Errors || Total % | Func % | Errors || Total % | Func % | Errors || Total % | Func % | Errors || Total % | Func % | Errors || Total % | Func % | Errors || Total % | Func % | Errors || Total % | Func % | Errors |
+| fleet_provisioning.c:FleetProvisioning_GetRegisterThingTopic | 100.00% | 100.00% | N/A || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - |
+| fleet_provisioning.c:FleetProvisioning_MatchTopic | 100.00% | 100.00% | N/A || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - |
+| fleet_provisioning.c:GetRegisterThingTopicCheckParams | 75.76% | 0.00% | N/A || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - |
+| fleet_provisioning.c:consumeIfMatch | 62.22% | 0.00% | N/A || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - |
+| fleet_provisioning.c:consumeTemplateName | 66.67% | 0.00% | N/A || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - |
+| fleet_provisioning.c:getRegisterThingTopicLength | 36.36% | 0.00% | N/A || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - |
+| fleet_provisioning.c:parseCreateCertificateFromCsrTopic | 41.67% | 0.00% | N/A || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - |
+| fleet_provisioning.c:parseCreateKeysAndCertificateTopic | 41.67% | 0.00% | N/A || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - |
+| fleet_provisioning.c:parseRegisterThingTopic | 31.25% | 0.00% | N/A || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - |
+| fleet_provisioning.c:parseTopicFormatSuffix | 0.00% | 0.00% | N/A || 0.00% | 0.00% | N/A || 0.00% | 0.00% | N/A || 0.00% | 0.00% | N/A || 0.00% | 0.00% | N/A || 0.00% | 0.00% | N/A || 0.00% | 0.00% | N/A || 0.00% | 0.00% | N/A || 0.00% | 0.00% | N/A || 0.00% | 0.00% | N/A |
+| fleet_provisioning.c:parseTopicSuffix | 0.00% | 0.00% | N/A || 0.00% | 0.00% | N/A || 0.00% | 0.00% | N/A || 0.00% | 0.00% | N/A || 0.00% | 0.00% | N/A || 0.00% | 0.00% | N/A || 0.00% | 0.00% | N/A || 0.00% | 0.00% | N/A || 0.00% | 0.00% | N/A || 0.00% | 0.00% | N/A |
+| fleet_provisioning.c:writeTopicFragmentAndAdvance | 77.78% | 0.00% | N/A || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - || - | - | - |</p>
+<p><strong>Metrics Legend:</strong>
+- <strong>Total %</strong>: Percentage of all reachable lines that were covered during verification.
+- <strong>Func %</strong>: Percentage of target function lines that were covered.
+- <strong>Errors</strong>: Number of verification errors or failures detected.</p>
+<h2>Performance Metrics</h2>
+<p>Average harness generation time: 11.50 seconds
+Average verification time: 0.48 seconds
+Average evaluation time: 0.00 seconds</p>
+<h2>Coverage Analysis</h2>
+<p>Coverage report available at: coverage/coverage_report.html</p>
+<h2>Summary of Results</h2>
+<h3>Function: FleetProvisioning_GetRegisterThingTopic (File: fleet_provisioning.c)</h3>
+<p>Status: SUCCESS
+Refinements: 1
+Message: Verification successful</p>
+<h4>Coverage Metrics</h4>
+<ul>
+<li>Function coverage: 100.00%</li>
+</ul>
+<h4>Harness Evolution:</h4>
+<ul>
+<li>Version 1: results/openai/20250418_140702/harnesses/fleet_provisioning.c:FleetProvisioning_GetRegisterThingTopic/v1.c</li>
+</ul>
+<h4>Verification Reports:</h4>
+<ul>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:FleetProvisioning_GetRegisterThingTopic/v1_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:FleetProvisioning_GetRegisterThingTopic/v1_report.md</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:FleetProvisioning_GetRegisterThingTopic/v2_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:FleetProvisioning_GetRegisterThingTopic/v2_report.md</li>
+</ul>
+<h3>Function: FleetProvisioning_MatchTopic (File: fleet_provisioning.c)</h3>
+<p>Status: SUCCESS
+Refinements: 1
+Message: Verification successful</p>
+<h4>Coverage Metrics</h4>
+<ul>
+<li>Function coverage: 100.00%</li>
+</ul>
+<h4>Harness Evolution:</h4>
+<ul>
+<li>Version 1: results/openai/20250418_140702/harnesses/fleet_provisioning.c:FleetProvisioning_MatchTopic/v1.c</li>
+</ul>
+<h4>Verification Reports:</h4>
+<ul>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:FleetProvisioning_MatchTopic/v1_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:FleetProvisioning_MatchTopic/v1_report.md</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:FleetProvisioning_MatchTopic/v2_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:FleetProvisioning_MatchTopic/v2_report.md</li>
+</ul>
+<h3>Function: GetRegisterThingTopicCheckParams (File: fleet_provisioning.c)</h3>
+<p>Status: SUCCESS
+Refinements: 1
+Message: Verification successful</p>
+<h4>Coverage Metrics</h4>
+<ul>
+<li>Function coverage: 0.00%</li>
+</ul>
+<h4>Harness Evolution:</h4>
+<ul>
+<li>Version 1: results/openai/20250418_140702/harnesses/fleet_provisioning.c:GetRegisterThingTopicCheckParams/v1.c</li>
+</ul>
+<h4>Verification Reports:</h4>
+<ul>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:GetRegisterThingTopicCheckParams/v1_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:GetRegisterThingTopicCheckParams/v1_report.md</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:GetRegisterThingTopicCheckParams/v2_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:GetRegisterThingTopicCheckParams/v2_report.md</li>
+</ul>
+<h3>Function: consumeIfMatch (File: fleet_provisioning.c)</h3>
+<p>Status: SUCCESS
+Refinements: 1
+Message: Verification successful</p>
+<h4>Coverage Metrics</h4>
+<ul>
+<li>Function coverage: 0.00%</li>
+</ul>
+<h4>Harness Evolution:</h4>
+<ul>
+<li>Version 1: results/openai/20250418_140702/harnesses/fleet_provisioning.c:consumeIfMatch/v1.c</li>
+</ul>
+<h4>Verification Reports:</h4>
+<ul>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:consumeIfMatch/v1_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:consumeIfMatch/v1_report.md</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:consumeIfMatch/v2_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:consumeIfMatch/v2_report.md</li>
+</ul>
+<h3>Function: consumeTemplateName (File: fleet_provisioning.c)</h3>
+<p>Status: SUCCESS
+Refinements: 1
+Message: Verification successful</p>
+<h4>Coverage Metrics</h4>
+<ul>
+<li>Function coverage: 0.00%</li>
+</ul>
+<h4>Harness Evolution:</h4>
+<ul>
+<li>Version 1: results/openai/20250418_140702/harnesses/fleet_provisioning.c:consumeTemplateName/v1.c</li>
+</ul>
+<h4>Verification Reports:</h4>
+<ul>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:consumeTemplateName/v1_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:consumeTemplateName/v1_report.md</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:consumeTemplateName/v2_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:consumeTemplateName/v2_report.md</li>
+</ul>
+<h3>Function: getRegisterThingTopicLength (File: fleet_provisioning.c)</h3>
+<p>Status: SUCCESS
+Refinements: 1
+Message: Verification successful</p>
+<h4>Coverage Metrics</h4>
+<ul>
+<li>Function coverage: 0.00%</li>
+</ul>
+<h4>Harness Evolution:</h4>
+<ul>
+<li>Version 1: results/openai/20250418_140702/harnesses/fleet_provisioning.c:getRegisterThingTopicLength/v1.c</li>
+</ul>
+<h4>Verification Reports:</h4>
+<ul>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:getRegisterThingTopicLength/v1_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:getRegisterThingTopicLength/v1_report.md</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:getRegisterThingTopicLength/v2_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:getRegisterThingTopicLength/v2_report.md</li>
+</ul>
+<h3>Function: parseCreateCertificateFromCsrTopic (File: fleet_provisioning.c)</h3>
+<p>Status: SUCCESS
+Refinements: 1
+Message: Verification successful</p>
+<h4>Coverage Metrics</h4>
+<ul>
+<li>Function coverage: 0.00%</li>
+</ul>
+<h4>Harness Evolution:</h4>
+<ul>
+<li>Version 1: results/openai/20250418_140702/harnesses/fleet_provisioning.c:parseCreateCertificateFromCsrTopic/v1.c</li>
+</ul>
+<h4>Verification Reports:</h4>
+<ul>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseCreateCertificateFromCsrTopic/v1_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseCreateCertificateFromCsrTopic/v1_report.md</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseCreateCertificateFromCsrTopic/v2_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseCreateCertificateFromCsrTopic/v2_report.md</li>
+</ul>
+<h3>Function: parseCreateKeysAndCertificateTopic (File: fleet_provisioning.c)</h3>
+<p>Status: SUCCESS
+Refinements: 1
+Message: Verification successful</p>
+<h4>Coverage Metrics</h4>
+<ul>
+<li>Function coverage: 0.00%</li>
+</ul>
+<h4>Harness Evolution:</h4>
+<ul>
+<li>Version 1: results/openai/20250418_140702/harnesses/fleet_provisioning.c:parseCreateKeysAndCertificateTopic/v1.c</li>
+</ul>
+<h4>Verification Reports:</h4>
+<ul>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseCreateKeysAndCertificateTopic/v1_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseCreateKeysAndCertificateTopic/v1_report.md</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseCreateKeysAndCertificateTopic/v2_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseCreateKeysAndCertificateTopic/v2_report.md</li>
+</ul>
+<h3>Function: parseRegisterThingTopic (File: fleet_provisioning.c)</h3>
+<p>Status: SUCCESS
+Refinements: 1
+Message: Verification successful</p>
+<h4>Coverage Metrics</h4>
+<ul>
+<li>Function coverage: 0.00%</li>
+</ul>
+<h4>Harness Evolution:</h4>
+<ul>
+<li>Version 1: results/openai/20250418_140702/harnesses/fleet_provisioning.c:parseRegisterThingTopic/v1.c</li>
+</ul>
+<h4>Verification Reports:</h4>
+<ul>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseRegisterThingTopic/v1_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseRegisterThingTopic/v1_report.md</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseRegisterThingTopic/v2_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseRegisterThingTopic/v2_report.md</li>
+</ul>
+<h3>Function: parseTopicFormatSuffix (File: fleet_provisioning.c)</h3>
+<p>Status: FAILED
+Refinements: 10
+Message: PREPROCESSING ERROR: GCC preprocessing failed - check for syntax errors
+Suggestions: Fix syntax errors and ensure all necessary includes are available</p>
+<h4>Coverage Metrics</h4>
+<ul>
+<li>Function coverage: 0.00%</li>
+</ul>
+<h4>Coverage Evolution</h4>
+<ul>
+<li>Initial coverage (v1): 0.00%</li>
+<li>Final coverage (v10): 0.00%</li>
+<li>Coverage improvement: 0.00%</li>
+<li>Error reduction: 0</li>
+</ul>
+<h4>Harness Evolution:</h4>
+<ul>
+<li>Version 1: results/openai/20250418_140702/harnesses/fleet_provisioning.c:parseTopicFormatSuffix/v1.c</li>
+<li>Version 2: results/openai/20250418_140702/harnesses/fleet_provisioning.c:parseTopicFormatSuffix/v2.c</li>
+<li>Version 3: results/openai/20250418_140702/harnesses/fleet_provisioning.c:parseTopicFormatSuffix/v3.c</li>
+<li>Version 4: results/openai/20250418_140702/harnesses/fleet_provisioning.c:parseTopicFormatSuffix/v4.c</li>
+<li>Version 5: results/openai/20250418_140702/harnesses/fleet_provisioning.c:parseTopicFormatSuffix/v5.c</li>
+<li>Version 6: results/openai/20250418_140702/harnesses/fleet_provisioning.c:parseTopicFormatSuffix/v6.c</li>
+<li>Version 7: results/openai/20250418_140702/harnesses/fleet_provisioning.c:parseTopicFormatSuffix/v7.c</li>
+<li>Version 8: results/openai/20250418_140702/harnesses/fleet_provisioning.c:parseTopicFormatSuffix/v8.c</li>
+<li>Version 9: results/openai/20250418_140702/harnesses/fleet_provisioning.c:parseTopicFormatSuffix/v9.c</li>
+<li>Version 10: results/openai/20250418_140702/harnesses/fleet_provisioning.c:parseTopicFormatSuffix/v10.c</li>
+<li>Size evolution: Initial 45 lines → Final 223 lines (+178 lines)</li>
+<li>Refinement result: Some issues remain after 10 refinements</li>
+</ul>
+<h4>Verification Reports:</h4>
+<ul>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicFormatSuffix/v1_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicFormatSuffix/v1_report.md</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicFormatSuffix/v2_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicFormatSuffix/v2_report.md</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicFormatSuffix/v3_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicFormatSuffix/v3_report.md</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicFormatSuffix/v4_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicFormatSuffix/v4_report.md</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicFormatSuffix/v5_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicFormatSuffix/v5_report.md</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicFormatSuffix/v6_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicFormatSuffix/v6_report.md</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicFormatSuffix/v7_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicFormatSuffix/v7_report.md</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicFormatSuffix/v8_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicFormatSuffix/v8_report.md</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicFormatSuffix/v9_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicFormatSuffix/v9_report.md</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicFormatSuffix/v10_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicFormatSuffix/v10_report.md</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicFormatSuffix/v11_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicFormatSuffix/v11_report.md</li>
+</ul>
+<h3>Function: parseTopicSuffix (File: fleet_provisioning.c)</h3>
+<p>Status: FAILED
+Refinements: 10
+Message: PREPROCESSING ERROR: GCC preprocessing failed - check for syntax errors
+Suggestions: Fix syntax errors and ensure all necessary includes are available</p>
+<h4>Coverage Metrics</h4>
+<ul>
+<li>Function coverage: 0.00%</li>
+</ul>
+<h4>Coverage Evolution</h4>
+<ul>
+<li>Initial coverage (v1): 0.00%</li>
+<li>Final coverage (v10): 0.00%</li>
+<li>Coverage improvement: 0.00%</li>
+<li>Error reduction: 0</li>
+</ul>
+<h4>Harness Evolution:</h4>
+<ul>
+<li>Version 1: results/openai/20250418_140702/harnesses/fleet_provisioning.c:parseTopicSuffix/v1.c</li>
+<li>Version 2: results/openai/20250418_140702/harnesses/fleet_provisioning.c:parseTopicSuffix/v2.c</li>
+<li>Version 3: results/openai/20250418_140702/harnesses/fleet_provisioning.c:parseTopicSuffix/v3.c</li>
+<li>Version 4: results/openai/20250418_140702/harnesses/fleet_provisioning.c:parseTopicSuffix/v4.c</li>
+<li>Version 5: results/openai/20250418_140702/harnesses/fleet_provisioning.c:parseTopicSuffix/v5.c</li>
+<li>Version 6: results/openai/20250418_140702/harnesses/fleet_provisioning.c:parseTopicSuffix/v6.c</li>
+<li>Version 7: results/openai/20250418_140702/harnesses/fleet_provisioning.c:parseTopicSuffix/v7.c</li>
+<li>Version 8: results/openai/20250418_140702/harnesses/fleet_provisioning.c:parseTopicSuffix/v8.c</li>
+<li>Version 9: results/openai/20250418_140702/harnesses/fleet_provisioning.c:parseTopicSuffix/v9.c</li>
+<li>Version 10: results/openai/20250418_140702/harnesses/fleet_provisioning.c:parseTopicSuffix/v10.c</li>
+<li>Size evolution: Initial 38 lines → Final 243 lines (+205 lines)</li>
+<li>Refinement result: Some issues remain after 10 refinements</li>
+</ul>
+<h4>Verification Reports:</h4>
+<ul>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicSuffix/v1_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicSuffix/v1_report.md</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicSuffix/v2_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicSuffix/v2_report.md</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicSuffix/v3_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicSuffix/v3_report.md</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicSuffix/v4_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicSuffix/v4_report.md</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicSuffix/v5_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicSuffix/v5_report.md</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicSuffix/v6_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicSuffix/v6_report.md</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicSuffix/v7_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicSuffix/v7_report.md</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicSuffix/v8_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicSuffix/v8_report.md</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicSuffix/v9_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicSuffix/v9_report.md</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicSuffix/v10_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicSuffix/v10_report.md</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicSuffix/v11_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:parseTopicSuffix/v11_report.md</li>
+</ul>
+<h3>Function: writeTopicFragmentAndAdvance (File: fleet_provisioning.c)</h3>
+<p>Status: SUCCESS
+Refinements: 1
+Message: Verification successful</p>
+<h4>Coverage Metrics</h4>
+<ul>
+<li>Function coverage: 0.00%</li>
+</ul>
+<h4>Harness Evolution:</h4>
+<ul>
+<li>Version 1: results/openai/20250418_140702/harnesses/fleet_provisioning.c:writeTopicFragmentAndAdvance/v1.c</li>
+</ul>
+<h4>Verification Reports:</h4>
+<ul>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:writeTopicFragmentAndAdvance/v1_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:writeTopicFragmentAndAdvance/v1_report.md</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:writeTopicFragmentAndAdvance/v2_results.txt</li>
+<li>results/openai/20250418_140702/verification/fleet_provisioning.c:writeTopicFragmentAndAdvance/v2_report.md</li>
+</ul></body></html>

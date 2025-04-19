@@ -1,0 +1,569 @@
+<html><head><title>CBMC Verification Report</title><style>body{font-family:Arial,sans-serif;line-height:1.6;max-width:900px;margin:0 auto;padding:20px}h1{color:#2c3e50}h2{color:#3498db}h3{color:#2980b9}pre{background:#f8f8f8;border:1px solid #ddd;padding:10px;overflow:auto;border-radius:3px}table{border-collapse:collapse;width:100%}table,th,td{border:1px solid #ddd;padding:8px}th{background-color:#f2f2f2}tr:nth-child(even){background-color:#f9f9f9}</style></head><body><h1>CBMC Harness Generation Complete - Directory Mode - Openai</h1>
+<p>Total processing time: 452.71 seconds
+Processed 3 source files.
+Analyzed 10 functions.
+Identified 11 functions with memory or arithmetic operations.
+Generated 11 verification harnesses.
+Performed 75 harness refinements (average 6.82 per function).</p>
+<h2>File Analysis</h2>
+<h3>defender.c</h3>
+<p>Functions analyzed: 8
+Functions verified: 8
+Successful verifications: 2
+Failed verifications: 6</p>
+<h3>pattern</h3>
+<p>Functions analyzed: 3
+Functions verified: 3
+Successful verifications: 1
+Failed verifications: 2</p>
+<h2>RAG Knowledge Base Statistics</h2>
+<p>Code functions stored: 15
+Pattern templates: 16
+Error patterns stored: 72
+Successful solutions: 0</p>
+<p>The RAG (Retrieval-Augmented Generation) knowledge base stores code functions, patterns, errors, and solutions to improve harness generation over time. Each run contributes to this knowledge base, helping future runs generate better harnesses with fewer iterations.</p>
+<h2>Unit Proof Metrics Summary</h2>
+<p>Total reachable lines: 11
+Total coverage: 0.00%
+Total reachable lines for harnessed functions only: 11
+Coverage of harnessed functions only: 0.00%
+Number of reported errors: 0
+Functions with full coverage: 0 of 11
+Functions without errors: 11 of 11</p>
+<h3>Note on Error Reporting:</h3>
+<ul>
+<li>Errors are grouped by line number (one error per line)</li>
+<li>Errors about missing function bodies are excluded</li>
+<li>Loop unwinding assertions are excluded from error count</li>
+</ul>
+<h2>Coverage Matrix by Function and Version</h2>
+<p>The table below shows the coverage metrics for each function across different versions of the generated harnesses:</p>
+<p>| Function | Version 1 ||| Version 2 ||| Version 3 ||| Version 4 ||| Version 5 ||| Version 6 ||| Version 7 ||| Version 8 ||| Version 9 ||
+| --- | Total | Func || Total | Func || Total | Func || Total | Func || Total | Func || Total | Func || Total | Func || Total | Func || Total | Func |
+| defender.c:Defender_GetTopic | 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% |
+| defender.c:Defender_MatchTopic | 75.00% | 70.21% || 77.05% | 70.21% || 78.46% | 70.21% || 78.46% | 70.21% || 78.46% | 70.21% || 78.46% | 70.21% || 78.46% | 70.21% || 78.46% | 70.21% || 78.46% | 70.21% |
+| defender.c:extractThingNameLength | 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% |
+| defender.c:getTopicLength | 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% |
+| defender.c:matchApi | 52.00% | 0.00% || - | - || - | - || - | - || - | - || - | - || - | - || - | - || - | - |
+| defender.c:matchBridge | 52.63% | 0.00% || - | - || - | - || - | - || - | - || - | - || - | - || - | - || - | - |
+| defender.c:matchPrefix | 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% |
+| defender.c:writeFormatAndSuffix | 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% |
+| pattern:defender.c:for | 100.00% | 0.00% || - | - || - | - || - | - || - | - || - | - || - | - || - | - || - | - |
+| pattern:defender.c:if | 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% |
+| pattern:defender.c:switch | 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% || 0.00% | 0.00% |</p>
+<p><strong>Note:</strong> 'Total' shows the percentage of all reachable lines that were covered during verification. 'Func' shows the percentage of target function lines that were covered.</p>
+<h2>Performance Metrics</h2>
+<p>Average harness generation time: 5.55 seconds
+Average verification time: 0.26 seconds
+Average evaluation time: 0.00 seconds</p>
+<h2>Coverage Analysis</h2>
+<p>Coverage report available at: coverage/coverage_report.html
+Detailed metrics available in: coverage/coverage_metrics.csv</p>
+<h2>Summary of Results</h2>
+<h3>Function: Defender_GetTopic (File: defender.c)</h3>
+<p>Status: FAILED
+Refinements: 9
+Message: VERIFICATION FAILED: Unspecified verification error
+Suggestions: Review the full verification output for details</p>
+<h4>Coverage Metrics</h4>
+<ul>
+<li>Total reachable lines: 1</li>
+<li>Total coverage: 0.00%</li>
+<li>Function reachable lines: 1</li>
+<li>Function coverage: 0.00%</li>
+<li>Reported errors: 0</li>
+</ul>
+<h4>Coverage Evolution</h4>
+<ul>
+<li>Initial coverage (v1): 0.00%</li>
+<li>Final coverage (v9): 0.00%</li>
+<li>Coverage improvement: 0.00%</li>
+<li>Error reduction: 0</li>
+</ul>
+<h4>Harness Evolution:</h4>
+<ul>
+<li>Version 1: results/openai/20250417_203249/harnesses/defender.c:Defender_GetTopic/v1.c</li>
+<li>Version 2: results/openai/20250417_203249/harnesses/defender.c:Defender_GetTopic/v2.c</li>
+<li>Version 3: results/openai/20250417_203249/harnesses/defender.c:Defender_GetTopic/v3.c</li>
+<li>Size evolution: Initial 57 lines → Final 70 lines (+13 lines)</li>
+<li>Refinement result: Some issues remain after 9 refinements</li>
+</ul>
+<h4>Verification Reports:</h4>
+<ul>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_GetTopic/v1_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_GetTopic/v1_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_GetTopic/v2_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_GetTopic/v2_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_GetTopic/v3_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_GetTopic/v3_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_GetTopic/v4_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_GetTopic/v4_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_GetTopic/v5_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_GetTopic/v5_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_GetTopic/v6_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_GetTopic/v6_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_GetTopic/v7_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_GetTopic/v7_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_GetTopic/v8_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_GetTopic/v8_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_GetTopic/v9_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_GetTopic/v9_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_GetTopic/v10_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_GetTopic/v10_report.md</li>
+</ul>
+<h3>Function: Defender_MatchTopic (File: defender.c)</h3>
+<p>Status: FAILED
+Refinements: 9
+Message: VERIFICATION FAILED: Null pointer dereference detected
+Suggestions: Add null pointer checks before dereferencing pointers</p>
+<h4>Coverage Metrics</h4>
+<ul>
+<li>Total reachable lines: 1</li>
+<li>Total coverage: 0.00%</li>
+<li>Function reachable lines: 1</li>
+<li>Function coverage: 0.00%</li>
+<li>Reported errors: 0</li>
+</ul>
+<h4>Coverage Evolution</h4>
+<ul>
+<li>Initial coverage (v1): 0.00%</li>
+<li>Final coverage (v9): 0.00%</li>
+<li>Coverage improvement: 0.00%</li>
+<li>Error reduction: 0</li>
+</ul>
+<h4>Harness Evolution:</h4>
+<ul>
+<li>Version 1: results/openai/20250417_203249/harnesses/defender.c:Defender_MatchTopic/v1.c</li>
+<li>Version 2: results/openai/20250417_203249/harnesses/defender.c:Defender_MatchTopic/v2.c</li>
+<li>Version 3: results/openai/20250417_203249/harnesses/defender.c:Defender_MatchTopic/v3.c</li>
+<li>Version 4: results/openai/20250417_203249/harnesses/defender.c:Defender_MatchTopic/v4.c</li>
+<li>Size evolution: Initial 39 lines → Final 55 lines (+16 lines)</li>
+<li>Refinement result: Some issues remain after 9 refinements</li>
+</ul>
+<h4>Verification Reports:</h4>
+<ul>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_MatchTopic/v1_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_MatchTopic/v1_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_MatchTopic/v2_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_MatchTopic/v2_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_MatchTopic/v3_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_MatchTopic/v3_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_MatchTopic/v4_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_MatchTopic/v4_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_MatchTopic/v5_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_MatchTopic/v5_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_MatchTopic/v6_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_MatchTopic/v6_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_MatchTopic/v7_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_MatchTopic/v7_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_MatchTopic/v8_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_MatchTopic/v8_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_MatchTopic/v9_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_MatchTopic/v9_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_MatchTopic/v10_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:Defender_MatchTopic/v10_report.md</li>
+</ul>
+<h3>Function: extractThingNameLength (File: defender.c)</h3>
+<p>Status: FAILED
+Refinements: 9
+Message: VERIFICATION FAILED: Unspecified verification error
+Suggestions: Review the full verification output for details</p>
+<h4>Coverage Metrics</h4>
+<ul>
+<li>Total reachable lines: 1</li>
+<li>Total coverage: 0.00%</li>
+<li>Function reachable lines: 1</li>
+<li>Function coverage: 0.00%</li>
+<li>Reported errors: 0</li>
+</ul>
+<h4>Coverage Evolution</h4>
+<ul>
+<li>Initial coverage (v1): 0.00%</li>
+<li>Final coverage (v9): 0.00%</li>
+<li>Coverage improvement: 0.00%</li>
+<li>Error reduction: 0</li>
+</ul>
+<h4>Harness Evolution:</h4>
+<ul>
+<li>Version 1: results/openai/20250417_203249/harnesses/defender.c:extractThingNameLength/v1.c</li>
+<li>Version 2: results/openai/20250417_203249/harnesses/defender.c:extractThingNameLength/v2.c</li>
+<li>Version 3: results/openai/20250417_203249/harnesses/defender.c:extractThingNameLength/v3.c</li>
+<li>Version 4: results/openai/20250417_203249/harnesses/defender.c:extractThingNameLength/v4.c</li>
+<li>Version 5: results/openai/20250417_203249/harnesses/defender.c:extractThingNameLength/v5.c</li>
+<li>Size evolution: Initial 37 lines → Final 55 lines (+18 lines)</li>
+<li>Refinement result: Some issues remain after 9 refinements</li>
+</ul>
+<h4>Verification Reports:</h4>
+<ul>
+<li>results/openai/20250417_203249/verification/defender.c:extractThingNameLength/v1_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:extractThingNameLength/v1_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:extractThingNameLength/v2_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:extractThingNameLength/v2_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:extractThingNameLength/v3_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:extractThingNameLength/v3_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:extractThingNameLength/v4_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:extractThingNameLength/v4_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:extractThingNameLength/v5_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:extractThingNameLength/v5_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:extractThingNameLength/v6_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:extractThingNameLength/v6_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:extractThingNameLength/v7_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:extractThingNameLength/v7_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:extractThingNameLength/v8_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:extractThingNameLength/v8_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:extractThingNameLength/v9_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:extractThingNameLength/v9_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:extractThingNameLength/v10_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:extractThingNameLength/v10_report.md</li>
+</ul>
+<h3>Function: getTopicLength (File: defender.c)</h3>
+<p>Status: FAILED
+Refinements: 9
+Message: VERIFICATION FAILED: Unspecified verification error
+Suggestions: Review the full verification output for details</p>
+<h4>Coverage Metrics</h4>
+<ul>
+<li>Total reachable lines: 1</li>
+<li>Total coverage: 0.00%</li>
+<li>Function reachable lines: 1</li>
+<li>Function coverage: 0.00%</li>
+<li>Reported errors: 0</li>
+</ul>
+<h4>Coverage Evolution</h4>
+<ul>
+<li>Initial coverage (v1): 0.00%</li>
+<li>Final coverage (v9): 0.00%</li>
+<li>Coverage improvement: 0.00%</li>
+<li>Error reduction: 0</li>
+</ul>
+<h4>Harness Evolution:</h4>
+<ul>
+<li>Version 1: results/openai/20250417_203249/harnesses/defender.c:getTopicLength/v1.c</li>
+<li>Version 2: results/openai/20250417_203249/harnesses/defender.c:getTopicLength/v2.c</li>
+<li>Version 3: results/openai/20250417_203249/harnesses/defender.c:getTopicLength/v3.c</li>
+<li>Version 4: results/openai/20250417_203249/harnesses/defender.c:getTopicLength/v4.c</li>
+<li>Version 5: results/openai/20250417_203249/harnesses/defender.c:getTopicLength/v5.c</li>
+<li>Size evolution: Initial 38 lines → Final 96 lines (+58 lines)</li>
+<li>Refinement result: Some issues remain after 9 refinements</li>
+</ul>
+<h4>Verification Reports:</h4>
+<ul>
+<li>results/openai/20250417_203249/verification/defender.c:getTopicLength/v1_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:getTopicLength/v1_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:getTopicLength/v2_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:getTopicLength/v2_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:getTopicLength/v3_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:getTopicLength/v3_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:getTopicLength/v4_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:getTopicLength/v4_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:getTopicLength/v5_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:getTopicLength/v5_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:getTopicLength/v6_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:getTopicLength/v6_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:getTopicLength/v7_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:getTopicLength/v7_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:getTopicLength/v8_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:getTopicLength/v8_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:getTopicLength/v9_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:getTopicLength/v9_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:getTopicLength/v10_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:getTopicLength/v10_report.md</li>
+</ul>
+<h3>Function: matchApi (File: defender.c)</h3>
+<p>Status: SUCCESS
+Refinements: 1
+Message: Verification successful</p>
+<h4>Coverage Metrics</h4>
+<ul>
+<li>Total reachable lines: 1</li>
+<li>Total coverage: 0.00%</li>
+<li>Function reachable lines: 1</li>
+<li>Function coverage: 0.00%</li>
+<li>Reported errors: 0</li>
+</ul>
+<h4>Coverage Evolution</h4>
+<ul>
+<li>Initial coverage (v1): 0.00%</li>
+<li>Final coverage (v9): 0.00%</li>
+<li>Coverage improvement: 0.00%</li>
+<li>Error reduction: 0</li>
+</ul>
+<h4>Harness Evolution:</h4>
+<ul>
+<li>Version 1: results/openai/20250417_203249/harnesses/defender.c:matchApi/v1.c</li>
+</ul>
+<h4>Verification Reports:</h4>
+<ul>
+<li>results/openai/20250417_203249/verification/defender.c:matchApi/v1_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:matchApi/v1_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:matchApi/v2_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:matchApi/v2_report.md</li>
+</ul>
+<h3>Function: matchBridge (File: defender.c)</h3>
+<p>Status: SUCCESS
+Refinements: 1
+Message: Verification successful</p>
+<h4>Coverage Metrics</h4>
+<ul>
+<li>Total reachable lines: 1</li>
+<li>Total coverage: 0.00%</li>
+<li>Function reachable lines: 1</li>
+<li>Function coverage: 0.00%</li>
+<li>Reported errors: 0</li>
+</ul>
+<h4>Coverage Evolution</h4>
+<ul>
+<li>Initial coverage (v1): 0.00%</li>
+<li>Final coverage (v9): 0.00%</li>
+<li>Coverage improvement: 0.00%</li>
+<li>Error reduction: 0</li>
+</ul>
+<h4>Harness Evolution:</h4>
+<ul>
+<li>Version 1: results/openai/20250417_203249/harnesses/defender.c:matchBridge/v1.c</li>
+</ul>
+<h4>Verification Reports:</h4>
+<ul>
+<li>results/openai/20250417_203249/verification/defender.c:matchBridge/v1_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:matchBridge/v1_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:matchBridge/v2_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:matchBridge/v2_report.md</li>
+</ul>
+<h3>Function: matchPrefix (File: defender.c)</h3>
+<p>Status: FAILED
+Refinements: 9
+Message: VERIFICATION FAILED: Unspecified verification error
+Suggestions: Review the full verification output for details</p>
+<h4>Coverage Metrics</h4>
+<ul>
+<li>Total reachable lines: 1</li>
+<li>Total coverage: 0.00%</li>
+<li>Function reachable lines: 1</li>
+<li>Function coverage: 0.00%</li>
+<li>Reported errors: 0</li>
+</ul>
+<h4>Coverage Evolution</h4>
+<ul>
+<li>Initial coverage (v1): 0.00%</li>
+<li>Final coverage (v9): 0.00%</li>
+<li>Coverage improvement: 0.00%</li>
+<li>Error reduction: 0</li>
+</ul>
+<h4>Harness Evolution:</h4>
+<ul>
+<li>Version 1: results/openai/20250417_203249/harnesses/defender.c:matchPrefix/v1.c</li>
+<li>Version 2: results/openai/20250417_203249/harnesses/defender.c:matchPrefix/v2.c</li>
+<li>Version 3: results/openai/20250417_203249/harnesses/defender.c:matchPrefix/v3.c</li>
+<li>Version 4: results/openai/20250417_203249/harnesses/defender.c:matchPrefix/v4.c</li>
+<li>Size evolution: Initial 45 lines → Final 63 lines (+18 lines)</li>
+<li>Refinement result: Some issues remain after 9 refinements</li>
+</ul>
+<h4>Verification Reports:</h4>
+<ul>
+<li>results/openai/20250417_203249/verification/defender.c:matchPrefix/v1_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:matchPrefix/v1_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:matchPrefix/v2_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:matchPrefix/v2_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:matchPrefix/v3_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:matchPrefix/v3_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:matchPrefix/v4_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:matchPrefix/v4_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:matchPrefix/v5_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:matchPrefix/v5_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:matchPrefix/v6_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:matchPrefix/v6_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:matchPrefix/v7_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:matchPrefix/v7_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:matchPrefix/v8_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:matchPrefix/v8_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:matchPrefix/v9_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:matchPrefix/v9_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:matchPrefix/v10_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:matchPrefix/v10_report.md</li>
+</ul>
+<h3>Function: writeFormatAndSuffix (File: defender.c)</h3>
+<p>Status: FAILED
+Refinements: 9
+Message: VERIFICATION FAILED: Unspecified verification error
+Suggestions: Review the full verification output for details</p>
+<h4>Coverage Metrics</h4>
+<ul>
+<li>Total reachable lines: 1</li>
+<li>Total coverage: 0.00%</li>
+<li>Function reachable lines: 1</li>
+<li>Function coverage: 0.00%</li>
+<li>Reported errors: 0</li>
+</ul>
+<h4>Coverage Evolution</h4>
+<ul>
+<li>Initial coverage (v1): 0.00%</li>
+<li>Final coverage (v9): 0.00%</li>
+<li>Coverage improvement: 0.00%</li>
+<li>Error reduction: 0</li>
+</ul>
+<h4>Harness Evolution:</h4>
+<ul>
+<li>Version 1: results/openai/20250417_203249/harnesses/defender.c:writeFormatAndSuffix/v1.c</li>
+<li>Version 2: results/openai/20250417_203249/harnesses/defender.c:writeFormatAndSuffix/v2.c</li>
+<li>Version 3: results/openai/20250417_203249/harnesses/defender.c:writeFormatAndSuffix/v3.c</li>
+<li>Version 4: results/openai/20250417_203249/harnesses/defender.c:writeFormatAndSuffix/v4.c</li>
+<li>Size evolution: Initial 39 lines → Final 63 lines (+24 lines)</li>
+<li>Refinement result: Some issues remain after 9 refinements</li>
+</ul>
+<h4>Verification Reports:</h4>
+<ul>
+<li>results/openai/20250417_203249/verification/defender.c:writeFormatAndSuffix/v1_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:writeFormatAndSuffix/v1_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:writeFormatAndSuffix/v2_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:writeFormatAndSuffix/v2_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:writeFormatAndSuffix/v3_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:writeFormatAndSuffix/v3_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:writeFormatAndSuffix/v4_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:writeFormatAndSuffix/v4_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:writeFormatAndSuffix/v5_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:writeFormatAndSuffix/v5_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:writeFormatAndSuffix/v6_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:writeFormatAndSuffix/v6_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:writeFormatAndSuffix/v7_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:writeFormatAndSuffix/v7_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:writeFormatAndSuffix/v8_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:writeFormatAndSuffix/v8_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:writeFormatAndSuffix/v9_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:writeFormatAndSuffix/v9_report.md</li>
+<li>results/openai/20250417_203249/verification/defender.c:writeFormatAndSuffix/v10_results.txt</li>
+<li>results/openai/20250417_203249/verification/defender.c:writeFormatAndSuffix/v10_report.md</li>
+</ul>
+<h3>Function: defender.c:for (File: pattern)</h3>
+<p>Status: SUCCESS
+Refinements: 1
+Message: Verification successful</p>
+<h4>Coverage Metrics</h4>
+<ul>
+<li>Total reachable lines: 1</li>
+<li>Total coverage: 0.00%</li>
+<li>Function reachable lines: 1</li>
+<li>Function coverage: 0.00%</li>
+<li>Reported errors: 0</li>
+</ul>
+<h4>Coverage Evolution</h4>
+<ul>
+<li>Initial coverage (v1): 0.00%</li>
+<li>Final coverage (v9): 0.00%</li>
+<li>Coverage improvement: 0.00%</li>
+<li>Error reduction: 0</li>
+</ul>
+<h4>Harness Evolution:</h4>
+<ul>
+<li>Version 1: results/openai/20250417_203249/harnesses/pattern:defender.c:for/v1.c</li>
+</ul>
+<h4>Verification Reports:</h4>
+<ul>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:for/v1_results.txt</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:for/v1_report.md</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:for/v2_results.txt</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:for/v2_report.md</li>
+</ul>
+<h3>Function: defender.c:if (File: pattern)</h3>
+<p>Status: FAILED
+Refinements: 9
+Message: PREPROCESSING ERROR: Macro definition error: file results/openai/20250417_203249/verification/includes/defender_config.h line 52: results/openai/20250417_203249/verification/includes/defender_config.h:52:13: warning: 'LogError' macro redefined [-Wmacro-redefined]; file results/openai/20250417_203249/verification/includes/defender_config.h line 54: results/openai/20250417_203249/verification/includes/defender_config.h:54:13: warning: 'LogWarn' macro redefined [-Wmacro-redefined]
+Suggestions: Fix macro definitions and ensure they are properly defined</p>
+<h4>Coverage Metrics</h4>
+<ul>
+<li>Total reachable lines: 1</li>
+<li>Total coverage: 0.00%</li>
+<li>Function reachable lines: 1</li>
+<li>Function coverage: 0.00%</li>
+<li>Reported errors: 0</li>
+</ul>
+<h4>Coverage Evolution</h4>
+<ul>
+<li>Initial coverage (v1): 0.00%</li>
+<li>Final coverage (v9): 0.00%</li>
+<li>Coverage improvement: 0.00%</li>
+<li>Error reduction: 0</li>
+</ul>
+<h4>Harness Evolution:</h4>
+<ul>
+<li>Version 1: results/openai/20250417_203249/harnesses/pattern:defender.c:if/v1.c</li>
+<li>Version 2: results/openai/20250417_203249/harnesses/pattern:defender.c:if/v2.c</li>
+<li>Size evolution: Initial 36 lines → Final 46 lines (+10 lines)</li>
+<li>Refinement result: Some issues remain after 9 refinements</li>
+</ul>
+<h4>Verification Reports:</h4>
+<ul>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:if/v1_results.txt</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:if/v1_report.md</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:if/v2_results.txt</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:if/v2_report.md</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:if/v3_results.txt</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:if/v3_report.md</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:if/v4_results.txt</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:if/v4_report.md</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:if/v5_results.txt</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:if/v5_report.md</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:if/v6_results.txt</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:if/v6_report.md</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:if/v7_results.txt</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:if/v7_report.md</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:if/v8_results.txt</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:if/v8_report.md</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:if/v9_results.txt</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:if/v9_report.md</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:if/v10_results.txt</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:if/v10_report.md</li>
+</ul>
+<h3>Function: defender.c:switch (File: pattern)</h3>
+<p>Status: FAILED
+Refinements: 9
+Message: PREPROCESSING ERROR: Macro definition error: file results/openai/20250417_203249/verification/includes/defender_config.h line 52: results/openai/20250417_203249/verification/includes/defender_config.h:52:13: warning: 'LogError' macro redefined [-Wmacro-redefined]; file results/openai/20250417_203249/verification/includes/defender_config.h line 54: results/openai/20250417_203249/verification/includes/defender_config.h:54:13: warning: 'LogWarn' macro redefined [-Wmacro-redefined]
+Suggestions: Fix macro definitions and ensure they are properly defined</p>
+<h4>Coverage Metrics</h4>
+<ul>
+<li>Total reachable lines: 1</li>
+<li>Total coverage: 0.00%</li>
+<li>Function reachable lines: 1</li>
+<li>Function coverage: 0.00%</li>
+<li>Reported errors: 0</li>
+</ul>
+<h4>Coverage Evolution</h4>
+<ul>
+<li>Initial coverage (v1): 0.00%</li>
+<li>Final coverage (v9): 0.00%</li>
+<li>Coverage improvement: 0.00%</li>
+<li>Error reduction: 0</li>
+</ul>
+<h4>Harness Evolution:</h4>
+<ul>
+<li>Version 1: results/openai/20250417_203249/harnesses/pattern:defender.c:switch/v1.c</li>
+<li>Version 2: results/openai/20250417_203249/harnesses/pattern:defender.c:switch/v2.c</li>
+<li>Version 3: results/openai/20250417_203249/harnesses/pattern:defender.c:switch/v3.c</li>
+<li>Version 4: results/openai/20250417_203249/harnesses/pattern:defender.c:switch/v4.c</li>
+<li>Version 5: results/openai/20250417_203249/harnesses/pattern:defender.c:switch/v5.c</li>
+<li>Version 6: results/openai/20250417_203249/harnesses/pattern:defender.c:switch/v6.c</li>
+<li>Size evolution: Initial 27 lines → Final 82 lines (+55 lines)</li>
+<li>Refinement result: Some issues remain after 9 refinements</li>
+</ul>
+<h4>Verification Reports:</h4>
+<ul>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:switch/v1_results.txt</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:switch/v1_report.md</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:switch/v2_results.txt</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:switch/v2_report.md</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:switch/v3_results.txt</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:switch/v3_report.md</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:switch/v4_results.txt</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:switch/v4_report.md</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:switch/v5_results.txt</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:switch/v5_report.md</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:switch/v6_results.txt</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:switch/v6_report.md</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:switch/v7_results.txt</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:switch/v7_report.md</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:switch/v8_results.txt</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:switch/v8_report.md</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:switch/v9_results.txt</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:switch/v9_report.md</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:switch/v10_results.txt</li>
+<li>results/openai/20250417_203249/verification/pattern:defender.c:switch/v10_report.md</li>
+</ul></body></html>
