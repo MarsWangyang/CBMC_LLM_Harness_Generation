@@ -10,8 +10,7 @@ import glob
 import json
 from langchain_core.messages import AIMessage
 import logging
-from utils.cbmc_parser import process_cbmc_output
-
+from utils.cbmc_parser import extract_coverage_metrics_from_json, process_cbmc_output
 
 logger = logging.getLogger("cbmc")
 
@@ -329,7 +328,7 @@ def cbmc_node(state):
     coverage_cmd = cbmc_cmd.copy()
     coverage_cmd.extend([
         "--cover", "location",
-        "--json-ui"  # Using XML format for consistent parsing
+        "--json-ui"  # Using JSON format for consistent parsing
     ])
     
     # Initialize result variables
@@ -386,19 +385,86 @@ def cbmc_node(state):
             with open(coverage_json_file, "w") as f:
                 f.write(coverage_stdout)
             
-            # Parse the JSON coverage data
+            # Process the coverage JSON immediately
             try:
-                import json
+                # Parse the JSON coverage data
                 json_data = json.loads(coverage_stdout)
                 
-                # Extract coverage metrics from the JSON data
-                from utils.cbmc_parser import extract_coverage_metrics
-                # Use the already defined cbmc_result variable (from earlier in the function)
-                coverage_metrics = extract_coverage_metrics(json_data, func_name)
+                # Define function to parse line ranges
+                def parse_line_ranges(line_ranges):
+                    """Parse a string of line ranges into a set of unique line numbers."""
+                    unique_lines = set()
+                    for line_range in line_ranges.split(','):
+                        if '-' in line_range:
+                            start, end = map(int, line_range.split('-'))
+                            unique_lines.update(range(start, end + 1))
+                        else:
+                            try:
+                                unique_lines.add(int(line_range))
+                            except ValueError:
+                                pass  # Skip if not a valid integer
+                    return unique_lines
+
+                # Extract coverage metrics
+                coverage_metrics = extract_coverage_metrics_from_json(json_data, func_name, version_num)
                 
-                # Add coverage metrics to cbmc_result
-                for key, value in coverage_metrics.items():
-                    cbmc_result[key] = value
+                # Store metrics in a dedicated file
+                metrics_file = os.path.join(func_verification_dir, f"v{version_num}_metrics.json")
+                with open(metrics_file, "w") as f:
+                    json.dump(coverage_metrics, f, indent=2)
+                    
+                # Create coverage and errors directory structure for centralized collection
+                coverage_dir = os.path.join(result_base_dir, "coverage", "data")
+                errors_dir = os.path.join(result_base_dir, "errors", "data")
+                os.makedirs(coverage_dir, exist_ok=True)
+                os.makedirs(errors_dir, exist_ok=True)
+                
+                # Create flattened data for CSV storage
+                flat_data = {
+                    "function": func_name,
+                    "version": version_num,
+                    "total_coverage_pct": coverage_metrics.get("total_coverage_pct", 0),
+                    "func_coverage_pct": coverage_metrics.get("func_coverage_pct", 0),
+                    "main_total_lines": coverage_metrics.get("main_total_lines", 0),
+                    "main_reachable_lines": coverage_metrics.get("main_reachable_lines", 0),
+                    "main_uncovered_lines": coverage_metrics.get("main_uncovered_lines", 0),
+                    "target_total_lines": coverage_metrics.get("target_total_lines", 0),
+                    "target_reachable_lines": coverage_metrics.get("target_reachable_lines", 0),
+                    "target_uncovered_lines": coverage_metrics.get("target_uncovered_lines", 0),
+                    "total_combined_lines": coverage_metrics.get("total_combined_lines", 0),
+                    "reachable_combined_lines": coverage_metrics.get("reachable_combined_lines", 0),
+                }
+                
+                # Save as JSON for each function version
+                func_metrics_file = os.path.join(coverage_dir, f"{func_name}_v{version_num}.json")
+                with open(func_metrics_file, "w") as f:
+                    json.dump(flat_data, f, indent=2)
+                
+                # Update the running CSV file
+                csv_path = os.path.join(coverage_dir, "coverage_metrics.csv")
+                file_exists = os.path.exists(csv_path)
+                
+                with open(csv_path, "a") as f:
+                    # Write headers if file is new
+                    if not file_exists:
+                        headers = ",".join(flat_data.keys())
+                        f.write(f"{headers}\n")
+                    
+                    # Write data row
+                    values = [str(v).replace(",", ";") for v in flat_data.values()]
+                    f.write(f"{','.join(values)}\n")
+                
+                # Print coverage summary
+                print(f"\n=== Coverage Metrics for {func_name} (v{version_num}) ===")
+                print(f"Main function: {coverage_metrics['main_reachable_lines']}/{coverage_metrics['main_total_lines']} lines")
+                print(f"Target function: {coverage_metrics['target_reachable_lines']}/{coverage_metrics['target_total_lines']} lines")
+                print(f"Total coverage: {coverage_metrics['total_coverage_pct']:.2f}%")
+                print(f"Function coverage: {coverage_metrics['func_coverage_pct']:.2f}%")
+                print("=" * 50)
+                
+                # Store coverage metrics for later use with cbmc_result
+                # We'll apply them after cbmc_result is initialized
+                stored_coverage_metrics = coverage_metrics.copy()
                 
             except json.JSONDecodeError as e:
                 logger.error(f"Error parsing JSON coverage data: {str(e)}")
@@ -413,6 +479,122 @@ def cbmc_node(state):
         # Process CBMC output using our enhanced parser (with stderr prioritization)
         # The process_cbmc_output function now automatically preserves stderr in the result
         cbmc_result = process_cbmc_output(cbmc_stdout, cbmc_stderr)
+        
+        # Double-check that stderr is included in the result for line-specific error tracing
+        if "stderr" not in cbmc_result:
+            cbmc_result["stderr"] = cbmc_stderr
+            
+        # Make sure we have at least a basic error count if stderr contains errors
+        if cbmc_stderr and "error:" in cbmc_stderr.lower():
+            # Count error lines in stderr
+            stderr_error_count = cbmc_stderr.lower().count("error:")
+            
+            # Force update the error count to reflect actual errors
+            if stderr_error_count > 0:
+                cbmc_result["error_count"] = max(stderr_error_count, cbmc_result.get("error_count", 0))
+                cbmc_result["reported_errors"] = max(stderr_error_count, cbmc_result.get("reported_errors", 0))
+                
+                # Ensure we have at least one error category
+                if not cbmc_result.get("error_categories"):
+                    cbmc_result["error_categories"] = ["generic_error"]
+                
+                logger.warning(f"Updated error count from stderr: {stderr_error_count} errors found")
+            
+        # Save error metrics to CSV similar to coverage metrics
+        errors_dir = os.path.join(result_base_dir, "errors", "data")
+        os.makedirs(errors_dir, exist_ok=True)
+        
+        # Create flattened error data for CSV storage
+        error_data = {
+            "function": func_name,
+            "version": version_num,
+            "status": cbmc_result.get("verification_status", "UNKNOWN"),
+            "error_count": cbmc_result.get("error_count", 0),
+            "reported_errors": cbmc_result.get("reported_errors", 0),
+            "failure_count": cbmc_result.get("failure_count", 0),
+            "error_categories": ";".join(cbmc_result.get("error_categories", []))
+        }
+        
+        # Save as JSON for each function version
+        error_metrics_file = os.path.join(errors_dir, f"{func_name}_v{version_num}.json")
+        with open(error_metrics_file, "w") as f:
+            json.dump(error_data, f, indent=2)
+        
+        # Update the running CSV file
+        error_csv_path = os.path.join(errors_dir, "error_metrics.csv")
+        error_file_exists = os.path.exists(error_csv_path)
+        
+        with open(error_csv_path, "a") as f:
+            # Write headers if file is new
+            if not error_file_exists:
+                headers = ",".join(error_data.keys())
+                f.write(f"{headers}\n")
+            
+            # Write data row
+            values = [str(v).replace(",", ";") for v in error_data.values()]
+            f.write(f"{','.join(values)}\n")
+            
+        # Extract specific error signatures from stderr for more precise error handling
+        if cbmc_stderr:
+            # Function to extract error signatures
+            def extract_error_signatures(stderr_text):
+                """Extract unique error signatures from stderr text."""
+                error_sigs = []
+                if not stderr_text:
+                    return error_sigs
+                    
+                for line in stderr_text.splitlines():
+                    # Focus on actual error messages, not just line numbers
+                    if 'error:' in line or 'ERROR:' in line:
+                        # Extract core error message without line numbers and file paths
+                        parts = line.split('error:', 1)
+                        if len(parts) > 1:
+                            error_msg = parts[1].strip()
+                            # Keep only the error message content
+                            error_sigs.append(error_msg)
+                return error_sigs
+                
+            # Get specific error messages and add to result
+            error_signatures = extract_error_signatures(cbmc_stderr)
+            if error_signatures:
+                cbmc_result["error_signatures"] = error_signatures
+                logger.info(f"Extracted error signatures: {error_signatures}")
+                
+                # Add specific error category types based on error signatures
+                for sig in error_signatures:
+                    if "function 'nondet_" in sig.lower() and "not declared" in sig.lower():
+                        if "nondet_function_error" not in cbmc_result["error_categories"]:
+                            cbmc_result["error_categories"].append("nondet_function_error")
+                            
+                    if "member" in sig.lower() and "not found" in sig.lower():
+                        if "struct_member_error" not in cbmc_result["error_categories"]:
+                            cbmc_result["error_categories"].append("struct_member_error")
+                            
+                    if "not declared" in sig.lower() or "undeclared" in sig.lower():
+                        if "declaration_error" not in cbmc_result["error_categories"]:
+                            cbmc_result["error_categories"].append("declaration_error")
+                            
+                    if "struct" in sig.lower() or "has no member" in sig.lower():
+                        if "struct_error" not in cbmc_result["error_categories"]:
+                            cbmc_result["error_categories"].append("struct_error")
+            
+        # Make sure we prioritize stderr output when there are critical errors
+        # This ensures that downstream components focus on the most important error information
+        if cbmc_stderr and ("error:" in cbmc_stderr or "undefined reference" in cbmc_stderr):
+            logger.warning("Critical errors found in STDERR output, prioritizing these errors")
+            
+            # Ensure error categories reflect stderr issues
+            if "redeclaration" in cbmc_stderr and "redeclaration" not in cbmc_result["error_categories"]:
+                cbmc_result["error_categories"].append("redeclaration")
+                
+            if "undefined reference" in cbmc_stderr and "linking_error" not in cbmc_result["error_categories"]:
+                cbmc_result["error_categories"].append("linking_error")
+        
+        # Apply the stored coverage metrics if they were successfully collected
+        stored_coverage_metrics = locals().get('stored_coverage_metrics')
+        if stored_coverage_metrics:
+            for key, value in stored_coverage_metrics.items():
+                cbmc_result[key] = value
         
         # Create a structured result for the state
         cbmc_results[func_name] = {
