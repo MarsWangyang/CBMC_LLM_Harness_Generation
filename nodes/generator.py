@@ -280,15 +280,38 @@ def generator_node(state):
             
             # Compare error categories and failure counts between versions
             if cbmc_result.get("error_categories") and cbmc_result.get("previous_error_categories"):
-                current_errors = set(cbmc_result.get("error_categories", []))
-                previous_errors = set(cbmc_result.get("previous_error_categories", []))
+                # Ensure we're comparing the lists correctly by converting to sorted lists
+                current_errors = sorted(cbmc_result.get("error_categories", []))
+                previous_errors = sorted(cbmc_result.get("previous_error_categories", []))
                 
+                # Safely extract failure counts, defaulting to 0 if not present
                 current_failure_count = cbmc_result.get("failure_count", 0)
+                if isinstance(current_failure_count, str) and current_failure_count.isdigit():
+                    current_failure_count = int(current_failure_count)
+                elif not isinstance(current_failure_count, (int, float)):
+                    current_failure_count = 0
+                    
                 previous_failure_count = cbmc_result.get("previous_failure_count", 0)
+                if isinstance(previous_failure_count, str) and previous_failure_count.isdigit():
+                    previous_failure_count = int(previous_failure_count)
+                elif not isinstance(previous_failure_count, (int, float)):
+                    previous_failure_count = 0
                 
-                # Log the actual failure counts for debugging
+                # Log the actual failure counts for debugging with comprehensive information
                 logger.info(f"Previous failure count for {func_name}: {previous_failure_count}")
                 logger.info(f"Current failure count for {func_name}: {current_failure_count}")
+                logger.info(f"Current error categories: {current_errors}")
+                logger.info(f"Previous error categories: {previous_errors}")
+                
+                # Also log coverage to track correlation between coverage and errors
+                current_coverage = cbmc_result.get("func_coverage_pct", 0.0)
+                if isinstance(current_coverage, str) and current_coverage != "NA":
+                    try:
+                        current_coverage = float(current_coverage)
+                    except (ValueError, TypeError):
+                        current_coverage = 0.0
+                
+                logger.info(f"Current function coverage: {current_coverage:.2f}% with {current_failure_count} errors")
                 
                 # If same errors persist and failure count didn't decrease, remove the previous solution from RAG
                 if current_errors == previous_errors and current_errors and current_failure_count >= previous_failure_count and current_failure_count > 0:
@@ -476,21 +499,23 @@ def generator_node(state):
         3. ALWAYS use "extern" keyword for function declarations to avoid redefinition conflicts
         4. NEVER redefine the function being tested
         5. NEVER redefine any struct, even if you define it exactly the same as the header
-        6. Create a main() function that calls the target function
-        7. Use __CPROVER_assume() for input constraints
-        8. Use nondet_* functions (like nondet_int(), nondet_char()) for nondeterministic inputs
-        9. You are ENCOURAGED to use both project-specific resources AND standard library headers/functions
-        10. Standard library usage is fully allowed and encouraged where appropriate
-        11. Ensure all declarations are complete and syntactically correct
-        12. ALWAYS FREE ALL ALLOCATED MEMORY - Any malloc() must have a corresponding free()
-        13. DO NOT CREATE STUBS for existing function dependencies
-        14. Properly use project macros that are provided in the PROJECT MACRO LIBRARY section
-        15. Your goal is to achieve coverage of at least {target_coverage}% for the target function
-        16. IMPORTANT: If you can't find certain constants (like SHADOW_THINGNAME_MAX_LENGTH), create mock values:
+        6. NEVER redefine any macros that may be defined in project headers
+        7. NEVER redefine any functions, macros, or structs that are defined in standard libraries
+        8. Create a main() function that calls the target function
+        9. Use __CPROVER_assume() for input constraints
+        10. Use nondet_* functions (like nondet_int(), nondet_char()) for nondeterministic inputs
+        11. You are ENCOURAGED to use both project-specific resources AND standard library headers/functions
+        12. Standard library usage is fully allowed and encouraged where appropriate
+        13. Ensure all declarations are complete and syntactically correct
+        14. ALWAYS FREE ALL ALLOCATED MEMORY - Any malloc() must have a corresponding free()
+        15. DO NOT CREATE STUBS for existing function dependencies
+        16. Properly use project macros that are provided in the PROJECT MACRO LIBRARY section
+        17. PRIORITY: Focus on successful verification FIRST, then aim for coverage of at least {target_coverage}% for the target function
+        17. IMPORTANT: If you can't find certain constants (like SHADOW_THINGNAME_MAX_LENGTH), create mock values:
             /* BEGIN MOCK CONSTANTS */
             #define MISSING_CONSTANT 128  // Mock value for missing constant
             /* END MOCK CONSTANTS */
-        17. STRUCT HANDLING - IMPORTANT:
+        18. STRUCT HANDLING - IMPORTANT:
             - NEVER redefine structs from headers
             - NEVER declare anonymous structs
             - Just use the structs directly from their headers
@@ -560,7 +585,7 @@ def generator_node(state):
         }}
         """
         
-        # Add clear instructions
+        # Add clear instructions with enhanced coverage guidance
         generator_prompt += """
         KEY VERIFICATION PRINCIPLES:
         - Feel free to use BOTH project-specific resources AND standard library headers/functions
@@ -575,6 +600,19 @@ def generator_node(state):
         - NEVER redeclare the function with different parameter names
         - ALWAYS FREE ALL ALLOCATED MEMORY before the function exits
         - NEVER create stubs for existing function dependencies
+        
+        VERIFICATION AND COVERAGE PRIORITIES:
+        - PRIORITY #1: Design your harness to PASS verification without errors
+        - PRIORITY #2: Once verification passes, then focus on improving coverage
+        - Prefer simple, minimal harnesses that verify successfully over complex ones that fail
+        - Use nondeterministic inputs with proper constraints to explore different branches
+        - For HTTPClient functions, ensure request and header structures are properly initialized
+        - Create realistic test inputs that will cause different branches to be taken
+        - For pointer parameters, always provide valid memory allocations, not just NULL checks
+        - Use conditional logic in main() to exercise different parts of the target function
+        - If the function processes headers, ensure test headers cover valid and edge cases
+        - For buffer operations, test with both small and large buffer sizes (within limits)
+        - Structure your harness to allow CBMC to effectively trace through all code paths
         """
     
     else:
@@ -626,6 +664,88 @@ def generator_node(state):
             🔴 CRITICAL STDERR ERRORS DETECTED! These errors must be fixed first before any other issues.
             """
             
+            # Check if we have specific error signatures that need to be addressed
+            if "error_signatures" in cbmc_result:
+                specific_errors = cbmc_result.get("error_signatures", [])
+                if specific_errors:
+                    logger.info(f"Found specific error signatures: {specific_errors}")
+                    # Add these to the prompt for better guidance with stronger emphasis
+                    generator_prompt += "\n== CRITICAL ERROR MESSAGES - MUST FIX THESE FIRST ==\n"
+                    
+                    # Group similar errors and add specific instructions for common error types
+                    has_nondet_func_error = False
+                    has_member_error = False
+                    has_declaration_error = False
+                    has_struct_error = False
+                    
+                    for sig in specific_errors:
+                        generator_prompt += f"- {sig}\n"
+                        
+                        # Check for common error patterns and store flags
+                        if "function 'nondet_" in sig.lower() and "not declared" in sig.lower():
+                            has_nondet_func_error = True
+                        if "member" in sig.lower() and "not found" in sig.lower():
+                            has_member_error = True
+                        if "not declared" in sig.lower() or "undeclared" in sig.lower():
+                            has_declaration_error = True
+                        if "struct" in sig.lower() or "has no member" in sig.lower():
+                            has_struct_error = True
+                    
+                    # Add targeted solutions based on specific error types
+                    generator_prompt += "\n== TARGETED SOLUTIONS FOR SPECIFIC ERRORS ==\n"
+                    
+                    if has_nondet_func_error:
+                        generator_prompt += """
+🔴 NONDET FUNCTION ERROR DETECTED - MUST BE FIXED
+The CBMC nondet functions must be declared properly. Add these declarations at the top of your harness:
+```c
+// Declarations for CBMC nondet functions
+extern unsigned int nondet_uint(void);
+extern int nondet_int(void);
+extern char nondet_char(void);
+extern size_t nondet_size_t(void);
+extern void* nondet_ptr(void);
+```
+"""
+
+                    if has_member_error:
+                        generator_prompt += """
+🔴 STRUCT MEMBER ERROR DETECTED - MUST BE FIXED
+The struct member accessed doesn't exist in the struct definition. Check:
+1. Is the struct name spelled correctly?
+2. Is the member name spelled correctly?
+3. Is the struct definition included from the right header?
+4. Are you using the correct version of the struct?
+"""
+
+                    if has_declaration_error:
+                        generator_prompt += """
+🔴 FUNCTION DECLARATION ERROR DETECTED - MUST BE FIXED
+Functions must be declared before use. Make sure:
+1. Include ALL required headers that contain function declarations
+2. Add 'extern' declarations for any function you're calling
+3. Use proper parameter types that match the actual function definition
+"""
+
+                    if has_struct_error:
+                        generator_prompt += """
+🔴 STRUCT DEFINITION ERROR DETECTED - MUST BE FIXED
+Problems with struct definitions. Check:
+1. Make sure to include the correct header file with the struct definition
+2. DO NOT redefine structs that are already defined in headers
+3. Check that you're accessing the right members with the right syntax
+4. Match exact case - struct members are case-sensitive
+"""
+                        
+                    # Add general advice if nothing specific was matched
+                    if not any([has_nondet_func_error, has_member_error, has_declaration_error, has_struct_error]):
+                        generator_prompt += """
+1. Look at each error message carefully and fix EXACTLY what it points to
+2. Ensure all functions used are properly declared before use
+3. Include all necessary headers for the structures and functions
+4. Verify struct member names match exactly what's defined in headers
+"""
+            
             # Add specialized instructions based on error type
             if has_redeclaration_error:
                 generator_prompt += """
@@ -671,13 +791,14 @@ def generator_node(state):
             {performance_warning} The verification process is too complex or contains unbounded operations.
             
             PERFORMANCE OPTIMIZATION INSTRUCTIONS:
-            1. SIGNIFICANTLY SIMPLIFY the harness - it's currently too complex for CBMC to verify efficiently
-            2. REMOVE or LIMIT all loops by adding bounds (__CPROVER_assume(i < 3))
-            3. REDUCE the number of memory allocations (use stack-based fixed arrays when possible)
-            4. REDUCE the size of allocated memory (use smaller buffer sizes)
-            5. ADD specific constraints to all inputs to limit state space
-            6. Use SMALL CONSTANTS throughout the harness (use values < 10)
-            7. REMOVE any unnecessary function calls or complex operations
+            1. MAKE YOUR HARNESS AS SIMPLE AS POSSIBLE - create a minimal harness that just calls the function correctly
+            2. PRIORITY #1: Successful verification is more important than high coverage
+            3. REMOVE or LIMIT all loops by adding bounds (__CPROVER_assume(i < 3))
+            4. REDUCE the number of memory allocations (use stack-based fixed arrays when possible)
+            5. REDUCE the size of allocated memory (use smaller buffer sizes)
+            6. ADD specific constraints to all inputs to limit state space
+            7. Use SMALL CONSTANTS throughout the harness (use values < 10)
+            8. REMOVE any unnecessary function calls or complex operations
             
             EXAMPLES OF PERFORMANCE OPTIMIZATIONS:
             - Replace: while(condition) {{ ... }}
@@ -687,6 +808,8 @@ def generator_node(state):
               With:    char buffer[10]; // Fixed small size
             
             - Add constraints: __CPROVER_assume(value > 0 && value < 10);
+            
+            Remember: Successful verification with lower coverage is better than failed verification with high coverage
             """
         
         generator_prompt += """
@@ -1282,13 +1405,12 @@ def generator_node(state):
             
         if is_refinement and rag_recommendations:
             # Add info about RAG contributions
-
-            if rag_recommendations["has_similar_errors"]:
-                message_content += f"\nLeveraged {len(rag_recommendations['similar_errors'])} similar past errors from unified database"
-            if rag_recommendations["has_solutions"]:
-                message_content += f"\nApplied patterns from {len(rag_recommendations['solutions'])} successful solutions"
-            if rag_recommendations["has_matching_patterns"]:
-                message_content += f"\nIdentified {len(rag_recommendations['matching_patterns'])} relevant vulnerability patterns"
+            if rag_recommendations.get("has_similar_errors", False):
+                message_content += f"\nLeveraged {len(rag_recommendations.get('similar_errors', []))} similar past errors from unified database"
+            if rag_recommendations.get("has_solutions", False):
+                message_content += f"\nApplied patterns from {len(rag_recommendations.get('solutions', []))} successful solutions"
+            if rag_recommendations.get("has_matching_patterns", False):
+                message_content += f"\nIdentified {len(rag_recommendations.get('matching_patterns', {}))} relevant vulnerability patterns"
         
         return {
             "messages": [AIMessage(content=message_content)],

@@ -78,36 +78,79 @@ class UnifiedEmbeddingDB:
             True if marked successfully, False otherwise
         """
         try:
-            # Use proper where filter syntax with $eq operator
-            where_filter = {"$and": [
-                {"func_name": {"$eq": func_name}}, 
-                {"iteration": {"$eq": version}}
-            ]}
+            # Input validation to prevent errors
+            if not func_name or not isinstance(version, int) or version < 1:
+                logger.warning(f"Invalid inputs: func_name={func_name}, version={version}")
+                return False
+                
+            # Use a simpler where filter - using $eq can cause issues in some Chroma versions
+            where_filter = {"func_name": func_name, "iteration": version}
             
             # Find the solution by func_name and version
-            solutions = self.solution_collection.get(
-                where=where_filter
-            )
+            try:
+                # First attempt with simple where filter
+                solutions = self.solution_collection.get(
+                    where=where_filter
+                )
+                
+                # If no results, try a string-based search as fallback
+                if not solutions or not solutions["ids"]:
+                    logger.warning(f"No exact match found, trying fallback search for {func_name}")
+                    solutions = self.solution_collection.get(
+                        where_document={"$contains": func_name}
+                    )
+            except Exception as query_error:
+                logger.warning(f"Error in primary query: {str(query_error)}, trying fallback")
+                # Fallback to simpler query if the previous one fails
+                solutions = self.solution_collection.get(
+                    where_document={"$contains": func_name}
+                )
             
             if not solutions or not solutions["ids"]:
                 logger.warning(f"No solution found for {func_name} version {version} to mark as ineffective")
                 return False
             
-            solution_id = solutions["ids"][0]
-            metadata = solutions["metadatas"][0]
+            # Find the best matching solution based on function name and version
+            best_match_idx = 0
+            if len(solutions["ids"]) > 1:
+                for i, metadata in enumerate(solutions["metadatas"]):
+                    # Check if this is an exact match for function and version
+                    if metadata.get("func_name") == func_name and metadata.get("iteration") == version:
+                        best_match_idx = i
+                        break
+            
+            solution_id = solutions["ids"][best_match_idx]
+            metadata = solutions["metadatas"][best_match_idx]
             
             # Update the metadata to mark as ineffective
             metadata["is_effective"] = False
             metadata["ineffective_reason"] = "Same errors persisted after refinement"
             
             # Update the solution in the collection
-            self.solution_collection.update(
-                ids=[solution_id],
-                metadatas=[metadata]
-            )
-            
-            logger.info(f"Marked solution {solution_id} for {func_name} version {version} as ineffective")
-            return True
+            try:
+                self.solution_collection.update(
+                    ids=[solution_id],
+                    metadatas=[metadata]
+                )
+                logger.info(f"Marked solution {solution_id} for {func_name} version {version} as ineffective")
+                return True
+            except Exception as update_error:
+                logger.error(f"Error updating solution: {str(update_error)}")
+                # If update fails, try to delete and re-add with modified metadata
+                try:
+                    self.solution_collection.delete(ids=[solution_id])
+                    metadata["is_effective"] = False
+                    metadata["ineffective_reason"] = "Same errors persisted after refinement"
+                    self.solution_collection.add(
+                        ids=[solution_id],
+                        metadatas=[metadata],
+                        documents=[solutions["documents"][best_match_idx]] if "documents" in solutions else [""]
+                    )
+                    logger.info(f"Successfully re-added solution {solution_id} with ineffective flag")
+                    return True
+                except Exception as re_add_error:
+                    logger.error(f"Failed to re-add solution: {str(re_add_error)}")
+                    return False
         
         except Exception as e:
             logger.error(f"Error marking solution as ineffective: {str(e)}")
@@ -125,28 +168,57 @@ class UnifiedEmbeddingDB:
             True if removed successfully, False otherwise
         """
         try:
-            # Use proper where filter syntax with $eq operator
-            where_filter = {"$and": [
-                {"func_name": {"$eq": func_name}}, 
-                {"iteration": {"$eq": version}}
-            ]}
+            # Input validation to prevent errors
+            if not func_name or not isinstance(version, int) or version < 1:
+                logger.warning(f"Invalid inputs: func_name={func_name}, version={version}")
+                return False
+                
+            # Use a simpler where filter - using $eq can cause issues in some Chroma versions
+            where_filter = {"func_name": func_name, "iteration": version}
             
             # Find the solution by func_name and version
-            solutions = self.solution_collection.get(
-                where=where_filter
-            )
+            try:
+                # First attempt with simple where filter
+                solutions = self.solution_collection.get(
+                    where=where_filter
+                )
+                
+                # If no results, try a string-based search as fallback
+                if not solutions or not solutions["ids"]:
+                    logger.warning(f"No exact match found, trying fallback search for {func_name}")
+                    solutions = self.solution_collection.get(
+                        where_document={"$contains": func_name}
+                    )
+            except Exception as query_error:
+                logger.warning(f"Error in primary query: {str(query_error)}, trying fallback")
+                # Fallback to simpler query if the previous one fails
+                solutions = self.solution_collection.get(
+                    where_document={"$contains": func_name}
+                )
             
             if not solutions or not solutions["ids"]:
                 logger.warning(f"No solution found for {func_name} version {version} to remove")
                 return False
             
-            solution_id = solutions["ids"][0]
+            # Find the best matching solution based on function name and version
+            best_match_idx = 0
+            if len(solutions["ids"]) > 1:
+                for i, metadata in enumerate(solutions["metadatas"]):
+                    # Check if this is an exact match for function and version
+                    if metadata.get("func_name") == func_name and metadata.get("iteration") == version:
+                        best_match_idx = i
+                        break
+                        
+            solution_id = solutions["ids"][best_match_idx]
             
             # Remove the solution from the collection
-            self.solution_collection.delete(ids=[solution_id])
-            
-            logger.info(f"Removed ineffective solution {solution_id} for {func_name} version {version} from RAG database")
-            return True
+            try:
+                self.solution_collection.delete(ids=[solution_id])
+                logger.info(f"Removed ineffective solution {solution_id} for {func_name} version {version} from RAG database")
+                return True
+            except Exception as delete_error:
+                logger.error(f"Error deleting solution: {str(delete_error)}")
+                return False
         
         except Exception as e:
             logger.error(f"Error removing ineffective solution: {str(e)}")
@@ -667,9 +739,18 @@ class UnifiedEmbeddingDB:
                        func_name: str, 
                        harness_code: str, 
                        cbmc_result: Dict[str, Any],
-                       iteration: int) -> str:
+                       iteration: int,
+                       is_optimal: bool = True) -> str:
         """
         Enhanced solution storage with effectiveness tracking.
+        
+        Args:
+            error_id: ID of related error or empty string if successful verification
+            func_name: Function name
+            harness_code: Harness code
+            cbmc_result: Results from CBMC
+            iteration: Current iteration/version number
+            is_optimal: Whether this solution is considered optimal (True) or could be improved (False)
         """
         # Generate a unique ID
         solution_id = f"{func_name}_solution_{iteration}_{int(time.time())}"
@@ -738,7 +819,14 @@ class UnifiedEmbeddingDB:
             if existing_solutions["ids"]:
                 for existing_metadata in existing_solutions["metadatas"]:
                     total_attempts = existing_metadata.get("total_attempts", 1) + 1
-                    effectiveness_iterations = existing_metadata.get("effectiveness_iterations", [])
+                    
+                    # Convert string back to list or initialize empty list if not found
+                    effectiveness_iterations_str = existing_metadata.get("effectiveness_iterations_str", "")
+                    if effectiveness_iterations_str:
+                        effectiveness_iterations = [int(i) for i in effectiveness_iterations_str.split(",") if i.strip()]
+                    else:
+                        effectiveness_iterations = []
+                    
                     overall_effectiveness = existing_metadata.get("is_effective", is_effective)
                     
                     # Add current iteration if effective
@@ -746,14 +834,18 @@ class UnifiedEmbeddingDB:
                         effectiveness_iterations.append(iteration)
                         overall_effectiveness = True
             
+            # Convert any lists or complex types to strings for Chroma compatibility
+            effectiveness_iter_str = ','.join(map(str, effectiveness_iterations)) if effectiveness_iterations else ""
+            
             # Metadata for solution storage
             solution_metadata = {
                 "func_name": func_name,
                 "iteration": iteration,
                 "related_error_id": error_id,
                 "is_effective": overall_effectiveness,
+                "is_optimal": is_optimal,  # Track whether this solution is considered optimal
                 "total_attempts": total_attempts,
-                "effectiveness_iterations": effectiveness_iterations,
+                "effectiveness_iterations_str": effectiveness_iter_str,  # Store as string
                 
                 # Detailed metadata
                 "coverage": cbmc_result.get("coverage_pct", 0.0),

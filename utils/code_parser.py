@@ -10,6 +10,39 @@ import logging
 
 logger = logging.getLogger("code_parser")
 
+def sanitize_metadata(metadata):
+    """
+    Sanitize metadata to ensure all values are compatible with chromadb requirements.
+    Replaces None values with empty strings and ensures lists are JSON-serialized.
+    
+    Args:
+        metadata: Dictionary of metadata to sanitize
+        
+    Returns:
+        Dictionary with sanitized metadata values
+    """
+    if not isinstance(metadata, dict):
+        logger.warning(f"sanitize_metadata called with non-dict type: {type(metadata)}")
+        return {}
+    
+    sanitized = {}
+    for key, value in metadata.items():
+        if value is None:
+            # Replace None with empty string
+            sanitized[key] = ""
+        elif isinstance(value, (list, dict, set, tuple)):
+            # JSON serialize complex types
+            try:
+                sanitized[key] = json.dumps(value)
+            except Exception as e:
+                logger.warning(f"Failed to JSON serialize {key}: {str(e)}")
+                sanitized[key] = str(value)  # Fallback to string representation
+        else:
+            # Keep primitive types as is
+            sanitized[key] = value
+    
+    return sanitized
+
 def extract_header_information(content, file_path):
     """Extract includes, macros, and declarations from header files."""
     header_info = {
@@ -179,19 +212,25 @@ def embed_code(code: str, file_path: str = None) -> dict:
                 header_document += "\nMacro names: " + ", ".join([m["name"] for m in header_info['macros']])
             
             # Add header to collection with serialized list fields and macro information
+            header_metadata = {
+                "type": "header",
+                "file_path": file_path,
+                "includes": header_info["includes"],
+                "declaration_count": len(header_info["function_declarations"]),
+                "typedef_count": len(header_info["type_definitions"]),
+                "macro_count": len(header_info["macros"]),
+                "macros": [m["name"] for m in header_info["macros"]],
+                "has_multiline_macros": any(m.get("is_multiline", False) for m in header_info["macros"])
+            }
+            
+            # Use sanitize_metadata to properly handle all values
+            header_metadata = sanitize_metadata(header_metadata)
+            
+            # Add to collection
             code_collection.add(
                 ids=[f"header:{header_id}"],
                 documents=[header_document],
-                metadatas=[{
-                    "type": "header",
-                    "file_path": file_path,
-                    "includes": json.dumps(header_info["includes"]),
-                    "declaration_count": len(header_info["function_declarations"]),
-                    "typedef_count": len(header_info["type_definitions"]),
-                    "macro_count": len(header_info["macros"]),
-                    "macros": json.dumps([m["name"] for m in header_info["macros"]]),
-                    "has_multiline_macros": any(m.get("is_multiline", False) for m in header_info["macros"])
-                }]
+                metadatas=[header_metadata]
             )
             
             # Add function declarations to collection separately
@@ -201,18 +240,24 @@ def embed_code(code: str, file_path: str = None) -> dict:
                 if decl.get("is_keyword", False):
                     decl_id = f"pattern:{decl_id}"
                 
+                # Create metadata
+                decl_metadata = {
+                    "type": "function_declaration",
+                    "name": decl["name"],
+                    "return_type": decl["return_type"],
+                    "params": decl["params"],
+                    "file_path": file_path,
+                    "header": header_id,
+                    "is_keyword": decl.get("is_keyword", False)
+                }
+                
+                # Use sanitize_metadata function to handle all values properly
+                decl_metadata = sanitize_metadata(decl_metadata)
+                
                 code_collection.add(
                     ids=[decl_id],
                     documents=[decl["declaration"]],
-                    metadatas=[{
-                        "type": "function_declaration",
-                        "name": decl["name"],
-                        "return_type": decl["return_type"],
-                        "params": decl["params"],
-                        "file_path": file_path,
-                        "header": header_id,
-                        "is_keyword": decl.get("is_keyword", False)
-                    }]
+                    metadatas=[decl_metadata]
                 )
             
             # Add macro definitions separately
@@ -226,18 +271,24 @@ def embed_code(code: str, file_path: str = None) -> dict:
                 else:
                     macro_doc = f"#define {macro['name']} {macro['value']}"
                 
+                # Create macro metadata
+                macro_metadata = {
+                    "type": "macro",
+                    "name": macro["name"],
+                    "params": macro.get("params", ""),
+                    "value": macro["value"],
+                    "header": header_id,
+                    "file_path": file_path,
+                    "is_multiline": macro.get("is_multiline", False)
+                }
+                
+                # Use sanitize_metadata function to handle all values properly
+                macro_metadata = sanitize_metadata(macro_metadata)
+                
                 code_collection.add(
                     ids=[macro_id],
                     documents=[macro_doc],
-                    metadatas=[{
-                        "type": "macro",
-                        "name": macro["name"],
-                        "params": macro.get("params", ""),
-                        "value": macro["value"],
-                        "header": header_id,
-                        "file_path": file_path,
-                        "is_multiline": macro.get("is_multiline", False)
-                    }]
+                    metadatas=[macro_metadata]
                 )
             
             logger.info(f"Processed header file {header_id} with {len(header_info['function_declarations'])} declarations and {len(header_info['macros'])} macros")
@@ -454,20 +505,26 @@ def embed_code(code: str, file_path: str = None) -> dict:
                 
                 logger.info(f"Adding batch of {len(batch_ids)} functions to ChromaDB (batch {i//batch_size + 1})")
                 try:
+                    # Sanitize all metadata in the batch
+                    sanitized_metadatas = [sanitize_metadata(metadata) for metadata in batch_metadatas]
+                    
                     code_collection.add(
                         ids=batch_ids,
                         documents=batch_texts,
-                        metadatas=batch_metadatas
+                        metadatas=sanitized_metadatas
                     )
                 except Exception as e:
                     logger.error(f"Error adding batch to ChromaDB: {str(e)}")
                     # Try to add individually to isolate problematic functions
                     for j in range(len(batch_ids)):
                         try:
+                            # Sanitize individual metadata
+                            sanitized_metadata = sanitize_metadata(batch_metadatas[j])
+                            
                             code_collection.add(
                                 ids=[batch_ids[j]],
                                 documents=[batch_texts[j]],
-                                metadatas=[batch_metadatas[j]]
+                                metadatas=[sanitized_metadata]
                             )
                         except Exception as e2:
                             logger.error(f"Failed to add function {batch_ids[j]}: {str(e2)}")
@@ -478,10 +535,13 @@ def embed_code(code: str, file_path: str = None) -> dict:
         if pattern_ids:
             logger.info(f"Adding {len(pattern_ids)} code patterns to ChromaDB")
             try:
+                # Sanitize all pattern metadata
+                sanitized_pattern_metadatas = [sanitize_metadata(metadata) for metadata in pattern_metadatas]
+                
                 code_collection.add(
                     ids=pattern_ids,
                     documents=pattern_texts,
-                    metadatas=pattern_metadatas
+                    metadatas=sanitized_pattern_metadatas
                 )
                 logger.info(f"Added {len(pattern_ids)} code patterns to ChromaDB")
             except Exception as e:
@@ -489,10 +549,13 @@ def embed_code(code: str, file_path: str = None) -> dict:
                 # Try to add individually
                 for i in range(len(pattern_ids)):
                     try:
+                        # Sanitize individual pattern metadata
+                        sanitized_metadata = sanitize_metadata(pattern_metadatas[i])
+                        
                         code_collection.add(
                             ids=[pattern_ids[i]],
                             documents=[pattern_texts[i]],
-                            metadatas=[pattern_metadatas[i]]
+                            metadatas=[sanitized_metadata]
                         )
                     except Exception as e2:
                         logger.error(f"Failed to add pattern {pattern_ids[i]}: {str(e2)}")
