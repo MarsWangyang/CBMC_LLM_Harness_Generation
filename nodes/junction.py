@@ -26,7 +26,7 @@ def junction_node(state):
     logger.info(f"Junction node - processed {completed_functions}/{total_functions} functions")
     
     # Force termination if loop counter gets too high
-    if loop_counter > 50:
+    if loop_counter > 120:
         logger.warning(f"Loop counter exceeded maximum value. Forcing termination.")
         return {
             "messages": [AIMessage(content=f"WARNING: Loop counter exceeded maximum value. Forcing termination to avoid recursion error.")],

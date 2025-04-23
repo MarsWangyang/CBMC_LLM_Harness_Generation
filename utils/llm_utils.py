@@ -54,6 +54,25 @@ def setup_llm(model_choice='claude'):
       #define MISSING_CONSTANT 10  // Mock value
       /* END MOCK CONSTANTS */
     
+    ALWAYS DECLARE CBMC NONDET FUNCTIONS:
+    ```c
+    // Always include these declarations for CBMC nondet functions
+    extern int nondet_int(void);
+    extern unsigned int nondet_uint(void);
+    extern size_t nondet_size_t(void);
+    extern char nondet_char(void);
+    extern char* nondet_string(void);
+    extern void* nondet_ptr(void);
+    ```
+    
+    SPECIAL INSTRUCTIONS FOR HTTP FUNCTIONS:
+    - For HTTPClient_InitializeRequestHeaders and similar HTTP functions:
+      - ALWAYS declare complete valid HTTPRequestInfo_t and HTTPRequestHeaders_t structures
+      - Ensure pRequestInfo and pRequestHeaders are properly initialized with realistic values
+      - Use consistent naming and field access following the header definitions
+      - Test various header combinations and payload sizes for proper coverage
+      - Remember to handle all required memory allocation and initialization
+    
     Your code must compile and run correctly with CBMC verification.
     """
     
@@ -68,8 +87,8 @@ def setup_llm(model_choice='claude'):
             _global_llm = ChatAnthropic(
                 model="claude-3-7-sonnet-latest",
                 anthropic_api_key=anthropic_api_key,
-                temperature=0.2,  # Lower temperature for more deterministic code generation
-                max_tokens=20000,  # Ensure we have enough tokens for complete responses
+                temperature=0.45,  # Lower temperature for more deterministic code generation
+                max_tokens=25000,  # Ensure we have enough tokens for complete responses
                 model_kwargs={"system": system_prompt},  # Use model_kwargs for the system prompt
             )
         
@@ -82,8 +101,8 @@ def setup_llm(model_choice='claude'):
             _global_llm = ChatOpenAI(
                 model="gpt-4.1",  # Use GPT-4o for best code generation capabilities
                 openai_api_key=openai_api_key,
-                temperature=0.2,
-                max_tokens=20000,
+                temperature=0.45,
+                max_tokens=25000,
                 model_kwargs={"response_format": {"type": "text"}},
             )
         
@@ -97,8 +116,8 @@ def setup_llm(model_choice='claude'):
                 _global_llm = ChatGoogleGenerativeAI(
                     model="gemini-2.5-pro-exp-03-25",  # Use the latest Gemini 2.5 Pro model
                     google_api_key=google_api_key,
-                    temperature=0.2,
-                    max_output_tokens=20000,
+                    temperature=0.45,
+                    max_output_tokens=25000,
                     convert_system_message_to_human=True,  # Handle system prompts correctly
                 )
                 # Add a system message for consistency with other models
