@@ -97,6 +97,7 @@ else
     echo "Found $CBMC_VERSION"
 fi
 
+
 # Create Python virtual environment - cross-platform
 echo "Creating Python virtual environment..."
 python3 -m venv venv

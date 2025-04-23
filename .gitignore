@@ -108,6 +108,9 @@ instance/
 # Scrapy stuff:
 .scrapy
 
+# SAT solver:
+solvers/
+
 # Sphinx documentation
 docs/_build/
 
