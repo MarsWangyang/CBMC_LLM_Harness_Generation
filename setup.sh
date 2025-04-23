@@ -46,10 +46,11 @@ else
     echo "Found $CBMC_VERSION"
 fi
 
+
 # Create Python virtual environment
-echo "Creating Python virtual environment..."
-python3 -m venv venv
-source venv/bin/activate
+ echo "Creating Python virtual environment..."
+# python3 -m venv venv
+# source venv/bin/activate
 
 # Upgrade pip and install dependencies
 echo "Upgrading pip and installing Python dependencies..."

@@ -311,6 +311,27 @@ def cbmc_node(state):
         "--pointer-overflow-check",
     ])
 
+    # Choose SAT solver
+    from utils.solver_utils import setup_sat_solver
+    sat_solver = setup_sat_solver()
+
+    if sat_solver in ["kissat", "cadical"]:
+        if sat_solver == "kissat":
+            path = "./solvers/kissat/build/kissat"
+        elif sat_solver == "cadical":
+            path = "./solvers/cadical/build/cadical"
+        if not os.path.exists(path):
+            raise FileNotFoundError(f"{sat_solver} solver binary not found at: {path}")
+
+        cbmc_cmd.extend(["--external-sat-solver", path])
+        logger.info(f"Using {sat_solver} as CBMC sat solver")
+    elif sat_solver == "minisat" or sat_solver is None:
+        logger.info(f"Using default minisat as CBMC sat solver")
+        pass
+    else:
+        # Log warning for unrecognized solver and default to no explicit solver
+        logger.warning(f"Unrecognized SAT solver: {sat_solver}. Using default solver mini sat.")
+
     # Add necessary include paths with additional check for CBMC test files
     # Important to add all the -I options at the end
     include_paths = [verification_include_dir]
