@@ -23,6 +23,7 @@ logging.getLogger("chromadb").setLevel(logging.WARNING)
 # Import local modules
 from utils.file_utils import process_directory, calculate_recursion_limit, setup_verification_directories
 from utils.llm_utils import setup_llm
+from utils.solver_utils import setup_sat_solver
 
 def initialize_rag_system(result_base_dir):
     """
@@ -108,6 +109,8 @@ def main():
                         help='Export metrics to specified Excel file (default: metrics.xlsx)')
     parser.add_argument('--no-rag', action='store_true',
                         help='Disable the RAG system and use standard embedding database')
+    parser.add_argument('-s', '--sat_solver', type=str, choices=['minisat', 'kissat', 'cadical'], default = 'minisat',
+                        help='SAT solver used by CBMC' )
     args = parser.parse_args()
     
     # Set logging level based on verbose flag
@@ -119,6 +122,8 @@ def main():
         # Initialize the global LLM based on user choice
         logger.info(f"Initializing LLM: {args.llm}")
         setup_llm(model_choice=args.llm)
+
+        setup_sat_solver(args.sat_solver)
         
         # Set up verification directories with LLM model name
         directories = setup_verification_directories(llm_used=args.llm)

@@ -1,0 +1,129 @@
+graph TD
+    %% Main nodes
+    Start([START]) --> Frontend
+    Frontend --> CodeEmbedding
+    CodeEmbedding --> Analyzer
+    Analyzer --> Junction
+    Junction -->|Next function| Generator
+    Junction -->|All functions done| Output
+    Generator -->|To verification| CBMC
+    CBMC --> Evaluator
+    Evaluator -->|Need refinement| Generator
+    Evaluator -->|Function done| Junction
+    Output --> End([END])
+
+    %% Node details
+    subgraph Frontend[Frontend Node]
+        F_proc[Process source code]
+        F_dir[Parse directory input]
+        F_file[Parse file input]
+        F_init[Initialize timing]
+    end
+
+    subgraph CodeEmbedding[Code Embedding Node]
+        CE_embed[Embed code]
+        CE_store[Store in database]
+        CE_multi[Process multiple files]
+    end
+
+    subgraph Analyzer[Analyzer Node]
+        A_identify[Identify vulnerable functions]
+        A_memory[Detect memory operations]
+        A_arith[Detect arithmetic operations]
+        A_rag[Unified RAG database]
+    end
+
+    subgraph Junction[Junction Node]
+        J_process[Process functions sequentially]
+        J_next[Select next function]
+        J_track[Track processed functions]
+    end
+
+    subgraph Generator[Generator Node]
+        G_create[Create initial harness]
+        G_refine[Refine existing harness]
+        G_rag[Get recommendations from RAG]
+        G_prompt[Generate LLM prompt]
+    end
+
+    subgraph CBMC[CBMC Node]
+        C_exec[Execute CBMC verification]
+        C_files[Get minimal verification files]
+        C_parse[Process CBMC output]
+        C_coverage[Extract coverage metrics]
+    end
+
+    subgraph Evaluator[Evaluator Node]
+        E_analyze[Analyze verification results]
+        E_decide[Decide on refinement]
+        E_rag[Store solutions in RAG]
+        E_rec[Generate improvement recommendations]
+        E_persist[Track persistent errors]
+    end
+
+    subgraph Output[Output Node]
+        O_report[Generate final reports]
+        O_stats[Calculate statistics]
+        O_html[Create HTML reports]
+        O_md[Create markdown reports]
+    end
+
+    %% Core components and state
+    subgraph Core[Core Components]
+        STATE[HarnessGenerationState]
+        WORKFLOW[LangGraph StateGraph]
+        EMBEDDING_DB[Embedding Database]
+    end
+
+    %% RAG components
+    subgraph RAG_System[Retrieval-Augmented Generation]
+        RAG_DB[Unified RAG Database]
+        RAG_CODE[Code Collection]
+        RAG_PATTERNS[Pattern Collection]
+        RAG_ERRORS[Error Collection]
+        RAG_SOLUTIONS[Solution Collection]
+    end
+
+    %% Utils components
+    subgraph Utils[Utility Modules]
+        CODE_PARSER[Code Parser]
+        FILE_UTILS[File Utilities]
+        LLM_UTILS[LLM Configuration]
+        CBMC_PARSER[CBMC Parser]
+        SOLVER_UTILS[SAT Solver Utilities]
+    end
+
+    %% Connections between components
+    A_rag --- RAG_DB
+    G_rag --- RAG_DB
+    E_rag --- RAG_DB
+    RAG_DB --- RAG_CODE
+    RAG_DB --- RAG_PATTERNS
+    RAG_DB --- RAG_ERRORS
+    RAG_DB --- RAG_SOLUTIONS
+    EMBEDDING_DB --- RAG_DB
+    WORKFLOW --- STATE
+    CE_store --- EMBEDDING_DB
+    C_parse --- CBMC_PARSER
+    G_prompt --- LLM_UTILS
+    F_dir --- FILE_UTILS
+    CE_embed --- CODE_PARSER
+    C_exec --- SOLVER_UTILS
+
+    %% State connections
+    STATE --> Generator
+    STATE --> CBMC
+    STATE --> Evaluator
+    STATE --> Junction
+    STATE --> Output
+
+    %% Style nodes
+    classDef primary fill:#d4f1f9,stroke:#05728f,stroke-width:2px;
+    classDef secondary fill:#e1d5e7,stroke:#9673a6,stroke-width:2px;
+    classDef support fill:#fff2cc,stroke:#d6b656,stroke-width:2px;
+    classDef state fill:#dae8fc,stroke:#6c8ebf,stroke-width:2px;
+
+    class Frontend,CodeEmbedding,Analyzer,Junction,Generator,CBMC,Evaluator,Output primary;
+    class Core,STATE,WORKFLOW,EMBEDDING_DB state;
+    class RAG_System,RAG_DB,RAG_CODE,RAG_PATTERNS,RAG_ERRORS,RAG_SOLUTIONS secondary;
+    class Utils,CODE_PARSER,FILE_UTILS,LLM_UTILS,CBMC_PARSER,SOLVER_UTILS support;

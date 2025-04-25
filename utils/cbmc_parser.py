@@ -1464,6 +1464,39 @@ def generate_improvement_recommendation(harness_code: str, func_code: str, cbmc_
                                 elif "overflow" in specific_error_str:
                                     recommendation.append(f"  ↪ FIX NEEDED: Add checks to prevent arithmetic overflow")
                                     recommendation.append(f"    Example: __CPROVER_assume(x < INT_MAX/2);")
+                                # Add type conversion error detection and solution
+                                elif ("invalid conversion" in specific_error_str or 
+                                      "incompatible type" in specific_error_str or 
+                                      "conversion from" in specific_error_str or 
+                                      "type mismatch" in specific_error_str or
+                                      "cannot convert" in specific_error_str):
+                                    
+                                    # Try to extract the from/to types for more specific guidance
+                                    from_type = ""
+                                    to_type = ""
+                                    for err in specific_error:
+                                        from_match = re.search(r'from [\'"]?([^\'"\s]+)[\'"]?', err)
+                                        to_match = re.search(r'to [\'"]?([^\'"\s]+)[\'"]?', err)
+                                        
+                                        if from_match:
+                                            from_type = from_match.group(1)
+                                        if to_match:
+                                            to_type = to_match.group(1)
+                                    
+                                    if from_type and to_type:
+                                        recommendation.append(f"  ↪ FIX NEEDED: Add explicit type cast from '{from_type}' to '{to_type}'")
+                                        # Add type-specific examples
+                                        if "*" in to_type:  # Pointer conversion
+                                            recommendation.append(f"    Example: {to_type} target = ({to_type})source;")
+                                        elif "int" in to_type:  # Integer conversion
+                                            recommendation.append(f"    Example: {to_type} target = ({to_type})source;")
+                                        elif "char" in to_type:  # Character conversion
+                                            recommendation.append(f"    Example: {to_type} target = ({to_type})source;")
+                                        else:  # Generic conversion
+                                            recommendation.append(f"    Example: {to_type} target = ({to_type})source;")
+                                    else:
+                                        recommendation.append(f"  ↪ FIX NEEDED: Add explicit type cast to fix conversion error")
+                                        recommendation.append(f"    Example: target_type variable = (target_type)source;")
                                 
                                 # Show context before and after
                                 recommendation.append("\n  Context:")

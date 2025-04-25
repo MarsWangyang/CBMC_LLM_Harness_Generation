@@ -231,6 +231,34 @@ def harness_evaluator_node(state):
                     error_msg = parts[1].strip()
                     # Keep only the error message content
                     error_sigs.append(error_msg)
+                    
+                    # Special handling for conversion errors - capture more specific info
+                    if ('invalid conversion' in error_msg.lower() or 
+                        'incompatible type' in error_msg.lower() or 
+                        'conversion from' in error_msg.lower() or
+                        'type mismatch' in error_msg.lower() or
+                        'cannot convert' in error_msg.lower()):
+                        
+                        # Mark as a conversion error explicitly to ensure proper categorization
+                        error_sigs.append("CONVERSION ERROR DETECTED")
+                        
+                        # Try to extract source and target types for more specific guidance
+                        from_type = ""
+                        to_type = ""
+                        
+                        # Try several regex patterns for different error formats
+                        from_match = re.search(r'from [\'"]?([^\'"\s]+)[\'"]?', error_msg)
+                        to_match = re.search(r'to [\'"]?([^\'"\s]+)[\'"]?', error_msg)
+                        
+                        if from_match:
+                            from_type = from_match.group(1)
+                        if to_match:
+                            to_type = to_match.group(1)
+                        
+                        # Add structured conversion error if we found the types
+                        if from_type and to_type:
+                            conversion_err = f"CONVERSION ERROR: from '{from_type}' to '{to_type}'"
+                            error_sigs.append(conversion_err)
         return error_sigs
     
     # Get specific error messages from current and previous runs
@@ -600,10 +628,12 @@ def harness_evaluator_node(state):
                 "syntax_error": ["syntax error", "expected", "invalid", "unexpected token"],
                 "declaration_error": ["not declared", "undeclared", "declaration", "undefined reference"],
                 "struct_error": ["member", "not found", "incomplete type", "has no member", "struct"],
-                "type_error": ["incompatible type", "invalid conversion", "wrong type", "type mismatch", "no match for"],
+                "type_error": ["incompatible type", "invalid conversion", "wrong type", "type mismatch", "no match for", 
+                              "conversion from", "cannot convert", "CONVERSION ERROR", "CONVERSION ERROR DETECTED", 
+                              "cannot cast", "cast from"],
                 "memory_error": ["memory leak", "double free", "invalid free", "use after free", "buffer overflow"],
                 "pointer_error": ["null pointer", "invalid pointer", "dereferencing", "dereference"],
-                "compilation_error": ["cannot compile", "compilation failed", "error during compilation", "CONVERSION ERROR"],
+                "compilation_error": ["cannot compile", "compilation failed", "error during compilation"],
                 "verification_error": ["assert", "assertion", "property", "memory-safety"],
                 "linker_error": ["linker", "undefined symbol", "undefined reference"]
             }
@@ -799,10 +829,40 @@ extern void* nondet_ptr(void);
                 
             detailed_insights += """
 💡 SOLUTION FOR TYPE ERRORS:
-1. Check that variable types match function parameter types
-2. Add explicit type casts where needed
-3. Be careful with pointer types - make sure they match exactly
+1. Check that variable types match function parameter types EXACTLY
+2. Add explicit type casts using proper C syntax for the target type
+3. Be careful with pointer types - make sure they match exactly 
 4. Pay special attention to unsigned vs. signed types
+5. For pointer type conversions, use (TargetType*)variable to cast properly
+6. For integer conversions, use (int), (unsigned int), etc. as needed
+7. For struct pointers, ensure you're using the correct struct type
+8. Completely avoid implicit conversions between incompatible types
+9. For string literals, make sure to cast to (char*) NOT (const char*)
+10. For array types, remember arrays decay to pointers - use &array[0] if needed
+
+SPECIFIC TYPE CONVERSION EXAMPLES:
+```c
+// Casting integer types
+int a = 5;
+unsigned int b = (unsigned int)a;  // Explicit cast to unsigned
+
+// Casting pointers
+void* generic_ptr = malloc(10);
+char* char_ptr = (char*)generic_ptr;  // Explicit cast to char*
+
+// Casting struct pointers
+struct OriginalType* orig = &original;
+struct TargetType* target = (struct TargetType*)orig;  // Explicit struct cast
+
+// String literal handling
+const char* str_literal = "test";
+char* mutable_str = (char*)str_literal;  // Cast away const (be careful!)
+
+// Array to pointer conversions
+char buffer[100];
+char* ptr = buffer;  // Arrays decay to pointers naturally
+void* void_ptr = (void*)&buffer[0];  // Explicit cast with address
+```
 """
         
         # MEMORY ERRORS

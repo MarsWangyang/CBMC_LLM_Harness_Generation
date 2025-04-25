@@ -623,6 +623,21 @@ def generator_node(state):
         has_redeclaration_error = cbmc_result.get("has_redeclaration_error", False) or "redeclaration" in cbmc_result.get("error_categories", [])
         has_linking_error = "linking_error" in cbmc_result.get("error_categories", [])
         has_missing_file_error = "missing_file" in cbmc_result.get("error_categories", [])
+        has_type_conversion_error = "type_error" in cbmc_result.get("error_categories", [])
+        
+        # Check for conversion errors specifically in error signatures
+        has_conversion_error_detail = False
+        if "error_signatures" in cbmc_result:
+            error_sigs = cbmc_result.get("error_signatures", [])
+            for sig in error_sigs:
+                if ("invalid conversion" in sig.lower() or 
+                    "incompatible type" in sig.lower() or 
+                    "conversion from" in sig.lower() or 
+                    "type mismatch" in sig.lower() or
+                    "cannot convert" in sig.lower() or
+                    "CONVERSION ERROR" in sig):
+                    has_conversion_error_detail = True
+                    break
         
         # Extract specific information from STDERR if available
         stderr_info = ""
@@ -776,6 +791,60 @@ Problems with struct definitions. Check:
                 3. Use double quotes for project headers (#include "project_header.h")
                 4. Use angle brackets only for standard library headers (#include <stdlib.h>)
                 5. Remove any includes for files that don't exist
+                """
+                
+            # Add specialized guidance for type conversion errors
+            if has_type_conversion_error or has_conversion_error_detail:
+                # Extract any conversion details
+                conversion_details = ""
+                if "error_signatures" in cbmc_result:
+                    for sig in cbmc_result["error_signatures"]:
+                        if "from '" in sig and "to '" in sig:
+                            conversion_details += f"  - {sig}\n"
+                            
+                generator_prompt += f"""
+                TYPE CONVERSION ERROR INSTRUCTIONS:
+                1. CRITICAL: Type conversion errors must be fixed with explicit casts
+                2. The following specific conversion errors were detected:
+{conversion_details if conversion_details else "  - Invalid type conversion detected\n"}
+                
+                SPECIFIC TYPE CONVERSION FIXES:
+                1. For pointer conversions, use explicit C-style casts:
+                   ```c
+                   // Example: Converting void* to char*
+                   void* generic_ptr = malloc(10);
+                   char* char_ptr = (char*)generic_ptr;  // Explicit cast
+                   ```
+                   
+                2. For integer type conversions:
+                   ```c
+                   // Example: Converting int to unsigned int
+                   int signed_value = -5;
+                   unsigned int unsigned_value = (unsigned int)signed_value;  // Explicit cast
+                   ```
+                   
+                3. For struct pointer conversions:
+                   ```c
+                   // Example: Converting between struct types
+                   struct Type1* ptr1 = &obj1;
+                   struct Type2* ptr2 = (struct Type2*)ptr1;  // Explicit struct cast
+                   ```
+                   
+                4. For string literals (common issue):
+                   ```c
+                   // Example: Converting const char* to char*
+                   const char* str_literal = "test";
+                   char* mutable_str = (char*)str_literal;  // Cast away const
+                   ```
+                   
+                5. For array to pointer conversions:
+                   ```c
+                   // Example: Converting array to void*
+                   char buffer[100];
+                   void* ptr = (void*)buffer;  // Explicit cast (though array decays to pointer)
+                   ```
+                
+                REMEMBER: Match the EXACT type specified in function signatures and headers. Don't rely on implicit conversions between different pointer types or sign differences.
                 """
         
         # Add specialized guidance for timeout and performance issues
