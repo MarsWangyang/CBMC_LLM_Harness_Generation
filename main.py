@@ -112,7 +112,8 @@ def main():
     parser.add_argument('-s', '--sat_solver', type=str, choices=['minisat', 'kissat', 'cadical'], default = 'minisat',
                         help='SAT solver used by CBMC' )
     args = parser.parse_args()
-    
+
+
     # Set logging level based on verbose flag
     if args.verbose:
         logging.getLogger().setLevel(logging.DEBUG)
@@ -123,6 +124,8 @@ def main():
         logger.info(f"Initializing LLM: {args.llm}")
         setup_llm(model_choice=args.llm)
 
+
+        logger.info(f"Initilizing SAT solver: {args.sat_solver}")
         setup_sat_solver(args.sat_solver)
         
         # Set up verification directories with LLM model name
@@ -182,6 +185,7 @@ def main():
                 "result_directories": result_directories,
                 "llm_used": args.llm,
                 "rag_enabled": bool(rag_result["db"]),
+                "sat_solver": args.sat_solver,
                 "global_error_patterns": rag_result.get("global_error_patterns", [])
             }
             

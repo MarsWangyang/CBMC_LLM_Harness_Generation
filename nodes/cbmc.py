@@ -314,15 +314,18 @@ def cbmc_node(state):
     from utils.solver_utils import setup_sat_solver
     sat_solver = setup_sat_solver()
 
-    if sat_solver == "kissat":
-        path = "./solvers/kissat/build/kissat"
+
+    if sat_solver in ["kissat", "cadical"]:
+        if sat_solver == "kissat":
+            path = "./solvers/kissat/build/kissat"
+        elif sat_solver == "cadical":
+            path = "./solvers/cadical/build/cadical"
         if not os.path.exists(path):
             raise FileNotFoundError(f"{sat_solver} solver binary not found at: {path}")
 
         cbmc_cmd.extend(["--external-sat-solver", path])
         logger.info(f"Using {sat_solver} as CBMC sat solver")
-    elif sat_solver == "cadical":
-        cbmc_cmd.extend(["--sat-solver", "cadical"])        
+
     elif sat_solver == "minisat" or sat_solver is None:
         logger.info(f"Using default minisat as CBMC sat solver")
         pass
@@ -454,12 +457,13 @@ def cbmc_node(state):
                     "total_combined_lines": coverage_metrics.get("total_combined_lines", 0),
                     "reachable_combined_lines": coverage_metrics.get("reachable_combined_lines", 0),
                 }
+
                 
                 # Save as JSON for each function version
                 func_metrics_file = os.path.join(coverage_dir, f"{func_name}_v{version_num}.json")
                 with open(func_metrics_file, "w") as f:
                     json.dump(flat_data, f, indent=2)
-                
+
                 # Update the running CSV file
                 csv_path = os.path.join(coverage_dir, "coverage_metrics.csv")
                 file_exists = os.path.exists(csv_path)
@@ -572,34 +576,7 @@ def cbmc_node(state):
                             error_msg = parts[1].strip()
                             # Keep only the error message content
                             error_sigs.append(error_msg)
-                            
-                            # Special handling for conversion errors - capture more specific info
-                            if ('invalid conversion' in error_msg.lower() or 
-                                'incompatible type' in error_msg.lower() or 
-                                'conversion from' in error_msg.lower() or
-                                'type mismatch' in error_msg.lower() or
-                                'cannot convert' in error_msg.lower()):
-                                
-                                # Mark as a conversion error explicitly to ensure proper categorization
-                                error_sigs.append("CONVERSION ERROR DETECTED")
-                                
-                                # Try to extract source and target types for more specific guidance
-                                from_type = ""
-                                to_type = ""
-                                
-                                # Try several regex patterns for different error formats
-                                from_match = re.search(r'from [\'"]?([^\'"\s]+)[\'"]?', error_msg)
-                                to_match = re.search(r'to [\'"]?([^\'"\s]+)[\'"]?', error_msg)
-                                
-                                if from_match:
-                                    from_type = from_match.group(1)
-                                if to_match:
-                                    to_type = to_match.group(1)
-                                
-                                # Add structured conversion error if we found the types
-                                if from_type and to_type:
-                                    conversion_err = f"CONVERSION ERROR: from '{from_type}' to '{to_type}'"
-                                    error_sigs.append(conversion_err)
+
                 return error_sigs
                 
             # Get specific error messages and add to result

@@ -1,3 +1,4 @@
+
 import os
 import logging
 from subprocess import run
@@ -61,5 +62,5 @@ def setup_sat_solver(solver = None):
 
     logger.error(f"Invalid SAT solver: {solver}")
     sys.exit(1)
-    
+
     
