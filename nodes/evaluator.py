@@ -231,13 +231,14 @@ def harness_evaluator_node(state):
                     error_msg = parts[1].strip()
                     # Keep only the error message content
                     error_sigs.append(error_msg)
+
         return error_sigs
     
     # Get specific error messages from current and previous runs
     current_error_sigs = extract_error_signatures(current_stderr)
     previous_stderr = cbmc_result.get("previous_stderr", "")
     previous_error_sigs = extract_error_signatures(previous_stderr)
-    
+
     # Check if the specific error messages are the same
     same_specific_errors = False
     if current_error_sigs and previous_error_sigs:
@@ -251,7 +252,7 @@ def harness_evaluator_node(state):
         
         # Store the specific error signatures in the result for the generator
         cbmc_result["error_signatures"] = current_error_sigs
-        
+
     # Get previous failure count safely (accessing it correctly before we use it)
     previous_failure_count = cbmc_result.get("previous_failure_count", 0)
     if isinstance(previous_failure_count, str) and previous_failure_count.isdigit():
@@ -327,7 +328,7 @@ def harness_evaluator_node(state):
     
     if ((sorted_error_categories == sorted_previous_error_categories and sorted_error_categories) or 
         (same_specific_errors and current_error_sigs)) and current_failure_count > 0:
-        
+
         # Check if we've made NO progress at all
         # We already converted previous_failure_count above, so use that value directly
         if current_failure_count >= previous_failure_count:
@@ -803,8 +804,7 @@ extern void* nondet_ptr(void);
 2. Add explicit type casts where needed
 3. Be careful with pointer types - make sure they match exactly
 4. Pay special attention to unsigned vs. signed types
-"""
-        
+
         # MEMORY ERRORS
         if "memory_error" in categorized_errors:
             memory_errors = categorized_errors["memory_error"]

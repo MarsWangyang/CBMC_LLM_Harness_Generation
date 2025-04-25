@@ -124,6 +124,7 @@ def main():
         logger.info(f"Initializing LLM: {args.llm}")
         setup_llm(model_choice=args.llm)
 
+
         logger.info(f"Initilizing SAT solver: {args.sat_solver}")
         setup_sat_solver(args.sat_solver)
         
